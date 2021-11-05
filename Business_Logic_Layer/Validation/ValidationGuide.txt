@@ -1,0 +1,2 @@
+﻿Validation rules for models are handled here. 
+For every model, different validation classes derived from fluentvalidation created here.

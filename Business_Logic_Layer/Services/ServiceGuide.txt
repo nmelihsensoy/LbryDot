@@ -1,0 +1,3 @@
+﻿For every model in the Entities layer, create a service class here with 'ModelNameService' name.
+Service provides a logic for presentation layer. Data validation and the operation logic definition in the 
+presentation layer handled in the service that releated with the operation.
