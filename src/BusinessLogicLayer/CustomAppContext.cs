@@ -1,13 +1,13 @@
-﻿using Data_Layer;
-using Data_Layer.Abstract;
-using Data_Layer.DatabaseProvider;
+﻿using DataLayer;
+using DataLayer.Abstract;
+using DataLayer.DatabaseProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business_Logic_Layer
+namespace BusinessLogicLayer
 {
     //Used for creating database instance and creating unit of work with this database instance.
     //Provides unit of work access for services.

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_Layer.Abstract
+namespace DataLayer.Abstract
 {
 
     //Generic interface for getting connection.

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "Presentation_Layer\PresentationLayer.csproj", "{767EDC5E-DE94-41CA-A40E-F12F032F5702}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{767EDC5E-DE94-41CA-A40E-F12F032F5702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{38681EC7-8A94-471A-A3D5-531B893FDCF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "Data_Layer\DataLayer.csproj", "{02E3131F-5B01-4C83-9680-EE79CF2BC623}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{02E3131F-5B01-4C83-9680-EE79CF2BC623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "Business_Logic_Layer\BusinessLogicLayer.csproj", "{4F5BF148-5BE0-47E9-B298-3F585148000D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{4F5BF148-5BE0-47E9-B298-3F585148000D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

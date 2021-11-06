@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_Layer
+namespace DataLayer
 {
     //Definitions of function or varibles that can only used in Data Layer to help another function or variable.
     //Creating with no relation any of classes is required.

@@ -1,4 +1,4 @@
-﻿using Data_Layer.Abstract;
+﻿using DataLayer.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_Layer.DatabaseProvider
+namespace DataLayer.DatabaseProvider
 {
     //Database provider class for SQLite Database.
     public class DatabaseProvider : IDatabaseProvider
