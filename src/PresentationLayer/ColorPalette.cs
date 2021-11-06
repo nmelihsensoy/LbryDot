@@ -13,5 +13,6 @@ namespace PresentationLayer
         public static Color LoginForeColor = Color.White;
         public static Color LoginFormElementsBackColor = Color.FromArgb(24, 32, 63);
         public static Color LoginFormElementsActiveColor = Color.FromArgb(0, 120, 215);
+        public static Color LoginPlaceholderColor = Color.White;
     }
 }

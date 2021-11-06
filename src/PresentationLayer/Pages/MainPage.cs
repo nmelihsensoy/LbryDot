@@ -16,7 +16,7 @@ namespace PresentationLayer.Pages
         public MainPage()
         {
             InitializeComponent();
-            label1.Text = Strings.LoginExecuteButtonText;
+            //label1.Text = Strings.LoginExecuteButtonText;
         }
 
         private void label1_Click(object sender, EventArgs e)

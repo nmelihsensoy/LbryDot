@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +15,12 @@ using System.Windows.Forms;
 namespace PresentationLayer.Pages
 {
     public partial class LoginPage : Form
-    {     
+    {
+        string trEmailPlaceholder = Strings.ResourceManager.GetString("LoginEmailPlaceholderText", CultureInfo.GetCultureInfo("tr"));
+        string enEmailPlaceholder = Strings.ResourceManager.GetString("LoginEmailPlaceholderText", CultureInfo.GetCultureInfo(""));
+        string trPassPlaceholder = Strings.ResourceManager.GetString("LoginPassPlaceholderText", CultureInfo.GetCultureInfo("tr"));
+        string enPassPlaceholder = Strings.ResourceManager.GetString("LoginPassPlaceholderText", CultureInfo.GetCultureInfo(""));
+
         public LoginPage()
         {
             Helpers.ChangeLanguage();
@@ -28,11 +34,11 @@ namespace PresentationLayer.Pages
         private void ApplyStrings()
         {
             Logo.Text = Strings.LogoText;
-            if (Email_Input.Text.Trim() == string.Empty || Email_Input.Text == Strings.LoginEmailPlaceholderText)
+            if (Email_Input.Text.Trim() == string.Empty || Email_Input.Text == trEmailPlaceholder || Email_Input.Text == enEmailPlaceholder)
             {
                 Email_Input.Text = Strings.LoginEmailPlaceholderText;
             }
-            if (Password_Input.Text.Trim() == string.Empty || Password_Input.Text == Strings.LoginPassPlaceholderText)
+            if (Password_Input.Text.Trim() == string.Empty || Password_Input.Text == trPassPlaceholder || Password_Input.Text == enPassPlaceholder)
             {
                 Password_Input.Text = Strings.LoginPassPlaceholderText;
             }
@@ -48,12 +54,12 @@ namespace PresentationLayer.Pages
             this.BackColor = ColorPalette.LoginBackColor;
             Logo.ForeColor = ColorPalette.LoginForeColor;  
             Email_Input.BackColor = ColorPalette.LoginFormElementsBackColor;
-            Email_Input.ForeColor = ColorPalette.LoginForeColor;
+            Email_Input.ForeColor = ColorPalette.LoginPlaceholderColor;
             Email_Input_Line.BackColor = ColorPalette.LoginForeColor;
             Email_Input_Icon.BackColor = ColorPalette.LoginFormElementsBackColor;
             Email_Input_Icon.ForeColor = ColorPalette.LoginForeColor;   
             Password_Input.BackColor = ColorPalette.LoginFormElementsBackColor;
-            Password_Input.ForeColor = ColorPalette.LoginForeColor;
+            Password_Input.ForeColor = ColorPalette.LoginPlaceholderColor;
             Pass_Input_Line.BackColor = ColorPalette.LoginForeColor;
             Pass_Input_Icon.BackColor = ColorPalette.LoginFormElementsBackColor;
             Pass_Input_Icon.ForeColor = ColorPalette.LoginForeColor;      
@@ -106,7 +112,7 @@ namespace PresentationLayer.Pages
         private void Email_Input_Enter(object sender, EventArgs e)
         {
             //When typing in email box, clear placeholder text and set active color
-            if (Email_Input.Text.Trim() == Strings.LoginEmailPlaceholderText)
+            if (Email_Input.Text.Trim() == trEmailPlaceholder || Email_Input.Text.Trim() == enEmailPlaceholder)
             {
                 Email_Input.Clear();
             }
@@ -128,7 +134,7 @@ namespace PresentationLayer.Pages
 
         private void Password_Input_Enter(object sender, EventArgs e)
         {
-            if (Password_Input.Text.Trim() == Strings.LoginPassPlaceholderText)
+            if (Password_Input.Text.Trim() == trPassPlaceholder || Password_Input.Text.Trim() == enPassPlaceholder)
             {
                 Password_Input.Clear();
             }
