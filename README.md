@@ -22,29 +22,29 @@
 
 ### Forms
 
-#### Login Page
+#### -Login Page
 
-#### Dashboard Page
+#### -Dashboard Page
 
-#### My Books Page
+#### -My Books Page
 
-#### All Books Page
+#### -Books Page
 
-#### Students Page
+#### --Students Page
 
-#### Staffs Page
+#### --Staffs Page
 
-#### System Settings Page
+#### --System Settings Page
 
-#### Add & Update Book Dialog
+#### -Add & Update Book Dialog
 
-#### Book Details Dialog
+#### -Book Details Dialog
 
-#### Borrow Book Dialog
+#### -Borrow Book Dialog
 
-#### Issue Book Dialog
+#### -Issue Book Dialog
 
-#### Add & Update Student Dialog
+#### -Add & Update Student Dialog
 
-#### Add & Update Staff Dialog
+#### -Add & Update Staff Dialog
 

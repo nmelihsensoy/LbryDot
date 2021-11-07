@@ -117,49 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllBooks" xml:space="preserve">
-    <value>All Books</value>
-  </data>
-  <data name="Books" xml:space="preserve">
-    <value>Books</value>
-  </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
-  </data>
-  <data name="LoginEmailPlaceholderText" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="LoginExecuteButtonText" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="LoginPassPlaceholderText" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="LoginUserTypeStaff" xml:space="preserve">
-    <value>Staff</value>
-  </data>
-  <data name="LoginUserTypeStudent" xml:space="preserve">
-    <value>Student</value>
-  </data>
-  <data name="LogoText" xml:space="preserve">
-    <value>lbry.</value>
-  </data>
-  <data name="MyBooks" xml:space="preserve">
-    <value>My Books</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Staff" xml:space="preserve">
-    <value>Staff</value>
-  </data>
-  <data name="Staffs" xml:space="preserve">
-    <value>Staffs</value>
-  </data>
-  <data name="Student" xml:space="preserve">
-    <value>Student</value>
-  </data>
-  <data name="Students" xml:space="preserve">
-    <value>Students</value>
-  </data>
 </root>

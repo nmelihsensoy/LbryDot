@@ -61,6 +61,33 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Books.
+        /// </summary>
+        internal static string AllBooks {
+            get {
+                return ResourceManager.GetString("AllBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Books.
+        /// </summary>
+        internal static string Books {
+            get {
+                return ResourceManager.GetString("Books", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string LoginEmailPlaceholderText {
@@ -111,6 +138,60 @@ namespace PresentationLayer.Resources {
         internal static string LogoText {
             get {
                 return ResourceManager.GetString("LogoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Books.
+        /// </summary>
+        internal static string MyBooks {
+            get {
+                return ResourceManager.GetString("MyBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff.
+        /// </summary>
+        internal static string Staff {
+            get {
+                return ResourceManager.GetString("Staff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staffs.
+        /// </summary>
+        internal static string Staffs {
+            get {
+                return ResourceManager.GetString("Staffs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student.
+        /// </summary>
+        internal static string Student {
+            get {
+                return ResourceManager.GetString("Student", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Students.
+        /// </summary>
+        internal static string Students {
+            get {
+                return ResourceManager.GetString("Students", resourceCulture);
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using PresentationLayer.Pages;
+using PresentationLayer.Resources;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -25,11 +27,16 @@ namespace PresentationLayer
         public static void ChangeLanguage(string CultureAbbr = "")
         {
             //Thread.CurrentThread.CurrentUICulture.ClearCachedData();
-            
+
             if (GetCurrentLanguage() != CultureAbbr)
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(CultureAbbr);
-            }     
+            }
+        }
+
+        public static string GetValueFromCulture(string StringName, string CultureName)
+        {
+            return Strings.ResourceManager.GetString(StringName, CultureInfo.GetCultureInfo(CultureName));
         }
 
         public static void ChangePage(Form Current, Form Next)
@@ -37,5 +44,83 @@ namespace PresentationLayer
             Current.Hide();
             Next.Show();
         }
+
+        public static void OpenSubPages(Panel Panel, Form SubForm, ref string ActiveSubPage)
+        {
+                ActiveSubPage = SubForm.Text;
+                SubForm.TopLevel = false;
+                SubForm.FormBorderStyle = FormBorderStyle.None;
+                SubForm.Dock = DockStyle.Fill;
+                Panel.Controls.Add(SubForm);
+                Panel.Tag = SubForm;
+                SubForm.BringToFront();
+                SubForm.Show();
+        }
+
+        public static bool CompareForms(Form F1, Form F2)
+        {
+            if (F1 == null || F1.Text != F2.Text)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static void OpenSubPages(ref Form _ActiveForm, Panel Panel, Form SubForm)
+        {
+            if(_ActiveForm != null)
+            {
+                _ActiveForm.Close();
+            }
+            _ActiveForm = SubForm;
+            SubForm.TopLevel = false;
+            SubForm.FormBorderStyle = FormBorderStyle.None;
+            SubForm.Dock = DockStyle.Fill;
+            Panel.Controls.Add(SubForm);
+            Panel.Tag = SubForm;
+            //SubForm.BringToFront();
+            SubForm.Show();
+        }
+
+        public static void CloseForm(Form F)
+        {
+            F.Hide();
+        }
+
+        public static void CloseApplication()
+        {
+            Application.Exit();
+        }
+
+        public static void MinimizeWindow(Form F)
+        {
+            F.WindowState = FormWindowState.Minimized;
+        }
+
+        public static void MaximizeWindow(Form F)
+        {
+            F.WindowState = FormWindowState.Maximized;
+        }
+
+        public static void NormalizeWindow(Form F)
+        {
+            F.WindowState = FormWindowState.Normal;
+        }
+
+        public static void MaximizeWindowToggle(Form F)
+        {
+            if (F.WindowState == FormWindowState.Normal)
+            {
+                F.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                F.WindowState = FormWindowState.Normal;
+            }
+        }
+
     }
 }

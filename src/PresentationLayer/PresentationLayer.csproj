@@ -55,6 +55,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorPalette.cs" />
+    <Compile Include="Controls\UserDropdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserDropdown.Designer.cs">
+      <DependentUpon>UserDropdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BookAddUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BookAddUpdate.Designer.cs">
+      <DependentUpon>BookAddUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BookBorrow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BookBorrow.Designer.cs">
+      <DependentUpon>BookBorrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BookDetails.Designer.cs">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BookIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BookIssue.Designer.cs">
+      <DependentUpon>BookIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StaffAddUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\StaffAddUpdate.Designer.cs">
+      <DependentUpon>StaffAddUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StudentAddUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\StudentAddUpdate.Designer.cs">
+      <DependentUpon>StudentAddUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="Pages\LoginPage.cs">
       <SubType>Form</SubType>
@@ -80,11 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="SubPages\AllBooks.cs">
+    <Compile Include="SubPages\Books.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubPages\AllBooks.Designer.cs">
-      <DependentUpon>AllBooks.cs</DependentUpon>
+    <Compile Include="SubPages\Books.Designer.cs">
+      <DependentUpon>Books.cs</DependentUpon>
     </Compile>
     <Compile Include="SubPages\Dashboard.cs">
       <SubType>Form</SubType>
@@ -116,6 +158,13 @@
     <Compile Include="SubPages\Students.Designer.cs">
       <DependentUpon>Students.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\gravatar.jpg" />
+    <EmbeddedResource Include="Controls\UserDropdown.resx">
+      <DependentUpon>UserDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\StudentAddUpdate.resx">
+      <DependentUpon>StudentAddUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +179,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resources\Strings.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,6 +192,24 @@
     <Content Include="lbrydot_db.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="SubPages\Books.resx">
+      <DependentUpon>Books.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubPages\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubPages\MyBooks.resx">
+      <DependentUpon>MyBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubPages\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubPages\Staffs.resx">
+      <DependentUpon>Staffs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubPages\Students.resx">
+      <DependentUpon>Students.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,10 +224,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Dialogs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
       <Project>{4f5bf148-5be0-47e9-b298-3f585148000d}</Project>

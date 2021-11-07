@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer.SubPages
+namespace PresentationLayer.Dialogs
 {
-    public partial class AllBooks : Form
+    public partial class BookBorrow : Form
     {
-        public AllBooks()
+        public BookBorrow()
         {
             InitializeComponent();
         }

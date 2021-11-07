@@ -16,10 +16,10 @@ namespace PresentationLayer.Pages
 {
     public partial class LoginPage : Form
     {
-        string trEmailPlaceholder = Strings.ResourceManager.GetString("LoginEmailPlaceholderText", CultureInfo.GetCultureInfo("tr"));
-        string enEmailPlaceholder = Strings.ResourceManager.GetString("LoginEmailPlaceholderText", CultureInfo.GetCultureInfo(""));
-        string trPassPlaceholder = Strings.ResourceManager.GetString("LoginPassPlaceholderText", CultureInfo.GetCultureInfo("tr"));
-        string enPassPlaceholder = Strings.ResourceManager.GetString("LoginPassPlaceholderText", CultureInfo.GetCultureInfo(""));
+        string trEmailPlaceholder = Helpers.GetValueFromCulture("LoginEmailPlaceholderText", "tr");
+        string enEmailPlaceholder = Helpers.GetValueFromCulture("LoginEmailPlaceholderText", "");
+        string trPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "tr");
+        string enPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "");
 
         public LoginPage()
         {
@@ -52,6 +52,7 @@ namespace PresentationLayer.Pages
         private void ApplyColorPalette()
         {
             this.BackColor = ColorPalette.LoginBackColor;
+            ContainerPanel.BackColor = ColorPalette.LoginBackColor;
             Logo.ForeColor = ColorPalette.LoginForeColor;  
             Email_Input.BackColor = ColorPalette.LoginFormElementsBackColor;
             Email_Input.ForeColor = ColorPalette.LoginPlaceholderColor;

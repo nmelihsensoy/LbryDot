@@ -42,13 +42,18 @@ namespace PresentationLayer.Pages
             this.LoginTypeSelection = new System.Windows.Forms.ComboBox();
             this.Email_Input = new System.Windows.Forms.TextBox();
             this.Logo = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.ContainerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pass_Input_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Email_Input_Icon)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContainerPanel
             // 
+            this.ContainerPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.ContainerPanel.Controls.Add(this.panel1);
             this.ContainerPanel.Controls.Add(this.Pass_Input_Line);
             this.ContainerPanel.Controls.Add(this.Pass_Input_Icon);
             this.ContainerPanel.Controls.Add(this.Email_Input_Line);
@@ -64,7 +69,7 @@ namespace PresentationLayer.Pages
             this.ContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContainerPanel.Location = new System.Drawing.Point(0, 0);
             this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.Size = new System.Drawing.Size(320, 410);
+            this.ContainerPanel.Size = new System.Drawing.Size(320, 430);
             this.ContainerPanel.TabIndex = 0;
             this.ContainerPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
             this.ContainerPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
@@ -73,7 +78,7 @@ namespace PresentationLayer.Pages
             // Pass_Input_Line
             // 
             this.Pass_Input_Line.BackColor = System.Drawing.Color.White;
-            this.Pass_Input_Line.Location = new System.Drawing.Point(45, 215);
+            this.Pass_Input_Line.Location = new System.Drawing.Point(45, 247);
             this.Pass_Input_Line.Name = "Pass_Input_Line";
             this.Pass_Input_Line.Size = new System.Drawing.Size(230, 10);
             this.Pass_Input_Line.TabIndex = 13;
@@ -86,7 +91,7 @@ namespace PresentationLayer.Pages
             this.Pass_Input_Icon.IconColor = System.Drawing.SystemColors.ControlText;
             this.Pass_Input_Icon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Pass_Input_Icon.IconSize = 24;
-            this.Pass_Input_Icon.Location = new System.Drawing.Point(45, 192);
+            this.Pass_Input_Icon.Location = new System.Drawing.Point(45, 224);
             this.Pass_Input_Icon.Name = "Pass_Input_Icon";
             this.Pass_Input_Icon.Size = new System.Drawing.Size(24, 24);
             this.Pass_Input_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -96,7 +101,7 @@ namespace PresentationLayer.Pages
             // Email_Input_Line
             // 
             this.Email_Input_Line.BackColor = System.Drawing.Color.White;
-            this.Email_Input_Line.Location = new System.Drawing.Point(45, 168);
+            this.Email_Input_Line.Location = new System.Drawing.Point(45, 200);
             this.Email_Input_Line.Name = "Email_Input_Line";
             this.Email_Input_Line.Size = new System.Drawing.Size(230, 10);
             this.Email_Input_Line.TabIndex = 10;
@@ -105,7 +110,7 @@ namespace PresentationLayer.Pages
             // 
             this.Password_Input.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Password_Input.Font = new System.Drawing.Font("Avignon Pro", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Password_Input.Location = new System.Drawing.Point(75, 197);
+            this.Password_Input.Location = new System.Drawing.Point(75, 229);
             this.Password_Input.Name = "Password_Input";
             this.Password_Input.Size = new System.Drawing.Size(200, 15);
             this.Password_Input.TabIndex = 11;
@@ -120,7 +125,7 @@ namespace PresentationLayer.Pages
             this.Email_Input_Icon.IconColor = System.Drawing.SystemColors.ControlText;
             this.Email_Input_Icon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Email_Input_Icon.IconSize = 24;
-            this.Email_Input_Icon.Location = new System.Drawing.Point(45, 145);
+            this.Email_Input_Icon.Location = new System.Drawing.Point(45, 177);
             this.Email_Input_Icon.Name = "Email_Input_Icon";
             this.Email_Input_Icon.Size = new System.Drawing.Size(24, 24);
             this.Email_Input_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -131,7 +136,7 @@ namespace PresentationLayer.Pages
             // 
             this.Lang_Select_Seperator.AutoSize = true;
             this.Lang_Select_Seperator.Font = new System.Drawing.Font("Calibri Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Lang_Select_Seperator.Location = new System.Drawing.Point(149, 340);
+            this.Lang_Select_Seperator.Location = new System.Drawing.Point(149, 372);
             this.Lang_Select_Seperator.Name = "Lang_Select_Seperator";
             this.Lang_Select_Seperator.Size = new System.Drawing.Size(22, 26);
             this.Lang_Select_Seperator.TabIndex = 7;
@@ -141,7 +146,7 @@ namespace PresentationLayer.Pages
             // 
             this.Lang_TR.FlatAppearance.BorderSize = 0;
             this.Lang_TR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Lang_TR.Location = new System.Drawing.Point(177, 342);
+            this.Lang_TR.Location = new System.Drawing.Point(177, 374);
             this.Lang_TR.Name = "Lang_TR";
             this.Lang_TR.Size = new System.Drawing.Size(35, 23);
             this.Lang_TR.TabIndex = 6;
@@ -153,7 +158,7 @@ namespace PresentationLayer.Pages
             // 
             this.Lang_EN.FlatAppearance.BorderSize = 0;
             this.Lang_EN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Lang_EN.Location = new System.Drawing.Point(109, 342);
+            this.Lang_EN.Location = new System.Drawing.Point(109, 374);
             this.Lang_EN.Name = "Lang_EN";
             this.Lang_EN.Size = new System.Drawing.Size(34, 23);
             this.Lang_EN.TabIndex = 5;
@@ -165,7 +170,7 @@ namespace PresentationLayer.Pages
             // 
             this.LoginExecute.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.LoginExecute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginExecute.Location = new System.Drawing.Point(44, 281);
+            this.LoginExecute.Location = new System.Drawing.Point(44, 313);
             this.LoginExecute.Name = "LoginExecute";
             this.LoginExecute.Size = new System.Drawing.Size(231, 32);
             this.LoginExecute.TabIndex = 4;
@@ -178,7 +183,7 @@ namespace PresentationLayer.Pages
             this.LoginTypeSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoginTypeSelection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginTypeSelection.FormattingEnabled = true;
-            this.LoginTypeSelection.Location = new System.Drawing.Point(44, 241);
+            this.LoginTypeSelection.Location = new System.Drawing.Point(44, 273);
             this.LoginTypeSelection.Name = "LoginTypeSelection";
             this.LoginTypeSelection.Size = new System.Drawing.Size(231, 21);
             this.LoginTypeSelection.TabIndex = 3;
@@ -187,7 +192,7 @@ namespace PresentationLayer.Pages
             // 
             this.Email_Input.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Email_Input.Font = new System.Drawing.Font("Avignon Pro", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Email_Input.Location = new System.Drawing.Point(75, 150);
+            this.Email_Input.Location = new System.Drawing.Point(75, 182);
             this.Email_Input.Name = "Email_Input";
             this.Email_Input.Size = new System.Drawing.Size(200, 15);
             this.Email_Input.TabIndex = 1;
@@ -207,12 +212,31 @@ namespace PresentationLayer.Pages
             this.Logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Logo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Brown;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(45, 122);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(230, 38);
+            this.panel1.TabIndex = 14;
+            this.panel1.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Email\'i Boş bırakmayınız";
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(320, 410);
+            this.ClientSize = new System.Drawing.Size(320, 430);
             this.Controls.Add(this.ContainerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginPage";
@@ -222,6 +246,8 @@ namespace PresentationLayer.Pages
             this.ContainerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pass_Input_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Email_Input_Icon)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +267,7 @@ namespace PresentationLayer.Pages
         private System.Windows.Forms.Panel Pass_Input_Line;
         private FontAwesome.Sharp.IconPictureBox Pass_Input_Icon;
         private System.Windows.Forms.TextBox Password_Input;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
