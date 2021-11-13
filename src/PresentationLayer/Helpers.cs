@@ -122,5 +122,12 @@ namespace PresentationLayer
             }
         }
 
+        public static void MakePictureBoxCircle(PictureBox P)
+        {
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddEllipse(0, 0, P.Width, P.Height);
+            P.Region = new Region(path);
+        }
+
     }
 }

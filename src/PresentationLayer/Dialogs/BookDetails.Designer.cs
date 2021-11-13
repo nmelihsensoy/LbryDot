@@ -29,12 +29,43 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.bookListItem1 = new PresentationLayer.Controls.BookListItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 164);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(464, 184);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // bookListItem1
+            // 
+            this.bookListItem1.Location = new System.Drawing.Point(12, 8);
+            this.bookListItem1.Name = "bookListItem1";
+            this.bookListItem1.Size = new System.Drawing.Size(464, 150);
+            this.bookListItem1.TabIndex = 2;
+            // 
+            // BookDetails
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(490, 366);
+            this.Controls.Add(this.bookListItem1);
+            this.Controls.Add(this.dataGridView1);
+            this.Name = "BookDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookDetail";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private Controls.BookListItem bookListItem1;
     }
 }

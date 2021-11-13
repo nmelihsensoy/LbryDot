@@ -43,6 +43,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,9 +53,30 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\..\..\..\Downloads\zedgraph_dll_v515\zedgraph_dll_v5.1.5\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorPalette.cs" />
+    <Compile Include="Controls\AlertBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AlertBox.Designer.cs">
+      <DependentUpon>AlertBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BookListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BookListItem.Designer.cs">
+      <DependentUpon>BookListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BookStatusItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BookStatusItem.Designer.cs">
+      <DependentUpon>BookStatusItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserDropdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,17 +107,26 @@
     <Compile Include="Dialogs\BookIssue.Designer.cs">
       <DependentUpon>BookIssue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\StaffAddUpdate.cs">
+    <Compile Include="Dialogs\DashboardGraphSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\StaffAddUpdate.Designer.cs">
-      <DependentUpon>StaffAddUpdate.cs</DependentUpon>
+    <Compile Include="Dialogs\DashboardGraphSettings.Designer.cs">
+      <DependentUpon>DashboardGraphSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Info.Designer.cs">
+      <DependentUpon>Info.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\StudentAddUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\StudentAddUpdate.Designer.cs">
       <DependentUpon>StudentAddUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtendedPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="Pages\LoginPage.cs">
@@ -158,9 +189,37 @@
     <Compile Include="SubPages\Students.Designer.cs">
       <DependentUpon>Students.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\41SMo7KEbhL._AC_SY780_.jpg" />
     <None Include="Resources\gravatar.jpg" />
+    <EmbeddedResource Include="Controls\AlertBox.resx">
+      <DependentUpon>AlertBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BookListItem.resx">
+      <DependentUpon>BookListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BookStatusItem.resx">
+      <DependentUpon>BookStatusItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserDropdown.resx">
       <DependentUpon>UserDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BookAddUpdate.resx">
+      <DependentUpon>BookAddUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BookBorrow.resx">
+      <DependentUpon>BookBorrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BookDetails.resx">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BookIssue.resx">
+      <DependentUpon>BookIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DashboardGraphSettings.resx">
+      <DependentUpon>DashboardGraphSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Info.resx">
+      <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\StudentAddUpdate.resx">
       <DependentUpon>StudentAddUpdate.cs</DependentUpon>

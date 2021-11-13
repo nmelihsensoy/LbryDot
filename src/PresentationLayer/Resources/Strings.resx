@@ -117,14 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveBooks" xml:space="preserve">
+    <value>Active Books</value>
+  </data>
+  <data name="AdminRole" xml:space="preserve">
+    <value>Admin</value>
+  </data>
   <data name="AllBooks" xml:space="preserve">
     <value>All Books</value>
+  </data>
+  <data name="AvailableBooks" xml:space="preserve">
+    <value>Available Books</value>
+  </data>
+  <data name="BarName1" xml:space="preserve">
+    <value>Returned Book</value>
+  </data>
+  <data name="BarName2" xml:space="preserve">
+    <value>Borrowed Book</value>
+  </data>
+  <data name="BookAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="BookCategory" xml:space="preserve">
+    <value>Category:</value>
+  </data>
+  <data name="BookCover" xml:space="preserve">
+    <value>Cover:</value>
+  </data>
+  <data name="BookISBN" xml:space="preserve">
+    <value>ISBN:</value>
+  </data>
+  <data name="BookLang" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="BookLength" xml:space="preserve">
+    <value>Length:</value>
+  </data>
+  <data name="BookPublishYear" xml:space="preserve">
+    <value>Publish Year:</value>
   </data>
   <data name="Books" xml:space="preserve">
     <value>Books</value>
   </data>
+  <data name="BookShelfNumber" xml:space="preserve">
+    <value>Shelf Number:</value>
+  </data>
+  <data name="BookTitle" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="BorrowedBooks" xml:space="preserve">
+    <value>Borrowed Books</value>
+  </data>
+  <data name="ButtonBorrow" xml:space="preserve">
+    <value>Borrow</value>
+  </data>
+  <data name="ButtonReturn" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ChartTitle" xml:space="preserve">
+    <value>Last 5 days Statistics</value>
+  </data>
+  <data name="ChartXTitle" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ChartYTitle" xml:space="preserve">
+    <value>Book Count</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="DaysLate" xml:space="preserve">
+    <value>days late</value>
+  </data>
+  <data name="DaysLeft" xml:space="preserve">
+    <value>days left</value>
+  </data>
+  <data name="LoadDefault" xml:space="preserve">
+    <value>LoadDefault</value>
   </data>
   <data name="LoginEmailPlaceholderText" xml:space="preserve">
     <value>Email</value>
@@ -144,13 +219,37 @@
   <data name="LogoText" xml:space="preserve">
     <value>lbry.</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="MyBooks" xml:space="preserve">
     <value>My Books</value>
+  </data>
+  <data name="NoFine" xml:space="preserve">
+    <value>You have no fine to pay</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SearchBook" xml:space="preserve">
+    <value>Search Book</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectReturnDate" xml:space="preserve">
+    <value>Select Return Date:</value>
+  </data>
+  <data name="Setting1" xml:space="preserve">
+    <value>Daily Fine Amount</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="Staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="StaffRole" xml:space="preserve">
     <value>Staff</value>
   </data>
   <data name="Staffs" xml:space="preserve">
@@ -159,7 +258,25 @@
   <data name="Student" xml:space="preserve">
     <value>Student</value>
   </data>
+  <data name="StudentAvatar" xml:space="preserve">
+    <value>Avatar:</value>
+  </data>
+  <data name="StudentEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="StudentName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="StudentPass" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="StudentRole" xml:space="preserve">
+    <value>Student</value>
+  </data>
   <data name="Students" xml:space="preserve">
     <value>Students</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
 </root>

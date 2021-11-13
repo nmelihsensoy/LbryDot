@@ -16,24 +16,49 @@ namespace PresentationLayer.SubPages
         public Students()
         {
             InitializeComponent();
+            InitTable();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void InitTable()
         {
-            using (var form = new StudentAddUpdate())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    string val = form.Name; 
-                    //string dateString = form.ReturnValue2;
-                    //Do something here with these values
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            //dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Azure;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = dataGridView1.DefaultCellStyle.BackColor;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkBlue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.RowTemplate.Height = 30;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.ClearSelection();
 
-                    //for example
-                    //this.txtSomething.Text = val;
-                    MessageBox.Show(val);
-                }
-            }
+            DataTable table = new DataTable();
+
+            table.Columns.Add("Number", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("Email", typeof(string));
+
+            table.Rows.Add(123123123, "John Doe", "test@uni.edu");
+            dataGridView1.DataSource = table;
+
+            DataGridViewButtonColumn dbtn = new DataGridViewButtonColumn();
+            dbtn.Width = 20;
+
+
+            dbtn.Text = "Delete";
+            dbtn.UseColumnTextForButtonValue = true;
+
+            dbtn.HeaderText = "";
+            dataGridView1.Columns.Add(dbtn);
+
+            //dataGridView1.AllowUserToAddRows = false;
         }
-    }
+
+    }   
 }

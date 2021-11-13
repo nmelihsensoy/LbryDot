@@ -29,168 +29,144 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ıconButton2 = new FontAwesome.Sharp.IconButton();
-            this.ıconButton1 = new FontAwesome.Sharp.IconButton();
+            this.Panel_Container = new System.Windows.Forms.Panel();
+            this.AlertBox_UserOperation = new PresentationLayer.Controls.AlertBox();
+            this.Image_StudentAvatar = new System.Windows.Forms.PictureBox();
+            this.Text_Password = new System.Windows.Forms.Label();
+            this.Input_Password = new System.Windows.Forms.TextBox();
+            this.Input_Name = new System.Windows.Forms.TextBox();
+            this.Input_Email = new System.Windows.Forms.TextBox();
+            this.Text_Name = new System.Windows.Forms.Label();
+            this.Text_Email = new System.Windows.Forms.Label();
+            this.Text_Avatar = new System.Windows.Forms.Label();
+            this.Button_AddSave = new FontAwesome.Sharp.IconButton();
+            this.Button_SelectAvatar = new FontAwesome.Sharp.IconButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.Panel_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Image_StudentAvatar)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // Panel_Container
             // 
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.ıconButton2);
-            this.panel1.Controls.Add(this.ıconButton1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 377);
-            this.panel1.TabIndex = 0;
+            this.Panel_Container.Controls.Add(this.AlertBox_UserOperation);
+            this.Panel_Container.Controls.Add(this.Image_StudentAvatar);
+            this.Panel_Container.Controls.Add(this.Text_Password);
+            this.Panel_Container.Controls.Add(this.Input_Password);
+            this.Panel_Container.Controls.Add(this.Input_Name);
+            this.Panel_Container.Controls.Add(this.Input_Email);
+            this.Panel_Container.Controls.Add(this.Text_Name);
+            this.Panel_Container.Controls.Add(this.Text_Email);
+            this.Panel_Container.Controls.Add(this.Text_Avatar);
+            this.Panel_Container.Controls.Add(this.Button_AddSave);
+            this.Panel_Container.Controls.Add(this.Button_SelectAvatar);
+            this.Panel_Container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Container.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Container.Name = "Panel_Container";
+            this.Panel_Container.Size = new System.Drawing.Size(324, 309);
+            this.Panel_Container.TabIndex = 0;
             // 
-            // pictureBox2
+            // AlertBox_UserOperation
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(114, 162);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox2.TabIndex = 19;
-            this.pictureBox2.TabStop = false;
+            this.AlertBox_UserOperation.Location = new System.Drawing.Point(24, 311);
+            this.AlertBox_UserOperation.MinimumSize = new System.Drawing.Size(150, 0);
+            this.AlertBox_UserOperation.Name = "AlertBox_UserOperation";
+            this.AlertBox_UserOperation.Size = new System.Drawing.Size(277, 39);
+            this.AlertBox_UserOperation.TabIndex = 23;
             // 
-            // pictureBox1
+            // Image_StudentAvatar
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(209, 191);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(92, 50);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
+            this.Image_StudentAvatar.Location = new System.Drawing.Point(114, 162);
+            this.Image_StudentAvatar.Name = "Image_StudentAvatar";
+            this.Image_StudentAvatar.Size = new System.Drawing.Size(80, 80);
+            this.Image_StudentAvatar.TabIndex = 19;
+            this.Image_StudentAvatar.TabStop = false;
             // 
-            // label3
+            // Text_Password
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(20, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 19);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Password :";
+            this.Text_Password.AutoSize = true;
+            this.Text_Password.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Password.Location = new System.Drawing.Point(20, 114);
+            this.Text_Password.Name = "Text_Password";
+            this.Text_Password.Size = new System.Drawing.Size(84, 19);
+            this.Text_Password.TabIndex = 17;
+            this.Text_Password.Text = "Password :";
             // 
-            // textBox3
+            // Input_Password
             // 
-            this.textBox3.Location = new System.Drawing.Point(114, 113);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(187, 20);
-            this.textBox3.TabIndex = 16;
+            this.Input_Password.Location = new System.Drawing.Point(114, 113);
+            this.Input_Password.Name = "Input_Password";
+            this.Input_Password.Size = new System.Drawing.Size(187, 20);
+            this.Input_Password.TabIndex = 16;
             // 
-            // textBox2
+            // Input_Name
             // 
-            this.textBox2.Location = new System.Drawing.Point(114, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(187, 20);
-            this.textBox2.TabIndex = 15;
+            this.Input_Name.Location = new System.Drawing.Point(114, 65);
+            this.Input_Name.Name = "Input_Name";
+            this.Input_Name.Size = new System.Drawing.Size(187, 20);
+            this.Input_Name.TabIndex = 15;
             // 
-            // textBox1
+            // Input_Email
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 14;
+            this.Input_Email.Location = new System.Drawing.Point(114, 17);
+            this.Input_Email.Name = "Input_Email";
+            this.Input_Email.Size = new System.Drawing.Size(187, 20);
+            this.Input_Email.TabIndex = 14;
             // 
-            // label2
+            // Text_Name
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(20, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 19);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Name :";
+            this.Text_Name.AutoSize = true;
+            this.Text_Name.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Name.Location = new System.Drawing.Point(20, 66);
+            this.Text_Name.Name = "Text_Name";
+            this.Text_Name.Size = new System.Drawing.Size(60, 19);
+            this.Text_Name.TabIndex = 13;
+            this.Text_Name.Text = "Name :";
             // 
-            // label1
+            // Text_Email
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(20, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 19);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Email :";
+            this.Text_Email.AutoSize = true;
+            this.Text_Email.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Email.Location = new System.Drawing.Point(20, 18);
+            this.Text_Email.Name = "Text_Email";
+            this.Text_Email.Size = new System.Drawing.Size(54, 19);
+            this.Text_Email.TabIndex = 12;
+            this.Text_Email.Text = "Email :";
             // 
-            // panel2
+            // Text_Avatar
             // 
-            this.panel2.BackColor = System.Drawing.Color.Maroon;
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(29, 305);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(272, 54);
-            this.panel2.TabIndex = 23;
-            this.panel2.Visible = false;
+            this.Text_Avatar.AutoSize = true;
+            this.Text_Avatar.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Avatar.Location = new System.Drawing.Point(20, 162);
+            this.Text_Avatar.Name = "Text_Avatar";
+            this.Text_Avatar.Size = new System.Drawing.Size(64, 19);
+            this.Text_Avatar.TabIndex = 22;
+            this.Text_Avatar.Text = "Avatar :";
             // 
-            // label5
+            // Button_AddSave
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(16, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Error Message";
+            this.Button_AddSave.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.Button_AddSave.IconColor = System.Drawing.Color.Black;
+            this.Button_AddSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_AddSave.Location = new System.Drawing.Point(29, 263);
+            this.Button_AddSave.Name = "Button_AddSave";
+            this.Button_AddSave.Size = new System.Drawing.Size(272, 31);
+            this.Button_AddSave.TabIndex = 21;
+            this.Button_AddSave.Text = "Save";
+            this.Button_AddSave.UseVisualStyleBackColor = true;
+            this.Button_AddSave.Click += new System.EventHandler(this.ıconButton2_Click);
             // 
-            // label4
+            // Button_SelectAvatar
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(20, 162);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 19);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Avatar :";
-            // 
-            // ıconButton2
-            // 
-            this.ıconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ıconButton2.IconColor = System.Drawing.Color.Black;
-            this.ıconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconButton2.Location = new System.Drawing.Point(29, 263);
-            this.ıconButton2.Name = "ıconButton2";
-            this.ıconButton2.Size = new System.Drawing.Size(272, 31);
-            this.ıconButton2.TabIndex = 21;
-            this.ıconButton2.Text = "Save";
-            this.ıconButton2.UseVisualStyleBackColor = true;
-            this.ıconButton2.Click += new System.EventHandler(this.ıconButton2_Click);
-            // 
-            // ıconButton1
-            // 
-            this.ıconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ıconButton1.IconColor = System.Drawing.Color.Black;
-            this.ıconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconButton1.Location = new System.Drawing.Point(209, 162);
-            this.ıconButton1.Name = "ıconButton1";
-            this.ıconButton1.Size = new System.Drawing.Size(92, 23);
-            this.ıconButton1.TabIndex = 20;
-            this.ıconButton1.Text = "Select";
-            this.ıconButton1.UseVisualStyleBackColor = true;
+            this.Button_SelectAvatar.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.Button_SelectAvatar.IconColor = System.Drawing.Color.Black;
+            this.Button_SelectAvatar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_SelectAvatar.Location = new System.Drawing.Point(209, 162);
+            this.Button_SelectAvatar.Name = "Button_SelectAvatar";
+            this.Button_SelectAvatar.Size = new System.Drawing.Size(92, 23);
+            this.Button_SelectAvatar.TabIndex = 20;
+            this.Button_SelectAvatar.Text = "Select";
+            this.Button_SelectAvatar.UseVisualStyleBackColor = true;
+            this.Button_SelectAvatar.Click += new System.EventHandler(this.ıconButton1_Click);
             // 
             // openFileDialog1
             // 
@@ -200,37 +176,32 @@ namespace PresentationLayer.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 377);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(324, 309);
+            this.Controls.Add(this.Panel_Container);
             this.Name = "StudentAddUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "StudentAddUpdate";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Panel_Container.ResumeLayout(false);
+            this.Panel_Container.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Image_StudentAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private FontAwesome.Sharp.IconButton ıconButton2;
-        private FontAwesome.Sharp.IconButton ıconButton1;
+        private System.Windows.Forms.Panel Panel_Container;
+        private System.Windows.Forms.PictureBox Image_StudentAvatar;
+        private System.Windows.Forms.Label Text_Password;
+        private System.Windows.Forms.TextBox Input_Password;
+        private System.Windows.Forms.TextBox Input_Name;
+        private System.Windows.Forms.TextBox Input_Email;
+        private System.Windows.Forms.Label Text_Name;
+        private System.Windows.Forms.Label Text_Email;
+        private System.Windows.Forms.Label Text_Avatar;
+        private FontAwesome.Sharp.IconButton Button_AddSave;
+        private FontAwesome.Sharp.IconButton Button_SelectAvatar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private Controls.AlertBox AlertBox_UserOperation;
     }
 }

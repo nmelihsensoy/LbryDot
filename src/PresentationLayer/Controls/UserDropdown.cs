@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,13 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Controls
 {
+    public enum UserType
+    {
+        Admin = 0,
+        Staff = 1,
+        Student = 2
+    }
+
     public partial class UserDropdown : UserControl
     {
         public event EventHandler DropdownClick;
@@ -19,15 +27,48 @@ namespace PresentationLayer.Controls
 
             if (eventHandler != null)
             {
-                eventHandler(this, e);
+                eventHandler(this, e); //sending parent control object
             }
         }
         public UserDropdown()
         {
             InitializeComponent();
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(0, 0, UserAvatar.Width, UserAvatar.Height);
-            UserAvatar.Region = new Region(path);
+            ApplyColorPalette();
+            Helpers.MakePictureBoxCircle(Image_UserAvatar);
+        }
+
+        private void ApplyColorPalette()
+        {
+            Panel_Container.BackColor = ColorPalette.UserDropdownBackColor;
+            Panel_Container.ForeColor = ColorPalette.UserDropdownForeColor;
+            Text_UserRole.ForeColor = ColorPalette.UserDropdownRoleForeColor;
+        }
+
+        public Image Avatar
+        {
+            set { Image_UserAvatar.Image = value; }
+        }
+
+        public UserType Role
+        {
+            set {
+                if (value == UserType.Admin)
+                {
+                    Text_UserRole.Text = Strings.AdminRole;
+                }else if (value == UserType.Staff)
+                {
+                    Text_UserRole.Text = Strings.StaffRole;
+                }
+                else if (value == UserType.Student)
+                {
+                    Text_UserRole.Text = Strings.StudentRole;
+                }
+            }
+        }
+
+        public string UserFullName
+        {
+            set { Text_UserName.Text = value; }
         }
     }
 }

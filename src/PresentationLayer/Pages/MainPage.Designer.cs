@@ -29,481 +29,623 @@ namespace PresentationLayer.Pages
         /// </summary>
         private void InitializeComponent()
         {
-            this.SidebarPanel = new System.Windows.Forms.Panel();
-            this.StaffMenu = new System.Windows.Forms.Panel();
-            this.MenuSettings = new FontAwesome.Sharp.IconButton();
-            this.MenuStudents = new FontAwesome.Sharp.IconButton();
-            this.StaffMenuTitle = new System.Windows.Forms.Label();
-            this.ıconButton5 = new FontAwesome.Sharp.IconButton();
-            this.MenuBooks = new FontAwesome.Sharp.IconButton();
-            this.MenuMyBooks = new FontAwesome.Sharp.IconButton();
-            this.MenuDashboard = new FontAwesome.Sharp.IconButton();
-            this.LogoPanel = new System.Windows.Forms.Panel();
-            this.MainSidebarLogo = new System.Windows.Forms.Label();
-            this.TitleBarPanel = new System.Windows.Forms.Panel();
-            this.WindowMinimize = new FontAwesome.Sharp.IconButton();
-            this.WindowMaximize = new FontAwesome.Sharp.IconButton();
-            this.WindowExit = new FontAwesome.Sharp.IconButton();
-            this.TopBarPageTitle = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ContentPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.MenuLogout = new FontAwesome.Sharp.IconButton();
-            this.ıconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.ıconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TopBarUserDropdown = new PresentationLayer.Controls.UserDropdown();
-            this.SidebarPanel.SuspendLayout();
-            this.StaffMenu.SuspendLayout();
-            this.LogoPanel.SuspendLayout();
-            this.TitleBarPanel.SuspendLayout();
-            this.ContentPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ıconPictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ıconPictureBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.Panel_Sidebar = new System.Windows.Forms.Panel();
+            this.Panel_Logo = new System.Windows.Forms.Panel();
+            this.Text_Logo = new System.Windows.Forms.Label();
+            this.Panel_StaffMenu = new System.Windows.Forms.Panel();
+            this.Button_MenuSettings = new FontAwesome.Sharp.IconButton();
+            this.Button_MenuStudents = new FontAwesome.Sharp.IconButton();
+            this.Text_StaffMenuTitle = new System.Windows.Forms.Label();
+            this.Button_InfoDialog = new FontAwesome.Sharp.IconButton();
+            this.Button_MenuBooks = new FontAwesome.Sharp.IconButton();
+            this.Button_MenuMyBooks = new FontAwesome.Sharp.IconButton();
+            this.Button_MenuDashboard = new FontAwesome.Sharp.IconButton();
+            this.Panel_TitleBar = new System.Windows.Forms.Panel();
+            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
+            this.Button_AddBook = new FontAwesome.Sharp.IconButton();
+            this.Panel_SearchBox = new System.Windows.Forms.Panel();
+            this.Splitter_SearchBoxBottom = new System.Windows.Forms.Splitter();
+            this.Splitter_SearchBoxTop = new System.Windows.Forms.Splitter();
+            this.Splitter_SearchBoxRight = new System.Windows.Forms.Splitter();
+            this.Splitter_SearchBoxLeft = new System.Windows.Forms.Splitter();
+            this.Input_SearchBox = new System.Windows.Forms.TextBox();
+            this.Button_WindowMin = new FontAwesome.Sharp.IconButton();
+            this.Button_WindowMax = new FontAwesome.Sharp.IconButton();
+            this.Button_WindowClose = new FontAwesome.Sharp.IconButton();
+            this.Text_TitleBarTitle = new System.Windows.Forms.Label();
+            this.Splitter_TopBar_Content = new System.Windows.Forms.Splitter();
+            this.Panel_Content = new System.Windows.Forms.Panel();
+            this.Panel_UserDropdown = new System.Windows.Forms.Panel();
+            this.Panel_UserLogout_Splitter = new System.Windows.Forms.Panel();
+            this.Button_UserLogout = new FontAwesome.Sharp.IconButton();
+            this.Icon_UserID = new FontAwesome.Sharp.IconPictureBox();
+            this.Icon_UserMail = new FontAwesome.Sharp.IconPictureBox();
+            this.Text_User_ID = new System.Windows.Forms.Label();
+            this.Text_UserMail = new System.Windows.Forms.Label();
+            this.Splitter_UserDropdown_Panel_Right = new System.Windows.Forms.Splitter();
+            this.Splitter_UserDropdown_Panel_Left = new System.Windows.Forms.Splitter();
+            this.Splitter_UserLogout_Bottom = new System.Windows.Forms.Splitter();
+            this.Tooltip_AddBook = new System.Windows.Forms.ToolTip(this.components);
+            this.Panel_Sidebar.SuspendLayout();
+            this.Panel_Logo.SuspendLayout();
+            this.Panel_StaffMenu.SuspendLayout();
+            this.Panel_TitleBar.SuspendLayout();
+            this.Panel_SearchBox.SuspendLayout();
+            this.Panel_Content.SuspendLayout();
+            this.Panel_UserDropdown.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserMail)).BeginInit();
             this.SuspendLayout();
             // 
-            // SidebarPanel
+            // Panel_Sidebar
             // 
-            this.SidebarPanel.Controls.Add(this.StaffMenu);
-            this.SidebarPanel.Controls.Add(this.ıconButton5);
-            this.SidebarPanel.Controls.Add(this.MenuBooks);
-            this.SidebarPanel.Controls.Add(this.MenuMyBooks);
-            this.SidebarPanel.Controls.Add(this.MenuDashboard);
-            this.SidebarPanel.Controls.Add(this.LogoPanel);
-            this.SidebarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SidebarPanel.Location = new System.Drawing.Point(0, 0);
-            this.SidebarPanel.Name = "SidebarPanel";
-            this.SidebarPanel.Size = new System.Drawing.Size(220, 600);
-            this.SidebarPanel.TabIndex = 0;
+            this.Panel_Sidebar.Controls.Add(this.Panel_Logo);
+            this.Panel_Sidebar.Controls.Add(this.Panel_StaffMenu);
+            this.Panel_Sidebar.Controls.Add(this.Button_InfoDialog);
+            this.Panel_Sidebar.Controls.Add(this.Button_MenuBooks);
+            this.Panel_Sidebar.Controls.Add(this.Button_MenuMyBooks);
+            this.Panel_Sidebar.Controls.Add(this.Button_MenuDashboard);
+            this.Panel_Sidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Panel_Sidebar.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Sidebar.Name = "Panel_Sidebar";
+            this.Panel_Sidebar.Size = new System.Drawing.Size(214, 600);
+            this.Panel_Sidebar.TabIndex = 0;
             // 
-            // StaffMenu
+            // Panel_Logo
             // 
-            this.StaffMenu.Controls.Add(this.MenuSettings);
-            this.StaffMenu.Controls.Add(this.MenuStudents);
-            this.StaffMenu.Controls.Add(this.StaffMenuTitle);
-            this.StaffMenu.Location = new System.Drawing.Point(1, 312);
-            this.StaffMenu.Name = "StaffMenu";
-            this.StaffMenu.Size = new System.Drawing.Size(219, 208);
-            this.StaffMenu.TabIndex = 0;
+            this.Panel_Logo.Controls.Add(this.Text_Logo);
+            this.Panel_Logo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_Logo.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Logo.Name = "Panel_Logo";
+            this.Panel_Logo.Size = new System.Drawing.Size(214, 134);
+            this.Panel_Logo.TabIndex = 0;
+            this.Panel_Logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
+            this.Panel_Logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
+            this.Panel_Logo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
-            // MenuSettings
+            // Text_Logo
             // 
-            this.MenuSettings.FlatAppearance.BorderSize = 0;
-            this.MenuSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuSettings.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
-            this.MenuSettings.IconColor = System.Drawing.Color.Black;
-            this.MenuSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuSettings.IconSize = 28;
-            this.MenuSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuSettings.Location = new System.Drawing.Point(1, 85);
-            this.MenuSettings.Name = "MenuSettings";
-            this.MenuSettings.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.MenuSettings.Size = new System.Drawing.Size(218, 48);
-            this.MenuSettings.TabIndex = 5;
-            this.MenuSettings.Text = "Settings";
-            this.MenuSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuSettings.UseVisualStyleBackColor = true;
-            this.MenuSettings.Click += new System.EventHandler(this.MenuHandler);
+            this.Text_Logo.AutoSize = true;
+            this.Text_Logo.Font = new System.Drawing.Font("Cascadia Code", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Logo.Location = new System.Drawing.Point(40, 30);
+            this.Text_Logo.Name = "Text_Logo";
+            this.Text_Logo.Size = new System.Drawing.Size(139, 63);
+            this.Text_Logo.TabIndex = 0;
+            this.Text_Logo.Text = "Logo";
+            this.Text_Logo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
+            this.Text_Logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
+            this.Text_Logo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
-            // MenuStudents
+            // Panel_StaffMenu
             // 
-            this.MenuStudents.FlatAppearance.BorderSize = 0;
-            this.MenuStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuStudents.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuStudents.IconChar = FontAwesome.Sharp.IconChar.UserGraduate;
-            this.MenuStudents.IconColor = System.Drawing.Color.Black;
-            this.MenuStudents.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuStudents.IconSize = 28;
-            this.MenuStudents.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuStudents.Location = new System.Drawing.Point(1, 33);
-            this.MenuStudents.Name = "MenuStudents";
-            this.MenuStudents.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.MenuStudents.Size = new System.Drawing.Size(218, 48);
-            this.MenuStudents.TabIndex = 4;
-            this.MenuStudents.Text = "Students";
-            this.MenuStudents.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuStudents.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuStudents.UseVisualStyleBackColor = true;
-            this.MenuStudents.Click += new System.EventHandler(this.MenuHandler);
+            this.Panel_StaffMenu.Controls.Add(this.Button_MenuSettings);
+            this.Panel_StaffMenu.Controls.Add(this.Button_MenuStudents);
+            this.Panel_StaffMenu.Controls.Add(this.Text_StaffMenuTitle);
+            this.Panel_StaffMenu.Location = new System.Drawing.Point(1, 312);
+            this.Panel_StaffMenu.Name = "Panel_StaffMenu";
+            this.Panel_StaffMenu.Size = new System.Drawing.Size(219, 208);
+            this.Panel_StaffMenu.TabIndex = 0;
             // 
-            // StaffMenuTitle
+            // Button_MenuSettings
             // 
-            this.StaffMenuTitle.AutoSize = true;
-            this.StaffMenuTitle.Font = new System.Drawing.Font("Glasgow", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffMenuTitle.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.StaffMenuTitle.Location = new System.Drawing.Point(22, 12);
-            this.StaffMenuTitle.Name = "StaffMenuTitle";
-            this.StaffMenuTitle.Size = new System.Drawing.Size(35, 15);
-            this.StaffMenuTitle.TabIndex = 0;
-            this.StaffMenuTitle.Text = "STAFF";
+            this.Button_MenuSettings.FlatAppearance.BorderSize = 0;
+            this.Button_MenuSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_MenuSettings.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_MenuSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.Button_MenuSettings.IconColor = System.Drawing.Color.Black;
+            this.Button_MenuSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_MenuSettings.IconSize = 28;
+            this.Button_MenuSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuSettings.Location = new System.Drawing.Point(1, 85);
+            this.Button_MenuSettings.Name = "Button_MenuSettings";
+            this.Button_MenuSettings.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.Button_MenuSettings.Size = new System.Drawing.Size(212, 48);
+            this.Button_MenuSettings.TabIndex = 5;
+            this.Button_MenuSettings.Text = "Settings";
+            this.Button_MenuSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_MenuSettings.UseVisualStyleBackColor = true;
+            this.Button_MenuSettings.Click += new System.EventHandler(this.MenuHandler);
             // 
-            // ıconButton5
+            // Button_MenuStudents
             // 
-            this.ıconButton5.FlatAppearance.BorderSize = 0;
-            this.ıconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ıconButton5.ForeColor = System.Drawing.Color.White;
-            this.ıconButton5.IconChar = FontAwesome.Sharp.IconChar.Info;
-            this.ıconButton5.IconColor = System.Drawing.Color.White;
-            this.ıconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconButton5.IconSize = 12;
-            this.ıconButton5.Location = new System.Drawing.Point(184, 565);
-            this.ıconButton5.Name = "ıconButton5";
-            this.ıconButton5.Size = new System.Drawing.Size(23, 23);
-            this.ıconButton5.TabIndex = 0;
-            this.ıconButton5.UseVisualStyleBackColor = true;
+            this.Button_MenuStudents.FlatAppearance.BorderSize = 0;
+            this.Button_MenuStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_MenuStudents.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_MenuStudents.IconChar = FontAwesome.Sharp.IconChar.UserGraduate;
+            this.Button_MenuStudents.IconColor = System.Drawing.Color.Black;
+            this.Button_MenuStudents.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_MenuStudents.IconSize = 28;
+            this.Button_MenuStudents.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuStudents.Location = new System.Drawing.Point(1, 33);
+            this.Button_MenuStudents.Name = "Button_MenuStudents";
+            this.Button_MenuStudents.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.Button_MenuStudents.Size = new System.Drawing.Size(212, 48);
+            this.Button_MenuStudents.TabIndex = 4;
+            this.Button_MenuStudents.Text = "Students";
+            this.Button_MenuStudents.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuStudents.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_MenuStudents.UseVisualStyleBackColor = true;
+            this.Button_MenuStudents.Click += new System.EventHandler(this.MenuHandler);
             // 
-            // MenuBooks
+            // Text_StaffMenuTitle
             // 
-            this.MenuBooks.FlatAppearance.BorderSize = 0;
-            this.MenuBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuBooks.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuBooks.IconChar = FontAwesome.Sharp.IconChar.Book;
-            this.MenuBooks.IconColor = System.Drawing.Color.Black;
-            this.MenuBooks.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuBooks.IconSize = 28;
-            this.MenuBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuBooks.Location = new System.Drawing.Point(1, 258);
-            this.MenuBooks.Name = "MenuBooks";
-            this.MenuBooks.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.MenuBooks.Size = new System.Drawing.Size(218, 48);
-            this.MenuBooks.TabIndex = 3;
-            this.MenuBooks.Text = "Books";
-            this.MenuBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuBooks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuBooks.UseVisualStyleBackColor = true;
-            this.MenuBooks.Click += new System.EventHandler(this.MenuHandler);
+            this.Text_StaffMenuTitle.AutoSize = true;
+            this.Text_StaffMenuTitle.Font = new System.Drawing.Font("Glasgow", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Text_StaffMenuTitle.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.Text_StaffMenuTitle.Location = new System.Drawing.Point(22, 12);
+            this.Text_StaffMenuTitle.Name = "Text_StaffMenuTitle";
+            this.Text_StaffMenuTitle.Size = new System.Drawing.Size(35, 15);
+            this.Text_StaffMenuTitle.TabIndex = 0;
+            this.Text_StaffMenuTitle.Text = "STAFF";
             // 
-            // MenuMyBooks
+            // Button_InfoDialog
             // 
-            this.MenuMyBooks.FlatAppearance.BorderSize = 0;
-            this.MenuMyBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuMyBooks.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuMyBooks.IconChar = FontAwesome.Sharp.IconChar.AddressBook;
-            this.MenuMyBooks.IconColor = System.Drawing.Color.Black;
-            this.MenuMyBooks.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuMyBooks.IconSize = 28;
-            this.MenuMyBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuMyBooks.Location = new System.Drawing.Point(1, 205);
-            this.MenuMyBooks.Name = "MenuMyBooks";
-            this.MenuMyBooks.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.MenuMyBooks.Size = new System.Drawing.Size(218, 48);
-            this.MenuMyBooks.TabIndex = 2;
-            this.MenuMyBooks.Text = "My Books";
-            this.MenuMyBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuMyBooks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuMyBooks.UseVisualStyleBackColor = true;
-            this.MenuMyBooks.Click += new System.EventHandler(this.MenuHandler);
+            this.Button_InfoDialog.FlatAppearance.BorderSize = 0;
+            this.Button_InfoDialog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_InfoDialog.ForeColor = System.Drawing.Color.White;
+            this.Button_InfoDialog.IconChar = FontAwesome.Sharp.IconChar.Info;
+            this.Button_InfoDialog.IconColor = System.Drawing.Color.White;
+            this.Button_InfoDialog.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_InfoDialog.IconSize = 12;
+            this.Button_InfoDialog.Location = new System.Drawing.Point(184, 565);
+            this.Button_InfoDialog.Name = "Button_InfoDialog";
+            this.Button_InfoDialog.Size = new System.Drawing.Size(23, 23);
+            this.Button_InfoDialog.TabIndex = 0;
+            this.Button_InfoDialog.UseVisualStyleBackColor = true;
+            this.Button_InfoDialog.Click += new System.EventHandler(this.ıconButton5_Click);
             // 
-            // MenuDashboard
+            // Button_MenuBooks
             // 
-            this.MenuDashboard.FlatAppearance.BorderSize = 0;
-            this.MenuDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuDashboard.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
-            this.MenuDashboard.IconColor = System.Drawing.Color.Black;
-            this.MenuDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuDashboard.IconSize = 28;
-            this.MenuDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MenuDashboard.Location = new System.Drawing.Point(1, 155);
-            this.MenuDashboard.Name = "MenuDashboard";
-            this.MenuDashboard.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.MenuDashboard.Size = new System.Drawing.Size(218, 48);
-            this.MenuDashboard.TabIndex = 1;
-            this.MenuDashboard.Text = "Dashboard";
-            this.MenuDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.MenuDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuDashboard.UseVisualStyleBackColor = true;
-            this.MenuDashboard.Click += new System.EventHandler(this.MenuHandler);
+            this.Button_MenuBooks.FlatAppearance.BorderSize = 0;
+            this.Button_MenuBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_MenuBooks.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_MenuBooks.IconChar = FontAwesome.Sharp.IconChar.Book;
+            this.Button_MenuBooks.IconColor = System.Drawing.Color.Black;
+            this.Button_MenuBooks.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_MenuBooks.IconSize = 28;
+            this.Button_MenuBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuBooks.Location = new System.Drawing.Point(1, 258);
+            this.Button_MenuBooks.Name = "Button_MenuBooks";
+            this.Button_MenuBooks.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.Button_MenuBooks.Size = new System.Drawing.Size(212, 48);
+            this.Button_MenuBooks.TabIndex = 3;
+            this.Button_MenuBooks.Text = "Books";
+            this.Button_MenuBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuBooks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_MenuBooks.UseVisualStyleBackColor = true;
+            this.Button_MenuBooks.Click += new System.EventHandler(this.MenuHandler);
             // 
-            // LogoPanel
+            // Button_MenuMyBooks
             // 
-            this.LogoPanel.Controls.Add(this.MainSidebarLogo);
-            this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LogoPanel.Location = new System.Drawing.Point(0, 0);
-            this.LogoPanel.Name = "LogoPanel";
-            this.LogoPanel.Size = new System.Drawing.Size(220, 134);
-            this.LogoPanel.TabIndex = 0;
-            this.LogoPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
-            this.LogoPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
-            this.LogoPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
+            this.Button_MenuMyBooks.FlatAppearance.BorderSize = 0;
+            this.Button_MenuMyBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_MenuMyBooks.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_MenuMyBooks.IconChar = FontAwesome.Sharp.IconChar.AddressBook;
+            this.Button_MenuMyBooks.IconColor = System.Drawing.Color.Black;
+            this.Button_MenuMyBooks.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_MenuMyBooks.IconSize = 28;
+            this.Button_MenuMyBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuMyBooks.Location = new System.Drawing.Point(1, 205);
+            this.Button_MenuMyBooks.Name = "Button_MenuMyBooks";
+            this.Button_MenuMyBooks.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.Button_MenuMyBooks.Size = new System.Drawing.Size(212, 48);
+            this.Button_MenuMyBooks.TabIndex = 2;
+            this.Button_MenuMyBooks.Text = "My Books";
+            this.Button_MenuMyBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuMyBooks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_MenuMyBooks.UseVisualStyleBackColor = true;
+            this.Button_MenuMyBooks.Click += new System.EventHandler(this.MenuHandler);
             // 
-            // MainSidebarLogo
+            // Button_MenuDashboard
             // 
-            this.MainSidebarLogo.AutoSize = true;
-            this.MainSidebarLogo.Font = new System.Drawing.Font("Cascadia Code", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MainSidebarLogo.Location = new System.Drawing.Point(40, 30);
-            this.MainSidebarLogo.Name = "MainSidebarLogo";
-            this.MainSidebarLogo.Size = new System.Drawing.Size(139, 63);
-            this.MainSidebarLogo.TabIndex = 0;
-            this.MainSidebarLogo.Text = "Logo";
-            this.MainSidebarLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
-            this.MainSidebarLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
-            this.MainSidebarLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
+            this.Button_MenuDashboard.FlatAppearance.BorderSize = 0;
+            this.Button_MenuDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_MenuDashboard.Font = new System.Drawing.Font("Avignon Pro Demi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_MenuDashboard.IconChar = FontAwesome.Sharp.IconChar.ChartLine;
+            this.Button_MenuDashboard.IconColor = System.Drawing.Color.Black;
+            this.Button_MenuDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_MenuDashboard.IconSize = 28;
+            this.Button_MenuDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button_MenuDashboard.Location = new System.Drawing.Point(1, 155);
+            this.Button_MenuDashboard.Name = "Button_MenuDashboard";
+            this.Button_MenuDashboard.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.Button_MenuDashboard.Size = new System.Drawing.Size(212, 48);
+            this.Button_MenuDashboard.TabIndex = 1;
+            this.Button_MenuDashboard.Text = "Dashboard";
+            this.Button_MenuDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Button_MenuDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_MenuDashboard.UseVisualStyleBackColor = true;
+            this.Button_MenuDashboard.Click += new System.EventHandler(this.MenuHandler);
             // 
-            // TitleBarPanel
+            // Panel_TitleBar
             // 
-            this.TitleBarPanel.Controls.Add(this.TopBarUserDropdown);
-            this.TitleBarPanel.Controls.Add(this.WindowMinimize);
-            this.TitleBarPanel.Controls.Add(this.WindowMaximize);
-            this.TitleBarPanel.Controls.Add(this.WindowExit);
-            this.TitleBarPanel.Controls.Add(this.TopBarPageTitle);
-            this.TitleBarPanel.Controls.Add(this.splitter1);
-            this.TitleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TitleBarPanel.Location = new System.Drawing.Point(220, 0);
-            this.TitleBarPanel.Name = "TitleBarPanel";
-            this.TitleBarPanel.Size = new System.Drawing.Size(804, 55);
-            this.TitleBarPanel.TabIndex = 1;
-            this.TitleBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
-            this.TitleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
-            this.TitleBarPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
+            this.Panel_TitleBar.Controls.Add(this.userDropdown_TopBar);
+            this.Panel_TitleBar.Controls.Add(this.Button_AddBook);
+            this.Panel_TitleBar.Controls.Add(this.Panel_SearchBox);
+            this.Panel_TitleBar.Controls.Add(this.Button_WindowMin);
+            this.Panel_TitleBar.Controls.Add(this.Button_WindowMax);
+            this.Panel_TitleBar.Controls.Add(this.Button_WindowClose);
+            this.Panel_TitleBar.Controls.Add(this.Text_TitleBarTitle);
+            this.Panel_TitleBar.Controls.Add(this.Splitter_TopBar_Content);
+            this.Panel_TitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_TitleBar.Location = new System.Drawing.Point(214, 0);
+            this.Panel_TitleBar.Name = "Panel_TitleBar";
+            this.Panel_TitleBar.Size = new System.Drawing.Size(810, 55);
+            this.Panel_TitleBar.TabIndex = 1;
+            this.Panel_TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
+            this.Panel_TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
+            this.Panel_TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
-            // WindowMinimize
+            // userDropdown_TopBar
             // 
-            this.WindowMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.WindowMinimize.AutoSize = true;
-            this.WindowMinimize.FlatAppearance.BorderSize = 0;
-            this.WindowMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WindowMinimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            this.WindowMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
-            this.WindowMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.WindowMinimize.IconSize = 16;
-            this.WindowMinimize.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.WindowMinimize.Location = new System.Drawing.Point(694, 11);
-            this.WindowMinimize.Margin = new System.Windows.Forms.Padding(1);
-            this.WindowMinimize.Name = "WindowMinimize";
-            this.WindowMinimize.Size = new System.Drawing.Size(32, 32);
-            this.WindowMinimize.TabIndex = 3;
-            this.WindowMinimize.UseVisualStyleBackColor = true;
-            this.WindowMinimize.Click += new System.EventHandler(this.WindowControls);
+            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
+            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
+            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
+            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
+            this.userDropdown_TopBar.TabIndex = 10;
             // 
-            // WindowMaximize
+            // Button_AddBook
             // 
-            this.WindowMaximize.AutoSize = true;
-            this.WindowMaximize.FlatAppearance.BorderSize = 0;
-            this.WindowMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WindowMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowRestore;
-            this.WindowMaximize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
-            this.WindowMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.WindowMaximize.IconSize = 16;
-            this.WindowMaximize.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.WindowMaximize.Location = new System.Drawing.Point(728, 11);
-            this.WindowMaximize.Margin = new System.Windows.Forms.Padding(1);
-            this.WindowMaximize.Name = "WindowMaximize";
-            this.WindowMaximize.Size = new System.Drawing.Size(32, 32);
-            this.WindowMaximize.TabIndex = 2;
-            this.WindowMaximize.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.WindowMaximize.UseVisualStyleBackColor = true;
-            this.WindowMaximize.Click += new System.EventHandler(this.WindowControls);
+            this.Button_AddBook.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_AddBook.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Button_AddBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_AddBook.IconChar = FontAwesome.Sharp.IconChar.BookMedical;
+            this.Button_AddBook.IconColor = System.Drawing.SystemColors.WindowFrame;
+            this.Button_AddBook.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_AddBook.IconSize = 18;
+            this.Button_AddBook.Location = new System.Drawing.Point(123, 11);
+            this.Button_AddBook.Name = "Button_AddBook";
+            this.Button_AddBook.Size = new System.Drawing.Size(31, 31);
+            this.Button_AddBook.TabIndex = 9;
+            this.Button_AddBook.UseVisualStyleBackColor = true;
+            this.Button_AddBook.Click += new System.EventHandler(this.Button_AddBook_Click);
+            this.Button_AddBook.MouseHover += new System.EventHandler(this.ıconButton1_MouseHover);
             // 
-            // WindowExit
+            // Panel_SearchBox
             // 
-            this.WindowExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.WindowExit.FlatAppearance.BorderSize = 0;
-            this.WindowExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WindowExit.IconChar = FontAwesome.Sharp.IconChar.Times;
-            this.WindowExit.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
-            this.WindowExit.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.WindowExit.IconSize = 16;
-            this.WindowExit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.WindowExit.Location = new System.Drawing.Point(762, 11);
-            this.WindowExit.Margin = new System.Windows.Forms.Padding(1);
-            this.WindowExit.Name = "WindowExit";
-            this.WindowExit.Size = new System.Drawing.Size(32, 32);
-            this.WindowExit.TabIndex = 0;
-            this.WindowExit.UseVisualStyleBackColor = true;
-            this.WindowExit.Click += new System.EventHandler(this.WindowControls);
+            this.Panel_SearchBox.BackColor = System.Drawing.Color.White;
+            this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxBottom);
+            this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxTop);
+            this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxRight);
+            this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxLeft);
+            this.Panel_SearchBox.Controls.Add(this.Input_SearchBox);
+            this.Panel_SearchBox.Location = new System.Drawing.Point(160, 12);
+            this.Panel_SearchBox.Name = "Panel_SearchBox";
+            this.Panel_SearchBox.Size = new System.Drawing.Size(257, 30);
+            this.Panel_SearchBox.TabIndex = 8;
+            this.Panel_SearchBox.Visible = false;
             // 
-            // TopBarPageTitle
+            // Splitter_SearchBoxBottom
             // 
-            this.TopBarPageTitle.AutoSize = true;
-            this.TopBarPageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.TopBarPageTitle.Location = new System.Drawing.Point(21, 15);
-            this.TopBarPageTitle.Name = "TopBarPageTitle";
-            this.TopBarPageTitle.Size = new System.Drawing.Size(103, 24);
-            this.TopBarPageTitle.TabIndex = 0;
-            this.TopBarPageTitle.Text = "MainPage";
+            this.Splitter_SearchBoxBottom.BackColor = System.Drawing.Color.Gainsboro;
+            this.Splitter_SearchBoxBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Splitter_SearchBoxBottom.Location = new System.Drawing.Point(2, 28);
+            this.Splitter_SearchBoxBottom.Name = "Splitter_SearchBoxBottom";
+            this.Splitter_SearchBoxBottom.Size = new System.Drawing.Size(253, 2);
+            this.Splitter_SearchBoxBottom.TabIndex = 12;
+            this.Splitter_SearchBoxBottom.TabStop = false;
             // 
-            // splitter1
+            // Splitter_SearchBoxTop
             // 
-            this.splitter1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 52);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(804, 3);
-            this.splitter1.TabIndex = 5;
-            this.splitter1.TabStop = false;
+            this.Splitter_SearchBoxTop.BackColor = System.Drawing.Color.LightGray;
+            this.Splitter_SearchBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Splitter_SearchBoxTop.Location = new System.Drawing.Point(2, 0);
+            this.Splitter_SearchBoxTop.Name = "Splitter_SearchBoxTop";
+            this.Splitter_SearchBoxTop.Size = new System.Drawing.Size(253, 2);
+            this.Splitter_SearchBoxTop.TabIndex = 11;
+            this.Splitter_SearchBoxTop.TabStop = false;
             // 
-            // ContentPanel
+            // Splitter_SearchBoxRight
             // 
-            this.ContentPanel.Controls.Add(this.panel1);
-            this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(220, 55);
-            this.ContentPanel.Margin = new System.Windows.Forms.Padding(1);
-            this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(804, 545);
-            this.ContentPanel.TabIndex = 2;
+            this.Splitter_SearchBoxRight.BackColor = System.Drawing.Color.LightGray;
+            this.Splitter_SearchBoxRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Splitter_SearchBoxRight.Location = new System.Drawing.Point(255, 0);
+            this.Splitter_SearchBoxRight.Name = "Splitter_SearchBoxRight";
+            this.Splitter_SearchBoxRight.Size = new System.Drawing.Size(2, 30);
+            this.Splitter_SearchBoxRight.TabIndex = 10;
+            this.Splitter_SearchBoxRight.TabStop = false;
             // 
-            // panel1
+            // Splitter_SearchBoxLeft
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.MenuLogout);
-            this.panel1.Controls.Add(this.ıconPictureBox2);
-            this.panel1.Controls.Add(this.ıconPictureBox1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(455, -2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(215, 105);
-            this.panel1.TabIndex = 0;
-            this.panel1.Visible = false;
+            this.Splitter_SearchBoxLeft.BackColor = System.Drawing.Color.LightGray;
+            this.Splitter_SearchBoxLeft.Location = new System.Drawing.Point(0, 0);
+            this.Splitter_SearchBoxLeft.Name = "Splitter_SearchBoxLeft";
+            this.Splitter_SearchBoxLeft.Size = new System.Drawing.Size(2, 30);
+            this.Splitter_SearchBoxLeft.TabIndex = 9;
+            this.Splitter_SearchBoxLeft.TabStop = false;
             // 
-            // panel2
+            // Input_SearchBox
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel2.Location = new System.Drawing.Point(0, 72);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(215, 1);
-            this.panel2.TabIndex = 5;
+            this.Input_SearchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Input_SearchBox.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Input_SearchBox.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Input_SearchBox.Location = new System.Drawing.Point(5, 5);
+            this.Input_SearchBox.Name = "Input_SearchBox";
+            this.Input_SearchBox.Size = new System.Drawing.Size(249, 18);
+            this.Input_SearchBox.TabIndex = 8;
+            this.Input_SearchBox.Text = "Search";
             // 
-            // MenuLogout
+            // Button_WindowMin
             // 
-            this.MenuLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MenuLogout.FlatAppearance.BorderSize = 0;
-            this.MenuLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MenuLogout.Font = new System.Drawing.Font("Avignon Pro Demi", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.MenuLogout.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
-            this.MenuLogout.IconColor = System.Drawing.Color.Black;
-            this.MenuLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.MenuLogout.IconSize = 26;
-            this.MenuLogout.Location = new System.Drawing.Point(0, 73);
-            this.MenuLogout.Name = "MenuLogout";
-            this.MenuLogout.Size = new System.Drawing.Size(215, 32);
-            this.MenuLogout.TabIndex = 0;
-            this.MenuLogout.Text = "Logout";
-            this.MenuLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.MenuLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.MenuLogout.UseVisualStyleBackColor = true;
-            this.MenuLogout.Click += new System.EventHandler(this.MenuLogout_Click);
+            this.Button_WindowMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_WindowMin.AutoSize = true;
+            this.Button_WindowMin.FlatAppearance.BorderSize = 0;
+            this.Button_WindowMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_WindowMin.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.Button_WindowMin.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
+            this.Button_WindowMin.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_WindowMin.IconSize = 16;
+            this.Button_WindowMin.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Button_WindowMin.Location = new System.Drawing.Point(700, 11);
+            this.Button_WindowMin.Margin = new System.Windows.Forms.Padding(1);
+            this.Button_WindowMin.Name = "Button_WindowMin";
+            this.Button_WindowMin.Size = new System.Drawing.Size(32, 32);
+            this.Button_WindowMin.TabIndex = 3;
+            this.Button_WindowMin.UseVisualStyleBackColor = true;
+            this.Button_WindowMin.Click += new System.EventHandler(this.WindowControls);
             // 
-            // ıconPictureBox2
+            // Button_WindowMax
             // 
-            this.ıconPictureBox2.BackColor = System.Drawing.Color.White;
-            this.ıconPictureBox2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ıconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.IdCard;
-            this.ıconPictureBox2.IconColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ıconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconPictureBox2.IconSize = 22;
-            this.ıconPictureBox2.Location = new System.Drawing.Point(9, 41);
-            this.ıconPictureBox2.Name = "ıconPictureBox2";
-            this.ıconPictureBox2.Size = new System.Drawing.Size(22, 22);
-            this.ıconPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ıconPictureBox2.TabIndex = 4;
-            this.ıconPictureBox2.TabStop = false;
+            this.Button_WindowMax.AutoSize = true;
+            this.Button_WindowMax.FlatAppearance.BorderSize = 0;
+            this.Button_WindowMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_WindowMax.IconChar = FontAwesome.Sharp.IconChar.WindowRestore;
+            this.Button_WindowMax.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
+            this.Button_WindowMax.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_WindowMax.IconSize = 16;
+            this.Button_WindowMax.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Button_WindowMax.Location = new System.Drawing.Point(734, 11);
+            this.Button_WindowMax.Margin = new System.Windows.Forms.Padding(1);
+            this.Button_WindowMax.Name = "Button_WindowMax";
+            this.Button_WindowMax.Size = new System.Drawing.Size(32, 32);
+            this.Button_WindowMax.TabIndex = 2;
+            this.Button_WindowMax.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Button_WindowMax.UseVisualStyleBackColor = true;
+            this.Button_WindowMax.Click += new System.EventHandler(this.WindowControls);
             // 
-            // ıconPictureBox1
+            // Button_WindowClose
             // 
-            this.ıconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.ıconPictureBox1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ıconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Envelope;
-            this.ıconPictureBox1.IconColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ıconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconPictureBox1.IconSize = 22;
-            this.ıconPictureBox1.Location = new System.Drawing.Point(9, 9);
-            this.ıconPictureBox1.Name = "ıconPictureBox1";
-            this.ıconPictureBox1.Size = new System.Drawing.Size(22, 22);
-            this.ıconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.ıconPictureBox1.TabIndex = 3;
-            this.ıconPictureBox1.TabStop = false;
+            this.Button_WindowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_WindowClose.FlatAppearance.BorderSize = 0;
+            this.Button_WindowClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_WindowClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.Button_WindowClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
+            this.Button_WindowClose.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.Button_WindowClose.IconSize = 16;
+            this.Button_WindowClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Button_WindowClose.Location = new System.Drawing.Point(768, 11);
+            this.Button_WindowClose.Margin = new System.Windows.Forms.Padding(1);
+            this.Button_WindowClose.Name = "Button_WindowClose";
+            this.Button_WindowClose.Size = new System.Drawing.Size(32, 32);
+            this.Button_WindowClose.TabIndex = 0;
+            this.Button_WindowClose.UseVisualStyleBackColor = true;
+            this.Button_WindowClose.Click += new System.EventHandler(this.WindowControls);
             // 
-            // label3
+            // Text_TitleBarTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(37, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 14);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "12";
+            this.Text_TitleBarTitle.AutoSize = true;
+            this.Text_TitleBarTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_TitleBarTitle.Location = new System.Drawing.Point(14, 15);
+            this.Text_TitleBarTitle.Name = "Text_TitleBarTitle";
+            this.Text_TitleBarTitle.Size = new System.Drawing.Size(103, 24);
+            this.Text_TitleBarTitle.TabIndex = 0;
+            this.Text_TitleBarTitle.Text = "MainPage";
             // 
-            // label1
+            // Splitter_TopBar_Content
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(37, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 14);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "nmelihsensoy@gmail.com";
+            this.Splitter_TopBar_Content.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Splitter_TopBar_Content.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Splitter_TopBar_Content.Location = new System.Drawing.Point(0, 52);
+            this.Splitter_TopBar_Content.Name = "Splitter_TopBar_Content";
+            this.Splitter_TopBar_Content.Size = new System.Drawing.Size(810, 3);
+            this.Splitter_TopBar_Content.TabIndex = 5;
+            this.Splitter_TopBar_Content.TabStop = false;
             // 
-            // TopBarUserDropdown
+            // Panel_Content
             // 
-            this.TopBarUserDropdown.BackColor = System.Drawing.Color.White;
-            this.TopBarUserDropdown.Location = new System.Drawing.Point(455, 5);
-            this.TopBarUserDropdown.Name = "TopBarUserDropdown";
-            this.TopBarUserDropdown.Size = new System.Drawing.Size(215, 44);
-            this.TopBarUserDropdown.TabIndex = 6;
-            this.TopBarUserDropdown.Click += new System.EventHandler(this.userDropdown1_Click);
+            this.Panel_Content.Controls.Add(this.Panel_UserDropdown);
+            this.Panel_Content.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Content.Location = new System.Drawing.Point(214, 55);
+            this.Panel_Content.Margin = new System.Windows.Forms.Padding(1);
+            this.Panel_Content.Name = "Panel_Content";
+            this.Panel_Content.Size = new System.Drawing.Size(810, 545);
+            this.Panel_Content.TabIndex = 2;
+            // 
+            // Panel_UserDropdown
+            // 
+            this.Panel_UserDropdown.BackColor = System.Drawing.Color.White;
+            this.Panel_UserDropdown.Controls.Add(this.Panel_UserLogout_Splitter);
+            this.Panel_UserDropdown.Controls.Add(this.Button_UserLogout);
+            this.Panel_UserDropdown.Controls.Add(this.Icon_UserID);
+            this.Panel_UserDropdown.Controls.Add(this.Icon_UserMail);
+            this.Panel_UserDropdown.Controls.Add(this.Text_User_ID);
+            this.Panel_UserDropdown.Controls.Add(this.Text_UserMail);
+            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserDropdown_Panel_Right);
+            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserDropdown_Panel_Left);
+            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserLogout_Bottom);
+            this.Panel_UserDropdown.Location = new System.Drawing.Point(469, -2);
+            this.Panel_UserDropdown.Name = "Panel_UserDropdown";
+            this.Panel_UserDropdown.Size = new System.Drawing.Size(215, 105);
+            this.Panel_UserDropdown.TabIndex = 0;
+            this.Panel_UserDropdown.Visible = false;
+            // 
+            // Panel_UserLogout_Splitter
+            // 
+            this.Panel_UserLogout_Splitter.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Panel_UserLogout_Splitter.Location = new System.Drawing.Point(0, 72);
+            this.Panel_UserLogout_Splitter.Name = "Panel_UserLogout_Splitter";
+            this.Panel_UserLogout_Splitter.Size = new System.Drawing.Size(215, 1);
+            this.Panel_UserLogout_Splitter.TabIndex = 5;
+            // 
+            // Button_UserLogout
+            // 
+            this.Button_UserLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Button_UserLogout.FlatAppearance.BorderSize = 0;
+            this.Button_UserLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_UserLogout.Font = new System.Drawing.Font("Avignon Pro Demi", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Button_UserLogout.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            this.Button_UserLogout.IconColor = System.Drawing.Color.Black;
+            this.Button_UserLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_UserLogout.IconSize = 26;
+            this.Button_UserLogout.Location = new System.Drawing.Point(1, 72);
+            this.Button_UserLogout.Name = "Button_UserLogout";
+            this.Button_UserLogout.Size = new System.Drawing.Size(213, 32);
+            this.Button_UserLogout.TabIndex = 0;
+            this.Button_UserLogout.Text = "Logout";
+            this.Button_UserLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Button_UserLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Button_UserLogout.UseVisualStyleBackColor = true;
+            this.Button_UserLogout.Click += new System.EventHandler(this.MenuLogout_Click);
+            // 
+            // Icon_UserID
+            // 
+            this.Icon_UserID.BackColor = System.Drawing.Color.White;
+            this.Icon_UserID.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Icon_UserID.IconChar = FontAwesome.Sharp.IconChar.IdCard;
+            this.Icon_UserID.IconColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Icon_UserID.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Icon_UserID.IconSize = 22;
+            this.Icon_UserID.Location = new System.Drawing.Point(9, 41);
+            this.Icon_UserID.Name = "Icon_UserID";
+            this.Icon_UserID.Size = new System.Drawing.Size(22, 22);
+            this.Icon_UserID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.Icon_UserID.TabIndex = 4;
+            this.Icon_UserID.TabStop = false;
+            // 
+            // Icon_UserMail
+            // 
+            this.Icon_UserMail.BackColor = System.Drawing.Color.White;
+            this.Icon_UserMail.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Icon_UserMail.IconChar = FontAwesome.Sharp.IconChar.Envelope;
+            this.Icon_UserMail.IconColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Icon_UserMail.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Icon_UserMail.IconSize = 22;
+            this.Icon_UserMail.Location = new System.Drawing.Point(9, 9);
+            this.Icon_UserMail.Name = "Icon_UserMail";
+            this.Icon_UserMail.Size = new System.Drawing.Size(22, 22);
+            this.Icon_UserMail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Icon_UserMail.TabIndex = 3;
+            this.Icon_UserMail.TabStop = false;
+            // 
+            // Text_User_ID
+            // 
+            this.Text_User_ID.AutoSize = true;
+            this.Text_User_ID.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_User_ID.Location = new System.Drawing.Point(37, 46);
+            this.Text_User_ID.Name = "Text_User_ID";
+            this.Text_User_ID.Size = new System.Drawing.Size(19, 14);
+            this.Text_User_ID.TabIndex = 2;
+            this.Text_User_ID.Text = "12";
+            // 
+            // Text_UserMail
+            // 
+            this.Text_UserMail.AutoSize = true;
+            this.Text_UserMail.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_UserMail.Location = new System.Drawing.Point(37, 14);
+            this.Text_UserMail.Name = "Text_UserMail";
+            this.Text_UserMail.Size = new System.Drawing.Size(123, 14);
+            this.Text_UserMail.TabIndex = 1;
+            this.Text_UserMail.Text = "email@example.com";
+            // 
+            // Splitter_UserDropdown_Panel_Right
+            // 
+            this.Splitter_UserDropdown_Panel_Right.BackColor = System.Drawing.Color.Black;
+            this.Splitter_UserDropdown_Panel_Right.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Splitter_UserDropdown_Panel_Right.Location = new System.Drawing.Point(214, 0);
+            this.Splitter_UserDropdown_Panel_Right.Name = "Splitter_UserDropdown_Panel_Right";
+            this.Splitter_UserDropdown_Panel_Right.Size = new System.Drawing.Size(1, 104);
+            this.Splitter_UserDropdown_Panel_Right.TabIndex = 7;
+            this.Splitter_UserDropdown_Panel_Right.TabStop = false;
+            // 
+            // Splitter_UserDropdown_Panel_Left
+            // 
+            this.Splitter_UserDropdown_Panel_Left.BackColor = System.Drawing.Color.Black;
+            this.Splitter_UserDropdown_Panel_Left.Location = new System.Drawing.Point(0, 0);
+            this.Splitter_UserDropdown_Panel_Left.Name = "Splitter_UserDropdown_Panel_Left";
+            this.Splitter_UserDropdown_Panel_Left.Size = new System.Drawing.Size(1, 104);
+            this.Splitter_UserDropdown_Panel_Left.TabIndex = 6;
+            this.Splitter_UserDropdown_Panel_Left.TabStop = false;
+            // 
+            // Splitter_UserLogout_Bottom
+            // 
+            this.Splitter_UserLogout_Bottom.BackColor = System.Drawing.Color.Black;
+            this.Splitter_UserLogout_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Splitter_UserLogout_Bottom.Location = new System.Drawing.Point(0, 104);
+            this.Splitter_UserLogout_Bottom.Name = "Splitter_UserLogout_Bottom";
+            this.Splitter_UserLogout_Bottom.Size = new System.Drawing.Size(215, 1);
+            this.Splitter_UserLogout_Bottom.TabIndex = 8;
+            this.Splitter_UserLogout_Bottom.TabStop = false;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 600);
-            this.Controls.Add(this.ContentPanel);
-            this.Controls.Add(this.TitleBarPanel);
-            this.Controls.Add(this.SidebarPanel);
+            this.Controls.Add(this.Panel_Content);
+            this.Controls.Add(this.Panel_TitleBar);
+            this.Controls.Add(this.Panel_Sidebar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
-            this.SidebarPanel.ResumeLayout(false);
-            this.StaffMenu.ResumeLayout(false);
-            this.StaffMenu.PerformLayout();
-            this.LogoPanel.ResumeLayout(false);
-            this.LogoPanel.PerformLayout();
-            this.TitleBarPanel.ResumeLayout(false);
-            this.TitleBarPanel.PerformLayout();
-            this.ContentPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ıconPictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ıconPictureBox1)).EndInit();
+            this.Panel_Sidebar.ResumeLayout(false);
+            this.Panel_Logo.ResumeLayout(false);
+            this.Panel_Logo.PerformLayout();
+            this.Panel_StaffMenu.ResumeLayout(false);
+            this.Panel_StaffMenu.PerformLayout();
+            this.Panel_TitleBar.ResumeLayout(false);
+            this.Panel_TitleBar.PerformLayout();
+            this.Panel_SearchBox.ResumeLayout(false);
+            this.Panel_SearchBox.PerformLayout();
+            this.Panel_Content.ResumeLayout(false);
+            this.Panel_UserDropdown.ResumeLayout(false);
+            this.Panel_UserDropdown.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserMail)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel SidebarPanel;
-        private System.Windows.Forms.Panel TitleBarPanel;
-        private System.Windows.Forms.Panel ContentPanel;
-        private System.Windows.Forms.Label MainSidebarLogo;
-        private System.Windows.Forms.Panel LogoPanel;
-        private System.Windows.Forms.Label TopBarPageTitle;
-        private FontAwesome.Sharp.IconButton WindowMinimize;
-        private FontAwesome.Sharp.IconButton WindowMaximize;
-        private FontAwesome.Sharp.IconButton WindowExit;
-        private FontAwesome.Sharp.IconButton MenuDashboard;
-        private FontAwesome.Sharp.IconButton MenuMyBooks;
-        private FontAwesome.Sharp.IconButton MenuBooks;
-        private FontAwesome.Sharp.IconButton MenuSettings;
-        private FontAwesome.Sharp.IconButton MenuStudents;
-        private FontAwesome.Sharp.IconButton ıconButton5;
-        private System.Windows.Forms.Panel StaffMenu;
-        private System.Windows.Forms.Label StaffMenuTitle;
-        private System.Windows.Forms.Splitter splitter1;
-        private Controls.UserDropdown TopBarUserDropdown;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private FontAwesome.Sharp.IconButton MenuLogout;
-        private FontAwesome.Sharp.IconPictureBox ıconPictureBox2;
-        private FontAwesome.Sharp.IconPictureBox ıconPictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel Panel_Sidebar;
+        private System.Windows.Forms.Panel Panel_TitleBar;
+        private System.Windows.Forms.Panel Panel_Content;
+        private System.Windows.Forms.Label Text_TitleBarTitle;
+        private FontAwesome.Sharp.IconButton Button_WindowMin;
+        private FontAwesome.Sharp.IconButton Button_WindowMax;
+        private FontAwesome.Sharp.IconButton Button_WindowClose;
+        private FontAwesome.Sharp.IconButton Button_MenuDashboard;
+        private FontAwesome.Sharp.IconButton Button_MenuMyBooks;
+        private FontAwesome.Sharp.IconButton Button_MenuBooks;
+        private FontAwesome.Sharp.IconButton Button_MenuSettings;
+        private FontAwesome.Sharp.IconButton Button_MenuStudents;
+        private FontAwesome.Sharp.IconButton Button_InfoDialog;
+        private System.Windows.Forms.Panel Panel_StaffMenu;
+        private System.Windows.Forms.Label Text_StaffMenuTitle;
+        private System.Windows.Forms.Splitter Splitter_TopBar_Content;
+        private System.Windows.Forms.Panel Panel_UserDropdown;
+        private System.Windows.Forms.Panel Panel_UserLogout_Splitter;
+        private FontAwesome.Sharp.IconButton Button_UserLogout;
+        private FontAwesome.Sharp.IconPictureBox Icon_UserID;
+        private FontAwesome.Sharp.IconPictureBox Icon_UserMail;
+        private System.Windows.Forms.Label Text_User_ID;
+        private System.Windows.Forms.Label Text_UserMail;
+        private System.Windows.Forms.Panel Panel_Logo;
+        private System.Windows.Forms.Label Text_Logo;
+        private System.Windows.Forms.TextBox Input_SearchBox;
+        private System.Windows.Forms.Panel Panel_SearchBox;
+        private System.Windows.Forms.Splitter Splitter_SearchBoxBottom;
+        private System.Windows.Forms.Splitter Splitter_SearchBoxTop;
+        private System.Windows.Forms.Splitter Splitter_SearchBoxRight;
+        private System.Windows.Forms.Splitter Splitter_SearchBoxLeft;
+        private System.Windows.Forms.Splitter Splitter_UserDropdown_Panel_Right;
+        private System.Windows.Forms.Splitter Splitter_UserDropdown_Panel_Left;
+        private System.Windows.Forms.Splitter Splitter_UserLogout_Bottom;
+        private FontAwesome.Sharp.IconButton Button_AddBook;
+        private System.Windows.Forms.ToolTip Tooltip_AddBook;
+        private Controls.UserDropdown userDropdown_TopBar;
     }
 }
