@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\logo1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net472\FontAwesome.Sharp.dll</HintPath>
@@ -189,6 +192,8 @@
     <Compile Include="SubPages\Students.Designer.cs">
       <DependentUpon>Students.cs</DependentUpon>
     </Compile>
+    <Content Include="logo1.ico" />
+    <Content Include="Resources\logo1.ico" />
     <None Include="Resources\41SMo7KEbhL._AC_SY780_.jpg" />
     <None Include="Resources\gravatar.jpg" />
     <EmbeddedResource Include="Controls\AlertBox.resx">
@@ -199,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\BookStatusItem.resx">
       <DependentUpon>BookStatusItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ExtendedPanel.resx">
+      <DependentUpon>ExtendedPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserDropdown.resx">
       <DependentUpon>UserDropdown.cs</DependentUpon>

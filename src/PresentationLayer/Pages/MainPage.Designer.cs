@@ -30,6 +30,7 @@ namespace PresentationLayer.Pages
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.Panel_Sidebar = new System.Windows.Forms.Panel();
             this.Panel_Logo = new System.Windows.Forms.Panel();
             this.Text_Logo = new System.Windows.Forms.Label();
@@ -587,6 +588,7 @@ namespace PresentationLayer.Pages
             this.Controls.Add(this.Panel_TitleBar);
             this.Controls.Add(this.Panel_Sidebar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";

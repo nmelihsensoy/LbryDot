@@ -20,11 +20,13 @@ namespace PresentationLayer.Pages
         string enEmailPlaceholder = Helpers.GetValueFromCulture("LoginEmailPlaceholderText", "");
         string trPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "tr");
         string enPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "");
+        private BusinessLogicLayer.CustomAppContext AppContext;
 
-        public LoginPage()
+        public LoginPage(BusinessLogicLayer.CustomAppContext _appContext)
         {
             Helpers.ChangeLanguage();
             InitializeComponent();
+            AppContext = _appContext;
             ApplyColorPalette();
             ApplyStrings();         
             Panel_Pass_Line.Height = 1;

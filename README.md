@@ -30,11 +30,11 @@
 
 #### -Books Page
 
-#### --Students Page
+#### -Students Page
 
-#### --Staffs Page
+#### -Staffs Page
 
-#### --System Settings Page
+#### -System Settings Page
 
 #### -Add & Update Book Dialog
 
@@ -47,4 +47,8 @@
 #### -Add & Update Student Dialog
 
 #### -Add & Update Staff Dialog
+
+#### Logo
+
+[Source](https://commons.wikimedia.org/wiki/File:Lbry-logo.svg)
 

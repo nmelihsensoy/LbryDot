@@ -30,7 +30,7 @@ namespace PresentationLayer.Controls
         private void InitializeComponent()
         {
             this.Panel_Container = new System.Windows.Forms.Panel();
-            this.Panel_Hover = new PresentationLayer.ExtendedPanel();
+            this.Panel_Hover = new PresentationLayer.Controls.ExtendedPanel();
             this.Button_BookDeleteBorrow = new FontAwesome.Sharp.IconButton();
             this.Button_BookDetails = new FontAwesome.Sharp.IconButton();
             this.Text_BookCategory = new System.Windows.Forms.Label();

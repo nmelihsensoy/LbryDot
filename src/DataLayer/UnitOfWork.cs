@@ -1,4 +1,5 @@
 ﻿using DataLayer.Abstract;
+using DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,12 +13,42 @@ namespace DataLayer
     {
         private IDbConnection _dbConnection;
         private IDbTransaction _dbTransaction;
+        private ISettingsRepository _settingsRepository;
+        private IStaffRepository _staffRepository;
+        private IStudentsRepository _studentsRepository;
+        private IBooksRepository _booksRepository;
+        private IBorrowingRepository _borrowingRepository;
 
         public UnitOfWork(IDatabaseProvider dbProvider)
         {
             _dbConnection = dbProvider.ObtainConnection();
             _dbConnection.Open();
             _dbTransaction = _dbConnection.BeginTransaction();
+        }
+
+        public ISettingsRepository SettingsRepository
+        {
+            get { return _settingsRepository ?? (_settingsRepository = new SettingsRepository(_dbTransaction)); }
+        }
+
+        public IStaffRepository StaffRepository
+        {
+            get { return _staffRepository ?? (_staffRepository = new StaffRepository(_dbTransaction)); }
+        }
+
+        public IStudentsRepository StudentsRepository
+        {
+            get { return _studentsRepository ?? (_studentsRepository = new StudentsRepository(_dbTransaction)); }
+        }
+
+        public IBooksRepository BooksRepository
+        {
+            get { return _booksRepository ?? (_booksRepository = new BooksRepository(_dbTransaction)); }
+        }
+
+        public IBorrowingRepository BorrowingRepository
+        {
+            get { return _borrowingRepository ?? (_borrowingRepository = new BorrowingRepository(_dbTransaction)); }
         }
 
         public void Commit()
@@ -41,7 +72,7 @@ namespace DataLayer
 
         private void resetRepositories()
         {
-            
+            _settingsRepository = null;
         }
 
         //Dispose Implementation

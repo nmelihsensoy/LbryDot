@@ -29,6 +29,7 @@ namespace PresentationLayer.Pages
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             this.Panel_Container = new System.Windows.Forms.Panel();
             this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.Panel_Pass_Line = new System.Windows.Forms.Panel();
@@ -227,6 +228,7 @@ namespace PresentationLayer.Pages
             this.ClientSize = new System.Drawing.Size(320, 430);
             this.Controls.Add(this.Panel_Container);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

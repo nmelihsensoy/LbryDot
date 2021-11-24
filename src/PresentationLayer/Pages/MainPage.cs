@@ -19,9 +19,12 @@ namespace PresentationLayer.Pages
     {
         private Form _activeForm = null;
         List<IconButton> MenuButtons = new List<IconButton>();
-        public MainPage()
+        private BusinessLogicLayer.CustomAppContext AppContext;
+
+        public MainPage(BusinessLogicLayer.CustomAppContext _appContext)
         {
             InitializeComponent();
+            AppContext = _appContext;
             ApplyColorPalette();
             ApplyStrings();
             MenuButtons.Add(Button_MenuDashboard);

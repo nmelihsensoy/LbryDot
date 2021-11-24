@@ -33,10 +33,10 @@ namespace PresentationLayer.Controls
             this.Splitter_BorderBottom = new System.Windows.Forms.Splitter();
             this.Panel_Container = new System.Windows.Forms.Panel();
             this.Panel_Bottom = new System.Windows.Forms.Panel();
-            this.Panel_Hover_Bottom = new PresentationLayer.ExtendedPanel();
+            this.Panel_Hover_Bottom = new PresentationLayer.Controls.ExtendedPanel();
             this.Button_ReturnBook = new FontAwesome.Sharp.IconButton();
             this.Button_BookDetails = new FontAwesome.Sharp.IconButton();
-            this.Panel_Hover_Top = new PresentationLayer.ExtendedPanel();
+            this.Panel_Hover_Top = new PresentationLayer.Controls.ExtendedPanel();
             this.Text_DaySecLine = new System.Windows.Forms.Label();
             this.Text_DayFirstLine = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Image_BookCover)).BeginInit();

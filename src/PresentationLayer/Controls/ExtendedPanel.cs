@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PresentationLayer
+namespace PresentationLayer.Controls
 {
     // Custom panel control to create transparent panels.
     //https://stackoverflow.com/questions/32400320/any-trick-to-use-opacity-on-a-panel-in-visual-studio-window-form
@@ -56,5 +56,22 @@ namespace PresentationLayer
             }
             base.OnPaint(e);
         }
+
+        private void InitializeComponent()
+        {
+            this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
+            this.SuspendLayout();
+            // 
+            // printPreviewControl1
+            // 
+            this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
+            this.printPreviewControl1.Name = "printPreviewControl1";
+            this.printPreviewControl1.Size = new System.Drawing.Size(100, 100);
+            this.printPreviewControl1.TabIndex = 0;
+            this.ResumeLayout(false);
+
+        }
+
+        private PrintPreviewControl printPreviewControl1;
     }
 }
