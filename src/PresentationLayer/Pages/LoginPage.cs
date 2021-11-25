@@ -1,4 +1,5 @@
-﻿using PresentationLayer.Resources;
+﻿using Entities;
+using PresentationLayer.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogicLayer;
+using BusinessLogicLayer.Services;
 
 namespace PresentationLayer.Pages
 {
@@ -20,9 +23,9 @@ namespace PresentationLayer.Pages
         string enEmailPlaceholder = Helpers.GetValueFromCulture("LoginEmailPlaceholderText", "");
         string trPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "tr");
         string enPassPlaceholder = Helpers.GetValueFromCulture("LoginPassPlaceholderText", "");
-        private BusinessLogicLayer.CustomAppContext AppContext;
+        private CustomAppContext AppContext;
 
-        public LoginPage(BusinessLogicLayer.CustomAppContext _appContext)
+        public LoginPage(CustomAppContext _appContext)
         {
             Helpers.ChangeLanguage();
             InitializeComponent();
@@ -170,8 +173,38 @@ namespace PresentationLayer.Pages
         //Logic Part starts after clicking the login execute button
         private void LoginExecute_Click(object sender, EventArgs e)
         {
-            MainPage MainForm = new MainPage();
-            Helpers.ChangePage(this, MainForm);
+            LoginModel LoginData = new LoginModel();
+            LoginData.Email = Input_Email.Text;
+            LoginData.Password = Input_Password.Text;
+            int SelectedRole = ComboBox_LoginType.SelectedIndex;
+
+            try
+            {
+                MainPage MainForm = null;
+                if (SelectedRole == 0)
+                {
+                    StudentModel LoggedStudent = new StudentModel();
+                    MainForm = new MainPage(AppContext);
+                    throw new Exception("Test Exception");
+                }
+                else if (SelectedRole == 1)
+                {
+                    StaffService StaffService1 = new StaffService(AppContext);
+                    StaffModel LoggedStaff = new StaffModel();
+                    LoggedStaff = StaffService1.LoginStaff(LoginData);
+                    if(LoggedStaff != null)
+                    {
+                        MainForm = new MainPage(AppContext, LoggedStaff);
+                    }
+                }
+
+                Helpers.ChangePage(this, MainForm);
+            }
+            catch (Exception ex)
+            {
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                alertBox1.Visible = true;
+            }
         }     
     }
 }

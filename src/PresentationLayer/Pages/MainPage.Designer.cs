@@ -127,6 +127,7 @@ namespace PresentationLayer.Pages
             this.Panel_StaffMenu.Name = "Panel_StaffMenu";
             this.Panel_StaffMenu.Size = new System.Drawing.Size(219, 208);
             this.Panel_StaffMenu.TabIndex = 0;
+            this.Panel_StaffMenu.Visible = false;
             // 
             // Button_MenuSettings
             // 

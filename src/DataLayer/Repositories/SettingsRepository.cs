@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Dapper;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,29 +14,21 @@ namespace DataLayer.Repositories
         public SettingsRepository(IDbTransaction dbTransaction) : base(dbTransaction) {
         }
 
-        public int Add(SettingsModel model)
+        private static int SettingsId = 0;
+
+        public SettingsModel GetSettings()
         {
-            throw new NotImplementedException();
+            return dbConnection.Query<SettingsModel>("SELECT * FROM Staff WHERE (id = $id)", new { id = SettingsId }, transaction: dbTransaction).FirstOrDefault();
         }
 
-        public int Delete(SettingsModel model)
+        public int UpdateSettings(SettingsModel NewSettings)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<SettingsModel> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public SettingsModel GetById(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(SettingsModel model)
-        {
-            throw new NotImplementedException();
+            return dbConnection.Execute("UPDATE Staff SET daily_fine_amount = @daily_fine_amount WHERE id = @id;",
+                new {
+                    NewSettings.daily_fine_amount,
+                    SettingsId
+                },
+                transaction: dbTransaction);
         }
     }
 }

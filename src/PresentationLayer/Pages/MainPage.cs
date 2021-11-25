@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace PresentationLayer.Pages
 {
@@ -20,11 +21,13 @@ namespace PresentationLayer.Pages
         private Form _activeForm = null;
         List<IconButton> MenuButtons = new List<IconButton>();
         private BusinessLogicLayer.CustomAppContext AppContext;
+        private int LoggedUserType = -1;
 
-        public MainPage(BusinessLogicLayer.CustomAppContext _appContext)
+        public MainPage(BusinessLogicLayer.CustomAppContext _appContext, StaffModel LoggedStaff=null, StudentModel LoggedStudent=null)
         {
             InitializeComponent();
             AppContext = _appContext;
+            SetLoggedUserType(LoggedStaff, LoggedStudent);
             ApplyColorPalette();
             ApplyStrings();
             MenuButtons.Add(Button_MenuDashboard);
@@ -34,6 +37,7 @@ namespace PresentationLayer.Pages
             MenuButtons.Add(Button_MenuStudents);
             MenuButtons.Add(Button_MenuSettings);
             userDropdown_TopBar.DropdownClick += userDropdown1_Click;
+            ShowStaffMenu();
             PageNavigation(new Dashboard());
         }
 
@@ -79,6 +83,30 @@ namespace PresentationLayer.Pages
             userDropdown_TopBar.Text_UserName.Text = "John Doe";
             userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
             Input_SearchBox.Text = Strings.SearchBook;
+        }
+
+        private void SetLoggedUserType(StaffModel LoggedStaff = null, StudentModel LoggedStudent = null)
+        {
+            if (LoggedStaff != null && LoggedStudent == null)
+            {
+                LoggedUserType = 1;
+            }
+            else if (LoggedStaff == null && LoggedStudent != null)
+            {
+                LoggedUserType = 2;
+            }
+            else
+            {
+                LoggedUserType = -1;
+            }
+        }
+
+        private void ShowStaffMenu()
+        {
+            if (LoggedUserType == 1)
+            {
+                Panel_StaffMenu.Visible = true;
+            }
         }
 
         //Draggable frameless window 
@@ -248,7 +276,7 @@ namespace PresentationLayer.Pages
 
         private void MenuLogout_Click(object sender, EventArgs e)
         {
-            LoginPage LoginForm = new LoginPage();
+            LoginPage LoginForm = new LoginPage(null);
             Helpers.ChangePage(this, LoginForm);
         }
 

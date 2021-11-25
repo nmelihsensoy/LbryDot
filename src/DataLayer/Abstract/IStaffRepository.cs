@@ -9,5 +9,6 @@ namespace DataLayer.Abstract
 {
     public interface IStaffRepository : IGenericRepository<StaffModel>
     {
+        StaffModel LoginStaff(LoginModel Credential);
     }
 }

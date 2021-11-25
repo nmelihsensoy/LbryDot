@@ -313,6 +313,15 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Empty.
+        /// </summary>
+        internal static string LoginEmailEmptyMessage {
+            get {
+                return ResourceManager.GetString("LoginEmailEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string LoginEmailPlaceholderText {
@@ -327,6 +336,15 @@ namespace PresentationLayer.Resources {
         internal static string LoginExecuteButtonText {
             get {
                 return ResourceManager.GetString("LoginExecuteButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Empty.
+        /// </summary>
+        internal static string LoginPassEmptyMessage {
+            get {
+                return ResourceManager.GetString("LoginPassEmptyMessage", resourceCulture);
             }
         }
         

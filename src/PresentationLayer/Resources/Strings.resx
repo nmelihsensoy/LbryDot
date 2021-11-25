@@ -201,11 +201,17 @@
   <data name="LoadDefault" xml:space="preserve">
     <value>LoadDefault</value>
   </data>
+  <data name="LoginEmailEmptyMessage" xml:space="preserve">
+    <value>Email Empty</value>
+  </data>
   <data name="LoginEmailPlaceholderText" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="LoginExecuteButtonText" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="LoginPassEmptyMessage" xml:space="preserve">
+    <value>Password Empty</value>
   </data>
   <data name="LoginPassPlaceholderText" xml:space="preserve">
     <value>Password</value>

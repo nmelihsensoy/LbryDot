@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Abstract
 {
-    public interface ISettingsRepository : IGenericRepository<SettingsModel>
+    public interface ISettingsRepository
     {
+        int UpdateSettings(SettingsModel NewSettings);
+        SettingsModel GetSettings();
     }
 }

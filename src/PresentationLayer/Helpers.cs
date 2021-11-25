@@ -41,8 +41,11 @@ namespace PresentationLayer
 
         public static void ChangePage(Form Current, Form Next)
         {
-            Current.Hide();
-            Next.Show();
+            if(Current != null && Next != null)
+            {
+                Current.Hide();
+                Next.Show();
+            }    
         }
 
         public static void OpenSubPages(Panel Panel, Form SubForm, ref string ActiveSubPage)

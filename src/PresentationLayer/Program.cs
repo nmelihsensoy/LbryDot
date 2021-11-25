@@ -17,7 +17,7 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             BusinessLogicLayer.CustomAppContext AppContext = new BusinessLogicLayer.CustomAppContext();
-            Application.Run(new Pages.LoginPage());
+            Application.Run(new Pages.LoginPage(AppContext));
         }
     }
 }
