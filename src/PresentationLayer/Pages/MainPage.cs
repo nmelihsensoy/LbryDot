@@ -22,12 +22,16 @@ namespace PresentationLayer.Pages
         List<IconButton> MenuButtons = new List<IconButton>();
         private BusinessLogicLayer.CustomAppContext AppContext;
         private int LoggedUserType = -1;
+        private StaffModel _loggedStaff = null;
+        private StudentModel _loggedStudent = null;
 
         public MainPage(BusinessLogicLayer.CustomAppContext _appContext, StaffModel LoggedStaff=null, StudentModel LoggedStudent=null)
         {
             InitializeComponent();
             AppContext = _appContext;
-            SetLoggedUserType(LoggedStaff, LoggedStudent);
+            _loggedStaff = LoggedStaff;
+            _loggedStudent = LoggedStudent;
+            SetLoggedUserType();
             ApplyColorPalette();
             ApplyStrings();
             MenuButtons.Add(Button_MenuDashboard);
@@ -37,6 +41,7 @@ namespace PresentationLayer.Pages
             MenuButtons.Add(Button_MenuStudents);
             MenuButtons.Add(Button_MenuSettings);
             userDropdown_TopBar.DropdownClick += userDropdown1_Click;
+            SetDropdownMenuForLoggedUser();
             ShowStaffMenu();
             PageNavigation(new Dashboard());
         }
@@ -80,18 +85,18 @@ namespace PresentationLayer.Pages
             Button_MenuSettings.Text = Strings.Settings;
             Button_UserLogout.Text = Strings.Logout;
             Text_StaffMenuTitle.Text = Strings.Staff.ToUpper();
-            userDropdown_TopBar.Text_UserName.Text = "John Doe";
-            userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
+            //userDropdown_TopBar.Text_UserName.Text = "John Doe";
+            //userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
             Input_SearchBox.Text = Strings.SearchBook;
         }
 
-        private void SetLoggedUserType(StaffModel LoggedStaff = null, StudentModel LoggedStudent = null)
+        private void SetLoggedUserType()
         {
-            if (LoggedStaff != null && LoggedStudent == null)
+            if (_loggedStaff != null && _loggedStudent == null)
             {
                 LoggedUserType = 1;
             }
-            else if (LoggedStaff == null && LoggedStudent != null)
+            else if (_loggedStaff == null && _loggedStudent != null)
             {
                 LoggedUserType = 2;
             }
@@ -106,6 +111,24 @@ namespace PresentationLayer.Pages
             if (LoggedUserType == 1)
             {
                 Panel_StaffMenu.Visible = true;
+            }
+        }
+
+        private void SetDropdownMenuForLoggedUser()
+        {
+            if (LoggedUserType == 1)
+            {
+                userDropdown_TopBar.Role = (UserType)_loggedStaff.staff_type;
+                userDropdown_TopBar.UserFullName = _loggedStaff.staff_name;
+                Text_UserMail.Text = _loggedStaff.staff_email;
+                Text_User_ID.Text = _loggedStaff.staff_id.ToString();
+            }
+            else
+            {
+                userDropdown_TopBar.Role = UserType.Student;
+                userDropdown_TopBar.UserFullName = _loggedStudent.student_name;
+                Text_UserMail.Text = _loggedStudent.student_email;
+                Text_User_ID.Text = _loggedStudent.student_number.ToString();
             }
         }
 
@@ -252,7 +275,7 @@ namespace PresentationLayer.Pages
             }
             else if ((sender as Button).Name == "Button_MenuSettings")
             {
-                SubPage = new Settings();
+                SubPage = new Settings(AppContext);
             }
             else
             {
@@ -276,8 +299,9 @@ namespace PresentationLayer.Pages
 
         private void MenuLogout_Click(object sender, EventArgs e)
         {
-            LoginPage LoginForm = new LoginPage(null);
+            LoginPage LoginForm = new LoginPage(AppContext);
             Helpers.ChangePage(this, LoginForm);
+            this.Dispose();
         }
 
         private void ıconButton5_Click(object sender, EventArgs e)

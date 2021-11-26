@@ -174,9 +174,25 @@ namespace PresentationLayer.Pages
         private void LoginExecute_Click(object sender, EventArgs e)
         {
             LoginModel LoginData = new LoginModel();
-            LoginData.Email = Input_Email.Text;
-            LoginData.Password = Input_Password.Text;
             int SelectedRole = ComboBox_LoginType.SelectedIndex;
+
+            //Ignore placeholder text for database check
+            if (Input_Email.Text.Trim() == string.Empty || Input_Email.Text == trEmailPlaceholder || Input_Email.Text == enEmailPlaceholder)
+            {
+                LoginData.Email = string.Empty;
+            }
+            else
+            {
+                LoginData.Email = Input_Email.Text;
+            }
+            if (Input_Password.Text.Trim() == string.Empty || Input_Password.Text == trPassPlaceholder || Input_Password.Text == enPassPlaceholder)
+            {
+                LoginData.Password = string.Empty;
+            }
+            else
+            {
+                LoginData.Password = Input_Password.Text;
+            }    
 
             try
             {
@@ -184,13 +200,15 @@ namespace PresentationLayer.Pages
                 if (SelectedRole == 0)
                 {
                     StudentModel LoggedStudent = new StudentModel();
-                    MainForm = new MainPage(AppContext);
+
+                    //MainForm = new MainPage(AppContext);
                     throw new Exception("Test Exception");
                 }
                 else if (SelectedRole == 1)
                 {
                     StaffService StaffService1 = new StaffService(AppContext);
                     StaffModel LoggedStaff = new StaffModel();
+
                     LoggedStaff = StaffService1.LoginStaff(LoginData);
                     if(LoggedStaff != null)
                     {

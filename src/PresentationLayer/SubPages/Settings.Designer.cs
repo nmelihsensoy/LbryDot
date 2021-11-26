@@ -60,6 +60,7 @@ namespace PresentationLayer.SubPages
             this.Button_SaveButton.TabIndex = 17;
             this.Button_SaveButton.Text = "Save";
             this.Button_SaveButton.UseVisualStyleBackColor = true;
+            this.Button_SaveButton.Click += new System.EventHandler(this.Button_SaveButton_Click);
             // 
             // alertBox1
             // 
@@ -81,6 +82,7 @@ namespace PresentationLayer.SubPages
             this.Controls.Add(this.Text_SettingInput);
             this.Name = "Settings";
             this.Text = "Settings";
+            this.Load += new System.EventHandler(this.Settings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

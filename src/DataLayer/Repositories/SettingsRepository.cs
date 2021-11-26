@@ -14,19 +14,19 @@ namespace DataLayer.Repositories
         public SettingsRepository(IDbTransaction dbTransaction) : base(dbTransaction) {
         }
 
-        private static int SettingsId = 0;
+        private static int SettingsId = 1;
 
         public SettingsModel GetSettings()
         {
-            return dbConnection.Query<SettingsModel>("SELECT * FROM Staff WHERE (id = $id)", new { id = SettingsId }, transaction: dbTransaction).FirstOrDefault();
+            return dbConnection.Query<SettingsModel>("SELECT * FROM System_Parameters WHERE id = @id;", new { id = SettingsId }, transaction: dbTransaction).FirstOrDefault();
         }
 
         public int UpdateSettings(SettingsModel NewSettings)
         {
-            return dbConnection.Execute("UPDATE Staff SET daily_fine_amount = @daily_fine_amount WHERE id = @id;",
+            return dbConnection.Execute("UPDATE System_Parameters SET daily_fine_amount = @daily_fine_amount WHERE id = @id;",
                 new {
-                    NewSettings.daily_fine_amount,
-                    SettingsId
+                    daily_fine_amount = NewSettings.daily_fine_amount,
+                    id = SettingsId
                 },
                 transaction: dbTransaction);
         }
