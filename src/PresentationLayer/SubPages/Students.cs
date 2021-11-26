@@ -7,16 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogicLayer;
 using PresentationLayer.Dialogs;
 
 namespace PresentationLayer.SubPages
 {
     public partial class Students : Form
     {
-        public Students()
+        private CustomAppContext AppContext;
+
+        public Students(CustomAppContext _appContext)
         {
             InitializeComponent();
+            AppContext = _appContext;
             InitTable();
+        }
+
+        public void AddButtonClick(object sender, EventArgs e)
+        {
+            using (var form = new StudentAddUpdate(AppContext))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    MessageBox.Show("Success");
+                }
+            }
+        }
+
+        public void SearchStudent(object sender, string text, EventArgs e)
+        {
+
         }
 
         private void InitTable()
@@ -59,6 +80,5 @@ namespace PresentationLayer.SubPages
 
             //dataGridView1.AllowUserToAddRows = false;
         }
-
     }   
 }

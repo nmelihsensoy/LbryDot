@@ -43,7 +43,6 @@ namespace PresentationLayer.Pages
             this.Button_MenuMyBooks = new FontAwesome.Sharp.IconButton();
             this.Button_MenuDashboard = new FontAwesome.Sharp.IconButton();
             this.Panel_TitleBar = new System.Windows.Forms.Panel();
-            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Button_AddBook = new FontAwesome.Sharp.IconButton();
             this.Panel_SearchBox = new System.Windows.Forms.Panel();
             this.Splitter_SearchBoxBottom = new System.Windows.Forms.Splitter();
@@ -68,6 +67,7 @@ namespace PresentationLayer.Pages
             this.Splitter_UserDropdown_Panel_Left = new System.Windows.Forms.Splitter();
             this.Splitter_UserLogout_Bottom = new System.Windows.Forms.Splitter();
             this.Tooltip_AddBook = new System.Windows.Forms.ToolTip(this.components);
+            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Panel_Sidebar.SuspendLayout();
             this.Panel_Logo.SuspendLayout();
             this.Panel_StaffMenu.SuspendLayout();
@@ -280,14 +280,6 @@ namespace PresentationLayer.Pages
             this.Panel_TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Panel_TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
-            // userDropdown_TopBar
-            // 
-            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
-            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
-            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
-            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
-            this.userDropdown_TopBar.TabIndex = 10;
-            // 
             // Button_AddBook
             // 
             this.Button_AddBook.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -368,6 +360,9 @@ namespace PresentationLayer.Pages
             this.Input_SearchBox.Size = new System.Drawing.Size(249, 18);
             this.Input_SearchBox.TabIndex = 8;
             this.Input_SearchBox.Text = "Search";
+            this.Input_SearchBox.Enter += new System.EventHandler(this.Input_SearchBox_Enter);
+            this.Input_SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_SearchBox_KeyDown);
+            this.Input_SearchBox.Leave += new System.EventHandler(this.Input_SearchBox_Leave);
             // 
             // Button_WindowMin
             // 
@@ -579,6 +574,14 @@ namespace PresentationLayer.Pages
             this.Splitter_UserLogout_Bottom.Size = new System.Drawing.Size(215, 1);
             this.Splitter_UserLogout_Bottom.TabIndex = 8;
             this.Splitter_UserLogout_Bottom.TabStop = false;
+            // 
+            // userDropdown_TopBar
+            // 
+            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
+            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
+            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
+            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
+            this.userDropdown_TopBar.TabIndex = 10;
             // 
             // MainPage
             // 

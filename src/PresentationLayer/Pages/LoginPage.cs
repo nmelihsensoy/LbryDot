@@ -199,10 +199,13 @@ namespace PresentationLayer.Pages
                 MainPage MainForm = null;
                 if (SelectedRole == 0)
                 {
+                    StudentsService StudentsService1 = new StudentsService(AppContext);
                     StudentModel LoggedStudent = new StudentModel();
-
-                    //MainForm = new MainPage(AppContext);
-                    throw new Exception("Test Exception");
+                    LoggedStudent = StudentsService1.LoginStudent(LoginData);
+                    if (LoggedStudent != null)
+                    {
+                        MainForm = new MainPage(AppContext, null, LoggedStudent);
+                    }
                 }
                 else if (SelectedRole == 1)
                 {

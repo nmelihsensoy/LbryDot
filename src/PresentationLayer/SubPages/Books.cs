@@ -19,6 +19,23 @@ namespace PresentationLayer.SubPages
             bookListItem1.ButtonHandler += ListClickEvent;
         }
 
+        public void AddButtonClick(object sender, EventArgs e)
+        {
+            using (var form = new BookAddUpdate())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        public void SearchBook(object sender, string text, EventArgs e)
+        {
+
+        }
+
         private void ListClickEvent(object sender, EventArgs e)
         {
             //MessageBox.Show((sender as Button).Name + bookListItem1.TestVal);

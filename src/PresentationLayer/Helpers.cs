@@ -62,6 +62,8 @@ namespace PresentationLayer
 
         public static bool CompareForms(Form F1, Form F2)
         {
+            if (F2 == null) return false;
+            
             if (F1 == null || F1.Text != F2.Text)
             {
                 return true;

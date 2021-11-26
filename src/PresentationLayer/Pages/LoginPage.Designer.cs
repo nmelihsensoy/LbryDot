@@ -89,7 +89,7 @@ namespace PresentationLayer.Pages
             this.Panel_Pass_Line.Location = new System.Drawing.Point(45, 247);
             this.Panel_Pass_Line.Name = "Panel_Pass_Line";
             this.Panel_Pass_Line.Size = new System.Drawing.Size(230, 10);
-            this.Panel_Pass_Line.TabIndex = 13;
+            this.Panel_Pass_Line.TabIndex = 2;
             // 
             // Icon_Input_Pass
             // 
@@ -112,7 +112,7 @@ namespace PresentationLayer.Pages
             this.Panel_Input_Email.Location = new System.Drawing.Point(45, 200);
             this.Panel_Input_Email.Name = "Panel_Input_Email";
             this.Panel_Input_Email.Size = new System.Drawing.Size(230, 10);
-            this.Panel_Input_Email.TabIndex = 10;
+            this.Panel_Input_Email.TabIndex = 1;
             // 
             // Input_Password
             // 
@@ -181,7 +181,7 @@ namespace PresentationLayer.Pages
             this.Button_Execute_Login.Location = new System.Drawing.Point(44, 313);
             this.Button_Execute_Login.Name = "Button_Execute_Login";
             this.Button_Execute_Login.Size = new System.Drawing.Size(231, 32);
-            this.Button_Execute_Login.TabIndex = 4;
+            this.Button_Execute_Login.TabIndex = 5;
             this.Button_Execute_Login.Text = "Login";
             this.Button_Execute_Login.UseVisualStyleBackColor = true;
             this.Button_Execute_Login.Click += new System.EventHandler(this.LoginExecute_Click);
@@ -194,7 +194,7 @@ namespace PresentationLayer.Pages
             this.ComboBox_LoginType.Location = new System.Drawing.Point(44, 273);
             this.ComboBox_LoginType.Name = "ComboBox_LoginType";
             this.ComboBox_LoginType.Size = new System.Drawing.Size(231, 21);
-            this.ComboBox_LoginType.TabIndex = 3;
+            this.ComboBox_LoginType.TabIndex = 4;
             // 
             // Input_Email
             // 

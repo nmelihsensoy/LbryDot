@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities;
+using BusinessLogicLayer;
 
 namespace PresentationLayer.Pages
 {
@@ -20,12 +21,12 @@ namespace PresentationLayer.Pages
     {
         private Form _activeForm = null;
         List<IconButton> MenuButtons = new List<IconButton>();
-        private BusinessLogicLayer.CustomAppContext AppContext;
+        private CustomAppContext AppContext;
         private int LoggedUserType = -1;
         private StaffModel _loggedStaff = null;
         private StudentModel _loggedStudent = null;
 
-        public MainPage(BusinessLogicLayer.CustomAppContext _appContext, StaffModel LoggedStaff=null, StudentModel LoggedStudent=null)
+        public MainPage(CustomAppContext _appContext, StaffModel LoggedStaff=null, StudentModel LoggedStudent=null)
         {
             InitializeComponent();
             AppContext = _appContext;
@@ -41,7 +42,7 @@ namespace PresentationLayer.Pages
             MenuButtons.Add(Button_MenuStudents);
             MenuButtons.Add(Button_MenuSettings);
             userDropdown_TopBar.DropdownClick += userDropdown1_Click;
-            SetDropdownMenuForLoggedUser();
+            SetTopBarForLoggedUser();
             ShowStaffMenu();
             PageNavigation(new Dashboard());
         }
@@ -87,7 +88,7 @@ namespace PresentationLayer.Pages
             Text_StaffMenuTitle.Text = Strings.Staff.ToUpper();
             //userDropdown_TopBar.Text_UserName.Text = "John Doe";
             //userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
-            Input_SearchBox.Text = Strings.SearchBook;
+            Input_SearchBox.Text = Strings.Search;
         }
 
         private void SetLoggedUserType()
@@ -114,7 +115,7 @@ namespace PresentationLayer.Pages
             }
         }
 
-        private void SetDropdownMenuForLoggedUser()
+        private void SetTopBarForLoggedUser()
         {
             if (LoggedUserType == 1)
             {
@@ -128,7 +129,7 @@ namespace PresentationLayer.Pages
                 userDropdown_TopBar.Role = UserType.Student;
                 userDropdown_TopBar.UserFullName = _loggedStudent.student_name;
                 Text_UserMail.Text = _loggedStudent.student_email;
-                Text_User_ID.Text = _loggedStudent.student_number.ToString();
+                Text_User_ID.Text = _loggedStudent.student_number.ToString();   
             }
         }
 
@@ -203,8 +204,22 @@ namespace PresentationLayer.Pages
         {
             if (_activeForm.Text == "Books")
             {
+                
                 Panel_SearchBox.Visible = true;
-                Button_AddBook.Visible = true;
+                if(LoggedUserType == 1)
+                {
+                    Button_AddBook.IconChar = IconChar.BookMedical;
+                    Button_AddBook.Visible = true;
+                }              
+            }
+            else if(_activeForm.Text == "Students")
+            {
+                Panel_SearchBox.Visible = true;
+                if (LoggedUserType == 1)
+                {
+                    Button_AddBook.IconChar = IconChar.UserPlus;
+                    Button_AddBook.Visible = true;
+                }
             }
             else
             {
@@ -245,10 +260,12 @@ namespace PresentationLayer.Pages
             if((sender as Button).Name == "Button_WindowClose")
             {
                 Helpers.CloseApplication();
-            }else if ((sender as Button).Name == "Button_WindowMax")
+            }
+            else if ((sender as Button).Name == "Button_WindowMax")
             {
                 Helpers.MaximizeWindowToggle(this);
-            }else if ((sender as Button).Name == "Button_WindowMin")
+            }
+            else if ((sender as Button).Name == "Button_WindowMin")
             {
                 Helpers.MinimizeWindow(this);
             }
@@ -271,7 +288,7 @@ namespace PresentationLayer.Pages
             }
             else if ((sender as Button).Name == "Button_MenuStudents")
             {
-                SubPage = new Students();
+                SubPage = new Students(AppContext);
             }
             else if ((sender as Button).Name == "Button_MenuSettings")
             {
@@ -317,14 +334,39 @@ namespace PresentationLayer.Pages
 
         private void Button_AddBook_Click(object sender, EventArgs e)
         {
-            using (var form = new BookAddUpdate())
+            if (_activeForm.Text == "Students")
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
+                (_activeForm as Students).AddButtonClick(sender, e);
+            }
+            else if (_activeForm.Text == "Books")
+            {
+                (_activeForm as Books).AddButtonClick(sender, e);
+            }
+        }
+
+        private void Input_SearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_activeForm.Text == "Students")
                 {
-                    MessageBox.Show("returned OK");
+                    (_activeForm as Students).SearchStudent(sender, Input_SearchBox.Text, e);
+                }
+                else if (_activeForm.Text == "Books")
+                {
+                    (_activeForm as Books).SearchBook(sender, Input_SearchBox.Text, e);
                 }
             }
+        }
+
+        private void Input_SearchBox_Enter(object sender, EventArgs e)
+        {
+            Input_SearchBox.Text = "";
+        }
+
+        private void Input_SearchBox_Leave(object sender, EventArgs e)
+        {
+            Input_SearchBox.Text = Strings.Search;
         }
     }
 }

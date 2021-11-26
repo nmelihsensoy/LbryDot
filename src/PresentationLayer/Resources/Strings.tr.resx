@@ -231,6 +231,9 @@
   <data name="Save" xml:space="preserve">
     <value>Kaydet</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
   <data name="SearchBook" xml:space="preserve">
     <value>Kitap Ara</value>
   </data>

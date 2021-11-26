@@ -8,17 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogicLayer;
+using BusinessLogicLayer.Services;
+using Entities;
 
 namespace PresentationLayer.Dialogs
 {
     public partial class StudentAddUpdate : Form
     {
-        //public string NameASD { get; set; }
-        //public string ReturnValue2 { get; set; }
+        private CustomAppContext AppContext;
+        private StudentsService StudentsService1;
 
-        public StudentAddUpdate()
+        public StudentAddUpdate(CustomAppContext _appContext)
         {
             InitializeComponent();
+            AppContext = _appContext;
+            StudentsService1 = new StudentsService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
         }
@@ -40,11 +45,26 @@ namespace PresentationLayer.Dialogs
         }
 
         private void ıconButton2_Click(object sender, EventArgs e)
-        {
-            //this.NameASD = Input_Email.Text; 
-            //this.DialogResult = DialogResult.OK;
+        {       
+            try
+            {
+                StudentModel NewStudent = new StudentModel();
+                NewStudent.student_email = Input_Email.Text;
+                NewStudent.student_name = Input_Name.Text;
+                NewStudent.student_password = Input_Password.Text;
+                NewStudent.student_avatar = null;
+
+                StudentsService1.AddStudent(NewStudent);
+            }
+            catch (Exception ex)
+            {
+                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                AlertBox_UserOperation.Visible = true;
+                this.Height += AlertBox_UserOperation.Height + 10;
+            }
+
+            this.DialogResult = DialogResult.OK;
             //this.Close();
-            this.Height += AlertBox_UserOperation.Height + 10;
         }
 
         private void ıconButton1_Click(object sender, EventArgs e)

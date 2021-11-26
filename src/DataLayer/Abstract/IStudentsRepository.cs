@@ -9,5 +9,6 @@ namespace DataLayer.Abstract
 {
     public interface IStudentsRepository : IGenericRepository<StudentModel>
     {
+        StudentModel LoginStudent(LoginModel Credential);
     }
 }

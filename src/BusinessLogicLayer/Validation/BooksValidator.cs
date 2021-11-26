@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Validation
 {
-    public class BooksValidator : AbstractValidator<SettingsModel>
+    public class BooksValidator : AbstractValidator<BookModel>
     {
         public BooksValidator()
         {

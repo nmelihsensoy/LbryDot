@@ -62,7 +62,7 @@ namespace PresentationLayer.Dialogs
             this.Panel_Container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Container.Location = new System.Drawing.Point(0, 0);
             this.Panel_Container.Name = "Panel_Container";
-            this.Panel_Container.Size = new System.Drawing.Size(324, 309);
+            this.Panel_Container.Size = new System.Drawing.Size(324, 369);
             this.Panel_Container.TabIndex = 0;
             // 
             // AlertBox_UserOperation
