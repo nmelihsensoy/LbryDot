@@ -263,6 +263,7 @@ namespace PresentationLayer.Dialogs
             this.Button_Save.TabIndex = 21;
             this.Button_Save.Text = "Save";
             this.Button_Save.UseVisualStyleBackColor = true;
+            this.Button_Save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // Button_SelectCover
             // 
@@ -275,6 +276,7 @@ namespace PresentationLayer.Dialogs
             this.Button_SelectCover.TabIndex = 20;
             this.Button_SelectCover.Text = "Select";
             this.Button_SelectCover.UseVisualStyleBackColor = true;
+            this.Button_SelectCover.Click += new System.EventHandler(this.Button_SelectCover_Click);
             // 
             // openFileDialog1
             // 

@@ -123,13 +123,21 @@ namespace PresentationLayer.Pages
                 userDropdown_TopBar.UserFullName = _loggedStaff.staff_name;
                 Text_UserMail.Text = _loggedStaff.staff_email;
                 Text_User_ID.Text = _loggedStaff.staff_id.ToString();
+                if (_loggedStaff.staff_avatar != null && _loggedStaff.staff_avatar.Length > 0)
+                {
+                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(_loggedStaff.staff_avatar);
+                }
             }
             else
             {
                 userDropdown_TopBar.Role = UserType.Student;
                 userDropdown_TopBar.UserFullName = _loggedStudent.student_name;
                 Text_UserMail.Text = _loggedStudent.student_email;
-                Text_User_ID.Text = _loggedStudent.student_number.ToString();   
+                Text_User_ID.Text = _loggedStudent.student_number.ToString();
+                if (_loggedStudent.student_avatar != null && _loggedStudent.student_avatar.Length >0)
+                {
+                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(_loggedStudent.student_avatar);
+                }
             }
         }
 
@@ -284,7 +292,7 @@ namespace PresentationLayer.Pages
             }
             else if ((sender as Button).Name == "Button_MenuBooks")
             {
-                SubPage = new Books();
+                SubPage = new Books(AppContext);
             }
             else if ((sender as Button).Name == "Button_MenuStudents")
             {

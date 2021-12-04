@@ -112,7 +112,7 @@ namespace PresentationLayer.Pages
             this.Panel_Input_Email.Location = new System.Drawing.Point(45, 200);
             this.Panel_Input_Email.Name = "Panel_Input_Email";
             this.Panel_Input_Email.Size = new System.Drawing.Size(230, 10);
-            this.Panel_Input_Email.TabIndex = 1;
+            this.Panel_Input_Email.TabIndex = 0;
             // 
             // Input_Password
             // 
@@ -121,7 +121,7 @@ namespace PresentationLayer.Pages
             this.Input_Password.Location = new System.Drawing.Point(75, 229);
             this.Input_Password.Name = "Input_Password";
             this.Input_Password.Size = new System.Drawing.Size(200, 15);
-            this.Input_Password.TabIndex = 11;
+            this.Input_Password.TabIndex = 1;
             this.Input_Password.Enter += new System.EventHandler(this.Password_Input_Enter);
             this.Input_Password.Leave += new System.EventHandler(this.Password_Input_Leave);
             // 
@@ -157,7 +157,7 @@ namespace PresentationLayer.Pages
             this.Button_Lang_TR.Location = new System.Drawing.Point(177, 374);
             this.Button_Lang_TR.Name = "Button_Lang_TR";
             this.Button_Lang_TR.Size = new System.Drawing.Size(35, 23);
-            this.Button_Lang_TR.TabIndex = 6;
+            this.Button_Lang_TR.TabIndex = 5;
             this.Button_Lang_TR.Text = "TR";
             this.Button_Lang_TR.UseVisualStyleBackColor = true;
             this.Button_Lang_TR.Click += new System.EventHandler(this.Lang_TR_Click);
@@ -169,7 +169,7 @@ namespace PresentationLayer.Pages
             this.Button_Lang_EN.Location = new System.Drawing.Point(109, 374);
             this.Button_Lang_EN.Name = "Button_Lang_EN";
             this.Button_Lang_EN.Size = new System.Drawing.Size(34, 23);
-            this.Button_Lang_EN.TabIndex = 5;
+            this.Button_Lang_EN.TabIndex = 4;
             this.Button_Lang_EN.Text = "EN";
             this.Button_Lang_EN.UseVisualStyleBackColor = true;
             this.Button_Lang_EN.Click += new System.EventHandler(this.Lang_EN_Click);
@@ -181,7 +181,7 @@ namespace PresentationLayer.Pages
             this.Button_Execute_Login.Location = new System.Drawing.Point(44, 313);
             this.Button_Execute_Login.Name = "Button_Execute_Login";
             this.Button_Execute_Login.Size = new System.Drawing.Size(231, 32);
-            this.Button_Execute_Login.TabIndex = 5;
+            this.Button_Execute_Login.TabIndex = 3;
             this.Button_Execute_Login.Text = "Login";
             this.Button_Execute_Login.UseVisualStyleBackColor = true;
             this.Button_Execute_Login.Click += new System.EventHandler(this.LoginExecute_Click);
@@ -194,7 +194,7 @@ namespace PresentationLayer.Pages
             this.ComboBox_LoginType.Location = new System.Drawing.Point(44, 273);
             this.ComboBox_LoginType.Name = "ComboBox_LoginType";
             this.ComboBox_LoginType.Size = new System.Drawing.Size(231, 21);
-            this.ComboBox_LoginType.TabIndex = 4;
+            this.ComboBox_LoginType.TabIndex = 2;
             // 
             // Input_Email
             // 
@@ -203,7 +203,7 @@ namespace PresentationLayer.Pages
             this.Input_Email.Location = new System.Drawing.Point(75, 182);
             this.Input_Email.Name = "Input_Email";
             this.Input_Email.Size = new System.Drawing.Size(200, 15);
-            this.Input_Email.TabIndex = 1;
+            this.Input_Email.TabIndex = 0;
             this.Input_Email.Enter += new System.EventHandler(this.Email_Input_Enter);
             this.Input_Email.Leave += new System.EventHandler(this.Email_Input_Leave);
             // 
@@ -222,6 +222,7 @@ namespace PresentationLayer.Pages
             // 
             // LoginPage
             // 
+            this.AcceptButton = this.Button_Execute_Login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;

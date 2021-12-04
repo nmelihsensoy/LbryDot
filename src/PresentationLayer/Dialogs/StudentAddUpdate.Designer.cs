@@ -30,7 +30,6 @@ namespace PresentationLayer.Dialogs
         private void InitializeComponent()
         {
             this.Panel_Container = new System.Windows.Forms.Panel();
-            this.AlertBox_UserOperation = new PresentationLayer.Controls.AlertBox();
             this.Image_StudentAvatar = new System.Windows.Forms.PictureBox();
             this.Text_Password = new System.Windows.Forms.Label();
             this.Input_Password = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@ namespace PresentationLayer.Dialogs
             this.Button_AddSave = new FontAwesome.Sharp.IconButton();
             this.Button_SelectAvatar = new FontAwesome.Sharp.IconButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.AlertBox_UserOperation = new PresentationLayer.Controls.AlertBox();
             this.Panel_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_StudentAvatar)).BeginInit();
             this.SuspendLayout();
@@ -62,22 +62,15 @@ namespace PresentationLayer.Dialogs
             this.Panel_Container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Container.Location = new System.Drawing.Point(0, 0);
             this.Panel_Container.Name = "Panel_Container";
-            this.Panel_Container.Size = new System.Drawing.Size(324, 369);
+            this.Panel_Container.Size = new System.Drawing.Size(324, 309);
             this.Panel_Container.TabIndex = 0;
-            // 
-            // AlertBox_UserOperation
-            // 
-            this.AlertBox_UserOperation.Location = new System.Drawing.Point(24, 311);
-            this.AlertBox_UserOperation.MinimumSize = new System.Drawing.Size(150, 0);
-            this.AlertBox_UserOperation.Name = "AlertBox_UserOperation";
-            this.AlertBox_UserOperation.Size = new System.Drawing.Size(277, 39);
-            this.AlertBox_UserOperation.TabIndex = 23;
             // 
             // Image_StudentAvatar
             // 
             this.Image_StudentAvatar.Location = new System.Drawing.Point(114, 162);
             this.Image_StudentAvatar.Name = "Image_StudentAvatar";
             this.Image_StudentAvatar.Size = new System.Drawing.Size(80, 80);
+            this.Image_StudentAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Image_StudentAvatar.TabIndex = 19;
             this.Image_StudentAvatar.TabStop = false;
             // 
@@ -171,6 +164,14 @@ namespace PresentationLayer.Dialogs
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // AlertBox_UserOperation
+            // 
+            this.AlertBox_UserOperation.Location = new System.Drawing.Point(24, 311);
+            this.AlertBox_UserOperation.MinimumSize = new System.Drawing.Size(150, 0);
+            this.AlertBox_UserOperation.Name = "AlertBox_UserOperation";
+            this.AlertBox_UserOperation.Size = new System.Drawing.Size(277, 39);
+            this.AlertBox_UserOperation.TabIndex = 23;
             // 
             // StudentAddUpdate
             // 

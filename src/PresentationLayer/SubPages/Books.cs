@@ -8,20 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationLayer.Dialogs;
+using BusinessLogicLayer.Services;
+using Entities;
+using BusinessLogicLayer;
 
 namespace PresentationLayer.SubPages
 {
     public partial class Books : Form
     {
-        public Books()
+        private CustomAppContext AppContext;
+        private BooksService BooksService1;
+
+        public Books(CustomAppContext _appContext)
         {
             InitializeComponent();
+            AppContext = _appContext;
+            BooksService1 = new BooksService(AppContext);
             bookListItem1.ButtonHandler += ListClickEvent;
         }
 
         public void AddButtonClick(object sender, EventArgs e)
         {
-            using (var form = new BookAddUpdate())
+            using (var form = new BookAddUpdate(AppContext))
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)

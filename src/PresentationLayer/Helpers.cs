@@ -1,6 +1,7 @@
 ﻿using PresentationLayer.Pages;
 using PresentationLayer.Resources;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -132,6 +133,13 @@ namespace PresentationLayer
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             path.AddEllipse(0, 0, P.Width, P.Height);
             P.Region = new Region(path);
+        }
+
+        public static Image ConvertByteToImage(byte [] ImgInByte)
+        {
+            MemoryStream ms2 = new MemoryStream(ImgInByte, 0, ImgInByte.Length);
+            ms2.Write(ImgInByte, 0, ImgInByte.Length);
+            return Image.FromStream(ms2, true);
         }
 
     }

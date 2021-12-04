@@ -20,7 +20,7 @@ namespace DataLayer
         private IBorrowingRepository _borrowingRepository;
 
         public UnitOfWork(IDatabaseProvider dbProvider)
-        {
+        {   
             _dbConnection = dbProvider.ObtainConnection();
             _dbConnection.Open();
             _dbTransaction = _dbConnection.BeginTransaction();
@@ -73,6 +73,10 @@ namespace DataLayer
         private void resetRepositories()
         {
             _settingsRepository = null;
+            _staffRepository = null;
+            _studentsRepository = null;
+            _booksRepository = null;
+            _borrowingRepository = null;
         }
 
         //Dispose Implementation

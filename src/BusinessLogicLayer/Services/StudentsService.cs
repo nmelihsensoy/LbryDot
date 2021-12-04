@@ -49,5 +49,35 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        public List<Object> GetAllStudents()
+        {
+            var output = _appContext.getUoW().StudentsRepository.GetAll().Select(x => new { Student_Number = x.student_number, Student_Name = x.student_name, Student_Email = x.student_email }).ToList<Object>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public List<Object> SearchStudent(String SearchText)
+        {
+            var output = _appContext.getUoW().StudentsRepository.Search(SearchText).Select(x => new { Student_Number = x.student_number, Student_Name = x.student_name, Student_Email = x.student_email }).ToList<Object>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public StudentModel GetStudentById(int Id)
+        {
+            var output = _appContext.getUoW().StudentsRepository.GetById(Id);
+            output.student_password = "";
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public void DeleteStudentById(int Id)
+        {
+            
+        }
+
     }
 }

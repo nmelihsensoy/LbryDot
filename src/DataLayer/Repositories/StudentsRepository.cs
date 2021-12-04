@@ -34,6 +34,13 @@ namespace DataLayer.Repositories
                 transaction: dbTransaction);
         }
 
+        public IEnumerable<StudentModel> Search(string Text)
+        {
+            return dbConnection.Query<StudentModel>("SELECT * FROM Students WHERE student_name LIKE @text OR student_email LIKE @text OR student_number LIKE @text;",
+                new { text = "%" + Text + "%" },
+                transaction: dbTransaction);
+        }
+
         public StudentModel GetById(int Id)
         {
             return dbConnection.Query<StudentModel>("SELECT * FROM Students WHERE student_number = @id;", new { id = Id }, transaction: dbTransaction).FirstOrDefault();
