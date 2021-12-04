@@ -8,16 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace PresentationLayer.Dialogs
 {
     public partial class BookBorrow : Form
     {
-        public BookBorrow()
+        BorrowingModel BorrowBook1;
+        
+        public BookBorrow(BorrowingModel _borrowBook)
         {
             InitializeComponent();
             ApplyColorPalette();
             ApplyStrings();
+            BorrowBook1 = _borrowBook;
         }
 
         private void ApplyColorPalette()
@@ -41,8 +45,12 @@ namespace PresentationLayer.Dialogs
 
         private void Button_Borrow_Click(object sender, EventArgs e)
         {
-            this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
+            BorrowBook1.issued_date = Helpers.GetTimeStamp();
+            BorrowBook1.due_date = dateTimePicker_ReturnDate.Value.ToString("dd/MM/yyyy");
 
+            MessageBox.Show(BorrowBook1.ToString());
+
+            this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
 
             AlertBox_SuccesError.Visible = true;
             AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Error Message");

@@ -142,5 +142,9 @@ namespace PresentationLayer
             return Image.FromStream(ms2, true);
         }
 
+        public static String GetTimeStamp()
+        {
+            return DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
     }
 }

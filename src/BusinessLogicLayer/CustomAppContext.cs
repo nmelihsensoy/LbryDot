@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
 
 namespace BusinessLogicLayer
 {
@@ -17,6 +18,9 @@ namespace BusinessLogicLayer
     {
         private static IDatabaseProvider dbConn;
         protected IUnitOfWork _unitOfWork { get; }
+        private short LoggedUserType = -1;
+        StaffModel LoggedStaff = null;
+        StudentModel LoggedStudent = null;
 
         public CustomAppContext()
         {
@@ -27,6 +31,40 @@ namespace BusinessLogicLayer
         public IUnitOfWork getUoW()
         {
             return _unitOfWork;
+        }
+
+        public void SetLoggedUser(StaffModel _loggedStaff = null, StudentModel _loggedStudent = null)
+        {
+            LoggedStaff = _loggedStaff;
+            LoggedStudent = _loggedStudent;
+
+            if (_loggedStaff != null && _loggedStudent == null)
+            {
+                LoggedUserType = 1;
+            }
+            else if (_loggedStaff == null && _loggedStudent != null)
+            {
+                LoggedUserType = 2;
+            }
+            else
+            {
+                LoggedUserType = -1;
+            }
+        }
+
+        public short GetUserType()
+        {
+            return LoggedUserType;
+        }
+
+        public StaffModel GetLoggedStaff()
+        {
+            return LoggedStaff;
+        }
+
+        public StudentModel GetLoggedStudent()
+        {
+            return LoggedStudent;
         }
     }
 }

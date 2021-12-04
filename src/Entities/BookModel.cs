@@ -9,7 +9,7 @@ namespace Entities
     public class BookModel
     {
         public int book_id { get; set; }
-        public int isbn { get; set; }
+        public string isbn { get; set; }
         public string title { get; set; }
         public string date_of_publication { get; set; }
         public string author { get; set; }

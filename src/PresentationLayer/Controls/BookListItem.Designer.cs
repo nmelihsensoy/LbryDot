@@ -30,9 +30,6 @@ namespace PresentationLayer.Controls
         private void InitializeComponent()
         {
             this.Panel_Container = new System.Windows.Forms.Panel();
-            this.Panel_Hover = new PresentationLayer.Controls.ExtendedPanel();
-            this.Button_BookDeleteBorrow = new FontAwesome.Sharp.IconButton();
-            this.Button_BookDetails = new FontAwesome.Sharp.IconButton();
             this.Text_BookCategory = new System.Windows.Forms.Label();
             this.Text_ISBN = new System.Windows.Forms.Label();
             this.Text_BookTitleSecLine = new System.Windows.Forms.Label();
@@ -42,9 +39,13 @@ namespace PresentationLayer.Controls
             this.Text_BookAuthor = new System.Windows.Forms.Label();
             this.Text_BookTitleFirstLine = new System.Windows.Forms.Label();
             this.Image_BookCover = new System.Windows.Forms.PictureBox();
+            this.Panel_Hover = new PresentationLayer.Controls.ExtendedPanel();
+            this.Button_Edit = new FontAwesome.Sharp.IconButton();
+            this.Button_BookDeleteBorrow = new FontAwesome.Sharp.IconButton();
+            this.Button_BookDetails = new FontAwesome.Sharp.IconButton();
             this.Panel_Container.SuspendLayout();
-            this.Panel_Hover.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_BookCover)).BeginInit();
+            this.Panel_Hover.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel_Container
@@ -66,57 +67,6 @@ namespace PresentationLayer.Controls
             this.Panel_Container.Size = new System.Drawing.Size(248, 150);
             this.Panel_Container.TabIndex = 0;
             this.Panel_Container.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
-            // 
-            // Panel_Hover
-            // 
-            this.Panel_Hover.BackColor = System.Drawing.Color.Black;
-            this.Panel_Hover.Controls.Add(this.Button_BookDeleteBorrow);
-            this.Panel_Hover.Controls.Add(this.Button_BookDetails);
-            this.Panel_Hover.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Hover.Location = new System.Drawing.Point(0, 3);
-            this.Panel_Hover.Name = "Panel_Hover";
-            this.Panel_Hover.Opacity = 60;
-            this.Panel_Hover.Size = new System.Drawing.Size(248, 147);
-            this.Panel_Hover.TabIndex = 12;
-            this.Panel_Hover.Visible = false;
-            this.Panel_Hover.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
-            this.Panel_Hover.MouseLeave += new System.EventHandler(this.Item_MouseLeave);
-            // 
-            // Button_BookDeleteBorrow
-            // 
-            this.Button_BookDeleteBorrow.BackColor = System.Drawing.Color.White;
-            this.Button_BookDeleteBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Button_BookDeleteBorrow.FlatAppearance.BorderSize = 0;
-            this.Button_BookDeleteBorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_BookDeleteBorrow.ForeColor = System.Drawing.Color.White;
-            this.Button_BookDeleteBorrow.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.Button_BookDeleteBorrow.IconColor = System.Drawing.Color.IndianRed;
-            this.Button_BookDeleteBorrow.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Button_BookDeleteBorrow.IconSize = 26;
-            this.Button_BookDeleteBorrow.Location = new System.Drawing.Point(130, 60);
-            this.Button_BookDeleteBorrow.Name = "Button_BookDeleteBorrow";
-            this.Button_BookDeleteBorrow.Size = new System.Drawing.Size(34, 30);
-            this.Button_BookDeleteBorrow.TabIndex = 1;
-            this.Button_BookDeleteBorrow.UseVisualStyleBackColor = false;
-            this.Button_BookDeleteBorrow.Click += new System.EventHandler(this.ButtonClickEvent);
-            // 
-            // Button_BookDetails
-            // 
-            this.Button_BookDetails.BackColor = System.Drawing.Color.White;
-            this.Button_BookDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Button_BookDetails.FlatAppearance.BorderSize = 0;
-            this.Button_BookDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_BookDetails.ForeColor = System.Drawing.Color.White;
-            this.Button_BookDetails.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
-            this.Button_BookDetails.IconColor = System.Drawing.Color.Gray;
-            this.Button_BookDetails.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Button_BookDetails.IconSize = 26;
-            this.Button_BookDetails.Location = new System.Drawing.Point(85, 60);
-            this.Button_BookDetails.Name = "Button_BookDetails";
-            this.Button_BookDetails.Size = new System.Drawing.Size(34, 30);
-            this.Button_BookDetails.TabIndex = 0;
-            this.Button_BookDetails.UseVisualStyleBackColor = false;
-            this.Button_BookDetails.Click += new System.EventHandler(this.ButtonClickEvent);
             // 
             // Text_BookCategory
             // 
@@ -223,6 +173,76 @@ namespace PresentationLayer.Controls
             this.Image_BookCover.TabStop = false;
             this.Image_BookCover.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
             // 
+            // Panel_Hover
+            // 
+            this.Panel_Hover.BackColor = System.Drawing.Color.Black;
+            this.Panel_Hover.Controls.Add(this.Button_Edit);
+            this.Panel_Hover.Controls.Add(this.Button_BookDeleteBorrow);
+            this.Panel_Hover.Controls.Add(this.Button_BookDetails);
+            this.Panel_Hover.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Hover.Location = new System.Drawing.Point(0, 3);
+            this.Panel_Hover.Name = "Panel_Hover";
+            this.Panel_Hover.Opacity = 60;
+            this.Panel_Hover.Size = new System.Drawing.Size(248, 147);
+            this.Panel_Hover.TabIndex = 12;
+            this.Panel_Hover.Visible = false;
+            this.Panel_Hover.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
+            this.Panel_Hover.MouseLeave += new System.EventHandler(this.Item_MouseLeave);
+            // 
+            // Button_Edit
+            // 
+            this.Button_Edit.BackColor = System.Drawing.Color.White;
+            this.Button_Edit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_Edit.FlatAppearance.BorderSize = 0;
+            this.Button_Edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_Edit.ForeColor = System.Drawing.Color.White;
+            this.Button_Edit.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.Button_Edit.IconColor = System.Drawing.Color.Gray;
+            this.Button_Edit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_Edit.IconSize = 26;
+            this.Button_Edit.Location = new System.Drawing.Point(109, 20);
+            this.Button_Edit.Name = "Button_Edit";
+            this.Button_Edit.Size = new System.Drawing.Size(34, 30);
+            this.Button_Edit.TabIndex = 2;
+            this.Button_Edit.UseVisualStyleBackColor = false;
+            this.Button_Edit.Click += new System.EventHandler(this.ButtonClickEvent);
+            // 
+            // Button_BookDeleteBorrow
+            // 
+            this.Button_BookDeleteBorrow.BackColor = System.Drawing.Color.White;
+            this.Button_BookDeleteBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_BookDeleteBorrow.FlatAppearance.BorderSize = 0;
+            this.Button_BookDeleteBorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_BookDeleteBorrow.ForeColor = System.Drawing.Color.White;
+            this.Button_BookDeleteBorrow.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.Button_BookDeleteBorrow.IconColor = System.Drawing.Color.IndianRed;
+            this.Button_BookDeleteBorrow.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_BookDeleteBorrow.IconSize = 26;
+            this.Button_BookDeleteBorrow.Location = new System.Drawing.Point(130, 60);
+            this.Button_BookDeleteBorrow.Name = "Button_BookDeleteBorrow";
+            this.Button_BookDeleteBorrow.Size = new System.Drawing.Size(34, 30);
+            this.Button_BookDeleteBorrow.TabIndex = 1;
+            this.Button_BookDeleteBorrow.UseVisualStyleBackColor = false;
+            this.Button_BookDeleteBorrow.Click += new System.EventHandler(this.ButtonClickEvent);
+            // 
+            // Button_BookDetails
+            // 
+            this.Button_BookDetails.BackColor = System.Drawing.Color.White;
+            this.Button_BookDetails.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_BookDetails.FlatAppearance.BorderSize = 0;
+            this.Button_BookDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_BookDetails.ForeColor = System.Drawing.Color.White;
+            this.Button_BookDetails.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
+            this.Button_BookDetails.IconColor = System.Drawing.Color.Gray;
+            this.Button_BookDetails.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Button_BookDetails.IconSize = 26;
+            this.Button_BookDetails.Location = new System.Drawing.Point(85, 60);
+            this.Button_BookDetails.Name = "Button_BookDetails";
+            this.Button_BookDetails.Size = new System.Drawing.Size(34, 30);
+            this.Button_BookDetails.TabIndex = 0;
+            this.Button_BookDetails.UseVisualStyleBackColor = false;
+            this.Button_BookDetails.Click += new System.EventHandler(this.ButtonClickEvent);
+            // 
             // BookListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,8 +253,8 @@ namespace PresentationLayer.Controls
             this.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
             this.Panel_Container.ResumeLayout(false);
             this.Panel_Container.PerformLayout();
-            this.Panel_Hover.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Image_BookCover)).EndInit();
+            this.Panel_Hover.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -254,5 +274,6 @@ namespace PresentationLayer.Controls
         private FontAwesome.Sharp.IconButton Button_BookDetails;
         private FontAwesome.Sharp.IconButton Button_BookDeleteBorrow;
         private System.Windows.Forms.Label Text_ISBN;
+        private FontAwesome.Sharp.IconButton Button_Edit;
     }
 }

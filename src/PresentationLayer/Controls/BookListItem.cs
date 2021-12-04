@@ -16,6 +16,7 @@ namespace PresentationLayer.Controls
     {
         private UserType _userType;
         public bool _isLongList;
+        private int _BookId;
 
         public BookListItem()
         {
@@ -23,6 +24,7 @@ namespace PresentationLayer.Controls
             ApplyColorPalette();
             SetUserPrivilege(UserType.Student);
             _isLongList = false;
+            Text_BookTitleSecLine.Text = "";
         }
 
         private void ApplyColorPalette()
@@ -72,12 +74,14 @@ namespace PresentationLayer.Controls
                 Button_BookDeleteBorrow.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
                 Button_BookDeleteBorrow.BackColor = ColorPalette.BookListItemHoverButtonBackColor;
                 Button_BookDeleteBorrow.IconColor = ColorPalette.BookListItemBorrowButtonForeColor;
+                Button_Edit.Visible = false;
             }
             else
             {
                 Button_BookDeleteBorrow.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
                 Button_BookDeleteBorrow.BackColor = ColorPalette.BookListItemHoverButtonBackColor;
                 Button_BookDeleteBorrow.IconColor = ColorPalette.BookListItemDeleteButtonForeColor;
+                Button_Edit.Visible = true;
             }
         }
 
@@ -109,6 +113,11 @@ namespace PresentationLayer.Controls
             set { Text_BookCategory.Text = value; }
         }
 
+        public int BookId
+        {
+            set { _BookId = value; Button_BookDetails.Tag = value; Button_Edit.Tag = value; Button_BookDeleteBorrow.Tag = value; }
+            get { return _BookId;  }
+        }
 
         public event EventHandler ButtonHandler;
         private void ButtonClickEvent(object sender, EventArgs e)

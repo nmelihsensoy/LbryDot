@@ -22,17 +22,11 @@ namespace PresentationLayer.Pages
         private Form _activeForm = null;
         List<IconButton> MenuButtons = new List<IconButton>();
         private CustomAppContext AppContext;
-        private int LoggedUserType = -1;
-        private StaffModel _loggedStaff = null;
-        private StudentModel _loggedStudent = null;
 
-        public MainPage(CustomAppContext _appContext, StaffModel LoggedStaff=null, StudentModel LoggedStudent=null)
+        public MainPage(CustomAppContext _appContext)
         {
             InitializeComponent();
             AppContext = _appContext;
-            _loggedStaff = LoggedStaff;
-            _loggedStudent = LoggedStudent;
-            SetLoggedUserType();
             ApplyColorPalette();
             ApplyStrings();
             MenuButtons.Add(Button_MenuDashboard);
@@ -90,26 +84,9 @@ namespace PresentationLayer.Pages
             //userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
             Input_SearchBox.Text = Strings.Search;
         }
-
-        private void SetLoggedUserType()
-        {
-            if (_loggedStaff != null && _loggedStudent == null)
-            {
-                LoggedUserType = 1;
-            }
-            else if (_loggedStaff == null && _loggedStudent != null)
-            {
-                LoggedUserType = 2;
-            }
-            else
-            {
-                LoggedUserType = -1;
-            }
-        }
-
         private void ShowStaffMenu()
         {
-            if (LoggedUserType == 1)
+            if (AppContext.GetUserType() == 1)
             {
                 Panel_StaffMenu.Visible = true;
             }
@@ -117,26 +94,26 @@ namespace PresentationLayer.Pages
 
         private void SetTopBarForLoggedUser()
         {
-            if (LoggedUserType == 1)
+            if (AppContext.GetUserType() == 1)
             {
-                userDropdown_TopBar.Role = (UserType)_loggedStaff.staff_type;
-                userDropdown_TopBar.UserFullName = _loggedStaff.staff_name;
-                Text_UserMail.Text = _loggedStaff.staff_email;
-                Text_User_ID.Text = _loggedStaff.staff_id.ToString();
-                if (_loggedStaff.staff_avatar != null && _loggedStaff.staff_avatar.Length > 0)
+                userDropdown_TopBar.Role = (UserType)AppContext.GetLoggedStaff().staff_type;
+                userDropdown_TopBar.UserFullName = AppContext.GetLoggedStaff().staff_name;
+                Text_UserMail.Text = AppContext.GetLoggedStaff().staff_email;
+                Text_User_ID.Text = AppContext.GetLoggedStaff().staff_id.ToString();
+                if (AppContext.GetLoggedStaff().staff_avatar != null && AppContext.GetLoggedStaff().staff_avatar.Length > 0)
                 {
-                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(_loggedStaff.staff_avatar);
+                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(AppContext.GetLoggedStaff().staff_avatar);
                 }
             }
             else
             {
                 userDropdown_TopBar.Role = UserType.Student;
-                userDropdown_TopBar.UserFullName = _loggedStudent.student_name;
-                Text_UserMail.Text = _loggedStudent.student_email;
-                Text_User_ID.Text = _loggedStudent.student_number.ToString();
-                if (_loggedStudent.student_avatar != null && _loggedStudent.student_avatar.Length >0)
+                userDropdown_TopBar.UserFullName = AppContext.GetLoggedStudent().student_name;
+                Text_UserMail.Text = AppContext.GetLoggedStudent().student_email;
+                Text_User_ID.Text = AppContext.GetLoggedStudent().student_number.ToString();
+                if (AppContext.GetLoggedStudent().student_avatar != null && AppContext.GetLoggedStudent().student_avatar.Length >0)
                 {
-                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(_loggedStudent.student_avatar);
+                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(AppContext.GetLoggedStudent().student_avatar);
                 }
             }
         }
@@ -214,7 +191,7 @@ namespace PresentationLayer.Pages
             {
                 
                 Panel_SearchBox.Visible = true;
-                if(LoggedUserType == 1)
+                if(AppContext.GetUserType() == 1)
                 {
                     Button_AddBook.IconChar = IconChar.BookMedical;
                     Button_AddBook.Visible = true;
@@ -223,7 +200,7 @@ namespace PresentationLayer.Pages
             else if(_activeForm.Text == "Students")
             {
                 Panel_SearchBox.Visible = true;
-                if (LoggedUserType == 1)
+                if (AppContext.GetUserType() == 1)
                 {
                     Button_AddBook.IconChar = IconChar.UserPlus;
                     Button_AddBook.Visible = true;

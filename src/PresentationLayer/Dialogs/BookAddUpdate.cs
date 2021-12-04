@@ -95,21 +95,35 @@ namespace PresentationLayer.Dialogs
 
         private void Button_Save_Click(object sender, EventArgs e)
         {
-            try
+            if(IsNewBook == true)
             {
-                BookModel NewBook = new BookModel();
+                try
+                {
+                    BookModel NewBook = new BookModel();
+                    NewBook.isbn = Input_ISBN.Text;
+                    NewBook.title = Input_Title.Text;
+                    NewBook.date_of_publication = dateTimePicker_PublishYear.Value.ToString("yyyy");
+                    NewBook.author = Input_Author.Text;
+                    NewBook.number_of_pages = Int32.Parse(Input_Length.Text);
+                    NewBook.category = Input_Category.Text;
+                    NewBook.language = Input_BookLang.Text;
+                    NewBook.shelf_number = Input_ShelfNumber.Text;
+                    NewBook.book_cover = SelectedCoverInBytes;
 
-                //DateTimePicker1.Value.ToString("dd-MMM-yyyy hh:mm:ss")
-                //BooksService1.AddBook(NewBook);
+                    BooksService1.AddBook(NewBook);
+                    this.DialogResult = DialogResult.OK;
+                    //this.Close();
+                }
+                catch (Exception ex)
+                {
+                    alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                    alertBox1.Visible = true;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                alertBox1.Visible = true;
-            }
-
-            this.DialogResult = DialogResult.OK;
-            //this.Close();
+                MessageBox.Show("Update");
+            } 
         }
     }
 }

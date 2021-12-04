@@ -11,6 +11,7 @@ using PresentationLayer.Dialogs;
 using BusinessLogicLayer.Services;
 using Entities;
 using BusinessLogicLayer;
+using PresentationLayer.Controls;
 
 namespace PresentationLayer.SubPages
 {
@@ -24,7 +25,25 @@ namespace PresentationLayer.SubPages
             InitializeComponent();
             AppContext = _appContext;
             BooksService1 = new BooksService(AppContext);
-            bookListItem1.ButtonHandler += ListClickEvent;
+            //bookListItem1.ButtonHandler += ListClickEvent;
+            PopulateBooks(BooksService1.GetAllBooks());
+        }
+
+        private void PopulateBooks(List<BookModel> Lst)
+        {
+            foreach (BookModel book in Lst)
+            {
+                BookListItem ListItem = new BookListItem();
+                ListItem.Title = book.title;
+                ListItem.BookId = book.book_id;
+                ListItem.SetUserPrivilege((UserType)AppContext.GetUserType());
+                ListItem.Author = book.author;
+                ListItem.Category = book.category;
+                ListItem.Cover = Helpers.ConvertByteToImage(book.book_cover);
+
+                flowLayoutPanel1.Controls.Add(ListItem);
+                ListItem.ButtonHandler += ListClickEvent;
+            }
         }
 
         public void AddButtonClick(object sender, EventArgs e)
@@ -45,31 +64,53 @@ namespace PresentationLayer.SubPages
         }
 
         private void ListClickEvent(object sender, EventArgs e)
-        {
-            //MessageBox.Show((sender as Button).Name + bookListItem1.TestVal);
-            if((sender as Button).Name == "Button_BookDetails")
+        {  
+            //MessageBox.Show((sender as Button).Name);
+            if ((sender as Button).Name == "Button_BookDetails")
             {
+                MessageBox.Show((sender as Button).Tag.ToString());
+
                 using (var form = new BookDetails())
                 {
-                    var result = form.ShowDialog();
-                    if(result == DialogResult.OK)
-                    {
-                        MessageBox.Show("returned OK");
-                    }
-                }
-            }else if ((sender as Button).Name == "Button_BookDeleteBorrow")
-            {
-                using (var form = new BookBorrow())
-                {
-                    form.StartPosition = FormStartPosition.Manual;
-                    Point StartP = bookListItem1.PointToScreen(Point.Empty);
-                    StartP.X += 20;
-                    StartP.Y += 20;
-                    form.Location = StartP;
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
                     {
                         MessageBox.Show("returned OK");
+                    }
+                }
+            }
+            else if ((sender as Button).Name == "Button_BookDeleteBorrow")
+            {
+                if(AppContext.GetUserType() == 2)
+                {
+                    BorrowingModel BorrowBook1 = new BorrowingModel();
+                    BorrowBook1.student_number = AppContext.GetLoggedStudent().student_number;
+                    BorrowBook1.book_id = (int)(sender as Button).Tag;
+                    using (var form = new BookBorrow(BorrowBook1))
+                    {
+                        form.StartPosition = FormStartPosition.Manual;
+                        Point StartP = (sender as Button).PointToScreen(Point.Empty);
+                        StartP.X += 20;
+                        StartP.Y += 20;
+                        form.Location = StartP;
+                        var result = form.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            MessageBox.Show("returned OK");
+                        }
+                    }
+                }
+            }
+            else if ((sender as Button).Name == "Button_Edit")
+            {
+
+                //MessageBox.Show((sender as Button).Tag.ToString());
+                using (var form = new BookAddUpdate(AppContext, (int)(sender as Button).Tag))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+
                     }
                 }
             }

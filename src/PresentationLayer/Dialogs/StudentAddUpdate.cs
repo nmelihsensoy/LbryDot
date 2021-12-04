@@ -64,21 +64,28 @@ namespace PresentationLayer.Dialogs
 
         private void ıconButton2_Click(object sender, EventArgs e)
         {       
-            try
+            if(IsNewStudent == true)
             {
-                StudentModel NewStudent = new StudentModel();
-                NewStudent.student_email = Input_Email.Text;
-                NewStudent.student_name = Input_Name.Text;
-                NewStudent.student_password = Input_Password.Text;
-                NewStudent.student_avatar = SelectedAvatarInBytes;
+                try
+                {
+                    StudentModel NewStudent = new StudentModel();
+                    NewStudent.student_email = Input_Email.Text;
+                    NewStudent.student_name = Input_Name.Text;
+                    NewStudent.student_password = Input_Password.Text;
+                    NewStudent.student_avatar = SelectedAvatarInBytes;
 
-                StudentsService1.AddStudent(NewStudent);
+                    StudentsService1.AddStudent(NewStudent);
+                }
+                catch (Exception ex)
+                {
+                    AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                    AlertBox_UserOperation.Visible = true;
+                    this.Height += AlertBox_UserOperation.Height + 10;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                AlertBox_UserOperation.Visible = true;
-                this.Height += AlertBox_UserOperation.Height + 10;
+                MessageBox.Show("Update");
             }
 
             this.DialogResult = DialogResult.OK;

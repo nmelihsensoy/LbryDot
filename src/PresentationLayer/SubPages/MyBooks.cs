@@ -16,7 +16,7 @@ namespace PresentationLayer.SubPages
         public MyBooks()
         {
             InitializeComponent();
-            bookStatusItem1.ButtonHandler += StatusItemClick;
+            //bookStatusItem1.ButtonHandler += StatusItemClick;
         }
 
         private void StatusItemClick(object sender, EventArgs e)

@@ -204,7 +204,8 @@ namespace PresentationLayer.Pages
                     LoggedStudent = StudentsService1.LoginStudent(LoginData);
                     if (LoggedStudent != null)
                     {
-                        MainForm = new MainPage(AppContext, null, LoggedStudent);
+                        AppContext.SetLoggedUser(null, LoggedStudent);
+                        MainForm = new MainPage(AppContext);
                     }
                 }
                 else if (SelectedRole == 1)
@@ -215,7 +216,8 @@ namespace PresentationLayer.Pages
                     LoggedStaff = StaffService1.LoginStaff(LoginData);
                     if(LoggedStaff != null)
                     {
-                        MainForm = new MainPage(AppContext, LoggedStaff);
+                        AppContext.SetLoggedUser(LoggedStaff, null);
+                        MainForm = new MainPage(AppContext);
                     }
                 }
 
