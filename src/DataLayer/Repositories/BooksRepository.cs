@@ -43,5 +43,29 @@ namespace DataLayer.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public int[] AvailableBooks()
+        {
+            int[] a = { -1, -1};
+            //ExecuteScalar<int>("SELECT COUNT(*) FROM customers");
+            string sql = "SELECT COUNT(*) FROM Books; SELECT COUNT(*) FROM Books WHERE is_available = @is_available;";
+            var multi = dbConnection.QueryMultiple(sql, new { is_available = 1 });
+            a[1] = multi.Read<int>().Single();
+            a[0] = multi.Read<int>().Single();
+            return a;
+        }
+
+        public int ChangeBookAvailability(int Id, short IsAvailable)
+        {
+            var sql = @"UPDATE Books SET is_available = @is_available WHERE book_id = @id;";
+            return dbConnection.Execute(sql,
+                new
+                {
+                    is_available = IsAvailable,
+                    id = Id
+                },
+                transaction: dbTransaction);
+        }
+
     }
 }

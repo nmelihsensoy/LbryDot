@@ -86,6 +86,12 @@
     <Compile Include="Controls\UserDropdown.Designer.cs">
       <DependentUpon>UserDropdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserDropdownMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserDropdownMenu.Designer.cs">
+      <DependentUpon>UserDropdownMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\BookAddUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserDropdown.resx">
       <DependentUpon>UserDropdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserDropdownMenu.resx">
+      <DependentUpon>UserDropdownMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\BookAddUpdate.resx">
       <DependentUpon>BookAddUpdate.cs</DependentUpon>

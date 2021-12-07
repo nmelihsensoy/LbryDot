@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace PresentationLayer.Controls
 {
@@ -16,9 +17,11 @@ namespace PresentationLayer.Controls
     {
 
         private BookStatus _bookStatus;
+        private BorrowingModel _borrow;
 
         public enum BookStatus
         {
+            Stateless = -1,
             Normal = 0,
             Late = 1,
             TwoDaysLeft = 2,
@@ -36,7 +39,7 @@ namespace PresentationLayer.Controls
         {
             Panel_Container.BackColor = ColorPalette.BookStatusItemBackColor;
             Panel_Bottom.BackColor = ColorPalette.BookStatusItemBottomRibbonForeColor;
-            Panel_Hover_Bottom.BackColor =ColorPalette.BookStatusItemBottomHoverRibbonForeColor;
+            Panel_Hover_Bottom.BackColor = ColorPalette.BookStatusItemBottomHoverRibbonForeColor;
             Button_BookDetails.BackColor = ColorPalette.BookStatusItemBottomHoverRibbonButtonBackColor;
             Button_BookDetails.ForeColor = ColorPalette.BookStatusItemBottomHoverRibbonButtonForeColor;
             Button_BookDetails.IconColor = ColorPalette.BookStatusItemBottomHoverRibbonButtonForeColor;
@@ -61,6 +64,7 @@ namespace PresentationLayer.Controls
                 Panel_Hover_Top.ForeColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftForeColor;
                 Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
                 Text_DaySecLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
+                Text_DayFirstLine.Text = "2";
                 Text_DaySecLine.Text = Strings.DaysLeft;
                 Button_ReturnBook.Visible = true;
             }
@@ -74,7 +78,16 @@ namespace PresentationLayer.Controls
                 Text_DaySecLine.Text = Strings.DaysLate;
                 Button_ReturnBook.Enabled = true;
             }
-            else //_bookStatus == BookStatus.Normal
+            else if(_bookStatus == BookStatus.Normal) //
+            {
+                Splitter_BorderBottom.BackColor = Color.Gray;
+                Panel_Hover_Top.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
+                Panel_Hover_Top.ForeColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftForeColor;
+                Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
+                Text_DaySecLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
+                Text_DaySecLine.Text = Strings.DaysLeft;
+                Button_ReturnBook.Visible = true;
+            }else//_bookStatus == BookStatus.Stateless
             {
                 Panel_Hover_Top.Visible = false;
                 Button_ReturnBook.Enabled = true;
@@ -86,7 +99,7 @@ namespace PresentationLayer.Controls
         }
         private void Item_MouseEnter(object sender, EventArgs e)
         {   
-            if(_bookStatus != BookStatus.Normal && _bookStatus != BookStatus.Returned)
+            if(_bookStatus != BookStatus.Stateless && _bookStatus != BookStatus.Returned)
             {
                 Panel_Hover_Top.Visible = true;
             }           
@@ -106,20 +119,24 @@ namespace PresentationLayer.Controls
             }
         }
 
-        public Image Cover
+        public BorrowingModel Borrow
         {
-            set { Image_BookCover.Image = value; }
+            set {
+                Image_BookCover.Image = Helpers.ConvertByteToImage(value.book.book_cover);
+                _borrow = value;
+                Button_BookDetails.Tag = value;
+                Button_ReturnBook.Tag = value;
+            }
+            get
+            {
+                return _borrow;
+            }
         }
 
         public event EventHandler ButtonHandler;
         private void ButtonClickEvent(object sender, EventArgs e)
         {
-            var eventHandler = this.ButtonHandler;
-
-            if (eventHandler != null)
-            {
-                eventHandler(sender, e); //sending individual button object
-            }
+            Helpers.SendEvent(ButtonHandler, sender, e);
         }
     }
 }

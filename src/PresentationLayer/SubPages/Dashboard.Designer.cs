@@ -38,16 +38,13 @@ namespace PresentationLayer.SubPages
             this.Button_ChartSettings = new FontAwesome.Sharp.IconButton();
             this.ZedGraphControl_1 = new ZedGraph.ZedGraphControl();
             this.Panel_ActiveBooks = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ıconButton1 = new FontAwesome.Sharp.IconButton();
             this.Text_ActiveBooksTitle = new System.Windows.Forms.Label();
             this.Splitter_ActiveBooksBorder = new System.Windows.Forms.Splitter();
             this.Splitter_ChartLeftBorder = new System.Windows.Forms.Splitter();
             this.Panel_ChartLeft = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.ıconButton1 = new FontAwesome.Sharp.IconButton();
-            this.bookStatusItem4 = new PresentationLayer.Controls.BookStatusItem();
-            this.bookStatusItem3 = new PresentationLayer.Controls.BookStatusItem();
-            this.bookStatusItem2 = new PresentationLayer.Controls.BookStatusItem();
-            this.bookStatusItem1 = new PresentationLayer.Controls.BookStatusItem();
             this.Panel_ChartRight.SuspendLayout();
             this.Panel_ActiveBooks.SuspendLayout();
             this.Panel_ChartLeft.SuspendLayout();
@@ -109,17 +106,36 @@ namespace PresentationLayer.SubPages
             // Panel_ActiveBooks
             // 
             this.Panel_ActiveBooks.BackColor = System.Drawing.Color.White;
+            this.Panel_ActiveBooks.Controls.Add(this.flowLayoutPanel1);
             this.Panel_ActiveBooks.Controls.Add(this.ıconButton1);
-            this.Panel_ActiveBooks.Controls.Add(this.bookStatusItem4);
-            this.Panel_ActiveBooks.Controls.Add(this.bookStatusItem3);
-            this.Panel_ActiveBooks.Controls.Add(this.bookStatusItem2);
-            this.Panel_ActiveBooks.Controls.Add(this.bookStatusItem1);
             this.Panel_ActiveBooks.Controls.Add(this.Text_ActiveBooksTitle);
             this.Panel_ActiveBooks.Controls.Add(this.Splitter_ActiveBooksBorder);
             this.Panel_ActiveBooks.Location = new System.Drawing.Point(12, 280);
             this.Panel_ActiveBooks.Name = "Panel_ActiveBooks";
             this.Panel_ActiveBooks.Size = new System.Drawing.Size(780, 238);
             this.Panel_ActiveBooks.TabIndex = 5;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(27, 59);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(723, 143);
+            this.flowLayoutPanel1.TabIndex = 12;
+            // 
+            // ıconButton1
+            // 
+            this.ıconButton1.FlatAppearance.BorderSize = 0;
+            this.ıconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ıconButton1.IconChar = FontAwesome.Sharp.IconChar.EllipsisH;
+            this.ıconButton1.IconColor = System.Drawing.Color.LightGray;
+            this.ıconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ıconButton1.IconSize = 32;
+            this.ıconButton1.Location = new System.Drawing.Point(683, 16);
+            this.ıconButton1.Name = "ıconButton1";
+            this.ıconButton1.Size = new System.Drawing.Size(67, 23);
+            this.ıconButton1.TabIndex = 11;
+            this.ıconButton1.UseVisualStyleBackColor = true;
+            this.ıconButton1.Click += new System.EventHandler(this.ıconButton1_Click);
             // 
             // Text_ActiveBooksTitle
             // 
@@ -178,52 +194,6 @@ namespace PresentationLayer.SubPages
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";
             // 
-            // ıconButton1
-            // 
-            this.ıconButton1.FlatAppearance.BorderSize = 0;
-            this.ıconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ıconButton1.IconChar = FontAwesome.Sharp.IconChar.EllipsisH;
-            this.ıconButton1.IconColor = System.Drawing.Color.LightGray;
-            this.ıconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ıconButton1.IconSize = 32;
-            this.ıconButton1.Location = new System.Drawing.Point(683, 16);
-            this.ıconButton1.Name = "ıconButton1";
-            this.ıconButton1.Size = new System.Drawing.Size(67, 23);
-            this.ıconButton1.TabIndex = 11;
-            this.ıconButton1.UseVisualStyleBackColor = true;
-            // 
-            // bookStatusItem4
-            // 
-            this.bookStatusItem4.BackColor = System.Drawing.Color.Transparent;
-            this.bookStatusItem4.Location = new System.Drawing.Point(615, 66);
-            this.bookStatusItem4.Name = "bookStatusItem4";
-            this.bookStatusItem4.Size = new System.Drawing.Size(135, 128);
-            this.bookStatusItem4.TabIndex = 10;
-            // 
-            // bookStatusItem3
-            // 
-            this.bookStatusItem3.BackColor = System.Drawing.Color.Transparent;
-            this.bookStatusItem3.Location = new System.Drawing.Point(419, 66);
-            this.bookStatusItem3.Name = "bookStatusItem3";
-            this.bookStatusItem3.Size = new System.Drawing.Size(135, 128);
-            this.bookStatusItem3.TabIndex = 9;
-            // 
-            // bookStatusItem2
-            // 
-            this.bookStatusItem2.BackColor = System.Drawing.Color.Transparent;
-            this.bookStatusItem2.Location = new System.Drawing.Point(223, 66);
-            this.bookStatusItem2.Name = "bookStatusItem2";
-            this.bookStatusItem2.Size = new System.Drawing.Size(135, 128);
-            this.bookStatusItem2.TabIndex = 8;
-            // 
-            // bookStatusItem1
-            // 
-            this.bookStatusItem1.BackColor = System.Drawing.Color.Transparent;
-            this.bookStatusItem1.Location = new System.Drawing.Point(27, 66);
-            this.bookStatusItem1.Name = "bookStatusItem1";
-            this.bookStatusItem1.Size = new System.Drawing.Size(135, 128);
-            this.bookStatusItem1.TabIndex = 7;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,10 +226,7 @@ namespace PresentationLayer.SubPages
         private System.Windows.Forms.Splitter Splitter_ChartLeftBorder;
         private System.Windows.Forms.Panel Panel_ChartLeft;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private Controls.BookStatusItem bookStatusItem1;
-        private Controls.BookStatusItem bookStatusItem2;
-        private Controls.BookStatusItem bookStatusItem3;
-        private Controls.BookStatusItem bookStatusItem4;
         private FontAwesome.Sharp.IconButton ıconButton1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

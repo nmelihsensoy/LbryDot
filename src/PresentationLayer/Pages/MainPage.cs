@@ -29,16 +29,12 @@ namespace PresentationLayer.Pages
             AppContext = _appContext;
             ApplyColorPalette();
             ApplyStrings();
-            MenuButtons.Add(Button_MenuDashboard);
-            MenuButtons.Add(Button_MenuStudents);
-            MenuButtons.Add(Button_MenuMyBooks);
-            MenuButtons.Add(Button_MenuBooks);
-            MenuButtons.Add(Button_MenuStudents);
-            MenuButtons.Add(Button_MenuSettings);
-            userDropdown_TopBar.DropdownClick += userDropdown1_Click;
-            SetTopBarForLoggedUser();
+            CreateMenuList();
+            SetDropdownForLoggedUser();
             ShowStaffMenu();
-            PageNavigation(new Dashboard());
+            PageNavigation(new Dashboard(AppContext));
+            //userDropdownContent1.Left = userDropdown_TopBar.Left;
+            //userDropdownContent1.Top = userDropdown_TopBar.Bottom;
         }
 
         private void ApplyColorPalette()
@@ -60,8 +56,8 @@ namespace PresentationLayer.Pages
             Panel_TitleBar.BackColor = ColorPalette.TopBarColor;
             Text_TitleBarTitle.ForeColor = ColorPalette.TopBarTitleForeColor;
             Input_SearchBox.ForeColor = ColorPalette.SearchBarForeColor;
-            Splitter_UserDropdown_Panel_Left.BackColor = ColorPalette.SearchBarBorderColor;
-            Splitter_UserDropdown_Panel_Right.BackColor = ColorPalette.SearchBarBorderColor;
+            //Splitter_UserDropdown_Panel_Left.BackColor = ColorPalette.SearchBarBorderColor;
+            //Splitter_UserDropdown_Panel_Right.BackColor = ColorPalette.SearchBarBorderColor;
             Splitter_SearchBoxLeft.BackColor = ColorPalette.SearchBarBorderColor;
             Splitter_SearchBoxRight.BackColor = ColorPalette.SearchBarBorderColor;
             Splitter_SearchBoxTop.BackColor = ColorPalette.SearchBarBorderColor;
@@ -78,43 +74,43 @@ namespace PresentationLayer.Pages
             Button_MenuBooks.Text = Strings.Books;
             Button_MenuStudents.Text = Strings.Students;
             Button_MenuSettings.Text = Strings.Settings;
-            Button_UserLogout.Text = Strings.Logout;
+            //Button_UserLogout.Text = Strings.Logout;
             Text_StaffMenuTitle.Text = Strings.Staff.ToUpper();
-            //userDropdown_TopBar.Text_UserName.Text = "John Doe";
-            //userDropdown_TopBar.Text_UserRole.Text = Strings.Student;
             Input_SearchBox.Text = Strings.Search;
         }
+
+        private void CreateMenuList()
+        {
+            MenuButtons.Add(Button_MenuDashboard);
+            MenuButtons.Add(Button_MenuStudents);
+            MenuButtons.Add(Button_MenuMyBooks);
+            MenuButtons.Add(Button_MenuBooks);
+            MenuButtons.Add(Button_MenuStudents);
+            MenuButtons.Add(Button_MenuSettings);
+        }
+
         private void ShowStaffMenu()
         {
-            if (AppContext.GetUserType() == 1)
+            if (AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
             {
                 Panel_StaffMenu.Visible = true;
+                Button_MenuMyBooks.Visible = false;
+                Button_MenuBooks.Top = Button_MenuDashboard.Bottom;
             }
         }
 
-        private void SetTopBarForLoggedUser()
+        private void SetDropdownForLoggedUser()
         {
-            if (AppContext.GetUserType() == 1)
+            userDropdown_TopBar.DropdownClick += userDropdown1_Click;
+            userDropdown_TopBar.SetMenu(userDropdownMenu1);
+
+            if (AppContext.GetUserType() == UserType.Student)
             {
-                userDropdown_TopBar.Role = (UserType)AppContext.GetLoggedStaff().staff_type;
-                userDropdown_TopBar.UserFullName = AppContext.GetLoggedStaff().staff_name;
-                Text_UserMail.Text = AppContext.GetLoggedStaff().staff_email;
-                Text_User_ID.Text = AppContext.GetLoggedStaff().staff_id.ToString();
-                if (AppContext.GetLoggedStaff().staff_avatar != null && AppContext.GetLoggedStaff().staff_avatar.Length > 0)
-                {
-                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(AppContext.GetLoggedStaff().staff_avatar);
-                }
+                userDropdown_TopBar.SetUser(AppContext.GetLoggedStudent());
             }
             else
             {
-                userDropdown_TopBar.Role = UserType.Student;
-                userDropdown_TopBar.UserFullName = AppContext.GetLoggedStudent().student_name;
-                Text_UserMail.Text = AppContext.GetLoggedStudent().student_email;
-                Text_User_ID.Text = AppContext.GetLoggedStudent().student_number.ToString();
-                if (AppContext.GetLoggedStudent().student_avatar != null && AppContext.GetLoggedStudent().student_avatar.Length >0)
-                {
-                    userDropdown_TopBar.Avatar = Helpers.ConvertByteToImage(AppContext.GetLoggedStudent().student_avatar);
-                }
+                userDropdown_TopBar.SetUser(AppContext.GetLoggedStaff());
             }
         }
 
@@ -147,7 +143,7 @@ namespace PresentationLayer.Pages
         //END - Draggable frameless window 
 
         //Navigation between the subpages
-        private void PageNavigation(Form F)
+        public void PageNavigation(Form F)
         {          
             if (Helpers.CompareForms(_activeForm, F))
             {
@@ -156,7 +152,6 @@ namespace PresentationLayer.Pages
                 TopBarActiveTitle();
             }           
         }
-
 
         //To change menu style by current active page
         //Sub Page names and the menu button names after the prefix 'Button_Menu' must be same.
@@ -189,9 +184,8 @@ namespace PresentationLayer.Pages
         {
             if (_activeForm.Text == "Books")
             {
-                
                 Panel_SearchBox.Visible = true;
-                if(AppContext.GetUserType() == 1)
+                if(AppContext.GetUserType() == UserType.Staff)
                 {
                     Button_AddBook.IconChar = IconChar.BookMedical;
                     Button_AddBook.Visible = true;
@@ -200,7 +194,7 @@ namespace PresentationLayer.Pages
             else if(_activeForm.Text == "Students")
             {
                 Panel_SearchBox.Visible = true;
-                if (AppContext.GetUserType() == 1)
+                if (AppContext.GetUserType() == UserType.Staff)
                 {
                     Button_AddBook.IconChar = IconChar.UserPlus;
                     Button_AddBook.Visible = true;
@@ -213,10 +207,7 @@ namespace PresentationLayer.Pages
             }
             
             string PageTitle = Strings.Dashboard;
-            if (_activeForm.Text == "Dashboard")
-            {
-                PageTitle = Strings.Dashboard;
-            }else if (_activeForm.Text == "MyBooks")
+            if (_activeForm.Text == "MyBooks")
             {
                 PageTitle = Strings.MyBooks;
             }
@@ -262,10 +253,10 @@ namespace PresentationLayer.Pages
             Form SubPage;
             if ((sender as Button).Name == "Button_MenuDash")
             {
-                SubPage = new Dashboard();   
+                SubPage = new Dashboard(AppContext);   
             }else if((sender as Button).Name == "Button_MenuMyBooks")
             {
-                SubPage = new MyBooks();
+                SubPage = new MyBooks(AppContext);
             }
             else if ((sender as Button).Name == "Button_MenuBooks")
             {
@@ -281,7 +272,7 @@ namespace PresentationLayer.Pages
             }
             else
             {
-                SubPage = new Dashboard();
+                SubPage = new Dashboard(AppContext);
             }
 
             PageNavigation(SubPage);
@@ -289,21 +280,12 @@ namespace PresentationLayer.Pages
 
         private void userDropdown1_Click(object sender, EventArgs e)
         {
-            if (Panel_UserDropdown.Visible == true)
+            if (sender is Button && (sender as Button).Name == "Button_UserLogout")
             {
-                Panel_UserDropdown.Visible = false;
+                LoginPage LoginForm = new LoginPage(AppContext);
+                Helpers.ChangePage(this, LoginForm);
+                this.Dispose();
             }
-            else
-            {
-                Panel_UserDropdown.Visible = true;
-            }
-        }
-
-        private void MenuLogout_Click(object sender, EventArgs e)
-        {
-            LoginPage LoginForm = new LoginPage(AppContext);
-            Helpers.ChangePage(this, LoginForm);
-            this.Dispose();
         }
 
         private void ıconButton5_Click(object sender, EventArgs e)

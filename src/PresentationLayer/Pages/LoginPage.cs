@@ -204,7 +204,7 @@ namespace PresentationLayer.Pages
                     LoggedStudent = StudentsService1.LoginStudent(LoginData);
                     if (LoggedStudent != null)
                     {
-                        AppContext.SetLoggedUser(null, LoggedStudent);
+                        AppContext.SetLoggedUser(LoggedStudent);
                         MainForm = new MainPage(AppContext);
                     }
                 }
@@ -216,7 +216,7 @@ namespace PresentationLayer.Pages
                     LoggedStaff = StaffService1.LoginStaff(LoginData);
                     if(LoggedStaff != null)
                     {
-                        AppContext.SetLoggedUser(LoggedStaff, null);
+                        AppContext.SetLoggedUser(LoggedStaff);
                         MainForm = new MainPage(AppContext);
                     }
                 }

@@ -8,28 +8,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
 
 namespace PresentationLayer.Controls
 {
-    public enum UserType
-    {
-        Admin = 0,
-        Staff = 1,
-        Student = 2
-    }
-
     public partial class UserDropdown : UserControl
     {
+        private UserDropdownMenu _menu = null;
         public event EventHandler DropdownClick;
+        public bool CustomMenu = false;
+
         private void DropdownClickEvent(object sender, EventArgs e)
         {
-            var eventHandler = this.DropdownClick;
-
-            if (eventHandler != null)
+            if (!CustomMenu && _menu != null)
             {
-                eventHandler(this, e); //sending parent control object
+                _menu.ToggleMenu();
             }
+
+            Helpers.SendEvent(DropdownClick, this, e);
         }
+
+        private void MenuClickEvent(object sender, EventArgs e)
+        {
+            Helpers.SendEvent(DropdownClick, sender, e);
+        }
+
         public UserDropdown()
         {
             InitializeComponent();
@@ -44,31 +47,39 @@ namespace PresentationLayer.Controls
             Text_UserRole.ForeColor = ColorPalette.UserDropdownRoleForeColor;
         }
 
-        public Image Avatar
+        public void SetUser(StaffModel Model)
         {
-            set { Image_UserAvatar.Image = value; }
-        }
-
-        public UserType Role
-        {
-            set {
-                if (value == UserType.Admin)
-                {
-                    Text_UserRole.Text = Strings.AdminRole;
-                }else if (value == UserType.Staff)
-                {
-                    Text_UserRole.Text = Strings.StaffRole;
-                }
-                else if (value == UserType.Student)
-                {
-                    Text_UserRole.Text = Strings.StudentRole;
-                }
+            if(Model.staff_type == UserType.Admin)
+            {
+                Text_UserRole.Text = Strings.AdminRole;
+            }else
+            {
+                Text_UserRole.Text = Strings.StaffRole;
+            }
+            Text_UserName.Text = Model.staff_name;
+            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.staff_avatar);
+            if(_menu != null)
+            {
+                _menu.SetUser(Model);
             }
         }
 
-        public string UserFullName
+        public void SetUser(StudentModel Model)
         {
-            set { Text_UserName.Text = value; }
+            Text_UserRole.Text = Strings.StudentRole;
+            Text_UserName.Text = Model.student_name;
+            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.student_avatar);
+            if (_menu != null)
+            {
+                _menu.SetUser(Model);
+            }
         }
+
+        public void SetMenu(UserDropdownMenu Menu)
+        {
+            _menu = Menu;
+            Menu.LogoutClick += MenuClickEvent;
+        }
+
     }
 }

@@ -96,6 +96,5 @@ namespace PresentationLayer.Controls
             SetStyleByType(Type);
             Text_Message.Text = Msg;
         }
-
     }
 }

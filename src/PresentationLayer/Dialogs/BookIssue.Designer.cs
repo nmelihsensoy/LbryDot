@@ -87,6 +87,7 @@ namespace PresentationLayer.Dialogs
             this.Button_Return.TabIndex = 34;
             this.Button_Return.Text = "ButtonText";
             this.Button_Return.UseVisualStyleBackColor = true;
+            this.Button_Return.Click += new System.EventHandler(this.Button_Return_Click);
             // 
             // Text_FineAmount
             // 

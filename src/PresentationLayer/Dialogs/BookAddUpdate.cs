@@ -47,10 +47,10 @@ namespace PresentationLayer.Dialogs
                 Input_BookLang.Text = EditBook.language;
                 Input_Length.Text = EditBook.number_of_pages.ToString();
                 Input_ShelfNumber.Text = EditBook.shelf_number;
-                dateTimePicker_PublishYear.Value = DateTime.ParseExact(EditBook.date_of_publication, "yyyy", CultureInfo.InvariantCulture);
-                
-                if (EditBook.book_cover != null && EditBook.book_cover.Length > 0)
-                    Image_BookCover.Image = Helpers.ConvertByteToImage(EditBook.book_cover);
+                dateTimePicker_PublishYear.Value = new DateTime(EditBook.date_of_publication, 1,1);
+                //dateTimePicker_PublishYear.Value = DateTime.ParseExact(EditBook.date_of_publication, "yyyy", CultureInfo.InvariantCulture);
+                Image_BookCover.Image = Helpers.ConvertByteToImage(EditBook.book_cover);
+
             }
         }
 
@@ -102,7 +102,8 @@ namespace PresentationLayer.Dialogs
                     BookModel NewBook = new BookModel();
                     NewBook.isbn = Input_ISBN.Text;
                     NewBook.title = Input_Title.Text;
-                    NewBook.date_of_publication = dateTimePicker_PublishYear.Value.ToString("yyyy");
+                    NewBook.date_of_publication = dateTimePicker_PublishYear.Value.Year;
+                    //NewBook.date_of_publication = dateTimePicker_PublishYear.Value.ToString("yyyy");
                     NewBook.author = Input_Author.Text;
                     NewBook.number_of_pages = Int32.Parse(Input_Length.Text);
                     NewBook.category = Input_Category.Text;

@@ -9,5 +9,7 @@ namespace DataLayer.Abstract
 {
     public interface IBooksRepository : IGenericRepository<BookModel>
     {
+        int[] AvailableBooks();
+        int ChangeBookAvailability(int Id, short IsAvailable);
     }
 }

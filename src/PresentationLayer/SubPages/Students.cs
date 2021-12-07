@@ -26,10 +26,13 @@ namespace PresentationLayer.SubPages
             AppContext = _appContext;
             StudentsService1 = new StudentsService(AppContext);
             AllStudents = StudentsService1.GetAllStudents();
-            dataGridView1.DataSource = AllStudents;
-            InitTable();
-            AddTableButtons();
-            TableCustom();
+            if(AllStudents.Count > 0)
+            {
+                dataGridView1.DataSource = AllStudents;
+                InitTable();
+                AddTableButtons();
+                TableCustom();
+            }
             this.BackColor = Color.FromArgb(247, 248, 250);
         }
 

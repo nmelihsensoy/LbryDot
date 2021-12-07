@@ -25,21 +25,16 @@ namespace PresentationLayer.SubPages
             InitializeComponent();
             AppContext = _appContext;
             BooksService1 = new BooksService(AppContext);
-            //bookListItem1.ButtonHandler += ListClickEvent;
             PopulateBooks(BooksService1.GetAllBooks());
         }
 
         private void PopulateBooks(List<BookModel> Lst)
         {
-            foreach (BookModel book in Lst)
+            foreach (BookModel Book in Lst)
             {
                 BookListItem ListItem = new BookListItem();
-                ListItem.Title = book.title;
-                ListItem.BookId = book.book_id;
-                ListItem.SetUserPrivilege((UserType)AppContext.GetUserType());
-                ListItem.Author = book.author;
-                ListItem.Category = book.category;
-                ListItem.Cover = Helpers.ConvertByteToImage(book.book_cover);
+                ListItem.Book = Book;
+                ListItem.SetUserPrivilege(AppContext.GetUserType());
 
                 flowLayoutPanel1.Controls.Add(ListItem);
                 ListItem.ButtonHandler += ListClickEvent;
@@ -68,9 +63,9 @@ namespace PresentationLayer.SubPages
             //MessageBox.Show((sender as Button).Name);
             if ((sender as Button).Name == "Button_BookDetails")
             {
-                MessageBox.Show((sender as Button).Tag.ToString());
+                //MessageBox.Show((sender as Button).Tag.ToString());
 
-                using (var form = new BookDetails())
+                using (var form = new BookDetails(AppContext, (int)(sender as Button).Tag))
                 {
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
@@ -81,12 +76,28 @@ namespace PresentationLayer.SubPages
             }
             else if ((sender as Button).Name == "Button_BookDeleteBorrow")
             {
-                if(AppContext.GetUserType() == 2)
+                if(AppContext.GetUserType() == UserType.Staff)
                 {
+                    DialogResult dialogResult = MessageBox.Show("Delete Book", "Are You Sure", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+
+                    }
+                }
+                else
+                {       
                     BorrowingModel BorrowBook1 = new BorrowingModel();
-                    BorrowBook1.student_number = AppContext.GetLoggedStudent().student_number;
-                    BorrowBook1.book_id = (int)(sender as Button).Tag;
-                    using (var form = new BookBorrow(BorrowBook1))
+                    BookModel TempBook = new BookModel();
+                    TempBook.book_id = (int)(sender as Button).Tag;
+                    BorrowBook1.student = AppContext.GetLoggedStudent();
+                    BorrowBook1.book = TempBook;
+                    //BorrowBook1.student_number = AppContext.GetLoggedStudent().student_number;
+                    //BorrowBook1.book_id = (int)(sender as Button).Tag;
+                    using (var form = new BookBorrow(AppContext ,BorrowBook1))
                     {
                         form.StartPosition = FormStartPosition.Manual;
                         Point StartP = (sender as Button).PointToScreen(Point.Empty);

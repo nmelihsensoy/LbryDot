@@ -137,14 +137,22 @@ namespace PresentationLayer
 
         public static Image ConvertByteToImage(byte [] ImgInByte)
         {
-            MemoryStream ms2 = new MemoryStream(ImgInByte, 0, ImgInByte.Length);
-            ms2.Write(ImgInByte, 0, ImgInByte.Length);
-            return Image.FromStream(ms2, true);
+            if(ImgInByte != null && ImgInByte.Length > 0)
+            {
+                MemoryStream ms2 = new MemoryStream(ImgInByte, 0, ImgInByte.Length);
+                ms2.Write(ImgInByte, 0, ImgInByte.Length);
+                return Image.FromStream(ms2, true);
+            }
+            return null;
         }
 
-        public static String GetTimeStamp()
+        public static void SendEvent(EventHandler EventHandler, object Sender, EventArgs E)
         {
-            return DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            if (EventHandler != null)
+            {
+                EventHandler(Sender, E);
+            }
         }
+
     }
 }

@@ -1,4 +1,7 @@
-﻿using PresentationLayer.Dialogs;
+﻿using BusinessLogicLayer;
+using BusinessLogicLayer.Services;
+using PresentationLayer.Dialogs;
+using PresentationLayer.Pages;
 using PresentationLayer.Resources;
 using System;
 using System.Collections.Generic;
@@ -17,18 +20,40 @@ namespace PresentationLayer.SubPages
     public partial class Dashboard : Form
     {
 		GraphPane myPane;
+		private CustomAppContext AppContext;
+		private BooksService BooksService1;
+		private BorrowingService BorrowingService1;
 
-		public Dashboard()
+		public Dashboard(CustomAppContext _appContext)
         {
             InitializeComponent();
+			AppContext = _appContext;
+			BooksService1 = new BooksService(AppContext);
+			if(AppContext.GetUserType() == Entities.UserType.Student)
+            {
+				BorrowingService1 = new BorrowingService(AppContext);
+				MyBooks.PopulateMyBooks(BorrowingService1.GetAllBorrowings(4), flowLayoutPanel1, StatusItemClick);
+			}
+
+            if (AppContext.GetUserType() == Entities.UserType.Staff)
+            {
+				Panel_ActiveBooks.Visible = false;
+            }
+
 			ApplyColorPalette();
 			ApplyStrings();
 			myPane = ZedGraphControl_1.GraphPane;
 			BarChartInit();
-			DrawPieChart(90, 10);
-			bookStatusItem1.SetBookStatus(PresentationLayer.Controls.BookStatusItem.BookStatus.Late);
-			bookStatusItem2.SetBookStatus(PresentationLayer.Controls.BookStatusItem.BookStatus.Returned);
-			bookStatusItem3.SetBookStatus(PresentationLayer.Controls.BookStatusItem.BookStatus.TwoDaysLeft);
+            try
+            {
+				int[] TmpPieValue = BooksService1.GetAvailableCount();
+				DrawPieChart(TmpPieValue[0], (TmpPieValue[1] - TmpPieValue[0]));
+
+			}
+            catch
+            {
+
+            }
 		}
 
 		private void ApplyColorPalette()
@@ -102,27 +127,69 @@ namespace PresentationLayer.SubPages
 			}
 		}
 
+		private void StatusItemClick(object sender, EventArgs e)
+		{ 
+			
+		}
+
 		private void DrawPieChart(int value1, int value2)
 		{ 
-			chart1.Series.Clear();
-			chart1.Legends.Clear();
+			if(value2 == 0)
+			{
+				chart1.Series.Clear();
+				chart1.Legends.Clear();
 
-			chart1.Legends.Add("MyLegend");
-			chart1.Legends[0].Docking = Docking.Bottom;
-			
-			
-			string seriesname = "MySeries";
-			chart1.Series.Add(seriesname);
-
-			chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
-			chart1.Series[seriesname]["PieLabelStyle"] = "Disabled";
-			
+				chart1.Legends.Add("MyLegend");
+				chart1.Legends[0].Docking = Docking.Bottom;
 
 
-			chart1.Series[seriesname].Points.AddXY(Strings.AvailableBooks, value1);
-			chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
-			chart1.Series[seriesname].Points.AddXY(Strings.BorrowedBooks, value2);
-			chart1.Series[seriesname].Points[1].Color = Color.FromArgb(253, 169, 41);
+				string seriesname = "MySeries";
+				chart1.Series.Add(seriesname);
+
+				chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
+				chart1.Series[seriesname]["PieLabelStyle"] = "Disabled";
+
+
+
+				chart1.Series[seriesname].Points.AddXY("There are no any books available.", 100);
+				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
+			}
+			else
+			{
+				chart1.Series.Clear();
+				chart1.Legends.Clear();
+
+				chart1.Legends.Add("MyLegend");
+				chart1.Legends[0].Docking = Docking.Bottom;
+
+
+				string seriesname = "MySeries";
+				chart1.Series.Add(seriesname);
+
+				chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
+				chart1.Series[seriesname]["PieLabelStyle"] = "inside";
+				chart1.Series[seriesname]["PieLabelOffset"] = "5:5";
+				//chart1.Series[seriesname].SetCustomProperty("PieLabelStyle", "outside");
+
+
+				chart1.Series[seriesname].Points.AddXY(Strings.AvailableBooks, value2);
+				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
+				chart1.Series[seriesname].Points[0].LegendText = Strings.AvailableBooks;
+				chart1.Series[seriesname].Points.AddXY(Strings.BorrowedBooks, value1);
+				chart1.Series[seriesname].Points[1].Color = Color.FromArgb(253, 169, 41);
+				chart1.Series[seriesname].Points[1].LegendText = Strings.BorrowedBooks;
+				chart1.Series[seriesname].Label = "#PERCENT{0.00 %}";
+				
+				//chart1.Series["Default"].LegendText = "#VALX";
+			}
+		}
+
+        private void ıconButton1_Click(object sender, EventArgs e)
+        {
+			//MessageBox.Show(this.ParentForm.ToString());
+			//PageNavigation(SubPage);
+			MainPage Parent1 = (MainPage)this.ParentForm;
+			Parent1.PageNavigation(new MyBooks(AppContext));
 		}
     }
 }

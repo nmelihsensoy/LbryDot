@@ -18,7 +18,7 @@ namespace BusinessLogicLayer
     {
         private static IDatabaseProvider dbConn;
         protected IUnitOfWork _unitOfWork { get; }
-        private short LoggedUserType = -1;
+        private UserType LoggedUserType = UserType.Undefined;
         StaffModel LoggedStaff = null;
         StudentModel LoggedStudent = null;
 
@@ -33,38 +33,43 @@ namespace BusinessLogicLayer
             return _unitOfWork;
         }
 
-        public void SetLoggedUser(StaffModel _loggedStaff = null, StudentModel _loggedStudent = null)
+        public void SetLoggedUser(StaffModel _loggedStaff)
         {
-            LoggedStaff = _loggedStaff;
-            LoggedStudent = _loggedStudent;
-
-            if (_loggedStaff != null && _loggedStudent == null)
+            if (_loggedStaff != null)
             {
-                LoggedUserType = 1;
-            }
-            else if (_loggedStaff == null && _loggedStudent != null)
-            {
-                LoggedUserType = 2;
-            }
-            else
-            {
-                LoggedUserType = -1;
+                LoggedStaff = _loggedStaff;
+                LoggedUserType = _loggedStaff.staff_type;
             }
         }
 
-        public short GetUserType()
+        public void SetLoggedUser(StudentModel _loggedStudent)
+        {
+            if (_loggedStudent != null)
+            {
+                LoggedStudent = _loggedStudent;
+                LoggedUserType = UserType.Student;
+            }
+        }
+
+        public UserType GetUserType()
         {
             return LoggedUserType;
         }
 
         public StaffModel GetLoggedStaff()
         {
-            return LoggedStaff;
+            if (LoggedStaff != null)
+                return LoggedStaff;
+            else
+                throw new Exception("There is no staff that logged in.");
         }
 
         public StudentModel GetLoggedStudent()
         {
-            return LoggedStudent;
+            if (LoggedStudent != null)
+                return LoggedStudent;
+            else
+                throw new Exception("There is no student that logged in.");
         }
     }
 }

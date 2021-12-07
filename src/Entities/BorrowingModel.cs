@@ -9,11 +9,11 @@ namespace Entities
     public class BorrowingModel
     {
         public int borrow_id { get; }
-        public int book_id { get; set; }
-        public int student_number { get; set; }
-        public string issued_date { get; set; }
-        public string due_date { get; set; }
-        public string returned_date { get; set; }
+        public BookModel book { get; set; }
+        public StudentModel student { get; set; }
+        public DateTime issued_date { get; set; }
+        public DateTime due_date { get; set; }
+        public DateTime returned_date { get; set; } 
         public int amount_of_fine { get; set; }
     }
 }

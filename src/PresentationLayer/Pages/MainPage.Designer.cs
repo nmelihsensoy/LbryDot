@@ -43,6 +43,7 @@ namespace PresentationLayer.Pages
             this.Button_MenuMyBooks = new FontAwesome.Sharp.IconButton();
             this.Button_MenuDashboard = new FontAwesome.Sharp.IconButton();
             this.Panel_TitleBar = new System.Windows.Forms.Panel();
+            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Button_AddBook = new FontAwesome.Sharp.IconButton();
             this.Panel_SearchBox = new System.Windows.Forms.Panel();
             this.Splitter_SearchBoxBottom = new System.Windows.Forms.Splitter();
@@ -56,27 +57,14 @@ namespace PresentationLayer.Pages
             this.Text_TitleBarTitle = new System.Windows.Forms.Label();
             this.Splitter_TopBar_Content = new System.Windows.Forms.Splitter();
             this.Panel_Content = new System.Windows.Forms.Panel();
-            this.Panel_UserDropdown = new System.Windows.Forms.Panel();
-            this.Panel_UserLogout_Splitter = new System.Windows.Forms.Panel();
-            this.Button_UserLogout = new FontAwesome.Sharp.IconButton();
-            this.Icon_UserID = new FontAwesome.Sharp.IconPictureBox();
-            this.Icon_UserMail = new FontAwesome.Sharp.IconPictureBox();
-            this.Text_User_ID = new System.Windows.Forms.Label();
-            this.Text_UserMail = new System.Windows.Forms.Label();
-            this.Splitter_UserDropdown_Panel_Right = new System.Windows.Forms.Splitter();
-            this.Splitter_UserDropdown_Panel_Left = new System.Windows.Forms.Splitter();
-            this.Splitter_UserLogout_Bottom = new System.Windows.Forms.Splitter();
+            this.userDropdownMenu1 = new PresentationLayer.Controls.UserDropdownMenu();
             this.Tooltip_AddBook = new System.Windows.Forms.ToolTip(this.components);
-            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Panel_Sidebar.SuspendLayout();
             this.Panel_Logo.SuspendLayout();
             this.Panel_StaffMenu.SuspendLayout();
             this.Panel_TitleBar.SuspendLayout();
             this.Panel_SearchBox.SuspendLayout();
             this.Panel_Content.SuspendLayout();
-            this.Panel_UserDropdown.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserMail)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel_Sidebar
@@ -280,6 +268,14 @@ namespace PresentationLayer.Pages
             this.Panel_TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Panel_TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
+            // userDropdown_TopBar
+            // 
+            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
+            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
+            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
+            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
+            this.userDropdown_TopBar.TabIndex = 10;
+            // 
             // Button_AddBook
             // 
             this.Button_AddBook.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -442,7 +438,7 @@ namespace PresentationLayer.Pages
             // 
             // Panel_Content
             // 
-            this.Panel_Content.Controls.Add(this.Panel_UserDropdown);
+            this.Panel_Content.Controls.Add(this.userDropdownMenu1);
             this.Panel_Content.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Content.Location = new System.Drawing.Point(214, 55);
             this.Panel_Content.Margin = new System.Windows.Forms.Padding(1);
@@ -450,138 +446,13 @@ namespace PresentationLayer.Pages
             this.Panel_Content.Size = new System.Drawing.Size(810, 545);
             this.Panel_Content.TabIndex = 2;
             // 
-            // Panel_UserDropdown
+            // userDropdownMenu1
             // 
-            this.Panel_UserDropdown.BackColor = System.Drawing.Color.White;
-            this.Panel_UserDropdown.Controls.Add(this.Panel_UserLogout_Splitter);
-            this.Panel_UserDropdown.Controls.Add(this.Button_UserLogout);
-            this.Panel_UserDropdown.Controls.Add(this.Icon_UserID);
-            this.Panel_UserDropdown.Controls.Add(this.Icon_UserMail);
-            this.Panel_UserDropdown.Controls.Add(this.Text_User_ID);
-            this.Panel_UserDropdown.Controls.Add(this.Text_UserMail);
-            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserDropdown_Panel_Right);
-            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserDropdown_Panel_Left);
-            this.Panel_UserDropdown.Controls.Add(this.Splitter_UserLogout_Bottom);
-            this.Panel_UserDropdown.Location = new System.Drawing.Point(469, -2);
-            this.Panel_UserDropdown.Name = "Panel_UserDropdown";
-            this.Panel_UserDropdown.Size = new System.Drawing.Size(215, 105);
-            this.Panel_UserDropdown.TabIndex = 0;
-            this.Panel_UserDropdown.Visible = false;
-            // 
-            // Panel_UserLogout_Splitter
-            // 
-            this.Panel_UserLogout_Splitter.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Panel_UserLogout_Splitter.Location = new System.Drawing.Point(0, 72);
-            this.Panel_UserLogout_Splitter.Name = "Panel_UserLogout_Splitter";
-            this.Panel_UserLogout_Splitter.Size = new System.Drawing.Size(215, 1);
-            this.Panel_UserLogout_Splitter.TabIndex = 5;
-            // 
-            // Button_UserLogout
-            // 
-            this.Button_UserLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Button_UserLogout.FlatAppearance.BorderSize = 0;
-            this.Button_UserLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_UserLogout.Font = new System.Drawing.Font("Avignon Pro Demi", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Button_UserLogout.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
-            this.Button_UserLogout.IconColor = System.Drawing.Color.Black;
-            this.Button_UserLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Button_UserLogout.IconSize = 26;
-            this.Button_UserLogout.Location = new System.Drawing.Point(1, 72);
-            this.Button_UserLogout.Name = "Button_UserLogout";
-            this.Button_UserLogout.Size = new System.Drawing.Size(213, 32);
-            this.Button_UserLogout.TabIndex = 0;
-            this.Button_UserLogout.Text = "Logout";
-            this.Button_UserLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Button_UserLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Button_UserLogout.UseVisualStyleBackColor = true;
-            this.Button_UserLogout.Click += new System.EventHandler(this.MenuLogout_Click);
-            // 
-            // Icon_UserID
-            // 
-            this.Icon_UserID.BackColor = System.Drawing.Color.White;
-            this.Icon_UserID.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Icon_UserID.IconChar = FontAwesome.Sharp.IconChar.IdCard;
-            this.Icon_UserID.IconColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Icon_UserID.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Icon_UserID.IconSize = 22;
-            this.Icon_UserID.Location = new System.Drawing.Point(9, 41);
-            this.Icon_UserID.Name = "Icon_UserID";
-            this.Icon_UserID.Size = new System.Drawing.Size(22, 22);
-            this.Icon_UserID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.Icon_UserID.TabIndex = 4;
-            this.Icon_UserID.TabStop = false;
-            // 
-            // Icon_UserMail
-            // 
-            this.Icon_UserMail.BackColor = System.Drawing.Color.White;
-            this.Icon_UserMail.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Icon_UserMail.IconChar = FontAwesome.Sharp.IconChar.Envelope;
-            this.Icon_UserMail.IconColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Icon_UserMail.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Icon_UserMail.IconSize = 22;
-            this.Icon_UserMail.Location = new System.Drawing.Point(9, 9);
-            this.Icon_UserMail.Name = "Icon_UserMail";
-            this.Icon_UserMail.Size = new System.Drawing.Size(22, 22);
-            this.Icon_UserMail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.Icon_UserMail.TabIndex = 3;
-            this.Icon_UserMail.TabStop = false;
-            // 
-            // Text_User_ID
-            // 
-            this.Text_User_ID.AutoSize = true;
-            this.Text_User_ID.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_User_ID.Location = new System.Drawing.Point(37, 46);
-            this.Text_User_ID.Name = "Text_User_ID";
-            this.Text_User_ID.Size = new System.Drawing.Size(19, 14);
-            this.Text_User_ID.TabIndex = 2;
-            this.Text_User_ID.Text = "12";
-            // 
-            // Text_UserMail
-            // 
-            this.Text_UserMail.AutoSize = true;
-            this.Text_UserMail.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_UserMail.Location = new System.Drawing.Point(37, 14);
-            this.Text_UserMail.Name = "Text_UserMail";
-            this.Text_UserMail.Size = new System.Drawing.Size(123, 14);
-            this.Text_UserMail.TabIndex = 1;
-            this.Text_UserMail.Text = "email@example.com";
-            // 
-            // Splitter_UserDropdown_Panel_Right
-            // 
-            this.Splitter_UserDropdown_Panel_Right.BackColor = System.Drawing.Color.Black;
-            this.Splitter_UserDropdown_Panel_Right.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Splitter_UserDropdown_Panel_Right.Location = new System.Drawing.Point(214, 0);
-            this.Splitter_UserDropdown_Panel_Right.Name = "Splitter_UserDropdown_Panel_Right";
-            this.Splitter_UserDropdown_Panel_Right.Size = new System.Drawing.Size(1, 104);
-            this.Splitter_UserDropdown_Panel_Right.TabIndex = 7;
-            this.Splitter_UserDropdown_Panel_Right.TabStop = false;
-            // 
-            // Splitter_UserDropdown_Panel_Left
-            // 
-            this.Splitter_UserDropdown_Panel_Left.BackColor = System.Drawing.Color.Black;
-            this.Splitter_UserDropdown_Panel_Left.Location = new System.Drawing.Point(0, 0);
-            this.Splitter_UserDropdown_Panel_Left.Name = "Splitter_UserDropdown_Panel_Left";
-            this.Splitter_UserDropdown_Panel_Left.Size = new System.Drawing.Size(1, 104);
-            this.Splitter_UserDropdown_Panel_Left.TabIndex = 6;
-            this.Splitter_UserDropdown_Panel_Left.TabStop = false;
-            // 
-            // Splitter_UserLogout_Bottom
-            // 
-            this.Splitter_UserLogout_Bottom.BackColor = System.Drawing.Color.Black;
-            this.Splitter_UserLogout_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Splitter_UserLogout_Bottom.Location = new System.Drawing.Point(0, 104);
-            this.Splitter_UserLogout_Bottom.Name = "Splitter_UserLogout_Bottom";
-            this.Splitter_UserLogout_Bottom.Size = new System.Drawing.Size(215, 1);
-            this.Splitter_UserLogout_Bottom.TabIndex = 8;
-            this.Splitter_UserLogout_Bottom.TabStop = false;
-            // 
-            // userDropdown_TopBar
-            // 
-            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
-            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
-            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
-            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
-            this.userDropdown_TopBar.TabIndex = 10;
+            this.userDropdownMenu1.Location = new System.Drawing.Point(469, -1);
+            this.userDropdownMenu1.Name = "userDropdownMenu1";
+            this.userDropdownMenu1.Size = new System.Drawing.Size(215, 105);
+            this.userDropdownMenu1.TabIndex = 0;
+            this.userDropdownMenu1.Visible = false;
             // 
             // MainPage
             // 
@@ -606,10 +477,6 @@ namespace PresentationLayer.Pages
             this.Panel_SearchBox.ResumeLayout(false);
             this.Panel_SearchBox.PerformLayout();
             this.Panel_Content.ResumeLayout(false);
-            this.Panel_UserDropdown.ResumeLayout(false);
-            this.Panel_UserDropdown.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_UserMail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -632,13 +499,6 @@ namespace PresentationLayer.Pages
         private System.Windows.Forms.Panel Panel_StaffMenu;
         private System.Windows.Forms.Label Text_StaffMenuTitle;
         private System.Windows.Forms.Splitter Splitter_TopBar_Content;
-        private System.Windows.Forms.Panel Panel_UserDropdown;
-        private System.Windows.Forms.Panel Panel_UserLogout_Splitter;
-        private FontAwesome.Sharp.IconButton Button_UserLogout;
-        private FontAwesome.Sharp.IconPictureBox Icon_UserID;
-        private FontAwesome.Sharp.IconPictureBox Icon_UserMail;
-        private System.Windows.Forms.Label Text_User_ID;
-        private System.Windows.Forms.Label Text_UserMail;
         private System.Windows.Forms.Panel Panel_Logo;
         private System.Windows.Forms.Label Text_Logo;
         private System.Windows.Forms.TextBox Input_SearchBox;
@@ -647,11 +507,9 @@ namespace PresentationLayer.Pages
         private System.Windows.Forms.Splitter Splitter_SearchBoxTop;
         private System.Windows.Forms.Splitter Splitter_SearchBoxRight;
         private System.Windows.Forms.Splitter Splitter_SearchBoxLeft;
-        private System.Windows.Forms.Splitter Splitter_UserDropdown_Panel_Right;
-        private System.Windows.Forms.Splitter Splitter_UserDropdown_Panel_Left;
-        private System.Windows.Forms.Splitter Splitter_UserLogout_Bottom;
         private FontAwesome.Sharp.IconButton Button_AddBook;
         private System.Windows.Forms.ToolTip Tooltip_AddBook;
         private Controls.UserDropdown userDropdown_TopBar;
+        private Controls.UserDropdownMenu userDropdownMenu1;
     }
 }

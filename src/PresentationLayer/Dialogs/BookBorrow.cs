@@ -9,16 +9,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities;
+using BusinessLogicLayer.Services;
+using BusinessLogicLayer;
 
 namespace PresentationLayer.Dialogs
 {
     public partial class BookBorrow : Form
     {
-        BorrowingModel BorrowBook1;
+        private CustomAppContext AppContext;
+        private BorrowingModel BorrowBook1;
+        private BorrowingService BorrowingService1;
         
-        public BookBorrow(BorrowingModel _borrowBook)
+        public BookBorrow(CustomAppContext _appContext, BorrowingModel _borrowBook)
         {
             InitializeComponent();
+            AppContext = _appContext;
+            BorrowingService1 = new BorrowingService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
             BorrowBook1 = _borrowBook;
@@ -45,16 +51,23 @@ namespace PresentationLayer.Dialogs
 
         private void Button_Borrow_Click(object sender, EventArgs e)
         {
-            BorrowBook1.issued_date = Helpers.GetTimeStamp();
-            BorrowBook1.due_date = dateTimePicker_ReturnDate.Value.ToString("dd/MM/yyyy");
+            try
+            {
+                BorrowBook1.issued_date = DateTime.Now;
+                BorrowBook1.due_date = dateTimePicker_ReturnDate.Value;
 
-            MessageBox.Show(BorrowBook1.ToString());
-
-            this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
-
-            AlertBox_SuccesError.Visible = true;
-            AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Error Message");
-            AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf Number: 35A");
+                BorrowingService1.AddBorrowing(BorrowBook1);
+                this.DialogResult = DialogResult.OK;
+                //this.Close();
+            }
+            catch (Exception ex)
+            {
+                this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
+                MessageBox.Show(ex.Message);
+                AlertBox_SuccesError.Visible = true;
+                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, ex.Message);
+                AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf Number: 35A");
+            }
         }
     }
 }

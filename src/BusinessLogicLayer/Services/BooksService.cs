@@ -51,5 +51,17 @@ namespace BusinessLogicLayer.Services
             return output;
         }
 
+        public int[] GetAvailableCount()
+        {
+            var output = _appContext.getUoW().BooksRepository.AvailableBooks();
+            _appContext.getUoW().Commit();
+
+            if(output.Length != 2 && output[0] == -1 && output[1] == -1)
+            {
+                throw new Exception("Value Error");
+            }
+            return output;
+        }
+
     }
 }

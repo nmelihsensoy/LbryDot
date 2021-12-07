@@ -7,17 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogicLayer;
+using BusinessLogicLayer.Services;
+using Entities;
 
 namespace PresentationLayer.Dialogs
 {
     public partial class BookDetails : Form
     {
-        public BookDetails()
+        private CustomAppContext AppContext;
+        private int BookId;
+        private BooksService BooksService1;
+
+        public BookDetails(CustomAppContext _appContext, int _bookId)
         {
+            AppContext = _appContext;
+            BooksService1 = new BooksService(AppContext);
+            BookId = _bookId;
             InitializeComponent();
+            SetBookDetailsById();
+            InitTable();
+        }
 
+        private void SetBookDetailsById()
+        {
+            BookModel Book1 = BooksService1.GetBookById(BookId);
             bookListItem1.MakeExtendedListItem();
+            bookListItem1.SetUserPrivilege(UserType.Student);
+            bookListItem1.Book = Book1;
+        }
 
+        private void InitTable()
+        {
+            bookListItem1.MakeExtendedListItem();
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.BorderStyle = BorderStyle.None;
             //dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Azure;
@@ -43,8 +65,7 @@ namespace PresentationLayer.Dialogs
 
             table.Rows.Add("John Doe", "01.11.2021", "09.11.2021");
             dataGridView1.DataSource = table;
-
-            //dataGridView1.AllowUserToAddRows = false;
         }
+
     }
 }

@@ -49,5 +49,6 @@
     <Compile Include="StaffModel.cs" />
     <Compile Include="StudentModel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

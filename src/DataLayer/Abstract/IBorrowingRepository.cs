@@ -9,5 +9,7 @@ namespace DataLayer.Abstract
 {
     public interface IBorrowingRepository : IGenericRepository<BorrowingModel>
     {
+        IEnumerable<BorrowingModel> GetAllJoined(int StudentNumber, int FirstRowCount);
+        int ReturnBorrow(BorrowingModel Borrowing);
     }
 }
