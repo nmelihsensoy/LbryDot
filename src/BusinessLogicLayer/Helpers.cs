@@ -19,5 +19,17 @@ namespace BusinessLogicLayer
         {
             return (DateTime.Parse(Date2) - DateTime.Parse(Date1)).Days;
         }
+
+        public static string HideWords(string Sentence, char Delimiter = ' ', string Censor = "*")
+        {
+            string[] TempStrArr = Sentence.Split(Delimiter);
+            string TempStr = "";
+            foreach (var Word in TempStrArr)
+            {
+                TempStr += Word[0] + Censor + Delimiter;
+            }
+            return TempStr;
+        }
+
     }
 }

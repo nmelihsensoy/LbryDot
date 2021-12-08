@@ -18,15 +18,19 @@ namespace PresentationLayer.Dialogs
         private CustomAppContext AppContext;
         private int BookId;
         private BooksService BooksService1;
+        private BorrowingService BorrowingService1;
 
         public BookDetails(CustomAppContext _appContext, int _bookId)
         {
             AppContext = _appContext;
             BooksService1 = new BooksService(AppContext);
+            BorrowingService1 = new BorrowingService(AppContext);
             BookId = _bookId;
             InitializeComponent();
             SetBookDetailsById();
             InitTable();
+            bookListItem1.MakeExtendedListItem();
+            dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(BookId, true);
         }
 
         private void SetBookDetailsById()
@@ -39,7 +43,6 @@ namespace PresentationLayer.Dialogs
 
         private void InitTable()
         {
-            bookListItem1.MakeExtendedListItem();
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.BorderStyle = BorderStyle.None;
             //dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Azure;
@@ -57,14 +60,14 @@ namespace PresentationLayer.Dialogs
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.ClearSelection();
 
-            DataTable table = new DataTable();
+            //DataTable table = new DataTable();
 
-            table.Columns.Add("Student", typeof(string));
-            table.Columns.Add("Borrow Date", typeof(string));
-            table.Columns.Add("Returned Date", typeof(string));
+            //table.Columns.Add("Student", typeof(string));
+            //table.Columns.Add("Borrow Date", typeof(string));
+            //table.Columns.Add("Returned Date", typeof(string));
 
-            table.Rows.Add("John Doe", "01.11.2021", "09.11.2021");
-            dataGridView1.DataSource = table;
+            //table.Rows.Add("John Doe", "01.11.2021", "09.11.2021");
+            
         }
 
     }

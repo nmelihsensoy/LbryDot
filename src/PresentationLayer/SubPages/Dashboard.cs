@@ -29,31 +29,14 @@ namespace PresentationLayer.SubPages
             InitializeComponent();
 			AppContext = _appContext;
 			BooksService1 = new BooksService(AppContext);
-			if(AppContext.GetUserType() == Entities.UserType.Student)
-            {
-				BorrowingService1 = new BorrowingService(AppContext);
-				MyBooks.PopulateMyBooks(BorrowingService1.GetAllBorrowings(4), flowLayoutPanel1, StatusItemClick);
-			}
-
-            if (AppContext.GetUserType() == Entities.UserType.Staff)
-            {
-				Panel_ActiveBooks.Visible = false;
-            }
-
+			BorrowingService1 = new BorrowingService(AppContext);
+			SetViewForUserTypes();
 			ApplyColorPalette();
 			ApplyStrings();
-			myPane = ZedGraphControl_1.GraphPane;
-			BarChartInit();
-            try
-            {
-				int[] TmpPieValue = BooksService1.GetAvailableCount();
-				DrawPieChart(TmpPieValue[0], (TmpPieValue[1] - TmpPieValue[0]));
-
-			}
-            catch
-            {
-
-            }
+			var ChartItems = BorrowingService1.GetChartData();
+			BarChartInit(ChartItems.Item2, ChartItems.Item1, ChartItems.Item3);
+			int[] TmpPieValue = BooksService1.GetAvailableCount();
+			DrawPieChart(TmpPieValue[1], (TmpPieValue[0] - TmpPieValue[1]));
 		}
 
 		private void ApplyColorPalette()
@@ -73,17 +56,24 @@ namespace PresentationLayer.SubPages
 			Text_ActiveBooksTitle.Text = Strings.ActiveBooks;
 		}
 
-
-		private void BarChartInit()
+		private void SetViewForUserTypes()
         {
-			double[] y = { 80, 70, 50, 30, 20 };
-			double[] y2 = { 70, 50, 50, 70, 80 };
-			string[] str = { "5.11.2021", "6.11.2021", "7.11.2021", "8.11.2021", "9.11.2021" };
+			if (AppContext.GetUserType() == Entities.UserType.Student) {
+				MyBooks.PopulateMyBooks(BorrowingService1.GetActives(4), flowLayoutPanel1, StatusItemClick);
+			}
+			else if (AppContext.GetUserType() == Entities.UserType.Staff)
+            {
+				Panel_ActiveBooks.Visible = false;
+			}
+        }
 
+		private void BarChartInit(double[] Y1, double[] Y2, string[] Titles)
+        {
+			myPane = ZedGraphControl_1.GraphPane;
 			myPane.Border.IsVisible = false;
 			myPane.Margin.All = 5;
 			myPane.XAxis.MajorTic.IsBetweenLabels = true;
-			myPane.XAxis.Scale.TextLabels = str;
+			myPane.XAxis.Scale.TextLabels = Titles;
 			myPane.XAxis.Type = ZedGraph.AxisType.Text;
 			myPane.Chart.Fill = new Fill(new SolidBrush(ColorPalette.SettingsBackColor));
 			//myPane.Chart.Fill = new Fill(ColorPalette.SettingsBackColor, Color.White);
@@ -94,11 +84,11 @@ namespace PresentationLayer.SubPages
 			myPane.XAxis.Title.Text = Strings.ChartXTitle;
 			myPane.YAxis.Title.Text = Strings.ChartYTitle;
 
-			BarItem myCurve = myPane.AddBar(Strings.BarName1, null, y, Color.Transparent);
+			BarItem myCurve = myPane.AddBar(Strings.BarName1, null, Y1, Color.Transparent);
 			myCurve.Bar.Border.IsVisible = false;
 			myCurve.Bar.Fill = new Fill(new SolidBrush(Color.FromArgb(123, 215, 60)));
 
-			myCurve = myPane.AddBar(Strings.BarName2, null, y2, Color.Transparent);
+			myCurve = myPane.AddBar(Strings.BarName2, null, Y2, Color.Transparent);
 			myCurve.Bar.Fill = new Fill(new SolidBrush(Color.FromArgb(252, 69, 73)));
 			myCurve.Bar.Border.IsVisible = false;
 			
@@ -133,49 +123,36 @@ namespace PresentationLayer.SubPages
 		}
 
 		private void DrawPieChart(int value1, int value2)
-		{ 
-			if(value2 == 0)
+		{
+			chart1.Series.Clear();
+			chart1.Legends.Clear();
+
+			chart1.Legends.Add("MyLegend");
+			chart1.Legends[0].Docking = Docking.Bottom;
+
+			string seriesname = "MySeries";
+			chart1.Series.Add(seriesname);
+			chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
+
+			if (value1 < 1)
 			{
-				chart1.Series.Clear();
-				chart1.Legends.Clear();
-
-				chart1.Legends.Add("MyLegend");
-				chart1.Legends[0].Docking = Docking.Bottom;
-
-
-				string seriesname = "MySeries";
-				chart1.Series.Add(seriesname);
-
-				chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
 				chart1.Series[seriesname]["PieLabelStyle"] = "Disabled";
-
-
 
 				chart1.Series[seriesname].Points.AddXY("There are no any books available.", 100);
 				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
 			}
 			else
 			{
-				chart1.Series.Clear();
-				chart1.Legends.Clear();
-
-				chart1.Legends.Add("MyLegend");
-				chart1.Legends[0].Docking = Docking.Bottom;
-
-
-				string seriesname = "MySeries";
-				chart1.Series.Add(seriesname);
-
 				chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
 				chart1.Series[seriesname]["PieLabelStyle"] = "inside";
 				chart1.Series[seriesname]["PieLabelOffset"] = "5:5";
 				//chart1.Series[seriesname].SetCustomProperty("PieLabelStyle", "outside");
 
 
-				chart1.Series[seriesname].Points.AddXY(Strings.AvailableBooks, value2);
+				chart1.Series[seriesname].Points.AddXY(Strings.AvailableBooks, value1);
 				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
 				chart1.Series[seriesname].Points[0].LegendText = Strings.AvailableBooks;
-				chart1.Series[seriesname].Points.AddXY(Strings.BorrowedBooks, value1);
+				chart1.Series[seriesname].Points.AddXY(Strings.BorrowedBooks, value2);
 				chart1.Series[seriesname].Points[1].Color = Color.FromArgb(253, 169, 41);
 				chart1.Series[seriesname].Points[1].LegendText = Strings.BorrowedBooks;
 				chart1.Series[seriesname].Label = "#PERCENT{0.00 %}";
@@ -186,8 +163,6 @@ namespace PresentationLayer.SubPages
 
         private void ıconButton1_Click(object sender, EventArgs e)
         {
-			//MessageBox.Show(this.ParentForm.ToString());
-			//PageNavigation(SubPage);
 			MainPage Parent1 = (MainPage)this.ParentForm;
 			Parent1.PageNavigation(new MyBooks(AppContext));
 		}

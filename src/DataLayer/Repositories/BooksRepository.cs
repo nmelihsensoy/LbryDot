@@ -46,12 +46,11 @@ namespace DataLayer.Repositories
 
         public int[] AvailableBooks()
         {
-            int[] a = { -1, -1};
-            //ExecuteScalar<int>("SELECT COUNT(*) FROM customers");
+            int[] a = new int[2];
             string sql = "SELECT COUNT(*) FROM Books; SELECT COUNT(*) FROM Books WHERE is_available = @is_available;";
-            var multi = dbConnection.QueryMultiple(sql, new { is_available = 1 });
-            a[1] = multi.Read<int>().Single();
-            a[0] = multi.Read<int>().Single();
+            var multi = dbConnection.QueryMultiple(sql, new { is_available = 1 }, dbTransaction);
+            a[0] = multi.Read<int>().First(); //All books
+            a[1] = multi.Read<int>().Single(); //Available Books
             return a;
         }
 

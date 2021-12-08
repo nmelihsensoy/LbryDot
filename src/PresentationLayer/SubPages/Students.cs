@@ -26,14 +26,19 @@ namespace PresentationLayer.SubPages
             AppContext = _appContext;
             StudentsService1 = new StudentsService(AppContext);
             AllStudents = StudentsService1.GetAllStudents();
-            if(AllStudents.Count > 0)
-            {
-                dataGridView1.DataSource = AllStudents;
-                InitTable();
-                AddTableButtons();
-                TableCustom();
-            }
+            InitTable();
+            ApplyColorPalette();
+            ApplyStrings();
+        }
+
+        private void ApplyColorPalette()
+        {
             this.BackColor = Color.FromArgb(247, 248, 250);
+        }
+
+        private void ApplyStrings()
+        {
+
         }
 
         public void AddButtonClick(object sender, EventArgs e)
@@ -58,6 +63,17 @@ namespace PresentationLayer.SubPages
         }
 
         private void InitTable()
+        {
+            if (AllStudents.Count > 0)
+            {
+                dataGridView1.DataSource = AllStudents;
+                ApplyTableStyle();
+                AddTableButtons();
+                TableCustom();
+            }
+        }
+
+        private void ApplyTableStyle()
         {
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.BorderStyle = BorderStyle.None;
@@ -86,7 +102,6 @@ namespace PresentationLayer.SubPages
             dbtn.Name = "Button_Edit";
             dbtn.Width = 20;
 
-
             dbtn.Text = "Edit";
             dbtn.UseColumnTextForButtonValue = true;
 
@@ -99,7 +114,6 @@ namespace PresentationLayer.SubPages
             DataGridViewButtonColumn dbtn2 = new DataGridViewButtonColumn();
             dbtn2.Width = 20;
             dbtn2.Name = "Button_Delete";
-
 
             dbtn2.Text = "Delete";
             dbtn2.UseColumnTextForButtonValue = true;
@@ -159,7 +173,7 @@ namespace PresentationLayer.SubPages
                 }
                 else
                 {
-                    MessageBox.Show("Detail Page");
+                    //MessageBox.Show("Detail Page");
                 }
             }
 

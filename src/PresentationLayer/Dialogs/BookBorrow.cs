@@ -47,6 +47,7 @@ namespace PresentationLayer.Dialogs
         private void BookBorrow_Load(object sender, EventArgs e)
         {
             this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
+            dateTimePicker_ReturnDate.MinDate = DateTime.Now;
         }
 
         private void Button_Borrow_Click(object sender, EventArgs e)
