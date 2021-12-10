@@ -43,9 +43,9 @@ namespace PresentationLayer.Pages
             this.Button_MenuMyBooks = new FontAwesome.Sharp.IconButton();
             this.Button_MenuDashboard = new FontAwesome.Sharp.IconButton();
             this.Panel_TitleBar = new System.Windows.Forms.Panel();
-            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Button_AddBook = new FontAwesome.Sharp.IconButton();
             this.Panel_SearchBox = new System.Windows.Forms.Panel();
+            this.Label_Button_Search_X = new System.Windows.Forms.Label();
             this.Splitter_SearchBoxBottom = new System.Windows.Forms.Splitter();
             this.Splitter_SearchBoxTop = new System.Windows.Forms.Splitter();
             this.Splitter_SearchBoxRight = new System.Windows.Forms.Splitter();
@@ -57,8 +57,9 @@ namespace PresentationLayer.Pages
             this.Text_TitleBarTitle = new System.Windows.Forms.Label();
             this.Splitter_TopBar_Content = new System.Windows.Forms.Splitter();
             this.Panel_Content = new System.Windows.Forms.Panel();
-            this.userDropdownMenu1 = new PresentationLayer.Controls.UserDropdownMenu();
             this.Tooltip_AddBook = new System.Windows.Forms.ToolTip(this.components);
+            this.userDropdownMenu1 = new PresentationLayer.Controls.UserDropdownMenu();
+            this.userDropdown_TopBar = new PresentationLayer.Controls.UserDropdown();
             this.Panel_Sidebar.SuspendLayout();
             this.Panel_Logo.SuspendLayout();
             this.Panel_StaffMenu.SuspendLayout();
@@ -172,6 +173,7 @@ namespace PresentationLayer.Pages
             // 
             // Button_InfoDialog
             // 
+            this.Button_InfoDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_InfoDialog.FlatAppearance.BorderSize = 0;
             this.Button_InfoDialog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button_InfoDialog.ForeColor = System.Drawing.Color.White;
@@ -268,14 +270,6 @@ namespace PresentationLayer.Pages
             this.Panel_TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Panel_TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
-            // userDropdown_TopBar
-            // 
-            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
-            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
-            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
-            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
-            this.userDropdown_TopBar.TabIndex = 10;
-            // 
             // Button_AddBook
             // 
             this.Button_AddBook.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -296,6 +290,7 @@ namespace PresentationLayer.Pages
             // Panel_SearchBox
             // 
             this.Panel_SearchBox.BackColor = System.Drawing.Color.White;
+            this.Panel_SearchBox.Controls.Add(this.Label_Button_Search_X);
             this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxBottom);
             this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxTop);
             this.Panel_SearchBox.Controls.Add(this.Splitter_SearchBoxRight);
@@ -306,6 +301,20 @@ namespace PresentationLayer.Pages
             this.Panel_SearchBox.Size = new System.Drawing.Size(257, 30);
             this.Panel_SearchBox.TabIndex = 8;
             this.Panel_SearchBox.Visible = false;
+            // 
+            // Label_Button_Search_X
+            // 
+            this.Label_Button_Search_X.AutoSize = true;
+            this.Label_Button_Search_X.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Label_Button_Search_X.Font = new System.Drawing.Font("Avignon Pro Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Label_Button_Search_X.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Label_Button_Search_X.Location = new System.Drawing.Point(231, 6);
+            this.Label_Button_Search_X.Name = "Label_Button_Search_X";
+            this.Label_Button_Search_X.Size = new System.Drawing.Size(18, 18);
+            this.Label_Button_Search_X.TabIndex = 13;
+            this.Label_Button_Search_X.Text = "X";
+            this.Label_Button_Search_X.Visible = false;
+            this.Label_Button_Search_X.Click += new System.EventHandler(this.Label_Button_Search_X_Click);
             // 
             // Splitter_SearchBoxBottom
             // 
@@ -353,12 +362,11 @@ namespace PresentationLayer.Pages
             this.Input_SearchBox.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.Input_SearchBox.Location = new System.Drawing.Point(5, 5);
             this.Input_SearchBox.Name = "Input_SearchBox";
-            this.Input_SearchBox.Size = new System.Drawing.Size(249, 18);
+            this.Input_SearchBox.Size = new System.Drawing.Size(244, 18);
             this.Input_SearchBox.TabIndex = 8;
             this.Input_SearchBox.Text = "Search";
             this.Input_SearchBox.Enter += new System.EventHandler(this.Input_SearchBox_Enter);
             this.Input_SearchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_SearchBox_KeyDown);
-            this.Input_SearchBox.Leave += new System.EventHandler(this.Input_SearchBox_Leave);
             // 
             // Button_WindowMin
             // 
@@ -381,6 +389,7 @@ namespace PresentationLayer.Pages
             // 
             // Button_WindowMax
             // 
+            this.Button_WindowMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_WindowMax.AutoSize = true;
             this.Button_WindowMax.FlatAppearance.BorderSize = 0;
             this.Button_WindowMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -425,6 +434,9 @@ namespace PresentationLayer.Pages
             this.Text_TitleBarTitle.Size = new System.Drawing.Size(103, 24);
             this.Text_TitleBarTitle.TabIndex = 0;
             this.Text_TitleBarTitle.Text = "MainPage";
+            this.Text_TitleBarTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
+            this.Text_TitleBarTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
+            this.Text_TitleBarTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
             // Splitter_TopBar_Content
             // 
@@ -448,11 +460,21 @@ namespace PresentationLayer.Pages
             // 
             // userDropdownMenu1
             // 
+            this.userDropdownMenu1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.userDropdownMenu1.Location = new System.Drawing.Point(469, -1);
             this.userDropdownMenu1.Name = "userDropdownMenu1";
             this.userDropdownMenu1.Size = new System.Drawing.Size(215, 105);
             this.userDropdownMenu1.TabIndex = 0;
             this.userDropdownMenu1.Visible = false;
+            // 
+            // userDropdown_TopBar
+            // 
+            this.userDropdown_TopBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.userDropdown_TopBar.BackColor = System.Drawing.Color.White;
+            this.userDropdown_TopBar.Location = new System.Drawing.Point(469, 6);
+            this.userDropdown_TopBar.Name = "userDropdown_TopBar";
+            this.userDropdown_TopBar.Size = new System.Drawing.Size(215, 42);
+            this.userDropdown_TopBar.TabIndex = 10;
             // 
             // MainPage
             // 
@@ -511,5 +533,6 @@ namespace PresentationLayer.Pages
         private System.Windows.Forms.ToolTip Tooltip_AddBook;
         private Controls.UserDropdown userDropdown_TopBar;
         private Controls.UserDropdownMenu userDropdownMenu1;
+        private System.Windows.Forms.Label Label_Button_Search_X;
     }
 }

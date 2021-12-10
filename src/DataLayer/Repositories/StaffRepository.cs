@@ -35,7 +35,7 @@ namespace DataLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(StaffModel model)
+        public int Update(StaffModel model)
         {
             throw new NotImplementedException();
         }

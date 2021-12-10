@@ -311,29 +311,88 @@ namespace PresentationLayer.Pages
             }
         }
 
+        private void ApplySearchActiveStyle()
+        {
+            Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Bold);
+            Label_Button_Search_X.Visible = true;
+            Splitter_SearchBoxLeft.BackColor = Color.FromArgb(0, 120, 215);
+            Splitter_SearchBoxRight.BackColor = Color.FromArgb(0, 120, 215);
+            Splitter_SearchBoxTop.BackColor = Color.FromArgb(0, 120, 215);
+            Splitter_SearchBoxBottom.BackColor = Color.FromArgb(0, 120, 215);
+        }
+
+        private void AppySearchDefaultStyle()
+        {
+            Input_SearchBox.Text = Strings.Search;
+            Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Regular);
+            Label_Button_Search_X.Visible = false;
+            Splitter_SearchBoxLeft.BackColor = ColorPalette.SearchBarBorderColor;
+            Splitter_SearchBoxRight.BackColor = ColorPalette.SearchBarBorderColor;
+            Splitter_SearchBoxTop.BackColor = ColorPalette.SearchBarBorderColor;
+            Splitter_SearchBoxBottom.BackColor = ColorPalette.SearchBarBorderColor;
+        }
+
         private void Input_SearchBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (_activeForm.Text == "Students")
-                {
-                    (_activeForm as Students).SearchStudent(sender, Input_SearchBox.Text, e);
+                e.Handled = e.SuppressKeyPress = true; //prevent beep sound
+                if (!String.IsNullOrEmpty(Input_SearchBox.Text)) {
+
+                    ApplySearchActiveStyle();
+                    //Input_SearchBox.Parent.Focus();
+                    ActiveControl = null;
+
+                    if (_activeForm.Text == "Students")
+                    {
+                        (_activeForm as Students).SearchStudent(sender, Input_SearchBox.Text, e);
+                    }
+                    else if (_activeForm.Text == "Books")
+                    {
+                        (_activeForm as Books).SearchBook(sender, Input_SearchBox.Text, e);
+                    }
                 }
-                else if (_activeForm.Text == "Books")
+                else
                 {
-                    (_activeForm as Books).SearchBook(sender, Input_SearchBox.Text, e);
+                    Input_SearchBox_Clear();
                 }
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = e.SuppressKeyPress = true;
+                Input_SearchBox_Clear();
             }
         }
 
         private void Input_SearchBox_Enter(object sender, EventArgs e)
         {
-            Input_SearchBox.Text = "";
+            if (String.IsNullOrEmpty(Input_SearchBox.Text) || Input_SearchBox.Text == Strings.Search)
+            {
+                Input_SearchBox.Clear();
+                Label_Button_Search_X.Visible = true;
+            }
         }
 
-        private void Input_SearchBox_Leave(object sender, EventArgs e)
+        private void Label_Button_Search_X_Click(object sender, EventArgs e)
         {
-            Input_SearchBox.Text = Strings.Search;
+            Input_SearchBox_Clear();
         }
+
+        public void Input_SearchBox_Clear()
+        {
+            AppySearchDefaultStyle();
+            ActiveControl = null;
+
+            if (_activeForm.Text == "Students")
+            {
+                (_activeForm as Students).SearchReset();
+            }
+            else if (_activeForm.Text == "Books")
+            {
+                (_activeForm as Books).SearchReset();
+            }
+        }
+
     }
 }

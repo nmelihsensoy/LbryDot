@@ -78,7 +78,7 @@ namespace PresentationLayer.Controls
                 Text_DaySecLine.Text = Strings.DaysLate;
                 Button_ReturnBook.Enabled = true;
             }
-            else if(_bookStatus == BookStatus.Normal) //
+            else if(_bookStatus == BookStatus.Normal)
             {
                 Splitter_BorderBottom.BackColor = Color.Gray;
                 Panel_Hover_Top.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
@@ -119,17 +119,32 @@ namespace PresentationLayer.Controls
             }
         }
 
+        public void HideHover()
+        {
+            Panel_Hover_Top.Visible = false;
+            Panel_Hover_Bottom.Visible = false;
+        }
+
         public BorrowingModel Borrow
         {
             set {
-                Image_BookCover.Image = Helpers.ConvertByteToImage(value.book.book_cover);
+                Image_BookCover.Image = Helpers.ConvertByteToImage(value.book.book_cover, Image_BookCover.Image);
                 _borrow = value;
-                Button_BookDetails.Tag = value;
-                Button_ReturnBook.Tag = value;
             }
             get
             {
                 return _borrow;
+            }
+        }
+        public static BookStatusItem GetItemFromButton(object Button)
+        {
+            try
+            {
+                return ((Button as Button).Parent.Parent as BookStatusItem);
+            }
+            catch
+            {
+                return null;
             }
         }
 

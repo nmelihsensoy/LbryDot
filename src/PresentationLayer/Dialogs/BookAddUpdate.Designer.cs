@@ -92,6 +92,7 @@ namespace PresentationLayer.Dialogs
             this.alertBox1.Name = "alertBox1";
             this.alertBox1.Size = new System.Drawing.Size(290, 39);
             this.alertBox1.TabIndex = 36;
+            this.alertBox1.Visible = false;
             // 
             // Text_PublishYear
             // 
@@ -291,6 +292,7 @@ namespace PresentationLayer.Dialogs
             this.Name = "BookAddUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookAddUpdate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookAddUpdate_FormClosing);
             this.Panel_Container.ResumeLayout(false);
             this.Panel_Container.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_BookCover)).EndInit();

@@ -17,7 +17,7 @@ namespace PresentationLayer.Controls
     {
         private UserType _userType;
         private bool _isLongList;
-        private int _bookId;
+        private BookModel _bookModel;
 
         public BookListItem()
         {
@@ -93,35 +93,53 @@ namespace PresentationLayer.Controls
             }
         }
 
-        public int BookId
-        {
-            get { return _bookId; }
-        }
-
         public BookModel Book {
             set {
-                Text_BookTitleFirstLine.Text = value.title;
+                string [] lines = value.title.Split('|');
+                Text_BookTitleFirstLine.Text = lines[0];
+                if (lines.Length > 1)
+                {
+                    Text_BookTitleSecLine.Text = lines[1];
+                }
+                
                 Text_BookAuthor.Text = value.author;
                 Text_BookCategory.Text = value.category;
                 Text_ISBN.Text = value.isbn;
-                Image_BookCover.Image = Helpers.ConvertByteToImage(value.book_cover);
-                Button_BookDetails.Tag = value.book_id;
-                Button_Edit.Tag = value.book_id;
-                Button_BookDeleteBorrow.Tag = value.book_id;
-                _bookId = value.book_id;
+                Image_BookCover.Image = Helpers.ConvertByteToImage(value.book_cover, Image_BookCover.Image);
+                _bookModel = value;
 
                 if (_userType == UserType.Student && value.is_available == 0)
                 {
                     Button_BookDeleteBorrow.Enabled = false;
                 }
-
             }
+            get
+            {
+                return _bookModel;
+            }
+        }
+
+        public void HideHover()
+        {
+            Panel_Hover.Visible = false;
         }
 
         public event EventHandler ButtonHandler;
         private void ButtonClickEvent(object sender, EventArgs e)
         {
             Helpers.SendEvent(ButtonHandler, sender, e);
+        }
+
+        public static BookListItem GetItemFromButton(object Button)
+        {
+            try
+            {
+                return ((Button as Button).Parent.Parent.Parent as BookListItem);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
     }

@@ -68,7 +68,7 @@ namespace DataLayer.Repositories
 
         }
 
-        public void Update(BorrowingModel model)
+        public int Update(BorrowingModel model)
         {
             throw new NotImplementedException();
         }

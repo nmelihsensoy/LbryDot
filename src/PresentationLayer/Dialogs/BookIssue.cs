@@ -19,6 +19,7 @@ namespace PresentationLayer.Dialogs
         private CustomAppContext AppContext;
         private BorrowingService BorrowingService1;
         private BorrowingModel BorrowingModel1;
+        private DialogResult ResultType = DialogResult.Cancel;
 
         public BookIssue(CustomAppContext _appContext, BorrowingModel _borrowingModel1)
         {
@@ -28,7 +29,7 @@ namespace PresentationLayer.Dialogs
             BorrowingService1 = new BorrowingService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
-            ApplyFineMessage();
+            CreateFeeMessage();
         }
 
         private void ApplyColorPalette()
@@ -45,7 +46,7 @@ namespace PresentationLayer.Dialogs
             Button_Close.Text = Strings.Close;
         }
 
-        private void ApplyFineMessage()
+        private void CreateFeeMessage()
         {
             BorrowingModel1 = BorrowingService1.CalculateFee(BorrowingModel1);
 
@@ -61,7 +62,7 @@ namespace PresentationLayer.Dialogs
 
         private void Button_Close_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
 
         private void Button_Return_Click(object sender, EventArgs e)
@@ -69,17 +70,26 @@ namespace PresentationLayer.Dialogs
             try
             {
                 BorrowingService1.ReturnBook(BorrowingModel1);
-                //this.DialogResult = DialogResult.OK;
-                //this.Close();
+                alertBox1.Visible = true;
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Return Success");
+                alertBox2.Visible = true;
+                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Transaction Id #" + BorrowingModel1.borrow_id.ToString() );
+                this.Height = this.Height + alertBox1.Height + alertBox2.Height + 15;
+                ResultType = DialogResult.OK;
             }
             catch (Exception ex)
             {
-                this.Height = this.Height + alertBox1.Height + alertBox1.Height + 15;
-                MessageBox.Show(ex.Message);
                 alertBox1.Visible = true;
-                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, ex.Message);
-                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf Number: 35A");
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                this.Height = this.Height + alertBox1.Height + 15;
+               
+                ResultType = DialogResult.Abort;
             }
+        }
+
+        private void BookIssue_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = ResultType;
         }
     }
 }

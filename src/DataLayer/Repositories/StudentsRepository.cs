@@ -24,9 +24,9 @@ namespace DataLayer.Repositories
 
         public int Delete(StudentModel model)
         {
-            throw new NotImplementedException();
+            return dbConnection.Execute("DELETE FROM Students WHERE student_number=@id", new { id = model.student_number }, dbTransaction);
         }
-
+        
         public IEnumerable<StudentModel> GetAll()
         {
             return dbConnection.Query<StudentModel>("SELECT * FROM Students",
@@ -46,9 +46,18 @@ namespace DataLayer.Repositories
             return dbConnection.Query<StudentModel>("SELECT * FROM Students WHERE student_number = @id;", new { id = Id }, transaction: dbTransaction).FirstOrDefault();
         }
 
-        public void Update(StudentModel model)
+        public int Update(StudentModel model)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(model.student_password))
+            {
+                return dbConnection.Execute("UPDATE Students SET student_email=@student_email, student_name=@student_name, student_avatar=@student_avatar WHERE student_number = @student_number;", model,
+                transaction: dbTransaction);
+            }
+            else {
+                return dbConnection.Execute("UPDATE Students SET student_email=@student_email, student_passwod=@student_passwod, student_name=@student_name, student_avatar=@student_avatar WHERE student_number = @student_number;", model,
+                transaction: dbTransaction);
+            }
+            
         }
 
         public StudentModel LoginStudent(LoginModel Credential)

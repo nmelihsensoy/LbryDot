@@ -11,5 +11,6 @@ namespace DataLayer.Abstract
     {
         int[] AvailableBooks();
         int ChangeBookAvailability(int Id, short IsAvailable);
+        IEnumerable<BookModel> Search(string Text);
     }
 }

@@ -24,7 +24,7 @@ namespace DataLayer.Repositories
 
         public int Delete(BookModel model)
         {
-            throw new NotImplementedException();
+            return dbConnection.Execute("DELETE FROM Books WHERE book_id=@id", new { id = model.book_id }, dbTransaction);
         }
 
         public IEnumerable<BookModel> GetAll()
@@ -39,9 +39,10 @@ namespace DataLayer.Repositories
             return dbConnection.Query<BookModel>("SELECT * FROM Books WHERE book_id = @id;", new { id = Id }, transaction: dbTransaction).FirstOrDefault();
         }
 
-        public void Update(BookModel model)
+        public int Update(BookModel model)
         {
-            throw new NotImplementedException();
+            return dbConnection.Execute("UPDATE Books SET isbn=@isbn, title=@title, date_of_publication=@date_of_publication, author=@author, number_of_pages=@number_of_pages, category=@category, language=@language, book_cover=@book_cover, shelf_number=@shelf_number WHERE book_id = @book_id;", model,
+                transaction: dbTransaction);
         }
 
         public int[] AvailableBooks()
@@ -63,6 +64,13 @@ namespace DataLayer.Repositories
                     is_available = IsAvailable,
                     id = Id
                 },
+                transaction: dbTransaction);
+        }
+
+        public IEnumerable<BookModel> Search(string Text)
+        {
+            return dbConnection.Query<BookModel>("SELECT * FROM Books WHERE isbn LIKE @text OR title LIKE @text OR category LIKE @text;",
+                new { text = "%" + Text + "%" },
                 transaction: dbTransaction);
         }
 

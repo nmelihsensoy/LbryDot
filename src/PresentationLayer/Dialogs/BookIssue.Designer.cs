@@ -109,6 +109,7 @@ namespace PresentationLayer.Dialogs
             this.Name = "BookIssue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookIssue";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookIssue_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

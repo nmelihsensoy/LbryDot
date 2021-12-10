@@ -213,7 +213,7 @@ namespace PresentationLayer.Controls
         private System.Windows.Forms.Splitter Splitter_BorderBottom;
         private System.Windows.Forms.Panel Panel_Container;
         private System.Windows.Forms.Panel Panel_Bottom;
-        private System.Windows.Forms.Label Text_DaySecLine;
         public System.Windows.Forms.Label Text_DayFirstLine;
+        public System.Windows.Forms.Label Text_DaySecLine;
     }
 }

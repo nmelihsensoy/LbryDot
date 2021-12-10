@@ -182,6 +182,7 @@ namespace PresentationLayer.Dialogs
             this.Name = "StudentAddUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "StudentAddUpdate";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentAddUpdate_FormClosing);
             this.Panel_Container.ResumeLayout(false);
             this.Panel_Container.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_StudentAvatar)).EndInit();

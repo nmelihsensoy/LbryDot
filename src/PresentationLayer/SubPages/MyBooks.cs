@@ -19,13 +19,21 @@ namespace PresentationLayer.SubPages
     {
         private CustomAppContext AppContext;
         private BorrowingService BorrowingService1;
-        
+        private AlertBox MyBooksAlert;
+
         public MyBooks(CustomAppContext _appContext)
         {
             InitializeComponent();
             AppContext = _appContext;
             BorrowingService1 = new BorrowingService(AppContext);
-            PopulateMyBooks(BorrowingService1.GetAllBorrowings(), flowLayoutPanel1, StatusItemClick);
+            InitAlert();
+            RefreshMyBooks();
+        }
+
+        private void InitAlert()
+        {
+            MyBooksAlert = new AlertBox();
+            MyBooksAlert.Width = this.Width / 2;
         }
 
         public static void PopulateMyBooks(List<BorrowingModel> Lst, FlowLayoutPanel Pnl, EventHandler action)
@@ -64,28 +72,33 @@ namespace PresentationLayer.SubPages
             }
         }
 
+        private void RefreshMyBooks()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            PopulateMyBooks(BorrowingService1.GetAllBorrowings(), flowLayoutPanel1, StatusItemClick);
+            MyBooksAlert.ShowAlert(AlertBox.AlertType.Warning, "There is no any borrowed books");
+            Helpers.AddControlToEmptyContainer(flowLayoutPanel1, MyBooksAlert);
+        }
+
         private void StatusItemClick(object sender, EventArgs e)
         {
-            //MessageBox.Show((sender as Button).Name);
             if ((sender as Button).Name == "Button_ReturnBook")
             {
-                using (var form = new BookIssue(AppContext, ((BorrowingModel)(sender as Button).Tag)))
+                using (var form = new BookIssue(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow))
                 {
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
                     {
-                        MessageBox.Show("returned OK");
+                        RefreshMyBooks();
                     }
+                    BookStatusItem.GetItemFromButton(sender).HideHover();
                 }
             }else if ((sender as Button).Name == "Button_BookDetails")
             {
-                using (var form = new BookDetails(AppContext, ((BorrowingModel)(sender as Button).Tag).book.book_id))
+                using (var form = new BookDetails(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow.book))
                 {
                     var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        MessageBox.Show("returned OK");
-                    }
+                    BookStatusItem.GetItemFromButton(sender).HideHover();
                 }
             }
         }

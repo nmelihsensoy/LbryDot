@@ -135,7 +135,7 @@ namespace PresentationLayer
             P.Region = new Region(path);
         }
 
-        public static Image ConvertByteToImage(byte [] ImgInByte)
+        public static Image ConvertByteToImage(byte [] ImgInByte, Image DefaultImg=null)
         {
             if(ImgInByte != null && ImgInByte.Length > 0)
             {
@@ -143,7 +143,7 @@ namespace PresentationLayer
                 ms2.Write(ImgInByte, 0, ImgInByte.Length);
                 return Image.FromStream(ms2, true);
             }
-            return null;
+            return DefaultImg;
         }
 
         public static void SendEvent(EventHandler EventHandler, object Sender, EventArgs E)
@@ -151,6 +151,18 @@ namespace PresentationLayer
             if (EventHandler != null)
             {
                 EventHandler(Sender, E);
+            }
+        }
+
+        public static void AddControlToEmptyContainer<T,C>(C Container, T Control) where T : System.Windows.Forms.Control where C : System.Windows.Forms.Control
+        {
+            if (Container.Controls.Count < 1)
+            {
+                if (!Container.Controls.Contains(Control))
+                {
+                    Control.Visible = true;
+                    Container.Controls.Add(Control);
+                }
             }
         }
 

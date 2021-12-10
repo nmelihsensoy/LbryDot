@@ -63,5 +63,25 @@ namespace BusinessLogicLayer.Services
             return output;
         }
 
+        public void UpdateBook(BookModel Book)
+        {
+            var output = _appContext.getUoW().BooksRepository.Update(Book);
+            _appContext.getUoW().Commit();
+        }
+
+        public List<BookModel> SearchBook(String SearchText)
+        {
+            var output = _appContext.getUoW().BooksRepository.Search(SearchText).ToList();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public void DeleteBook(BookModel Book)
+        {
+            var output = _appContext.getUoW().BooksRepository.Delete(Book);
+            _appContext.getUoW().Commit();
+        }
+
     }
 }

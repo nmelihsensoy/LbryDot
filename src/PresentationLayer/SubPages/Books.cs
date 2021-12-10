@@ -19,24 +19,34 @@ namespace PresentationLayer.SubPages
     {
         private CustomAppContext AppContext;
         private BooksService BooksService1;
+        private AlertBox BookAlert;
+        private AlertBox SearchAlert;
 
         public Books(CustomAppContext _appContext)
         {
             InitializeComponent();
             AppContext = _appContext;
             BooksService1 = new BooksService(AppContext);
-            PopulateBooks(BooksService1.GetAllBooks());
+            InitAlert(ref BookAlert);
+            InitAlert(ref SearchAlert);
+            RefreshBooks();
         }
 
-        private void PopulateBooks(List<BookModel> Lst)
+        private void InitAlert(ref AlertBox AlertB)
+        {
+            AlertB = new AlertBox();
+            AlertB.Width = this.Width / 2;
+        }
+
+        private void PopulateBooks(List<BookModel> Lst, FlowLayoutPanel Pnl)
         {
             foreach (BookModel Book in Lst)
             {
                 BookListItem ListItem = new BookListItem();
-                ListItem.Book = Book;
                 ListItem.SetUserPrivilege(AppContext.GetUserType());
+                ListItem.Book = Book;
 
-                flowLayoutPanel1.Controls.Add(ListItem);
+                Pnl.Controls.Add(ListItem);
                 ListItem.ButtonHandler += ListClickEvent;
             }
         }
@@ -48,30 +58,46 @@ namespace PresentationLayer.SubPages
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-
+                    RefreshBooks();
                 }
             }
         }
 
         public void SearchBook(object sender, string text, EventArgs e)
         {
+            //this.ParentForm.ActiveControl = null;
+            flowLayoutPanel1.Visible = false;
+            flowLayoutPanel2.Visible = true;
+            flowLayoutPanel2.Controls.Clear();
+            var SearchResult = BooksService1.SearchBook(text);
+            PopulateBooks(SearchResult, flowLayoutPanel2);
+            SearchAlert.ShowAlert(AlertBox.AlertType.Warning, text + " : book couldn't find.");
+            Helpers.AddControlToEmptyContainer(flowLayoutPanel2, SearchAlert);
+        }
 
+        public void SearchReset()
+        {
+            flowLayoutPanel1.Visible = true;
+            flowLayoutPanel2.Visible = false;
+            flowLayoutPanel2.Controls.Clear();
+        }
+
+        private void RefreshBooks()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            PopulateBooks(BooksService1.GetAllBooks(), flowLayoutPanel1);
+            BookAlert.ShowAlert(AlertBox.AlertType.Warning, "There is no any book.");
+            Helpers.AddControlToEmptyContainer(flowLayoutPanel1, BookAlert);
         }
 
         private void ListClickEvent(object sender, EventArgs e)
         {  
-            //MessageBox.Show((sender as Button).Name);
             if ((sender as Button).Name == "Button_BookDetails")
             {
-                //MessageBox.Show((sender as Button).Tag.ToString());
-
-                using (var form = new BookDetails(AppContext, (int)(sender as Button).Tag))
+                using (var form = new BookDetails(AppContext, BookListItem.GetItemFromButton(sender).Book))
                 {
                     var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        MessageBox.Show("returned OK");
-                    }
+                    BookListItem.GetItemFromButton(sender).HideHover();
                 }
             }
             else if ((sender as Button).Name == "Button_BookDeleteBorrow")
@@ -81,23 +107,14 @@ namespace PresentationLayer.SubPages
                     DialogResult dialogResult = MessageBox.Show("Delete Book", "Are You Sure", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-
+                        BooksService1.DeleteBook(BookListItem.GetItemFromButton(sender).Book);
+                        RefreshBooks();
                     }
-                    else if (dialogResult == DialogResult.No)
-                    {
-
-                    }
+                    BookListItem.GetItemFromButton(sender).HideHover();
                 }
                 else
                 {       
-                    BorrowingModel BorrowBook1 = new BorrowingModel();
-                    BookModel TempBook = new BookModel();
-                    TempBook.book_id = (int)(sender as Button).Tag;
-                    BorrowBook1.student = AppContext.GetLoggedStudent();
-                    BorrowBook1.book = TempBook;
-                    //BorrowBook1.student_number = AppContext.GetLoggedStudent().student_number;
-                    //BorrowBook1.book_id = (int)(sender as Button).Tag;
-                    using (var form = new BookBorrow(AppContext ,BorrowBook1))
+                    using (var form = new BookBorrow(AppContext ,BookListItem.GetItemFromButton(sender).Book))
                     {
                         form.StartPosition = FormStartPosition.Manual;
                         Point StartP = (sender as Button).PointToScreen(Point.Empty);
@@ -107,25 +124,24 @@ namespace PresentationLayer.SubPages
                         var result = form.ShowDialog();
                         if (result == DialogResult.OK)
                         {
-                            MessageBox.Show("returned OK");
+                            RefreshBooks();
                         }
+                        BookListItem.GetItemFromButton(sender).HideHover();
                     }
                 }
             }
             else if ((sender as Button).Name == "Button_Edit")
             {
-
-                //MessageBox.Show((sender as Button).Tag.ToString());
-                using (var form = new BookAddUpdate(AppContext, (int)(sender as Button).Tag))
+                using (var form = new BookAddUpdate(AppContext, BookListItem.GetItemFromButton(sender).Book))
                 {
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
                     {
-
+                        RefreshBooks();
                     }
+                    BookListItem.GetItemFromButton(sender).HideHover();
                 }
             }
         }
-
     }
 }

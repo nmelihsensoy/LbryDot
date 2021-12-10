@@ -76,7 +76,16 @@ namespace BusinessLogicLayer.Services
 
         public void DeleteStudentById(int Id)
         {
-            
+            StudentModel TempStudent = new StudentModel();
+            TempStudent.student_number = Id;
+            var output = _appContext.getUoW().StudentsRepository.Delete(TempStudent);
+            _appContext.getUoW().Commit();
+        }
+
+        public void UpdateStudent(StudentModel Student)
+        {
+            var output = _appContext.getUoW().StudentsRepository.Update(Student);
+            _appContext.getUoW().Commit();
         }
 
     }

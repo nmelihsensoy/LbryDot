@@ -21,6 +21,8 @@ namespace PresentationLayer.Dialogs
         private byte[] SelectedAvatarInBytes;
         private bool IsNewStudent = true;
         private int StudentNumber;
+        private StudentModel EditStudent;
+        public DialogResult ReturnType = DialogResult.Cancel;
 
         public StudentAddUpdate(CustomAppContext _appContext, int _studentNumber = -1)
         {
@@ -54,42 +56,54 @@ namespace PresentationLayer.Dialogs
         {
             if(this.IsNewStudent == false)
             {
-                StudentModel EditStudent = StudentsService1.GetStudentById(StudentNumber);
+                EditStudent = StudentsService1.GetStudentById(StudentNumber);
                 Input_Email.Text = EditStudent.student_email;
                 Input_Name.Text = EditStudent.student_name;
-                if (EditStudent.student_avatar != null && EditStudent.student_avatar.Length > 0)
-                    Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStudent.student_avatar);
+                SelectedAvatarInBytes = EditStudent.student_avatar;
+                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStudent.student_avatar);
             }
         }
 
+        private void SetModelFromInputs(StudentModel Student)
+        {
+            Student.student_email = Input_Email.Text;
+            Student.student_name = Input_Name.Text;
+            Student.student_password = Input_Password.Text;
+            Student.student_avatar = SelectedAvatarInBytes;
+        }
+
         private void ıconButton2_Click(object sender, EventArgs e)
-        {       
-            if(IsNewStudent == true)
+        {
+            try
             {
-                try
+                string SuccessMsg = "";
+                if (IsNewStudent == true)
                 {
                     StudentModel NewStudent = new StudentModel();
-                    NewStudent.student_email = Input_Email.Text;
-                    NewStudent.student_name = Input_Name.Text;
-                    NewStudent.student_password = Input_Password.Text;
-                    NewStudent.student_avatar = SelectedAvatarInBytes;
+                    SetModelFromInputs(NewStudent);
 
                     StudentsService1.AddStudent(NewStudent);
+                    SuccessMsg = "Student Added Successfully";
                 }
-                catch (Exception ex)
+                else
                 {
-                    AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                    AlertBox_UserOperation.Visible = true;
-                    this.Height += AlertBox_UserOperation.Height + 10;
+                    SetModelFromInputs(EditStudent);
+                    StudentsService1.UpdateStudent(EditStudent);
+                    SuccessMsg = "Student Updated Successfully";
                 }
-            }
-            else
-            {
-                MessageBox.Show("Update");
-            }
 
-            this.DialogResult = DialogResult.OK;
-            //this.Close();
+                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
+                AlertBox_UserOperation.Visible = true;
+                this.Height += AlertBox_UserOperation.Height + 10;
+                ReturnType = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                AlertBox_UserOperation.Visible = true;
+                this.Height += AlertBox_UserOperation.Height + 10;
+                ReturnType = DialogResult.Abort;
+            }
         }
 
         private void ıconButton1_Click(object sender, EventArgs e)
@@ -108,6 +122,12 @@ namespace PresentationLayer.Dialogs
                     MessageBox.Show("File size has to be lower than 500KB");
                 }
             }
+        }
+
+        private void StudentAddUpdate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //e.Cancel = true;
+            this.DialogResult = ReturnType;
         }
     }
 }

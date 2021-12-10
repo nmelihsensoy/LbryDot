@@ -30,12 +30,12 @@ namespace PresentationLayer.Dialogs
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.AlertBox_SuccessInfo = new PresentationLayer.Controls.AlertBox();
+            this.AlertBox_SuccesError = new PresentationLayer.Controls.AlertBox();
             this.Button_Close = new System.Windows.Forms.Button();
             this.Button_Borrow = new System.Windows.Forms.Button();
             this.Text_SelectDate = new System.Windows.Forms.Label();
             this.dateTimePicker_ReturnDate = new System.Windows.Forms.DateTimePicker();
-            this.AlertBox_SuccessInfo = new PresentationLayer.Controls.AlertBox();
-            this.AlertBox_SuccesError = new PresentationLayer.Controls.AlertBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,23 @@ namespace PresentationLayer.Dialogs
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(227, 155);
             this.panel1.TabIndex = 0;
+            // 
+            // AlertBox_SuccessInfo
+            // 
+            this.AlertBox_SuccessInfo.Location = new System.Drawing.Point(12, 201);
+            this.AlertBox_SuccessInfo.MinimumSize = new System.Drawing.Size(150, 0);
+            this.AlertBox_SuccessInfo.Name = "AlertBox_SuccessInfo";
+            this.AlertBox_SuccessInfo.Size = new System.Drawing.Size(200, 39);
+            this.AlertBox_SuccessInfo.TabIndex = 32;
+            // 
+            // AlertBox_SuccesError
+            // 
+            this.AlertBox_SuccesError.Location = new System.Drawing.Point(12, 156);
+            this.AlertBox_SuccesError.MinimumSize = new System.Drawing.Size(150, 0);
+            this.AlertBox_SuccesError.Name = "AlertBox_SuccesError";
+            this.AlertBox_SuccesError.Size = new System.Drawing.Size(200, 39);
+            this.AlertBox_SuccesError.TabIndex = 31;
+            this.AlertBox_SuccesError.Visible = false;
             // 
             // Button_Close
             // 
@@ -92,23 +109,6 @@ namespace PresentationLayer.Dialogs
             this.dateTimePicker_ReturnDate.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker_ReturnDate.TabIndex = 27;
             // 
-            // AlertBox_SuccessInfo
-            // 
-            this.AlertBox_SuccessInfo.Location = new System.Drawing.Point(12, 201);
-            this.AlertBox_SuccessInfo.MinimumSize = new System.Drawing.Size(150, 0);
-            this.AlertBox_SuccessInfo.Name = "AlertBox_SuccessInfo";
-            this.AlertBox_SuccessInfo.Size = new System.Drawing.Size(200, 39);
-            this.AlertBox_SuccessInfo.TabIndex = 32;
-            // 
-            // AlertBox_SuccesError
-            // 
-            this.AlertBox_SuccesError.Location = new System.Drawing.Point(12, 156);
-            this.AlertBox_SuccesError.MinimumSize = new System.Drawing.Size(150, 0);
-            this.AlertBox_SuccesError.Name = "AlertBox_SuccesError";
-            this.AlertBox_SuccesError.Size = new System.Drawing.Size(200, 39);
-            this.AlertBox_SuccesError.TabIndex = 31;
-            this.AlertBox_SuccesError.Visible = false;
-            // 
             // BookBorrow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +121,7 @@ namespace PresentationLayer.Dialogs
             this.Name = "BookBorrow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookBorrow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookBorrow_FormClosing);
             this.Load += new System.EventHandler(this.BookBorrow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

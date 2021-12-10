@@ -103,33 +103,34 @@ namespace BusinessLogicLayer.Services
             string[] str = new string[5];
             DateTime[] last5Day = new DateTime[5];
 
-            for (int i = 0; i < 5; i++)
+            last5Day[0] = DateTime.Today.AddDays(-4);
+            str[0] = last5Day[0].ToString("dd/MM/yyyy");
+            for (int i = 1; i < 5; i++)
             {
-                if (i == 0) {
-                    last5Day[i] = DateTime.Today.AddDays(-4);
-                }
-                else {
-                    last5Day[i] = last5Day[i - 1].AddDays(+1);
-                }
-
+                last5Day[i] = last5Day[i - 1].AddDays(+1);
                 str[i] = last5Day[i].ToString("dd/MM/yyyy");
+            }
 
-                foreach (var Day in output.Item1)
+            foreach (var Day in output.Item1)
+            {
+                for (int i = 0; i < 5; i++)
                 {
                     if (last5Day[i].Date == Day.date.Date)
                     {
                         y[i] = Day.count;
                     }
                 }
+            }
 
-                foreach (var Day in output.Item1)
+            foreach (var Day in output.Item2)
+            {
+                for (int i = 0; i < 5; i++)
                 {
                     if (last5Day[i].Date == Day.date.Date)
                     {
                         y2[i] = Day.count;
                     }
                 }
-
             }
 
             return Tuple.Create(y, y2, str);

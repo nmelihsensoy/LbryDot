@@ -11,7 +11,7 @@ namespace DataLayer.Abstract
     public interface IGenericRepository<T>
     {
         int Add(T model);
-        void Update(T model);
+        int Update(T model);
         int Delete(T model);
         IEnumerable<T> GetAll();
         T GetById(int Id);

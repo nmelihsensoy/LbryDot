@@ -11,6 +11,7 @@ using BusinessLogicLayer;
 using PresentationLayer.Dialogs;
 using BusinessLogicLayer.Services;
 using Entities;
+using PresentationLayer.Controls;
 
 namespace PresentationLayer.SubPages
 {
@@ -19,14 +20,16 @@ namespace PresentationLayer.SubPages
         private CustomAppContext AppContext;
         private StudentsService StudentsService1;
         private List<object> AllStudents;
+        private bool IsFiltered = false;
+        private AlertBox StudentsAlert;
 
         public Students(CustomAppContext _appContext)
         {
             InitializeComponent();
             AppContext = _appContext;
             StudentsService1 = new StudentsService(AppContext);
-            AllStudents = StudentsService1.GetAllStudents();
-            InitTable();
+            InitAlert(ref StudentsAlert);
+            RefreshTable();
             ApplyColorPalette();
             ApplyStrings();
         }
@@ -34,21 +37,41 @@ namespace PresentationLayer.SubPages
         private void ApplyColorPalette()
         {
             this.BackColor = Color.FromArgb(247, 248, 250);
+            dataGridView1.BackgroundColor = Color.FromArgb(247, 248, 250);
         }
 
         private void ApplyStrings()
         {
 
         }
+        private void InitAlert(ref AlertBox AlertB)
+        {
+            AlertB = new AlertBox();
+            AlertB.Width = this.Width / 2;
+            AlertB.Top = dataGridView1.Top;
+            AlertB.Left = dataGridView1.Left;
+        }
 
         public void AddButtonClick(object sender, EventArgs e)
         {
-            using (var form = new StudentAddUpdate(AppContext))
+            HandleDialog();
+        }
+
+        private void HandleDialog(int StudentId = -1) {
+            Form Dialog1;
+            if (StudentId == -1) {
+                Dialog1 = new StudentAddUpdate(AppContext);
+            }
+            else
+            {
+                Dialog1 = new StudentAddUpdate(AppContext, StudentId);
+            }
+            using (var form = Dialog1)
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    MessageBox.Show("Success");
+                    RefreshTable();
                 }
             }
         }
@@ -57,19 +80,63 @@ namespace PresentationLayer.SubPages
         {
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = StudentsService1.SearchStudent(text);
-            AddTableButtons();
-            TableCustom();
+            dataGridView1.Rows.Clear();
+            var SearchResults = StudentsService1.SearchStudent(text);
+            dataGridView1.DataSource = SearchResults;
+            IsFiltered = true;
+            if (SearchResults.Count > 0) {
+                this.Controls.Remove(StudentsAlert);
+                AddTableButtons();
+                TableCustom();
+            }
+            if (SearchResults.Count < 1)
+            {
+                this.Controls.Remove(StudentsAlert);
+                StudentsAlert.ShowAlert(AlertBox.AlertType.Danger, text+" couldn't find");
+                StudentsAlert.Visible = true;
+                this.Controls.Add(StudentsAlert);
+                StudentsAlert.BringToFront();
+            }
+        }
+
+        public void SearchReset()
+        {
+            if (IsFiltered)
+            {
+                this.Controls.Remove(StudentsAlert);
+                InitTable();
+            }
+        }
+
+        private void RefreshTable()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+            AllStudents = StudentsService1.GetAllStudents();
+            InitTable();
         }
 
         private void InitTable()
         {
             if (AllStudents.Count > 0)
             {
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.Rows.Clear();
                 dataGridView1.DataSource = AllStudents;
+                this.Controls.Remove(StudentsAlert);
                 ApplyTableStyle();
                 AddTableButtons();
                 TableCustom();
+            }
+
+            if (AllStudents.Count < 1)
+            {
+                StudentsAlert.ShowAlert(AlertBox.AlertType.Warning, "Zero Student");
+                StudentsAlert.Visible = true;
+                this.Controls.Add(StudentsAlert);
+                StudentsAlert.BringToFront();
             }
         }
 
@@ -145,29 +212,15 @@ namespace PresentationLayer.SubPages
                     int SelectedStudentId = (int)dataGridView1.Rows[e.RowIndex].Cells["Student_Number"].Value;
                     if ((senderGrid.Columns[e.ColumnIndex] as DataGridViewButtonColumn).Name == "Button_Edit")
                     {
-                        using (var form = new StudentAddUpdate(AppContext, SelectedStudentId))
-                        {
-                            var result = form.ShowDialog();
-                            if (result == DialogResult.OK)
-                            {
-
-                            }
-                            else
-                            {
-                                //MessageBox.Show("Didnt Changed");
-                            }
-                        }
+                        HandleDialog(SelectedStudentId);
                     }
                     else if ((senderGrid.Columns[e.ColumnIndex] as DataGridViewButtonColumn).Name == "Button_Delete")
                     {
                         DialogResult dialogResult = MessageBox.Show("Delete \"" + dataGridView1.Rows[e.RowIndex].Cells["Student_Name"].Value.ToString() + "\"", "Are You Sure", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-
-                        }
-                        else if (dialogResult == DialogResult.No)
-                        {
-
+                            StudentsService1.DeleteStudentById(SelectedStudentId);
+                            RefreshTable();
                         }
                     }
                 }

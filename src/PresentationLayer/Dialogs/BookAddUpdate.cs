@@ -21,14 +21,15 @@ namespace PresentationLayer.Dialogs
         private BooksService BooksService1;
         private byte[] SelectedCoverInBytes;
         private bool IsNewBook = true;
-        private int BookId;
+        private BookModel _editBook;
+        public DialogResult ReturnType = DialogResult.Cancel;
 
-        public BookAddUpdate(CustomAppContext _appContext, int _bookId = -1)
+        public BookAddUpdate(CustomAppContext _appContext, BookModel EditBook=null)
         {
             InitializeComponent();
             AppContext = _appContext;
-            BookId = _bookId;
-            if (_bookId != -1) IsNewBook = false;
+            _editBook = EditBook;
+            if (EditBook != null & EditBook.book_id > 0) IsNewBook = false;
             BooksService1 = new BooksService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
@@ -39,18 +40,16 @@ namespace PresentationLayer.Dialogs
         {
             if (this.IsNewBook == false)
             {
-                BookModel EditBook = BooksService1.GetBookById(BookId);
-                Input_ISBN.Text = EditBook.isbn.ToString();
-                Input_Title.Text = EditBook.title;
-                Input_Author.Text = EditBook.author;
-                Input_Category.Text = EditBook.category;
-                Input_BookLang.Text = EditBook.language;
-                Input_Length.Text = EditBook.number_of_pages.ToString();
-                Input_ShelfNumber.Text = EditBook.shelf_number;
-                dateTimePicker_PublishYear.Value = new DateTime(EditBook.date_of_publication, 1,1);
-                //dateTimePicker_PublishYear.Value = DateTime.ParseExact(EditBook.date_of_publication, "yyyy", CultureInfo.InvariantCulture);
-                Image_BookCover.Image = Helpers.ConvertByteToImage(EditBook.book_cover);
-
+                Input_ISBN.Text = _editBook.isbn.ToString();
+                Input_Title.Text = _editBook.title;
+                Input_Author.Text = _editBook.author;
+                Input_Category.Text = _editBook.category;
+                Input_BookLang.Text = _editBook.language;
+                Input_Length.Text = _editBook.number_of_pages.ToString();
+                Input_ShelfNumber.Text = _editBook.shelf_number;
+                dateTimePicker_PublishYear.Value = new DateTime(_editBook.date_of_publication, 1,1);
+                SelectedCoverInBytes = _editBook.book_cover;
+                Image_BookCover.Image = Helpers.ConvertByteToImage(_editBook.book_cover, Image_BookCover.Image);
             }
         }
 
@@ -93,38 +92,52 @@ namespace PresentationLayer.Dialogs
             }
         }
 
+        private void SetModelFromInputs(BookModel Book)
+        {
+            Book.isbn = Input_ISBN.Text;
+            Book.title = Input_Title.Text;
+            Book.date_of_publication = dateTimePicker_PublishYear.Value.Year;
+            Book.author = Input_Author.Text;
+            Book.number_of_pages = Int32.Parse(Input_Length.Text);
+            Book.category = Input_Category.Text;
+            Book.language = Input_BookLang.Text;
+            Book.shelf_number = Input_ShelfNumber.Text;
+            Book.book_cover = SelectedCoverInBytes;
+        }
+
         private void Button_Save_Click(object sender, EventArgs e)
         {
-            if(IsNewBook == true)
+            try
             {
-                try
+                string SuccessMsg = "";
+                if (IsNewBook == true)
                 {
                     BookModel NewBook = new BookModel();
-                    NewBook.isbn = Input_ISBN.Text;
-                    NewBook.title = Input_Title.Text;
-                    NewBook.date_of_publication = dateTimePicker_PublishYear.Value.Year;
-                    //NewBook.date_of_publication = dateTimePicker_PublishYear.Value.ToString("yyyy");
-                    NewBook.author = Input_Author.Text;
-                    NewBook.number_of_pages = Int32.Parse(Input_Length.Text);
-                    NewBook.category = Input_Category.Text;
-                    NewBook.language = Input_BookLang.Text;
-                    NewBook.shelf_number = Input_ShelfNumber.Text;
-                    NewBook.book_cover = SelectedCoverInBytes;
+                    SetModelFromInputs(NewBook);
 
                     BooksService1.AddBook(NewBook);
-                    this.DialogResult = DialogResult.OK;
-                    //this.Close();
+                    SuccessMsg = "Book Added Succesfully";
                 }
-                catch (Exception ex)
+                else
                 {
-                    alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                    alertBox1.Visible = true;
+                    SetModelFromInputs(_editBook);
+                    BooksService1.UpdateBook(_editBook);
+                    SuccessMsg = "Book Edited Succesfully";
                 }
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
+                alertBox1.Visible = true;
+                ReturnType = DialogResult.OK;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Update");
-            } 
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                alertBox1.Visible = true;
+            }
+        }
+
+        private void BookAddUpdate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = ReturnType;
         }
     }
 }

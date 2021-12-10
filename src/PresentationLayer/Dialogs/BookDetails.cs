@@ -16,29 +16,44 @@ namespace PresentationLayer.Dialogs
     public partial class BookDetails : Form
     {
         private CustomAppContext AppContext;
-        private int BookId;
-        private BooksService BooksService1;
+        private BookModel _book;
         private BorrowingService BorrowingService1;
 
-        public BookDetails(CustomAppContext _appContext, int _bookId)
+        public BookDetails(CustomAppContext _appContext, BookModel Book)
         {
             AppContext = _appContext;
-            BooksService1 = new BooksService(AppContext);
             BorrowingService1 = new BorrowingService(AppContext);
-            BookId = _bookId;
+            _book = Book;
             InitializeComponent();
             SetBookDetailsById();
             InitTable();
             bookListItem1.MakeExtendedListItem();
-            dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(BookId, true);
+            if (AppContext.GetUserType() == UserType.Staff)
+            {
+                dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id);
+            }
+            else
+            {
+                dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id, true);
+            }
+            TableCustom();
         }
 
         private void SetBookDetailsById()
         {
-            BookModel Book1 = BooksService1.GetBookById(BookId);
             bookListItem1.MakeExtendedListItem();
             bookListItem1.SetUserPrivilege(UserType.Student);
-            bookListItem1.Book = Book1;
+            bookListItem1.Book = _book;
+        }
+
+        private void TableCustom()
+        {
+            if (dataGridView1.Columns.Count > 0)
+            {
+                dataGridView1.Columns[0].HeaderText = "Student Name";
+                dataGridView1.Columns[1].HeaderText = "Borrow Date";
+                dataGridView1.Columns[2].HeaderText = "Return Date";
+            }
         }
 
         private void InitTable()
@@ -58,16 +73,7 @@ namespace PresentationLayer.Dialogs
             dataGridView1.RowTemplate.Height = 30;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.ClearSelection();
-
-            //DataTable table = new DataTable();
-
-            //table.Columns.Add("Student", typeof(string));
-            //table.Columns.Add("Borrow Date", typeof(string));
-            //table.Columns.Add("Returned Date", typeof(string));
-
-            //table.Rows.Add("John Doe", "01.11.2021", "09.11.2021");
-            
+            dataGridView1.ClearSelection(); 
         }
 
     }

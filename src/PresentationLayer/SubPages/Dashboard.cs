@@ -37,6 +37,7 @@ namespace PresentationLayer.SubPages
 			BarChartInit(ChartItems.Item2, ChartItems.Item1, ChartItems.Item3);
 			int[] TmpPieValue = BooksService1.GetAvailableCount();
 			DrawPieChart(TmpPieValue[1], (TmpPieValue[0] - TmpPieValue[1]));
+
 		}
 
 		private void ApplyColorPalette()
@@ -165,6 +166,21 @@ namespace PresentationLayer.SubPages
         {
 			MainPage Parent1 = (MainPage)this.ParentForm;
 			Parent1.PageNavigation(new MyBooks(AppContext));
+		}
+
+        private void Dashboard_Resize(object sender, EventArgs e)
+        {
+			Panel_ChartLeft.Width = this.Width * 35 / 100;
+			Panel_ChartLeft.Height = this.Height * 45 / 100;
+
+			Panel_ChartRight.Width = this.Width * 60 / 100;
+			Panel_ChartRight.Height = this.Height * 45 / 100;
+			Panel_ChartRight.Left = (this.Width - Panel_ChartRight.Width) - this.Padding.Right;
+
+			Panel_ChartLeft.Width += (Panel_ChartRight.Left - Panel_ChartLeft.Right) - this.Padding.Left;
+			Panel_ActiveBooks.Width = this.Width - (this.Padding.Left + this.Padding.Right);
+			Panel_ActiveBooks.Height = this.Height * 45 / 100;
+			Panel_ActiveBooks.Top = Panel_ChartLeft.Bottom + this.Padding.Top;
 		}
     }
 }

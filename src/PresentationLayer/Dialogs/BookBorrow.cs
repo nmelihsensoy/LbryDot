@@ -17,17 +17,18 @@ namespace PresentationLayer.Dialogs
     public partial class BookBorrow : Form
     {
         private CustomAppContext AppContext;
-        private BorrowingModel BorrowBook1;
         private BorrowingService BorrowingService1;
-        
-        public BookBorrow(CustomAppContext _appContext, BorrowingModel _borrowBook)
+        private DialogResult ResultType = DialogResult.Cancel;
+        private BookModel _book;
+
+        public BookBorrow(CustomAppContext _appContext, BookModel Book)
         {
             InitializeComponent();
             AppContext = _appContext;
             BorrowingService1 = new BorrowingService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
-            BorrowBook1 = _borrowBook;
+            _book = Book;
         }
 
         private void ApplyColorPalette()
@@ -54,21 +55,32 @@ namespace PresentationLayer.Dialogs
         {
             try
             {
+                BorrowingModel BorrowBook1 = new BorrowingModel();
+                BorrowBook1.book = _book;
+                BorrowBook1.student = AppContext.GetLoggedStudent();
                 BorrowBook1.issued_date = DateTime.Now;
                 BorrowBook1.due_date = dateTimePicker_ReturnDate.Value;
 
                 BorrowingService1.AddBorrowing(BorrowBook1);
-                this.DialogResult = DialogResult.OK;
-                //this.Close();
+                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Borrow Success");
+                AlertBox_SuccesError.Visible = true;
+                AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf: "+BorrowBook1.book.shelf_number);
+                AlertBox_SuccessInfo.Visible = true;
+                this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
+                ResultType = DialogResult.OK;
             }
             catch (Exception ex)
             {
-                this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
-                MessageBox.Show(ex.Message);
+                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
                 AlertBox_SuccesError.Visible = true;
-                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, ex.Message);
-                AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf Number: 35A");
+                this.Height = this.Height + AlertBox_SuccesError.Height + 15;
+                ResultType = DialogResult.Abort;
             }
+        }
+
+        private void BookBorrow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = ResultType;
         }
     }
 }

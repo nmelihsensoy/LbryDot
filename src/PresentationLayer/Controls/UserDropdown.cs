@@ -57,8 +57,8 @@ namespace PresentationLayer.Controls
                 Text_UserRole.Text = Strings.StaffRole;
             }
             Text_UserName.Text = Model.staff_name;
-            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.staff_avatar);
-            if(_menu != null)
+            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.staff_avatar, Image_UserAvatar.Image);
+            if (_menu != null)
             {
                 _menu.SetUser(Model);
             }
@@ -68,7 +68,7 @@ namespace PresentationLayer.Controls
         {
             Text_UserRole.Text = Strings.StudentRole;
             Text_UserName.Text = Model.student_name;
-            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.student_avatar);
+            Image_UserAvatar.Image = Helpers.ConvertByteToImage(Model.student_avatar, Image_UserAvatar.Image);
             if (_menu != null)
             {
                 _menu.SetUser(Model);
