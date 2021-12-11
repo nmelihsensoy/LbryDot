@@ -30,6 +30,10 @@ namespace PresentationLayer.Dialogs
         private void InitializeComponent()
         {
             this.Panel_Container = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Input_Category = new System.Windows.Forms.ComboBox();
+            this.Text_Title_Sec = new System.Windows.Forms.Label();
+            this.Input_Title_Sec = new System.Windows.Forms.TextBox();
             this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.Text_PublishYear = new System.Windows.Forms.Label();
             this.dateTimePicker_PublishYear = new System.Windows.Forms.DateTimePicker();
@@ -40,7 +44,6 @@ namespace PresentationLayer.Dialogs
             this.Text_BookLang = new System.Windows.Forms.Label();
             this.Input_BookLang = new System.Windows.Forms.TextBox();
             this.Text_Category = new System.Windows.Forms.Label();
-            this.Input_Category = new System.Windows.Forms.TextBox();
             this.Image_BookCover = new System.Windows.Forms.PictureBox();
             this.Text_Author = new System.Windows.Forms.Label();
             this.Input_Author = new System.Windows.Forms.TextBox();
@@ -52,12 +55,17 @@ namespace PresentationLayer.Dialogs
             this.Button_Save = new FontAwesome.Sharp.IconButton();
             this.Button_SelectCover = new FontAwesome.Sharp.IconButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.Panel_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_BookCover)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel_Container
             // 
+            this.Panel_Container.Controls.Add(this.panel1);
+            this.Panel_Container.Controls.Add(this.Input_Category);
+            this.Panel_Container.Controls.Add(this.Text_Title_Sec);
+            this.Panel_Container.Controls.Add(this.Input_Title_Sec);
             this.Panel_Container.Controls.Add(this.alertBox1);
             this.Panel_Container.Controls.Add(this.Text_PublishYear);
             this.Panel_Container.Controls.Add(this.dateTimePicker_PublishYear);
@@ -68,7 +76,6 @@ namespace PresentationLayer.Dialogs
             this.Panel_Container.Controls.Add(this.Text_BookLang);
             this.Panel_Container.Controls.Add(this.Input_BookLang);
             this.Panel_Container.Controls.Add(this.Text_Category);
-            this.Panel_Container.Controls.Add(this.Input_Category);
             this.Panel_Container.Controls.Add(this.Image_BookCover);
             this.Panel_Container.Controls.Add(this.Text_Author);
             this.Panel_Container.Controls.Add(this.Input_Author);
@@ -85,12 +92,50 @@ namespace PresentationLayer.Dialogs
             this.Panel_Container.Size = new System.Drawing.Size(685, 324);
             this.Panel_Container.TabIndex = 1;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Location = new System.Drawing.Point(295, 189);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(24, 21);
+            this.panel1.TabIndex = 40;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            // 
+            // Input_Category
+            // 
+            this.Input_Category.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Input_Category.FormattingEnabled = true;
+            this.Input_Category.Location = new System.Drawing.Point(132, 189);
+            this.Input_Category.Name = "Input_Category";
+            this.Input_Category.Size = new System.Drawing.Size(152, 21);
+            this.Input_Category.TabIndex = 39;
+            this.Input_Category.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Input_Category_DrawItem);
+            // 
+            // Text_Title_Sec
+            // 
+            this.Text_Title_Sec.AutoSize = true;
+            this.Text_Title_Sec.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Title_Sec.Location = new System.Drawing.Point(19, 61);
+            this.Text_Title_Sec.Name = "Text_Title_Sec";
+            this.Text_Title_Sec.Size = new System.Drawing.Size(35, 19);
+            this.Text_Title_Sec.TabIndex = 38;
+            this.Text_Title_Sec.Text = "Text";
+            // 
+            // Input_Title_Sec
+            // 
+            this.Input_Title_Sec.Location = new System.Drawing.Point(132, 60);
+            this.Input_Title_Sec.MaxLength = 15;
+            this.Input_Title_Sec.Name = "Input_Title_Sec";
+            this.Input_Title_Sec.Size = new System.Drawing.Size(187, 20);
+            this.Input_Title_Sec.TabIndex = 37;
+            // 
             // alertBox1
             // 
             this.alertBox1.Location = new System.Drawing.Point(24, 272);
             this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
             this.alertBox1.Name = "alertBox1";
-            this.alertBox1.Size = new System.Drawing.Size(290, 39);
+            this.alertBox1.Size = new System.Drawing.Size(295, 39);
             this.alertBox1.TabIndex = 36;
             this.alertBox1.Visible = false;
             // 
@@ -98,7 +143,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_PublishYear.AutoSize = true;
             this.Text_PublishYear.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_PublishYear.Location = new System.Drawing.Point(20, 212);
+            this.Text_PublishYear.Location = new System.Drawing.Point(20, 233);
             this.Text_PublishYear.Name = "Text_PublishYear";
             this.Text_PublishYear.Size = new System.Drawing.Size(34, 19);
             this.Text_PublishYear.TabIndex = 35;
@@ -108,7 +153,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.dateTimePicker_PublishYear.CustomFormat = "yyyy";
             this.dateTimePicker_PublishYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_PublishYear.Location = new System.Drawing.Point(132, 212);
+            this.dateTimePicker_PublishYear.Location = new System.Drawing.Point(132, 232);
             this.dateTimePicker_PublishYear.Name = "dateTimePicker_PublishYear";
             this.dateTimePicker_PublishYear.ShowUpDown = true;
             this.dateTimePicker_PublishYear.Size = new System.Drawing.Size(187, 20);
@@ -118,7 +163,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_ShelfNumber.AutoSize = true;
             this.Text_ShelfNumber.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_ShelfNumber.Location = new System.Drawing.Point(369, 107);
+            this.Text_ShelfNumber.Location = new System.Drawing.Point(369, 104);
             this.Text_ShelfNumber.Name = "Text_ShelfNumber";
             this.Text_ShelfNumber.Size = new System.Drawing.Size(34, 19);
             this.Text_ShelfNumber.TabIndex = 33;
@@ -126,7 +171,7 @@ namespace PresentationLayer.Dialogs
             // 
             // Input_ShelfNumber
             // 
-            this.Input_ShelfNumber.Location = new System.Drawing.Point(480, 106);
+            this.Input_ShelfNumber.Location = new System.Drawing.Point(480, 103);
             this.Input_ShelfNumber.Name = "Input_ShelfNumber";
             this.Input_ShelfNumber.Size = new System.Drawing.Size(187, 20);
             this.Input_ShelfNumber.TabIndex = 32;
@@ -135,7 +180,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_BookLength.AutoSize = true;
             this.Text_BookLength.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_BookLength.Location = new System.Drawing.Point(369, 59);
+            this.Text_BookLength.Location = new System.Drawing.Point(369, 61);
             this.Text_BookLength.Name = "Text_BookLength";
             this.Text_BookLength.Size = new System.Drawing.Size(34, 19);
             this.Text_BookLength.TabIndex = 31;
@@ -143,7 +188,7 @@ namespace PresentationLayer.Dialogs
             // 
             // Input_Length
             // 
-            this.Input_Length.Location = new System.Drawing.Point(480, 58);
+            this.Input_Length.Location = new System.Drawing.Point(480, 60);
             this.Input_Length.Name = "Input_Length";
             this.Input_Length.Size = new System.Drawing.Size(187, 20);
             this.Input_Length.TabIndex = 30;
@@ -169,23 +214,16 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_Category.AutoSize = true;
             this.Text_Category.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_Category.Location = new System.Drawing.Point(20, 162);
+            this.Text_Category.Location = new System.Drawing.Point(20, 190);
             this.Text_Category.Name = "Text_Category";
             this.Text_Category.Size = new System.Drawing.Size(34, 19);
             this.Text_Category.TabIndex = 27;
             this.Text_Category.Text = "text";
             // 
-            // Input_Category
-            // 
-            this.Input_Category.Location = new System.Drawing.Point(132, 161);
-            this.Input_Category.Name = "Input_Category";
-            this.Input_Category.Size = new System.Drawing.Size(187, 20);
-            this.Input_Category.TabIndex = 26;
-            // 
             // Image_BookCover
             // 
             this.Image_BookCover.InitialImage = null;
-            this.Image_BookCover.Location = new System.Drawing.Point(480, 153);
+            this.Image_BookCover.Location = new System.Drawing.Point(480, 147);
             this.Image_BookCover.Name = "Image_BookCover";
             this.Image_BookCover.Size = new System.Drawing.Size(80, 97);
             this.Image_BookCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -196,7 +234,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_Author.AutoSize = true;
             this.Text_Author.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_Author.Location = new System.Drawing.Point(20, 114);
+            this.Text_Author.Location = new System.Drawing.Point(20, 147);
             this.Text_Author.Name = "Text_Author";
             this.Text_Author.Size = new System.Drawing.Size(34, 19);
             this.Text_Author.TabIndex = 17;
@@ -204,14 +242,14 @@ namespace PresentationLayer.Dialogs
             // 
             // Input_Author
             // 
-            this.Input_Author.Location = new System.Drawing.Point(132, 113);
+            this.Input_Author.Location = new System.Drawing.Point(132, 146);
             this.Input_Author.Name = "Input_Author";
             this.Input_Author.Size = new System.Drawing.Size(187, 20);
             this.Input_Author.TabIndex = 16;
             // 
             // Input_ISBN
             // 
-            this.Input_ISBN.Location = new System.Drawing.Point(132, 65);
+            this.Input_ISBN.Location = new System.Drawing.Point(132, 103);
             this.Input_ISBN.Name = "Input_ISBN";
             this.Input_ISBN.Size = new System.Drawing.Size(187, 20);
             this.Input_ISBN.TabIndex = 15;
@@ -219,6 +257,7 @@ namespace PresentationLayer.Dialogs
             // Input_Title
             // 
             this.Input_Title.Location = new System.Drawing.Point(132, 17);
+            this.Input_Title.MaxLength = 15;
             this.Input_Title.Name = "Input_Title";
             this.Input_Title.Size = new System.Drawing.Size(187, 20);
             this.Input_Title.TabIndex = 14;
@@ -227,7 +266,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_ISBN.AutoSize = true;
             this.Text_ISBN.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_ISBN.Location = new System.Drawing.Point(20, 66);
+            this.Text_ISBN.Location = new System.Drawing.Point(20, 104);
             this.Text_ISBN.Name = "Text_ISBN";
             this.Text_ISBN.Size = new System.Drawing.Size(34, 19);
             this.Text_ISBN.TabIndex = 13;
@@ -237,7 +276,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_Title.AutoSize = true;
             this.Text_Title.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_Title.Location = new System.Drawing.Point(20, 18);
+            this.Text_Title.Location = new System.Drawing.Point(19, 18);
             this.Text_Title.Name = "Text_Title";
             this.Text_Title.Size = new System.Drawing.Size(35, 19);
             this.Text_Title.TabIndex = 12;
@@ -247,7 +286,7 @@ namespace PresentationLayer.Dialogs
             // 
             this.Text_BookCover.AutoSize = true;
             this.Text_BookCover.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_BookCover.Location = new System.Drawing.Point(369, 153);
+            this.Text_BookCover.Location = new System.Drawing.Point(369, 147);
             this.Text_BookCover.Name = "Text_BookCover";
             this.Text_BookCover.Size = new System.Drawing.Size(34, 19);
             this.Text_BookCover.TabIndex = 22;
@@ -271,7 +310,7 @@ namespace PresentationLayer.Dialogs
             this.Button_SelectCover.IconChar = FontAwesome.Sharp.IconChar.None;
             this.Button_SelectCover.IconColor = System.Drawing.Color.Black;
             this.Button_SelectCover.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Button_SelectCover.Location = new System.Drawing.Point(575, 153);
+            this.Button_SelectCover.Location = new System.Drawing.Point(575, 147);
             this.Button_SelectCover.Name = "Button_SelectCover";
             this.Button_SelectCover.Size = new System.Drawing.Size(92, 23);
             this.Button_SelectCover.TabIndex = 20;
@@ -321,9 +360,13 @@ namespace PresentationLayer.Dialogs
         private System.Windows.Forms.Label Text_BookLang;
         private System.Windows.Forms.TextBox Input_BookLang;
         private System.Windows.Forms.Label Text_Category;
-        private System.Windows.Forms.TextBox Input_Category;
         private System.Windows.Forms.Label Text_PublishYear;
         private System.Windows.Forms.DateTimePicker dateTimePicker_PublishYear;
         private Controls.AlertBox alertBox1;
+        private System.Windows.Forms.Label Text_Title_Sec;
+        private System.Windows.Forms.TextBox Input_Title_Sec;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox Input_Category;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

@@ -74,5 +74,10 @@ namespace DataLayer.Repositories
                 transaction: dbTransaction);
         }
 
+        public IEnumerable<String> GetAllCategories()
+        {
+            return dbConnection.Query<String>("SELECT DISTINCT category FROM Books;", new DynamicParameters(), transaction: dbTransaction);
+        }
+
     }
 }

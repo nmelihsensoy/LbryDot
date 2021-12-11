@@ -83,5 +83,14 @@ namespace BusinessLogicLayer.Services
             _appContext.getUoW().Commit();
         }
 
+        public List<CategoryModel> GetCategoriesList()
+        {
+            //var output = _appContext.getUoW().BooksRepository.GetAllCategories().ToList<Object>();
+            var output = _appContext.getUoW().BooksRepository.GetAllCategories().Select(x => new CategoryModel{ CategoryRaw = x, CategoryName = Helpers.GetOnlyText(x), CategoryColor = Helpers.PaddedStringToColor(x, System.Drawing.Color.Empty) }).ToList<CategoryModel>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
     }
 }

@@ -23,16 +23,19 @@ namespace PresentationLayer.Dialogs
         private bool IsNewBook = true;
         private BookModel _editBook;
         public DialogResult ReturnType = DialogResult.Cancel;
+        private List<CategoryModel> Categories;
 
         public BookAddUpdate(CustomAppContext _appContext, BookModel EditBook=null)
         {
             InitializeComponent();
             AppContext = _appContext;
             _editBook = EditBook;
-            if (EditBook != null & EditBook.book_id > 0) IsNewBook = false;
+            if (EditBook != null && EditBook.book_id > 0) IsNewBook = false;
             BooksService1 = new BooksService(AppContext);
             ApplyColorPalette();
             ApplyStrings();
+            Categories = BooksService1.GetCategoriesList();
+            InitCategoryInput();
             ApplyDialogType();
         }
 
@@ -41,9 +44,20 @@ namespace PresentationLayer.Dialogs
             if (this.IsNewBook == false)
             {
                 Input_ISBN.Text = _editBook.isbn.ToString();
-                Input_Title.Text = _editBook.title;
+                if (_editBook.title.Length > 15)
+                {
+                    Input_Title.Text = _editBook.title.Substring(0, 15);
+                    Input_Title_Sec.Text = _editBook.title.Substring(15, _editBook.title.Length - 15);
+                }
+                else
+                {
+                    Input_Title.Text = _editBook.title;
+                }
+                
                 Input_Author.Text = _editBook.author;
-                Input_Category.Text = _editBook.category;
+                var Found = Categories.Find(x => x.CategoryRaw.Contains(_editBook.category));
+                Input_Category.SelectedItem = Found;
+                panel1.BackColor = Found.CategoryColor;
                 Input_BookLang.Text = _editBook.language;
                 Input_Length.Text = _editBook.number_of_pages.ToString();
                 Input_ShelfNumber.Text = _editBook.shelf_number;
@@ -56,6 +70,7 @@ namespace PresentationLayer.Dialogs
         private void ApplyStrings()
         {
             Text_Title.Text = Strings.BookTitle;
+            Text_Title_Sec.Text = Strings.BookTitle;
             Text_ISBN.Text = Strings.BookISBN;
             Text_Author.Text = Strings.BookAuthor;
             Text_Category.Text = Strings.BookCategory;
@@ -72,6 +87,13 @@ namespace PresentationLayer.Dialogs
         {
             Panel_Container.BackColor = ColorPalette.GenericFormBackColor;
             Panel_Container.ForeColor = ColorPalette.GenericFormForeColor;
+        }
+
+        private void InitCategoryInput()
+        {
+            Input_Category.DataSource = Categories;
+            Input_Category.DisplayMember = "CategoryName";
+            Input_Category.SelectedIndex = -1;
         }
 
         private void Button_SelectCover_Click(object sender, EventArgs e)
@@ -95,11 +117,11 @@ namespace PresentationLayer.Dialogs
         private void SetModelFromInputs(BookModel Book)
         {
             Book.isbn = Input_ISBN.Text;
-            Book.title = Input_Title.Text;
+            Book.title = Input_Title.Text + Input_Title_Sec.Text;
             Book.date_of_publication = dateTimePicker_PublishYear.Value.Year;
             Book.author = Input_Author.Text;
             Book.number_of_pages = Int32.Parse(Input_Length.Text);
-            Book.category = Input_Category.Text;
+            Book.category = Input_Category.Text + BusinessLogicLayer.Helpers.ColorToPaddedString(panel1.BackColor);
             Book.language = Input_BookLang.Text;
             Book.shelf_number = Input_ShelfNumber.Text;
             Book.book_cover = SelectedCoverInBytes;
@@ -138,6 +160,23 @@ namespace PresentationLayer.Dialogs
         private void BookAddUpdate_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = ReturnType;
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                panel1.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void Input_Category_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            var Selected = (((ComboBox)sender).Items[e.Index] as CategoryModel);
+            e.Graphics.FillRectangle(new SolidBrush(Selected.CategoryColor), e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Height);
+            e.Graphics.DrawString(Selected.CategoryName, e.Font, new SolidBrush(Color.White), e.Bounds.Left, e.Bounds.Top);
+            e.DrawFocusRectangle();
         }
     }
 }

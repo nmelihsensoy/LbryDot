@@ -79,6 +79,7 @@ namespace PresentationLayer.Pages
             Button_Lang_EN.ForeColor = ColorPalette.LoginForeColor;
             Button_Lang_TR.ForeColor = ColorPalette.LoginForeColor;
             Seperator_Lang_Buttons.ForeColor = ColorPalette.LoginForeColor;
+            Button_WindowClose.ForeColor = ColorPalette.LoginForeColor;
         }
 
         //Draggable frameless window 
@@ -228,6 +229,11 @@ namespace PresentationLayer.Pages
                 alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
                 alertBox1.Visible = true;
             }
-        }     
+        }
+
+        private void Button_WindowClose_Click(object sender, EventArgs e)
+        {
+            Helpers.CloseApplication();
+        }
     }
 }

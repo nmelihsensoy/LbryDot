@@ -15,6 +15,22 @@ namespace BusinessLogicLayer.Services
         {
         }
 
+        private void ApplyMd5Hashing(ref LoginModel Model)
+        {
+            if (!String.IsNullOrEmpty(Model.Password))
+            {
+                Model.Password = Helpers.MD5Hash(Model.Password, Helpers.GetEncryptionConfig());
+            }
+        }
+
+        private void ApplyMd5Hashing(ref StudentModel Model)
+        {
+            if (!String.IsNullOrEmpty(Model.student_password))
+            {
+                Model.student_password = Helpers.MD5Hash(Model.student_password, Helpers.GetEncryptionConfig());
+            }
+        }
+
         public StaffModel LoginStaff(LoginModel Credential)
         {
             LoginValidator validator = new LoginValidator();
@@ -26,6 +42,7 @@ namespace BusinessLogicLayer.Services
                 throw new Exception(allMessages);
             }
 
+            ApplyMd5Hashing(ref Credential);
             return _appContext.getUoW().StaffRepository.LoginStaff(Credential);
         }
 

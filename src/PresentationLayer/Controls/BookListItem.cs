@@ -95,15 +95,20 @@ namespace PresentationLayer.Controls
 
         public BookModel Book {
             set {
-                string [] lines = value.title.Split('|');
-                Text_BookTitleFirstLine.Text = lines[0];
-                if (lines.Length > 1)
+                if (!_isLongList && value.title.Length > 15)
                 {
-                    Text_BookTitleSecLine.Text = lines[1];
+                    Text_BookTitleFirstLine.Text = value.title.Substring(0, 15);
+                    Text_BookTitleSecLine.Text = value.title.Substring(15, value.title.Length-15);
                 }
-                
+                else
+                {
+                    Text_BookTitleFirstLine.Text = value.title;
+                }
+
                 Text_BookAuthor.Text = value.author;
-                Text_BookCategory.Text = value.category;
+                Text_BookCategory.Text = BusinessLogicLayer.Helpers.GetOnlyText(value.category);
+                Splitter_TopBorder.BackColor = BusinessLogicLayer.Helpers.PaddedStringToColor(value.category, Splitter_TopBorder.BackColor);
+                Text_BookCategory.BackColor = Splitter_TopBorder.BackColor;
                 Text_ISBN.Text = value.isbn;
                 Image_BookCover.Image = Helpers.ConvertByteToImage(value.book_cover, Image_BookCover.Image);
                 _bookModel = value;

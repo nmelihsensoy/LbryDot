@@ -31,7 +31,6 @@ namespace PresentationLayer.Pages
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             this.Panel_Container = new System.Windows.Forms.Panel();
-            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.Panel_Pass_Line = new System.Windows.Forms.Panel();
             this.Icon_Input_Pass = new FontAwesome.Sharp.IconPictureBox();
             this.Panel_Input_Email = new System.Windows.Forms.Panel();
@@ -44,6 +43,8 @@ namespace PresentationLayer.Pages
             this.ComboBox_LoginType = new System.Windows.Forms.ComboBox();
             this.Input_Email = new System.Windows.Forms.TextBox();
             this.Text_Logo = new System.Windows.Forms.Label();
+            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
+            this.Button_WindowClose = new FontAwesome.Sharp.IconButton();
             this.Panel_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_Input_Pass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_Input_Email)).BeginInit();
@@ -52,6 +53,7 @@ namespace PresentationLayer.Pages
             // Panel_Container
             // 
             this.Panel_Container.BackColor = System.Drawing.SystemColors.Window;
+            this.Panel_Container.Controls.Add(this.Button_WindowClose);
             this.Panel_Container.Controls.Add(this.alertBox1);
             this.Panel_Container.Controls.Add(this.Panel_Pass_Line);
             this.Panel_Container.Controls.Add(this.Icon_Input_Pass);
@@ -73,15 +75,6 @@ namespace PresentationLayer.Pages
             this.Panel_Container.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseDown);
             this.Panel_Container.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Panel_Container.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
-            // 
-            // alertBox1
-            // 
-            this.alertBox1.Location = new System.Drawing.Point(44, 126);
-            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
-            this.alertBox1.Name = "alertBox1";
-            this.alertBox1.Size = new System.Drawing.Size(231, 35);
-            this.alertBox1.TabIndex = 14;
-            this.alertBox1.Visible = false;
             // 
             // Panel_Pass_Line
             // 
@@ -220,6 +213,33 @@ namespace PresentationLayer.Pages
             this.Text_Logo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseMove);
             this.Text_Logo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Draggable_MouseUp);
             // 
+            // alertBox1
+            // 
+            this.alertBox1.Location = new System.Drawing.Point(44, 126);
+            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
+            this.alertBox1.Name = "alertBox1";
+            this.alertBox1.Size = new System.Drawing.Size(231, 35);
+            this.alertBox1.TabIndex = 14;
+            this.alertBox1.Visible = false;
+            // 
+            // Button_WindowClose
+            // 
+            this.Button_WindowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_WindowClose.FlatAppearance.BorderSize = 0;
+            this.Button_WindowClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button_WindowClose.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.Button_WindowClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(64)))), ((int)(((byte)(69)))));
+            this.Button_WindowClose.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.Button_WindowClose.IconSize = 16;
+            this.Button_WindowClose.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Button_WindowClose.Location = new System.Drawing.Point(288, 0);
+            this.Button_WindowClose.Margin = new System.Windows.Forms.Padding(1);
+            this.Button_WindowClose.Name = "Button_WindowClose";
+            this.Button_WindowClose.Size = new System.Drawing.Size(32, 32);
+            this.Button_WindowClose.TabIndex = 11;
+            this.Button_WindowClose.UseVisualStyleBackColor = true;
+            this.Button_WindowClose.Click += new System.EventHandler(this.Button_WindowClose_Click);
+            // 
             // LoginPage
             // 
             this.AcceptButton = this.Button_Execute_Login;
@@ -232,7 +252,7 @@ namespace PresentationLayer.Pages
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Lbry. - Login";
             this.Panel_Container.ResumeLayout(false);
             this.Panel_Container.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_Input_Pass)).EndInit();
@@ -257,5 +277,6 @@ namespace PresentationLayer.Pages
         private FontAwesome.Sharp.IconPictureBox Icon_Input_Pass;
         private System.Windows.Forms.TextBox Input_Password;
         private Controls.AlertBox alertBox1;
+        private FontAwesome.Sharp.IconButton Button_WindowClose;
     }
 }
