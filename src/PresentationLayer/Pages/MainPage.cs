@@ -185,7 +185,7 @@ namespace PresentationLayer.Pages
             if (_activeForm.Text == "Books")
             {
                 Panel_SearchBox.Visible = true;
-                if(AppContext.GetUserType() == UserType.Staff)
+                if(AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
                 {
                     Button_AddBook.IconChar = IconChar.BookMedical;
                     Button_AddBook.Visible = true;
@@ -194,7 +194,7 @@ namespace PresentationLayer.Pages
             else if(_activeForm.Text == "Students")
             {
                 Panel_SearchBox.Visible = true;
-                if (AppContext.GetUserType() == UserType.Staff)
+                if (AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
                 {
                     Button_AddBook.IconChar = IconChar.UserPlus;
                     Button_AddBook.Visible = true;
@@ -324,7 +324,8 @@ namespace PresentationLayer.Pages
         private void AppySearchDefaultStyle()
         {
             Input_SearchBox.Text = Strings.Search;
-            Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Regular);
+            Input_SearchBox.ForeColor = ColorPalette.SearchBarForeColor;
+            Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Italic);
             Label_Button_Search_X.Visible = false;
             Splitter_SearchBoxLeft.BackColor = ColorPalette.SearchBarBorderColor;
             Splitter_SearchBoxRight.BackColor = ColorPalette.SearchBarBorderColor;
@@ -370,6 +371,8 @@ namespace PresentationLayer.Pages
             if (String.IsNullOrEmpty(Input_SearchBox.Text) || Input_SearchBox.Text == Strings.Search)
             {
                 Input_SearchBox.Clear();
+                Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Regular);
+                Input_SearchBox.ForeColor = Color.FromArgb(100, 100, 100);
                 Label_Button_Search_X.Visible = true;
             }
         }

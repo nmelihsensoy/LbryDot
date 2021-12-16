@@ -46,17 +46,21 @@ namespace PresentationLayer.SubPages
                 {
                     DayDiff = BusinessLogicLayer.Helpers.DaysBetween(Borrow.due_date, DateTime.Today);
                     //MessageBox.Show(Borrow.due_date.ToString());
-                    if (DayDiff > -1)
+                    if (DayDiff < 1)
                     {
-                        if (DayDiff == 2)
+                        if (DayDiff == -2)
                         {
-                            Item.SetBookStatus(BookStatusItem.BookStatus.Late);
+                            Item.SetBookStatus(BookStatusItem.BookStatus.TwoDaysLeft);
                         }
                         else
                         {
                             Item.SetBookStatus(BookStatusItem.BookStatus.Normal);
 
                         }
+                    }
+                    else
+                    {
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Late);
                     }
                 }
                 else
@@ -82,25 +86,25 @@ namespace PresentationLayer.SubPages
 
         private void StatusItemClick(object sender, EventArgs e)
         {
+            DialogResult Result = DialogResult.Abort;
             if ((sender as Button).Name == "Button_ReturnBook")
             {
-                using (var form = new BookIssue(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        RefreshMyBooks();
-                    }
-                    BookStatusItem.GetItemFromButton(sender).HideHover();
-                }
-            }else if ((sender as Button).Name == "Button_BookDetails")
-            {
-                using (var form = new BookDetails(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow.book))
-                {
-                    var result = form.ShowDialog();
-                    BookStatusItem.GetItemFromButton(sender).HideHover();
-                }
+                Result = new BookIssue(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow).ShowDialog();
             }
+            else if ((sender as Button).Name == "Button_BookDetails")
+            {
+                Result = new BookDetails(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow.book).ShowDialog();
+            }
+
+            if (Result == DialogResult.OK || Result == DialogResult.Yes)
+            {
+                RefreshMyBooks();
+            }
+            else
+            {
+                BookStatusItem.GetItemFromButton(sender).HideHover();
+            }
+
         }
     }
 }

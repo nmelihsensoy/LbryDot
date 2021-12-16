@@ -200,6 +200,9 @@
     </Compile>
     <Content Include="logo1.ico" />
     <Content Include="Resources\logo1.ico" />
+    <Content Include="lbrydot_db.bak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\41SMo7KEbhL._AC_SY780_.jpg" />
     <None Include="Resources\gravatar.jpg" />
     <EmbeddedResource Include="Controls\AlertBox.resx">

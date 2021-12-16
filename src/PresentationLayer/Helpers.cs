@@ -17,7 +17,6 @@ namespace PresentationLayer
     //Creating with no relation any of classes is required.
     public static class Helpers
     {
-
         //Get currently active language value. "" : EN, "tr" : TR
         public static string GetCurrentLanguage()
         {
@@ -165,6 +164,5 @@ namespace PresentationLayer
                 }
             }
         }
-
     }
 }

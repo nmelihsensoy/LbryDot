@@ -92,5 +92,18 @@ namespace BusinessLogicLayer.Services
             return output;
         }
 
+        public void BulkAdd(List<BookModel> Books)
+        {
+            foreach (var Book in Books)
+            {
+                var output = _appContext.getUoW().BooksRepository.Add(Book);
+                if (output == -1)
+                {
+                    break;
+                }
+            }
+            _appContext.getUoW().Commit();
+        }
+
     }
 }

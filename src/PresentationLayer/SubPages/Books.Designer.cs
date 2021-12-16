@@ -41,6 +41,7 @@ namespace PresentationLayer.SubPages
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(784, 525);
             this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.Visible = false;
             // 
             // flowLayoutPanel2
             // 
@@ -60,10 +61,13 @@ namespace PresentationLayer.SubPages
             this.ClientSize = new System.Drawing.Size(804, 545);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Books";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Books";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Books_FormClosing);
+            this.Load += new System.EventHandler(this.Books_Load);
             this.ResumeLayout(false);
 
         }

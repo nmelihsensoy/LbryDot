@@ -21,13 +21,12 @@ namespace PresentationLayer.Dialogs
 
         public BookDetails(CustomAppContext _appContext, BookModel Book)
         {
-            AppContext = _appContext;
-            BorrowingService1 = new BorrowingService(AppContext);
-            _book = Book;
             InitializeComponent();
+            AppContext = _appContext;
+            _book = Book;
+            BorrowingService1 = new BorrowingService(AppContext);
             SetBookDetailsById();
             InitTable();
-            bookListItem1.MakeExtendedListItem();
             if (AppContext.GetUserType() == UserType.Staff)
             {
                 dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id);
@@ -37,6 +36,7 @@ namespace PresentationLayer.Dialogs
                 dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id, true);
             }
             TableCustom();
+            InitializeComponent();
         }
 
         private void SetBookDetailsById()
@@ -76,5 +76,23 @@ namespace PresentationLayer.Dialogs
             dataGridView1.ClearSelection(); 
         }
 
+        private void bookListItem1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string CopyVal = "";
+            if ((sender as ToolStripMenuItem).Name == "copyTitleToolStripMenuItem")
+            {
+                CopyVal = _book.title;
+            }else if ((sender as ToolStripMenuItem).Name == "copyISBNToolStripMenuItem")
+            {
+                CopyVal = _book.isbn;
+            }
+
+            Clipboard.SetText(CopyVal);
+        }
     }
 }

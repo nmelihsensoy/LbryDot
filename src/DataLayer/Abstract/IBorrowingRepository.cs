@@ -12,7 +12,7 @@ namespace DataLayer.Abstract
         IEnumerable<BorrowingModel> GetAllJoined(int StudentNumber);
         IEnumerable<BorrowingModel> GetActives(int StudentNumber, int FirstRowCount);
         int ReturnBorrow(BorrowingModel Borrowing);
-        Tuple<List<StatModel>, List<StatModel>> GetBorrowingStats(int LastDayCount = 5);
+        Dictionary<DateTime, int[]> GetBorrowingStats(int LastDayCount = 5);
         IEnumerable<BorrowingModel> GetAllBorrowingsForBook(int BookId);
     }
 }

@@ -23,7 +23,23 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        private void ApplyMd5Hashing(LoginModel Model)
+        {
+            if (!String.IsNullOrEmpty(Model.Password))
+            {
+                Model.Password = Helpers.MD5Hash(Model.Password, Helpers.GetEncryptionConfig());
+            }
+        }
+
         private void ApplyMd5Hashing(ref StudentModel Model)
+        {
+            if (!String.IsNullOrEmpty(Model.student_password))
+            {
+                Model.student_password = Helpers.MD5Hash(Model.student_password, Helpers.GetEncryptionConfig());
+            }
+        }
+
+        private void ApplyMd5Hashing(StudentModel Model)
         {
             if (!String.IsNullOrEmpty(Model.student_password))
             {
@@ -104,6 +120,20 @@ namespace BusinessLogicLayer.Services
         {
             ApplyMd5Hashing(ref Student);
             var output = _appContext.getUoW().StudentsRepository.Update(Student);
+            _appContext.getUoW().Commit();
+        }
+
+        public void BulkAdd(List<StudentModel> Students)
+        {
+            foreach (var Student in Students)
+            {
+                ApplyMd5Hashing(Student);
+                var output = _appContext.getUoW().StudentsRepository.Add(Student);
+                if (output == -1)
+                {
+                    break;
+                }
+            }
             _appContext.getUoW().Commit();
         }
 

@@ -55,8 +55,8 @@ namespace PresentationLayer
         public static Color BookListItemTitleForeColor= Color.Black;
         public static Color BookListItemAuthorForeColor= Color.FromArgb(100, 100, 100);
         public static Color BookListItemCategoryBackColor= Color.FromArgb(100, 100, 100);
-        public static Color BookListItemPageCountBackColor= Color.FromArgb(100, 100, 100);
-        public static Color BookListItemPublishYearBackColor= Color.FromArgb(100, 100, 100);
+        public static Color BookListItemPageCountBackColor= Color.FromArgb(210, 180, 140);
+        public static Color BookListItemPublishYearBackColor= Color.FromArgb(210, 180, 140);
         public static Color BookListItemHoverButtonBackColor = Color.White;
         public static Color BookListItemHoverButtonForeColor = Color.Gray;
         public static Color BookListItemDeleteButtonForeColor = Color.FromArgb(205, 92, 92);

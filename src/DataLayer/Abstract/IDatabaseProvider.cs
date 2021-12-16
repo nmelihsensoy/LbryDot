@@ -13,5 +13,6 @@ namespace DataLayer.Abstract
     public interface IDatabaseProvider
     {
         IDbConnection ObtainConnection();
+        void ResetDatabase();
     }
 }

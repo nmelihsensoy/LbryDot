@@ -67,11 +67,17 @@ namespace DataLayer
             {
                 _dbTransaction.Dispose();
                 _dbTransaction = _dbConnection.BeginTransaction();
-                resetRepositories();
+                ResetRepositories();
             }
         }
 
-        private void resetRepositories()
+        public void CloseConnection()
+        {
+            _dbConnection.Close();
+            System.Data.SQLite.SQLiteConnection.ClearAllPools();
+        }
+
+        private void ResetRepositories()
         {
             _settingsRepository = null;
             _staffRepository = null;

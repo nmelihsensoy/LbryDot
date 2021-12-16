@@ -15,5 +15,6 @@ namespace DataLayer.Abstract
         IBooksRepository BooksRepository { get; }
         IBorrowingRepository BorrowingRepository { get; }
         void Commit();
+        void CloseConnection();
     }
 }

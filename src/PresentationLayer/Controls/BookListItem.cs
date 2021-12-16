@@ -38,6 +38,8 @@ namespace PresentationLayer.Controls
             Text_BookCategory.BackColor = ColorPalette.BookListItemCategoryBackColor;
             Text_PageCount.BackColor = ColorPalette.BookListItemPageCountBackColor;
             Text_PublishYear.BackColor = ColorPalette.BookListItemPublishYearBackColor;
+            Text_PageCount.ForeColor = Color.FromArgb(25, 33, 54);
+            Text_PublishYear.ForeColor = Color.FromArgb(25, 33, 54);
             //Text_ISBN.BackColor = Color.Red;
         }
 
@@ -95,6 +97,11 @@ namespace PresentationLayer.Controls
 
         public BookModel Book {
             set {
+                if (value == null)
+                {
+                    return;
+                }
+
                 if (!_isLongList && value.title.Length > 15)
                 {
                     Text_BookTitleFirstLine.Text = value.title.Substring(0, 15);
@@ -106,12 +113,24 @@ namespace PresentationLayer.Controls
                 }
 
                 Text_BookAuthor.Text = value.author;
+                Text_PageCount.Text = value.number_of_pages.ToString() + " Pg.";
+                Text_PublishYear.Text = value.date_of_publication.ToString();
                 Text_BookCategory.Text = BusinessLogicLayer.Helpers.GetOnlyText(value.category);
                 Splitter_TopBorder.BackColor = BusinessLogicLayer.Helpers.PaddedStringToColor(value.category, Splitter_TopBorder.BackColor);
                 Text_BookCategory.BackColor = Splitter_TopBorder.BackColor;
-                Text_ISBN.Text = value.isbn;
+                if (Text_BookCategory.BackColor.GetBrightness() > 0.50)
+                {
+                    Text_BookCategory.ForeColor = Color.Black;
+                }
+                else
+                {
+                    Text_BookCategory.ForeColor = Color.White;
+                }
+                Text_ISBN.Text = "ISBN: " + value.isbn;
                 Image_BookCover.Image = Helpers.ConvertByteToImage(value.book_cover, Image_BookCover.Image);
                 _bookModel = value;
+
+                Text_PublishYear.Left = Text_PageCount.Right + 10;
 
                 if (_userType == UserType.Student && value.is_available == 0)
                 {
@@ -135,16 +154,9 @@ namespace PresentationLayer.Controls
             Helpers.SendEvent(ButtonHandler, sender, e);
         }
 
-        public static BookListItem GetItemFromButton(object Button)
+        public static BookListItem GetItemFromButton(object Btn)
         {
-            try
-            {
-                return ((Button as Button).Parent.Parent.Parent as BookListItem);
-            }
-            catch
-            {
-                return null;
-            }
+            return ((Btn as Button).Parent.Parent.Parent as BookListItem);
         }
 
     }

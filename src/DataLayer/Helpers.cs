@@ -15,5 +15,13 @@ namespace DataLayer
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
+        
+        public static string ParseConnectionString(string ConnectionStr, string id="Data Source")
+        {
+            var builder = new System.Data.Common.DbConnectionStringBuilder();
+            builder.ConnectionString = ConnectionStr;
+            return builder[id].ToString();
+        }
+
     }
 }

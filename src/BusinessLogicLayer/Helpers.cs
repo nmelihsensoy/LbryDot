@@ -16,12 +16,12 @@ namespace BusinessLogicLayer
     {
         public static int DaysBetween(DateTime Date1, DateTime Date2)
         {
-            return (Date2 - Date1).Days;
+            return (Date2.Date - Date1.Date).Days;
         }
 
         public static int DaysBetween(string Date1, string Date2)
         {
-            return (DateTime.Parse(Date2) - DateTime.Parse(Date1)).Days;
+            return (DateTime.Parse(Date2).Date - DateTime.Parse(Date1).Date).Days;
         }
 
         public static string HideWords(string Sentence, char Delimiter = ' ', string Censor = "*")

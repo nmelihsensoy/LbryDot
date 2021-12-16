@@ -31,11 +31,10 @@ namespace PresentationLayer.Dialogs
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bookListItem1 = new PresentationLayer.Controls.BookListItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyBookNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyAuthorNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyISBNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookListItem1 = new PresentationLayer.Controls.BookListItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,39 +47,36 @@ namespace PresentationLayer.Dialogs
             this.dataGridView1.Size = new System.Drawing.Size(464, 184);
             this.dataGridView1.TabIndex = 1;
             // 
-            // bookListItem1
-            // 
-            this.bookListItem1.Location = new System.Drawing.Point(12, 8);
-            this.bookListItem1.Name = "bookListItem1";
-            this.bookListItem1.Size = new System.Drawing.Size(464, 150);
-            this.bookListItem1.TabIndex = 2;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyBookNameToolStripMenuItem,
-            this.copyAuthorNameToolStripMenuItem,
+            this.copyTitleToolStripMenuItem,
             this.copyISBNToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
-            // copyBookNameToolStripMenuItem
+            // copyTitleToolStripMenuItem
             // 
-            this.copyBookNameToolStripMenuItem.Name = "copyBookNameToolStripMenuItem";
-            this.copyBookNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyBookNameToolStripMenuItem.Text = "Copy Book Name";
-            // 
-            // copyAuthorNameToolStripMenuItem
-            // 
-            this.copyAuthorNameToolStripMenuItem.Name = "copyAuthorNameToolStripMenuItem";
-            this.copyAuthorNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyAuthorNameToolStripMenuItem.Text = "Copy Author Name";
+            this.copyTitleToolStripMenuItem.Name = "copyTitleToolStripMenuItem";
+            this.copyTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyTitleToolStripMenuItem.Text = "Copy Title";
+            this.copyTitleToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // copyISBNToolStripMenuItem
             // 
             this.copyISBNToolStripMenuItem.Name = "copyISBNToolStripMenuItem";
             this.copyISBNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.copyISBNToolStripMenuItem.Text = "Copy ISBN";
+            this.copyISBNToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+            // 
+            // bookListItem1
+            // 
+            this.bookListItem1.Book = null;
+            this.bookListItem1.Location = new System.Drawing.Point(12, 8);
+            this.bookListItem1.Name = "bookListItem1";
+            this.bookListItem1.Size = new System.Drawing.Size(464, 150);
+            this.bookListItem1.TabIndex = 2;
+            this.bookListItem1.Load += new System.EventHandler(this.bookListItem1_Load);
             // 
             // BookDetails
             // 
@@ -103,8 +99,7 @@ namespace PresentationLayer.Dialogs
         private System.Windows.Forms.DataGridView dataGridView1;
         private Controls.BookListItem bookListItem1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem copyBookNameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyAuthorNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyTitleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyISBNToolStripMenuItem;
     }
 }

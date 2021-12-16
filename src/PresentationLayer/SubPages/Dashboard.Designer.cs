@@ -29,9 +29,10 @@ namespace PresentationLayer.SubPages
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Splitter_ActiveBooksBorder = new System.Windows.Forms.Splitter();
             this.Text_ActiveBooksTitle = new System.Windows.Forms.Label();
             this.ıconButton1 = new FontAwesome.Sharp.IconButton();
@@ -121,6 +122,7 @@ namespace PresentationLayer.SubPages
             this.ZedGraphControl_1.ScrollMinY2 = 0D;
             this.ZedGraphControl_1.Size = new System.Drawing.Size(460, 240);
             this.ZedGraphControl_1.TabIndex = 0;
+            this.ZedGraphControl_1.DoubleClick += new System.EventHandler(this.ZedGraphControl_1_DoubleClick);
             // 
             // Button_ChartSettings
             // 
@@ -171,17 +173,17 @@ namespace PresentationLayer.SubPages
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(303, 237);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";

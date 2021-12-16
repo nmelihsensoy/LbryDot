@@ -93,47 +93,33 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public Tuple<double[], double[], string[]> GetChartData()
+        public int GetChartData(out double[] Val1, out double[] Val2, out string[] Str, int DayCount = 5)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetBorrowingStats();
+            var output = _appContext.getUoW().BorrowingRepository.GetBorrowingStats(DayCount);
             _appContext.getUoW().Commit();
 
-            double[] y = new double[5];
-            double[] y2 = new double[5];
-            string[] str = new string[5];
-            DateTime[] last5Day = new DateTime[5];
+            Val1 = new double[DayCount];
+            Val2 = new double[DayCount];
+            Str = new string[DayCount];
 
-            last5Day[0] = DateTime.Today.AddDays(-4);
-            str[0] = last5Day[0].ToString("dd/MM/yyyy");
-            for (int i = 1; i < 5; i++)
+            DateTime TmpDate = DateTime.Today.Date;
+            for (int i = 29; i>-1; i--)
             {
-                last5Day[i] = last5Day[i - 1].AddDays(+1);
-                str[i] = last5Day[i].ToString("dd/MM/yyyy");
-            }
-
-            foreach (var Day in output.Item1)
-            {
-                for (int i = 0; i < 5; i++)
+                Str[i] = TmpDate.ToString("dd/MM/yyyy");
+                if (output.ContainsKey(TmpDate))
                 {
-                    if (last5Day[i].Date == Day.date.Date)
-                    {
-                        y[i] = Day.count;
-                    }
+                    //output.Add(TmpDate, new int[] { 0, 0 });
+                    Val1[i] = (output[TmpDate] as int[])[0];
+                    Val2[i] = (output[TmpDate] as int[])[1];
                 }
-            }
-
-            foreach (var Day in output.Item2)
-            {
-                for (int i = 0; i < 5; i++)
+                else
                 {
-                    if (last5Day[i].Date == Day.date.Date)
-                    {
-                        y2[i] = Day.count;
-                    }
+                    Val2[i] = 0;
+                    Val2[i] = 0;
                 }
+                TmpDate = TmpDate.AddDays(-1);
             }
-
-            return Tuple.Create(y, y2, str);
+            return 1;
         }
 
         public List<Object> GetBorrowingsForBook(int BookId)

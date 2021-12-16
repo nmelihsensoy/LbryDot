@@ -86,10 +86,10 @@ namespace DataLayer.Repositories
                 transaction: dbTransaction);
         }
 
-        public Tuple<List<StatModel>, List<StatModel>> GetBorrowingStats(int LastDayCount = 5)
+        public Dictionary<DateTime, int[]> GetBorrowingStats(int LastDayCount = 5)
         {
             var sql = @"SELECT issued_date as date, COUNT(*) as count FROM Borrowing
-                        WHERE issued_date > (SELECT DATE('now','-4 day'))
+                        WHERE issued_date > (SELECT DATE('now', @date_param))
                         GROUP BY strftime('%d', issued_date)
                         ORDER BY issued_date DESC 
                         LIMIT @day_count;
@@ -100,9 +100,31 @@ namespace DataLayer.Repositories
                         ORDER BY returned_date DESC 
                         LIMIT @day_count;
                         ";
+            Dictionary<DateTime, int[]> Dict;
+            using (var multi = dbConnection.QueryMultiple(sql, new { day_count = LastDayCount, date_param = '-' + LastDayCount.ToString() + " day" }, dbTransaction))
+            {
+                var Dict1 = multi.Read<StatModel>().ToDictionary(pair => pair.date.Date, pair => pair.count);
+                var Dict2 = multi.Read<StatModel>().ToDictionary(pair => pair.date.Date, pair => pair.count);
 
-            var multi = dbConnection.QueryMultiple(sql, new { day_count = LastDayCount }, dbTransaction);
-            return Tuple.Create(multi.Read<StatModel>().ToList(), multi.Read<StatModel>().ToList());
+                //Fastest merging method according here
+                //https://stackoverflow.com/questions/44140066/c-sharp-merging-multiple-dictionaries-into-one
+                Dict = new Dictionary<DateTime, int[]>(Dict1.Count + Dict2.Count);
+                foreach (var Day in Dict1)
+                {
+                    Dict.Add(Day.Key, new int[] { Day.Value, 0 });
+                }
+
+                foreach (var Day in Dict2)
+                {
+                    if (!Dict.ContainsKey(Day.Key))
+                    {
+                        Dict.Add(Day.Key, new int[] { 0, Day.Value });
+                    }
+
+                    (Dict[Day.Key] as int[])[1] = Day.Value;
+                }
+            }
+            return Dict;
         }
 
         public IEnumerable<BorrowingModel> GetAllBorrowingsForBook(int BookId)

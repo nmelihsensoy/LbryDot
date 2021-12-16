@@ -71,5 +71,19 @@ namespace BusinessLogicLayer
             else
                 throw new Exception("There is no student that logged in.");
         }
+
+        public void DbReset()
+        {
+            if(LoggedUserType == UserType.Admin)
+            {
+                getUoW().CloseConnection();
+                dbConn.ResetDatabase();
+            }
+            else
+            {
+                throw new Exception("Only Admin can reset the database.");
+            }
+        }
+
     }
 }

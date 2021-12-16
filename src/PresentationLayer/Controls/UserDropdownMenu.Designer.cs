@@ -89,20 +89,20 @@ namespace PresentationLayer.Controls
             // Text_User_ID
             // 
             this.Text_User_ID.AutoSize = true;
-            this.Text_User_ID.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_User_ID.Font = new System.Drawing.Font("Avignon Pro", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Text_User_ID.Location = new System.Drawing.Point(39, 47);
             this.Text_User_ID.Name = "Text_User_ID";
-            this.Text_User_ID.Size = new System.Drawing.Size(19, 14);
+            this.Text_User_ID.Size = new System.Drawing.Size(20, 15);
             this.Text_User_ID.TabIndex = 8;
             this.Text_User_ID.Text = "12";
             // 
             // Text_UserMail
             // 
             this.Text_UserMail.AutoSize = true;
-            this.Text_UserMail.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_UserMail.Font = new System.Drawing.Font("Avignon Pro", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Text_UserMail.Location = new System.Drawing.Point(39, 15);
             this.Text_UserMail.Name = "Text_UserMail";
-            this.Text_UserMail.Size = new System.Drawing.Size(123, 14);
+            this.Text_UserMail.Size = new System.Drawing.Size(133, 15);
             this.Text_UserMail.TabIndex = 7;
             this.Text_UserMail.Text = "email@example.com";
             // 

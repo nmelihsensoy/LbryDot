@@ -94,6 +94,7 @@ namespace PresentationLayer.Dialogs
             Input_Category.DataSource = Categories;
             Input_Category.DisplayMember = "CategoryName";
             Input_Category.SelectedIndex = -1;
+            Input_Category.SelectedValueChanged += Input_Category_SelectedValueChanged;
         }
 
         private void Button_SelectCover_Click(object sender, EventArgs e)
@@ -178,5 +179,12 @@ namespace PresentationLayer.Dialogs
             e.Graphics.DrawString(Selected.CategoryName, e.Font, new SolidBrush(Color.White), e.Bounds.Left, e.Bounds.Top);
             e.DrawFocusRectangle();
         }
+
+        private void Input_Category_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var Selected = (((ComboBox)sender).SelectedItem as CategoryModel);
+            panel1.BackColor = Selected.CategoryColor;
+        }
+
     }
 }
