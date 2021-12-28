@@ -128,14 +128,20 @@
     <Compile Include="Dialogs\Info.Designer.cs">
       <DependentUpon>Info.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\StudentAddUpdate.cs">
+    <Compile Include="Dialogs\UserAddUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\StudentAddUpdate.Designer.cs">
-      <DependentUpon>StudentAddUpdate.cs</DependentUpon>
+    <Compile Include="Dialogs\UserAddUpdate.Designer.cs">
+      <DependentUpon>UserAddUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ExtendedPanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserDetails.Designer.cs">
+      <DependentUpon>UserDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="Pages\LoginPage.cs">
@@ -186,12 +192,6 @@
     <Compile Include="SubPages\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubPages\Staffs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SubPages\Staffs.Designer.cs">
-      <DependentUpon>Staffs.cs</DependentUpon>
-    </Compile>
     <Compile Include="SubPages\Students.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,8 +241,11 @@
     <EmbeddedResource Include="Dialogs\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\StudentAddUpdate.resx">
-      <DependentUpon>StudentAddUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\UserAddUpdate.resx">
+      <DependentUpon>UserAddUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserDetails.resx">
+      <DependentUpon>UserDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
@@ -282,9 +285,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubPages\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SubPages\Staffs.resx">
-      <DependentUpon>Staffs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubPages\Students.resx">
       <DependentUpon>Students.cs</DependentUpon>

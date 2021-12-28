@@ -60,11 +60,11 @@ namespace PresentationLayer.SubPages
         private void HandleDialog(int StudentId = -1) {
             Form Dialog1;
             if (StudentId == -1) {
-                Dialog1 = new StudentAddUpdate(AppContext);
+                Dialog1 = new UserAddUpdate(AppContext);
             }
             else
             {
-                Dialog1 = new StudentAddUpdate(AppContext, StudentId);
+                Dialog1 = new UserAddUpdate(AppContext, UserType.Student, StudentId);
             }
             using (var form = Dialog1)
             {
@@ -165,6 +165,19 @@ namespace PresentationLayer.SubPages
 
         private void AddTableButtons()
         {
+            DataGridViewButtonColumn dbtn3 = new DataGridViewButtonColumn();
+            dbtn3.Name = "Button_Details";
+            dbtn3.Width = 20;
+
+            dbtn3.Text = "Details";
+            dbtn3.UseColumnTextForButtonValue = true;
+
+            dbtn3.HeaderText = "";
+            dbtn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dbtn3.ReadOnly = false;
+            //dbtn.DefaultCellStyle.Padding = null;
+            dataGridView1.Columns.Add(dbtn3);
+
             DataGridViewButtonColumn dbtn = new DataGridViewButtonColumn();
             dbtn.Name = "Button_Edit";
             dbtn.Width = 20;
@@ -188,7 +201,7 @@ namespace PresentationLayer.SubPages
             dbtn2.HeaderText = "";
             dbtn2.ReadOnly = false;
             dataGridView1.Columns.Add(dbtn2);
-            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void TableCustom()
@@ -222,30 +235,20 @@ namespace PresentationLayer.SubPages
                             StudentsService1.DeleteStudentById(SelectedStudentId);
                             RefreshTable();
                         }
+                    }else if ((senderGrid.Columns[e.ColumnIndex] as DataGridViewButtonColumn).Name == "Button_Details")
+                    {
+                        using (var form = new UserDetails(AppContext, SelectedStudentId))
+                        {
+                            var result = form.ShowDialog();
+                        }
                     }
                 }
                 else
                 {
-                    //MessageBox.Show("Detail Page");
+                    //MessageBox.Show("Detail Page + " + SelectedStudentId.ToString());
                 }
             }
 
-        }
-
-        private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 3)
-            {
-                dataGridView1[e.ColumnIndex, e.RowIndex].Style.BackColor = Color.DimGray;
-            }
-        }
-
-        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 3)
-            {
-                dataGridView1[e.ColumnIndex, e.RowIndex].Style.BackColor = Color.White;
-            }
         }
     }   
 }

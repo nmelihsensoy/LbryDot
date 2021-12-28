@@ -11,5 +11,6 @@ namespace DataLayer.Abstract
     {
         StudentModel LoginStudent(LoginModel Credential);
         IEnumerable<StudentModel> Search(string Text);
+        int GetCount();
     }
 }

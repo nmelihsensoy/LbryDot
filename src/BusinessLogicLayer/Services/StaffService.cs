@@ -23,12 +23,63 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        private void ApplyMd5Hashing(ref StudentModel Model)
+        private void ApplyMd5Hashing(ref StaffModel Model)
         {
-            if (!String.IsNullOrEmpty(Model.student_password))
+            if (!String.IsNullOrEmpty(Model.staff_password))
             {
-                Model.student_password = Helpers.MD5Hash(Model.student_password, Helpers.GetEncryptionConfig());
+                Model.staff_password = Helpers.MD5Hash(Model.staff_password, Helpers.GetEncryptionConfig());
             }
+        }
+
+        public void AddStaff(StaffModel Staff)
+        {
+            ////StudentsValidator validator = new StudentsValidator();
+            //ValidationResult results = validator.Validate(Student);
+            //string allMessages = results.ToString("\n");
+
+            //if (!results.IsValid)
+            //{
+            //    throw new Exception(allMessages);
+            //}
+
+            ApplyMd5Hashing(ref Staff);
+            var output = _appContext.getUoW().StaffRepository.Add(Staff);
+            _appContext.getUoW().Commit();
+
+            if (output != 1)
+            {
+                throw new Exception("Error");
+            }
+        }
+
+        public List<StaffModel> GetAllStaff()
+        {
+            var output = _appContext.getUoW().StaffRepository.GetAllWithoutAdmin().ToList();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public StaffModel GetStaffById(int Id)
+        {
+            var output = _appContext.getUoW().StaffRepository.GetById(Id);
+            output.staff_password = "";
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
+        public void DeleteStaff(StaffModel Staff)
+        {
+            var output = _appContext.getUoW().StaffRepository.Delete(Staff);
+            _appContext.getUoW().Commit();
+        }
+
+        public void UpdateStaff(StaffModel Staff)
+        {
+            ApplyMd5Hashing(ref Staff);
+            var output = _appContext.getUoW().StaffRepository.Update(Staff);
+            _appContext.getUoW().Commit();
         }
 
         public StaffModel LoginStaff(LoginModel Credential)
@@ -44,6 +95,14 @@ namespace BusinessLogicLayer.Services
 
             ApplyMd5Hashing(ref Credential);
             return _appContext.getUoW().StaffRepository.LoginStaff(Credential);
+        }
+
+        public int GetStaffCount()
+        {
+            var output = _appContext.getUoW().StaffRepository.GetCount();
+            _appContext.getUoW().Commit();
+
+            return output;
         }
 
     }

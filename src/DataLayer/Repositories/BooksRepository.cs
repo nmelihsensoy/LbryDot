@@ -17,9 +17,18 @@ namespace DataLayer.Repositories
 
         public int Add(BookModel model)
         {
-            return dbConnection.Execute("INSERT INTO Books (isbn, title, date_of_publication, author, number_of_pages, category, language, book_cover, shelf_number) values (@isbn, @title, @date_of_publication, @author, @number_of_pages, @category, @language, @book_cover, @shelf_number)",
+            if (model.added_date == DateTime.MinValue)
+            {
+                return dbConnection.Execute("INSERT INTO Books (isbn, title, date_of_publication, author, number_of_pages, category, language, book_cover, shelf_number, is_available) values (@isbn, @title, @date_of_publication, @author, @number_of_pages, @category, @language, @book_cover, @shelf_number, @is_available)",
                 model,
                 transaction: dbTransaction);
+            }
+            else
+            {
+                return dbConnection.Execute("INSERT INTO Books (isbn, title, date_of_publication, author, number_of_pages, category, language, book_cover, shelf_number, is_available, added_date) values (@isbn, @title, @date_of_publication, @author, @number_of_pages, @category, @language, @book_cover, @shelf_number, @is_available, @added_date)",
+                model,
+                transaction: dbTransaction);
+            } 
         }
 
         public int Delete(BookModel model)
@@ -69,8 +78,8 @@ namespace DataLayer.Repositories
 
         public IEnumerable<BookModel> Search(string Text)
         {
-            return dbConnection.Query<BookModel>("SELECT * FROM Books WHERE isbn LIKE @text OR title LIKE @text OR category LIKE @text;",
-                new { text = "%" + Text + "%" },
+            return dbConnection.Query<BookModel>("SELECT * FROM Books WHERE isbn LIKE @text OR title LIKE @text OR category LIKE @text OR date_of_publication LIKE @text_year;",
+                new { text = "%" + Text + "%", text_year = Text },
                 transaction: dbTransaction);
         }
 
@@ -79,5 +88,10 @@ namespace DataLayer.Repositories
             return dbConnection.Query<String>("SELECT DISTINCT category FROM Books;", new DynamicParameters(), transaction: dbTransaction);
         }
 
+        public IEnumerable<StatModel> GetFullChartData()
+        {
+            var sql = @"SELECT ADDED AS date, SUM(NUM) OVER(ORDER BY ADDED) AS count FROM (SELECT DATETIME(added_date, 'localtime') AS ADDED, COUNT(*) AS NUM FROM Books GROUP BY strftime('%d', DATETIME(added_date, 'localtime'))) GROUP BY ADDED ORDER BY ADDED ASC;";
+            return dbConnection.Query<StatModel>(sql, new DynamicParameters(), transaction: dbTransaction);
+        }
     }
 }

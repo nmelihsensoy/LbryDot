@@ -124,6 +124,7 @@ namespace PresentationLayer.Controls
             this.MinimumSize = new System.Drawing.Size(150, 0);
             this.Name = "AlertBox";
             this.Size = new System.Drawing.Size(150, 39);
+            this.Load += new System.EventHandler(this.AlertBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Image_TypeIcon)).EndInit();
             this.Panel_Container.ResumeLayout(false);
             this.Panel_Container.PerformLayout();

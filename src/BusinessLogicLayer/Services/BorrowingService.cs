@@ -15,9 +15,9 @@ namespace BusinessLogicLayer.Services
         {
         }
 
-        public void AddBorrowing(BorrowingModel Borrowing)
+        public void BorrowBook(BorrowingModel Borrowing)
         {
-            var output = _appContext.getUoW().BorrowingRepository.Add(Borrowing);
+            var output = _appContext.getUoW().BorrowingRepository.Borrow(Borrowing);
             var output2 = _appContext.getUoW().BooksRepository.ChangeBookAvailability(Borrowing.book.book_id, 0);
             _appContext.getUoW().Commit();
 
@@ -59,9 +59,7 @@ namespace BusinessLogicLayer.Services
 
             if (DayCount > 0)
             {
-                SettingsModel Settings = _appContext.getUoW().SettingsRepository.GetSettings();
-                _appContext.getUoW().Commit();
-                Borrowing.amount_of_fine = DayCount * Settings.daily_fine_amount;
+                Borrowing.amount_of_fine = DayCount * _appContext.AppSettings.daily_fine_amount;
             }
             else
             {
@@ -124,19 +122,46 @@ namespace BusinessLogicLayer.Services
 
         public List<Object> GetBorrowingsForBook(int BookId)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name, Borrow_Date = x.issued_date, Returned_Date = x.returned_date }).ToList<Object>(); ;
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name, Borrow_Date = x.issued_date, Returned_Date = x.returned_date }).ToList<Object>();
             _appContext.getUoW().Commit();
 
             return output;
         }
 
-        public List<Object> GetBorrowingsForBook(int BookId, bool IsCensored)
+        public List<Object> GetBorrowingsForBook(int BookId, bool IsCensored, string CensorException=null)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = Helpers.HideWords(x.student.student_name), Borrow_Date = x.issued_date.Date, Returned_Date = x.returned_date }).ToList<Object>(); ;
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name.Equals(CensorException) ? x.student.student_name : Helpers.HideWords(x.student.student_name), Borrow_Date = x.issued_date.Date, Returned_Date = x.returned_date }).ToList<Object>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+        public List<Object> GetBorrowingsForStudent(int StudentId)
+        {
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForStudent(StudentId).Select(x => new { Book_Name = x.book.title, Borrow_Date = x.issued_date, Returned_Date = x.returned_date }).ToList<Object>();
             _appContext.getUoW().Commit();
 
             return output;
         }
 
+        public void BulkAdd(List<BorrowingModel> Borrowings)
+        {
+            foreach (var Borrow in Borrowings)
+            {
+                var output = _appContext.getUoW().BorrowingRepository.Add(Borrow);
+                if (output == -1)
+                {
+                    break;
+                }
+            }
+            _appContext.getUoW().Commit();
+        }
+
+        public List<StatModel> GetFullChartData()
+        {
+            var output = _appContext.getUoW().BorrowingRepository.GetFullChartData().ToList<StatModel>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
     }
 }

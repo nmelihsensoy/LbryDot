@@ -67,7 +67,7 @@ namespace BusinessLogicLayer
 
         public static Color PaddedStringToColor(String Str, Color DefaultColor)
         {
-            Regex RgxPattern = new Regex(@"([0-9]){3}");
+            Regex RgxPattern = new Regex(@"([0-9]){2,3}");
             MatchCollection Matches = RgxPattern.Matches(Str);
 
             if (Matches.Count > 0)
@@ -79,7 +79,7 @@ namespace BusinessLogicLayer
 
         public static string GetOnlyText(string Str)
         {
-            return Regex.Replace(Str, @"\d+", String.Empty);
+            return Regex.Replace(Str, @"[^A-z\-ÇçĞğİıÖöŞşÜü\s]+", String.Empty);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace DataLayer.Abstract
     public interface IStaffRepository : IGenericRepository<StaffModel>
     {
         StaffModel LoginStaff(LoginModel Credential);
+        IEnumerable<StaffModel> GetAllWithoutAdmin();
+        int GetCount();
     }
 }

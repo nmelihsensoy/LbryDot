@@ -13,5 +13,6 @@ namespace DataLayer.Abstract
         int ChangeBookAvailability(int Id, short IsAvailable);
         IEnumerable<BookModel> Search(string Text);
         IEnumerable<String> GetAllCategories();
+        IEnumerable<StatModel> GetFullChartData();
     }
 }

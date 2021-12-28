@@ -41,7 +41,7 @@ namespace PresentationLayer.SubPages
 
         private void PopulateBooks(List<BookModel> Lst, FlowLayoutPanel Pnl)
         {
-            https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.control.suspendlayout?redirectedfrom=MSDN&view=windowsdesktop-6.0#System_Windows_Forms_Control_SuspendLayout
+            //https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.control.suspendlayout?redirectedfrom=MSDN&view=windowsdesktop-6.0#System_Windows_Forms_Control_SuspendLayout
             try
             {
                 this.SuspendLayout();
@@ -112,7 +112,7 @@ namespace PresentationLayer.SubPages
             {
                 if (AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
                 {
-                    var DeleteResult = MessageBox.Show("Delete Book", "Are You Sure", MessageBoxButtons.YesNo);
+                    var DeleteResult = MessageBox.Show("Delete \""+ BookListItem.GetItemFromButton(sender).Book.title + "\"", "Are You Sure", MessageBoxButtons.YesNo);
 
                     if (DeleteResult == DialogResult.Yes)
                     {

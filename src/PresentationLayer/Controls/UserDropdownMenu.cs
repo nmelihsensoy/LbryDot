@@ -22,6 +22,7 @@ namespace PresentationLayer.Controls
         public UserDropdownMenu()
         {
             InitializeComponent();
+            Panel_UserLogout_Splitter.Top = Button_UserLogout.Top - Panel_UserLogout_Splitter.Height - 1;
         }
 
         public void SetUser(StaffModel Model)

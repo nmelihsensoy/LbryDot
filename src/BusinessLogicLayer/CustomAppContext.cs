@@ -19,18 +19,28 @@ namespace BusinessLogicLayer
         private static IDatabaseProvider dbConn;
         protected IUnitOfWork _unitOfWork { get; }
         private UserType LoggedUserType = UserType.Undefined;
-        StaffModel LoggedStaff = null;
-        StudentModel LoggedStudent = null;
+        private StaffModel LoggedStaff = null;
+        private StudentModel LoggedStudent = null;
+        private SettingsModel _appSettings = null;
 
         public CustomAppContext()
         {
             dbConn = new DatabaseProvider();
             _unitOfWork = new UnitOfWork(dbConn);
+            if (_appSettings == null)
+            {
+                UpdateSettings();
+            }
         }
 
         public IUnitOfWork getUoW()
         {
             return _unitOfWork;
+        }
+
+        public SettingsModel AppSettings
+        {
+            get { return _appSettings; }
         }
 
         public void SetLoggedUser(StaffModel _loggedStaff)
@@ -83,6 +93,11 @@ namespace BusinessLogicLayer
             {
                 throw new Exception("Only Admin can reset the database.");
             }
+        }
+
+        public void UpdateSettings()
+        {
+            _appSettings = getUoW().SettingsRepository.GetSettings();
         }
 
     }

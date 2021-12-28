@@ -61,7 +61,7 @@ namespace PresentationLayer.Dialogs
                 BorrowBook1.issued_date = DateTime.Now;
                 BorrowBook1.due_date = dateTimePicker_ReturnDate.Value;
 
-                BorrowingService1.AddBorrowing(BorrowBook1);
+                BorrowingService1.BorrowBook(BorrowBook1);
                 AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Borrow Success");
                 AlertBox_SuccesError.Visible = true;
                 AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf: "+BorrowBook1.book.shelf_number);

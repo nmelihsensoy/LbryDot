@@ -54,7 +54,7 @@ namespace DataLayer.Repositories
                 transaction: dbTransaction);
             }
             else {
-                return dbConnection.Execute("UPDATE Students SET student_email=@student_email, student_passwod=@student_passwod, student_name=@student_name, student_avatar=@student_avatar WHERE student_number = @student_number;", model,
+                return dbConnection.Execute("UPDATE Students SET student_email=@student_email, student_password=@student_password, student_name=@student_name, student_avatar=@student_avatar WHERE student_number = @student_number;", model,
                 transaction: dbTransaction);
             }
             
@@ -75,6 +75,11 @@ namespace DataLayer.Repositories
 
 
             return output;
+        }
+
+        public int GetCount()
+        {
+            return dbConnection.Query<int>("SELECT COUNT(*) FROM Students;", new DynamicParameters(), transaction: dbTransaction).Single();
         }
 
     }

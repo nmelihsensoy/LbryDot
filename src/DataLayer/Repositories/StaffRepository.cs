@@ -16,28 +16,48 @@ namespace DataLayer.Repositories
         }
 
         public int Add(StaffModel model)
-            {
-                throw new NotImplementedException();
-            }
+        {
+            return dbConnection.Execute("INSERT INTO Staff (staff_email, staff_name, staff_password, staff_avatar) values (@staff_email, @staff_name, @staff_password, @staff_avatar)",
+                model,
+                transaction: dbTransaction);
+        }
 
         public int Delete(StaffModel model)
         {
-            throw new NotImplementedException();
+            return dbConnection.Execute("DELETE FROM Staff WHERE staff_id=@id", new { id = model.staff_id }, dbTransaction);
         }
 
         public IEnumerable<StaffModel> GetAll()
         {
-            throw new NotImplementedException();
+            return dbConnection.Query<StaffModel>("SELECT * FROM Staff",
+                new DynamicParameters(),
+                transaction: dbTransaction);
+        }
+
+        public IEnumerable<StaffModel> GetAllWithoutAdmin()
+        {
+            return dbConnection.Query<StaffModel>("SELECT * FROM Staff WHERE staff_type IS NOT 0",
+                new DynamicParameters(),
+                transaction: dbTransaction);
         }
 
         public StaffModel GetById(int Id)
         {
-            throw new NotImplementedException();
+            return dbConnection.Query<StaffModel>("SELECT * FROM Staff WHERE staff_id = @id;", new { id = Id }, transaction: dbTransaction).FirstOrDefault();
         }
 
         public int Update(StaffModel model)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(model.staff_password))
+            {
+                return dbConnection.Execute("UPDATE Staff SET staff_email=@staff_email, staff_name=@staff_name, staff_avatar=@staff_avatar WHERE staff_id = @staff_id;", model,
+                transaction: dbTransaction);
+            }
+            else
+            {
+                return dbConnection.Execute("UPDATE Staff SET staff_email=@staff_email, staff_password=@staff_password, staff_name=@staff_name, staff_avatar=@staff_avatar WHERE staff_id = @staff_id;", model,
+                transaction: dbTransaction);
+            }
         }
 
         public StaffModel LoginStaff(LoginModel Credential)
@@ -57,5 +77,9 @@ namespace DataLayer.Repositories
             return output;
         }
 
+        public int GetCount()
+        {
+            return dbConnection.Query<int>("SELECT COUNT(*) FROM Staff;", new DynamicParameters(), transaction: dbTransaction).Single();
+        }
     }
 }

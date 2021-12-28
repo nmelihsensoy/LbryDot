@@ -51,7 +51,7 @@ namespace PresentationLayer.Controls
             this.Image_BookCover.Location = new System.Drawing.Point(23, 0);
             this.Image_BookCover.Name = "Image_BookCover";
             this.Image_BookCover.Size = new System.Drawing.Size(88, 115);
-            this.Image_BookCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Image_BookCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Image_BookCover.TabIndex = 1;
             this.Image_BookCover.TabStop = false;
             this.Image_BookCover.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
@@ -150,7 +150,7 @@ namespace PresentationLayer.Controls
             this.Panel_Hover_Top.Controls.Add(this.Text_DayFirstLine);
             this.Panel_Hover_Top.Location = new System.Drawing.Point(23, 0);
             this.Panel_Hover_Top.Name = "Panel_Hover_Top";
-            this.Panel_Hover_Top.Opacity = 70;
+            this.Panel_Hover_Top.Opacity = 90;
             this.Panel_Hover_Top.Size = new System.Drawing.Size(88, 44);
             this.Panel_Hover_Top.TabIndex = 3;
             this.Panel_Hover_Top.Visible = false;

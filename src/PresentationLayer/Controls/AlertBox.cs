@@ -86,6 +86,7 @@ namespace PresentationLayer.Controls
         public void ShowAlert(AlertType Type, string Msg, Font Fnt)
         {
             SetStyleByType(Type);
+            MakeTextVerticalCenter();
             Text_Message.Font = Fnt;
             Text_Message.Text = Msg;
         }
@@ -94,7 +95,19 @@ namespace PresentationLayer.Controls
         public void ShowAlert(AlertType Type, string Msg)
         {
             SetStyleByType(Type);
+            MakeTextVerticalCenter();
             Text_Message.Text = Msg;
+        }
+
+        private void AlertBox_Load(object sender, EventArgs e)
+        {
+            MakeTextVerticalCenter();
+        }
+
+        private void MakeTextVerticalCenter()
+        {
+            Image_TypeIcon.Top = (Panel_Container.Height / 2) - (Image_TypeIcon.Height / 2);
+            Text_Message.Top = (Panel_Container.Height / 2) - (Text_Message.Height / 2);
         }
     }
 }

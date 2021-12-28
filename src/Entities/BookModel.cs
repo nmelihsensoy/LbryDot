@@ -19,5 +19,6 @@ namespace Entities
         public byte[] book_cover { get; set; }
         public string shelf_number { get; set; }
         public short is_available { get; set; }
+        public DateTime added_date { get; set; }
     }
 }

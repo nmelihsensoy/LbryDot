@@ -9,47 +9,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer;
 using BusinessLogicLayer.Services;
-using Entities;
 
 namespace PresentationLayer.Dialogs
 {
-    public partial class BookDetails : Form
+    public partial class UserDetails : Form
     {
         private CustomAppContext AppContext;
-        private BookModel _book;
         private BorrowingService BorrowingService1;
 
-        public BookDetails(CustomAppContext _appContext, BookModel Book)
+        public UserDetails(CustomAppContext _appContext, int StudentId)
         {
             InitializeComponent();
             AppContext = _appContext;
-            _book = Book;
             BorrowingService1 = new BorrowingService(AppContext);
-            SetBookDetailsById();
+            dataGridView1.DataSource = BorrowingService1.GetBorrowingsForStudent(StudentId);
             InitTable();
-            if (AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
-            {
-                dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id);
-            }
-            else
-            {
-                dataGridView1.DataSource = BorrowingService1.GetBorrowingsForBook(_book.book_id, true, AppContext.GetLoggedStudent().student_name);
-            }
             TableCustom();
-        }
-
-        private void SetBookDetailsById()
-        {
-            bookListItem1.MakeExtendedListItem();
-            bookListItem1.SetUserPrivilege(UserType.Student);
-            bookListItem1.Book = _book;
         }
 
         private void TableCustom()
         {
             if (dataGridView1.Columns.Count > 0)
             {
-                dataGridView1.Columns[0].HeaderText = "Student Name";
+                dataGridView1.Columns[0].HeaderText = "Book Name";
                 dataGridView1.Columns[1].HeaderText = "Borrow Date";
                 dataGridView1.Columns[2].HeaderText = "Return Date";
             }
@@ -72,26 +54,8 @@ namespace PresentationLayer.Dialogs
             dataGridView1.RowTemplate.Height = 30;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.ClearSelection(); 
+            dataGridView1.ClearSelection();
         }
 
-        private void bookListItem1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string CopyVal = "";
-            if ((sender as ToolStripMenuItem).Name == "copyTitleToolStripMenuItem")
-            {
-                CopyVal = _book.title;
-            }else if ((sender as ToolStripMenuItem).Name == "copyISBNToolStripMenuItem")
-            {
-                CopyVal = _book.isbn;
-            }
-
-            Clipboard.SetText(CopyVal);
-        }
     }
 }

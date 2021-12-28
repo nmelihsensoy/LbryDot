@@ -14,23 +14,26 @@ using Entities;
 
 namespace PresentationLayer.Dialogs
 {
-    public partial class StudentAddUpdate : Form
+    public partial class UserAddUpdate : Form
     {
         private CustomAppContext AppContext;
         private StudentsService StudentsService1;
+        private StaffService StaffService1;
         private byte[] SelectedAvatarInBytes;
-        private bool IsNewStudent = true;
-        private int StudentNumber;
+        private bool IsNewUser = true;
+        private int UserId;
+        private UserType UserTypeEditAdd = UserType.Undefined;
         private StudentModel EditStudent;
+        private StaffModel EditStaff;
         public DialogResult ReturnType = DialogResult.Cancel;
 
-        public StudentAddUpdate(CustomAppContext _appContext, int _studentNumber = -1)
+        public UserAddUpdate(CustomAppContext _appContext, UserType _userType=UserType.Student, int _userId = -1)
         {
             InitializeComponent();
             AppContext = _appContext;
-            StudentNumber = _studentNumber;
-            if (_studentNumber != -1) IsNewStudent = false;
-            StudentsService1 = new StudentsService(AppContext);
+            UserTypeEditAdd = _userType;
+            UserId = _userId;
+            if (_userId != -1) IsNewUser = false;
             ApplyColorPalette();
             ApplyStrings();
             ApplyDialogType();
@@ -54,14 +57,44 @@ namespace PresentationLayer.Dialogs
 
         private void ApplyDialogType()
         {
-            if(this.IsNewStudent == false)
+            if (UserTypeEditAdd == UserType.Student)
             {
-                EditStudent = StudentsService1.GetStudentById(StudentNumber);
+                StudentsService1 = new StudentsService(AppContext);
+                Button_AddSave.Click += ıconButton2_Click;
+            }
+
+            if (UserTypeEditAdd == UserType.Staff)
+            {
+                StaffService1 = new StaffService(AppContext);
+                Button_AddSave.Click += StaffSave_Click;
+            }
+
+            if(UserTypeEditAdd == UserType.Student && this.IsNewUser == false)
+            {
+                
+                EditStudent = StudentsService1.GetStudentById(UserId);
                 Input_Email.Text = EditStudent.student_email;
                 Input_Name.Text = EditStudent.student_name;
                 SelectedAvatarInBytes = EditStudent.student_avatar;
                 Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStudent.student_avatar);
             }
+
+            if (UserTypeEditAdd == UserType.Staff && this.IsNewUser == false)
+            {
+                EditStaff = StaffService1.GetStaffById(UserId);
+                Input_Email.Text = EditStaff.staff_email;
+                Input_Name.Text = EditStaff.staff_name;
+                SelectedAvatarInBytes = EditStaff.staff_avatar;
+                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStaff.staff_avatar);
+            }
+        }
+
+        private void SetModelFromInputs(StaffModel Staff)
+        {
+            Staff.staff_email = Input_Email.Text;
+            Staff.staff_name = Input_Name.Text;
+            Staff.staff_password = Input_Password.Text;
+            Staff.staff_avatar = SelectedAvatarInBytes;
         }
 
         private void SetModelFromInputs(StudentModel Student)
@@ -77,7 +110,7 @@ namespace PresentationLayer.Dialogs
             try
             {
                 string SuccessMsg = "";
-                if (IsNewStudent == true)
+                if (IsNewUser == true)
                 {
                     StudentModel NewStudent = new StudentModel();
                     SetModelFromInputs(NewStudent);
@@ -90,6 +123,40 @@ namespace PresentationLayer.Dialogs
                     SetModelFromInputs(EditStudent);
                     StudentsService1.UpdateStudent(EditStudent);
                     SuccessMsg = "Student Updated Successfully";
+                }
+
+                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
+                AlertBox_UserOperation.Visible = true;
+                this.Height += AlertBox_UserOperation.Height + 10;
+                ReturnType = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                AlertBox_UserOperation.Visible = true;
+                this.Height += AlertBox_UserOperation.Height + 10;
+                ReturnType = DialogResult.Abort;
+            }
+        }
+
+        private void StaffSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string SuccessMsg = "";
+                if (IsNewUser == true)
+                {
+                    StaffModel NewStaff = new StaffModel();
+                    SetModelFromInputs(NewStaff);
+
+                    StaffService1.AddStaff(NewStaff);
+                    SuccessMsg = "Staff Added Successfully";
+                }
+                else
+                {
+                    SetModelFromInputs(EditStaff);
+                    StaffService1.UpdateStaff(EditStaff);
+                    SuccessMsg = "Staff Updated Successfully";
                 }
 
                 AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);

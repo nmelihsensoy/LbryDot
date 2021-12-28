@@ -18,6 +18,30 @@ namespace DataLayer.Repositories
 
         public int Add(BorrowingModel model)
         {
+
+            DynamicParameters Params = new DynamicParameters();
+            Params.Add("@book_id", model.book.book_id, DbType.Int32, ParameterDirection.Input);
+            Params.Add("@student_number", model.student.student_number, DbType.Int32, ParameterDirection.Input);
+            Params.Add("@issued_date", model.issued_date, DbType.DateTime, ParameterDirection.Input);
+            Params.Add("@due_date", model.due_date, DbType.DateTime, ParameterDirection.Input);
+            Params.Add("@amount_of_fine", model.amount_of_fine, DbType.Int32, ParameterDirection.Input);
+
+            if (model.returned_date == DateTime.MinValue)
+            {
+                Params.Add("returned_date", null);
+            }
+            else
+            {
+                Params.Add("returned_date", model.returned_date, DbType.DateTime, ParameterDirection.Input);
+            }
+
+            return dbConnection.Execute("INSERT INTO Borrowing (book_id, student_number, issued_date, due_date, returned_date, amount_of_fine) values (@book_id, @student_number, @issued_date, @due_date, @returned_date, @amount_of_fine)",
+                Params,
+                transaction: dbTransaction);
+        }
+
+        public int Borrow(BorrowingModel model)
+        {
             return dbConnection.Execute("INSERT INTO Borrowing (book_id, student_number, issued_date, due_date) values (@book_id, @student_number, @issued_date, @due_date)",
                 new
                 {
@@ -135,6 +159,30 @@ namespace DataLayer.Repositories
                 ORDER BY B.returned_date ASC";
 
             return dbConnection.Query<BorrowingModel, StudentModel, BorrowingModel>(sql, (borrowing, student) => { borrowing.student = student; return borrowing; }, new { id = BookId }, splitOn: "student_number", transaction: dbTransaction);
+        }
+
+        public IEnumerable<BorrowingModel> GetAllBorrowingsForStudent(int StudentId)
+        {
+            var sql = @"SELECT * FROM Borrowing AS B
+                LEFT JOIN Books AS BK ON BK.book_id = B.book_id
+                WHERE B.student_number = @id
+                ORDER BY B.returned_date ASC, B.issued_date ASC";
+
+            return dbConnection.Query<BorrowingModel, BookModel, BorrowingModel>(sql, (borrowing, book) => { borrowing.book = book; return borrowing; }, new { id = StudentId }, splitOn: "book_id", transaction: dbTransaction);
+        }
+
+        public IEnumerable<StatModel> GetFullChartData()
+        {
+            var sql = @"SELECT A.returned_date AS date, (LessThanCount-A.RETURNED_COUNT) AS count FROM (SELECT BRW.returned_date, BRW.issued_date, SUM(IFNULL(B.LessThanCount, 0)) as LessThanCount 
+                        FROM Borrowing BRW
+                        LEFT JOIN (SELECT issued_date, COUNT(*) as LessThanCount FROM Borrowing GROUP BY issued_date)B ON B.issued_date <=  BRW.returned_date
+                        WHERE BRW.returned_date IS NOT NULL
+                        GROUP BY BRW.borrow_id, BRW.returned_date
+                        ORDER BY BRW.returned_date ASC) LTC
+                        LEFT JOIN (SELECT returned_date, SUM(NUM) OVER(ORDER BY returned_date ASC) AS RETURNED_COUNT FROM (SELECT returned_date, COUNT(*) AS NUM FROM Borrowing WHERE returned_date IS NOT NULL GROUP BY returned_date))A ON A.returned_date = LTC.returned_date
+                        GROUP BY LTC.returned_date;";
+
+            return dbConnection.Query<StatModel>(sql, new DynamicParameters(), transaction: dbTransaction);
         }
 
     }

@@ -137,5 +137,13 @@ namespace BusinessLogicLayer.Services
             _appContext.getUoW().Commit();
         }
 
+        public int GetStudentsCount()
+        {
+            var output = _appContext.getUoW().StudentsRepository.GetCount();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
     }
 }

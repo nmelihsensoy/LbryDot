@@ -105,5 +105,13 @@ namespace BusinessLogicLayer.Services
             _appContext.getUoW().Commit();
         }
 
+        public List<StatModel> GetBookChartData()
+        {
+            var output = _appContext.getUoW().BooksRepository.GetFullChartData().ToList<StatModel>();
+            _appContext.getUoW().Commit();
+
+            return output;
+        }
+
     }
 }

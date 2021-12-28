@@ -110,6 +110,13 @@ namespace PresentationLayer.Controls
                 else
                 {
                     Text_BookTitleFirstLine.Text = value.title;
+                    Text_BookTitleSecLine.Text = "";
+                }
+
+                if (Text_BookTitleSecLine.Text.Length > 15)
+                {
+                    Text_BookTitleSecLine.Text = Text_BookTitleSecLine.Text.Substring(0, 15);
+                    Text_BookTitleSecLine.Text += "...";
                 }
 
                 Text_BookAuthor.Text = value.author;
@@ -134,7 +141,7 @@ namespace PresentationLayer.Controls
 
                 if (_userType == UserType.Student && value.is_available == 0)
                 {
-                    Button_BookDeleteBorrow.Enabled = false;
+                    Button_BookDeleteBorrow.Visible = false;
                 }
             }
             get
