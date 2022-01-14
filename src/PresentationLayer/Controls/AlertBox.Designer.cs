@@ -29,6 +29,7 @@ namespace PresentationLayer.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Text_Message = new System.Windows.Forms.Label();
             this.Image_TypeIcon = new FontAwesome.Sharp.IconPictureBox();
             this.Panel_Container = new System.Windows.Forms.Panel();
@@ -36,6 +37,7 @@ namespace PresentationLayer.Controls
             this.Splitter_BorderTop = new System.Windows.Forms.Splitter();
             this.Splitter_BorderRight = new System.Windows.Forms.Splitter();
             this.Splitter_BorderLeft = new System.Windows.Forms.Splitter();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Image_TypeIcon)).BeginInit();
             this.Panel_Container.SuspendLayout();
             this.SuspendLayout();
@@ -43,11 +45,13 @@ namespace PresentationLayer.Controls
             // Text_Message
             // 
             this.Text_Message.AutoSize = true;
+            this.Text_Message.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Text_Message.Location = new System.Drawing.Point(42, 12);
             this.Text_Message.Name = "Text_Message";
             this.Text_Message.Size = new System.Drawing.Size(35, 13);
             this.Text_Message.TabIndex = 1;
             this.Text_Message.Text = "label1";
+            this.Text_Message.DoubleClick += new System.EventHandler(this.Text_Message_DoubleClick);
             // 
             // Image_TypeIcon
             // 
@@ -142,5 +146,6 @@ namespace PresentationLayer.Controls
         private System.Windows.Forms.Splitter Splitter_BorderTop;
         private System.Windows.Forms.Splitter Splitter_BorderRight;
         private System.Windows.Forms.Splitter Splitter_BorderLeft;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

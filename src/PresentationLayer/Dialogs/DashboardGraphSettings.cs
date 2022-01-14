@@ -14,12 +14,14 @@ namespace PresentationLayer.Dialogs
     public partial class DashboardGraphSettings : Form
     {
         public string TitleResult = "";
+        private string DefaultTitle;
 
-        public DashboardGraphSettings(string CurrentTitle)
+        public DashboardGraphSettings(string CurrentTitle, string _defaultTitle)
         {
             InitializeComponent();
             ApplyColorPalette();
             ApplyStrings();
+            DefaultTitle = _defaultTitle;
             Input_Title.Text = CurrentTitle;
         }
 
@@ -43,7 +45,7 @@ namespace PresentationLayer.Dialogs
 
         private void Button_LoadDefault_Click(object sender, EventArgs e)
         {
-            Input_Title.Text = Strings.ChartTitle;
+            Input_Title.Text = DefaultTitle;
         }
     }
 }

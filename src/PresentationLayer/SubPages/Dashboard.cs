@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using ZedGraph;
 using Entities;
+using PresentationLayer.Controls;
 
 namespace PresentationLayer.SubPages
 {
@@ -59,21 +60,31 @@ namespace PresentationLayer.SubPages
 			Splitter_ChartLeftBorder.BackColor = ColorPalette.DashBoardPanelBorderColor;
 			Splitter_ChartRightBorder.BackColor = ColorPalette.DashBoardPanelBorderColor;
 			Text_ActiveBooksTitle.ForeColor = ColorPalette.DashboardActivePanelForeColor;
-			label2.ForeColor = Color.FromArgb(255, 67, 67);
-			label3.ForeColor = Color.FromArgb(24, 200, 255);
-			splitter2.BackColor = Color.FromArgb(255, 67, 67);
-			splitter3.BackColor = Color.FromArgb(24, 200, 255);
+			label1.ForeColor = ColorPalette.DashboardActivePanelForeColor;
+			label4.ForeColor = ColorPalette.DashboardActivePanelForeColor;
+			label2.ForeColor = ColorPalette.DashboardWidgetColor1;
+			label3.ForeColor = ColorPalette.DashboardWidgetColor2;
+			splitter2.BackColor = ColorPalette.DashboardWidgetColor1;
+			splitter3.BackColor = ColorPalette.DashboardWidgetColor2;
 		}
 
 		private void ApplyStrings()
 		{
 			Text_ActiveBooksTitle.Text = Strings.ActiveBooks;
+			label1.Text = Strings.TotalStudent;
+			label4.Text = Strings.TotalStaff;
+		}
+
+		private void RefreshMyBooks()
+        {
+			flowLayoutPanel1.Controls.Clear();
+			MyBooks.PopulateMyBooks(BorrowingService1.GetActives(4), flowLayoutPanel1, StatusItemClick);
 		}
 
 		private void SetViewForUserTypes()
         {
 			if (AppContext.GetUserType() == Entities.UserType.Student) {
-				MyBooks.PopulateMyBooks(BorrowingService1.GetActives(4), flowLayoutPanel1, StatusItemClick);
+				RefreshMyBooks();
 			}
 			else if (AppContext.GetUserType() == Entities.UserType.Staff || AppContext.GetUserType() == Entities.UserType.Admin)
             {
@@ -106,7 +117,6 @@ namespace PresentationLayer.SubPages
 			myPane.XAxis.Scale.Min = Titles.Length-4.5;
 			myPane.XAxis.Scale.Max = Titles.Length+0.5;
 			myPane.Chart.Fill = new Fill(new SolidBrush(ColorPalette.SettingsBackColor));
-			//myPane.Chart.Fill = new Fill(ColorPalette.SettingsBackColor, Color.White);
 
 			myPane.Legend.IsVisible = true;
 			myPane.Legend.Border.IsVisible = false;
@@ -121,87 +131,14 @@ namespace PresentationLayer.SubPages
             myPane.YAxis.MinorTic.Size = 1;
             BarItem myCurve = myPane.AddBar(Strings.BarName2, null, Y2, Color.Transparent);
 			myCurve.Bar.Border.IsVisible = false;
-			myCurve.Bar.Fill = new Fill(new SolidBrush(Color.FromArgb(123, 215, 60)));
+			myCurve.Bar.Fill = new Fill(new SolidBrush(ColorPalette.DashboardRightWidgetColor1));
 
 			myCurve = myPane.AddBar(Strings.BarName1, null, Y1, Color.Transparent);
-			myCurve.Bar.Fill = new Fill(new SolidBrush(Color.FromArgb(252, 69, 73)));
+			myCurve.Bar.Fill = new Fill(new SolidBrush(ColorPalette.DashboardRightWidgetColor2));
 			myCurve.Bar.Border.IsVisible = false;
 
 
 			ZedGraphControl_1.AxisChange();
-		}
-
-		private void StaffChartInit2()
-		{
-			myPane2 = zedGraphControl1.GraphPane;
-
-			myPane2.Border.IsVisible = false;
-			myPane2.Margin.All = 5;
-
-            myPane2.XAxis.Type = ZedGraph.AxisType.Date;
-            myPane2.XAxis.Scale.Format = "dd-MMM-yy";
-            myPane2.XAxis.Scale.MajorUnit = DateUnit.Day;
-            myPane2.XAxis.Scale.MajorStep = 1;
-            myPane2.XAxis.Scale.Min = new XDate(DateTime.Now.AddDays(-7));
-            myPane2.XAxis.Scale.Max = new XDate(DateTime.Today);
-
-            myPane2.Chart.Fill = new Fill(new SolidBrush(ColorPalette.SettingsBackColor));
-
-			myPane2.Legend.IsVisible = true;
-			myPane2.Legend.Border.IsVisible = false;
-			myPane2.Legend.FontSpec.Size = 14;
-
-			myPane2.Title.Text = "Title";
-			myPane2.XAxis.Title.Text = "Days";
-			myPane2.YAxis.Title.Text = "Count";
-
-            //double[] y = { 100, 115, 75};
-            //double[] y2 = { 90, 100, 95};
-            //double[] y3 = { 80, 110, 65};
-
-
-
-
-            PointPairList list1 = new PointPairList();
-			PointPairList list2 = new PointPairList();
-			PointPairList list3 = new PointPairList();
-			list1.Add(new XDate(DateTime.Today), 100);
-			list2.Add(new XDate(DateTime.Today), 150);
-			list3.Add(new XDate(DateTime.Today), 150);
-
-			list1.Add(new XDate(DateTime.Today.AddDays(-1)), 80);
-			list2.Add(new XDate(DateTime.Today.AddDays(-1)), 150);
-			list3.Add(new XDate(DateTime.Today.AddDays(-1)), 150);
-
-			list1.Add(new XDate(DateTime.Today.AddDays(-2)), 20);
-			list2.Add(new XDate(DateTime.Today.AddDays(-2)), 180);
-			list3.Add(new XDate(DateTime.Today.AddDays(-2)), 180);
-
-
-			LineItem myCurve3 = myPane2.AddCurve("Curve 4",
-			list3, Color.Black, SymbolType.Circle);
-			//myCurve3.Line.Fill = new Fill(Color.White, Color.LightSkyBlue, -45F);
-
-			myCurve3.Symbol.Size = 8.0F;
-			myCurve3.Symbol.Fill = new Fill(Color.White);
-			myCurve3.Line.Width = 2.0F;
-
-			CurveItem myCurve = myPane2.AddBar("Porsche",
-				list1, Color.Red);
-
-			CurveItem myCurve2 = myPane2.AddBar("TEST",
-				list2, Color.Blue);
-
-			
-
-			// Indicate that the bars are overlay type, which are drawn on top of eachother
-			myPane2.BarSettings.Type = BarType.Overlay;
-
-			// Fill the axis background with a color gradientC:\Documents and Settings\champioj\Desktop\ZedGraph-4.9-CVS\demo\ZedGraph.Demo\StepChartDemo.cs
-			myPane2.Chart.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0F);
-
-			zedGraphControl1.AxisChange();
-			//myPane2.YAxis.Scale.Max += myPane2.YAxis.Scale.MajorStep;
 		}
 
 		private void StaffChartInit()
@@ -219,42 +156,21 @@ namespace PresentationLayer.SubPages
             myPane2.XAxis.Type = ZedGraph.AxisType.Date;
             myPane2.XAxis.Scale.Format = "dd-MMM-yy";
             myPane2.XAxis.Scale.MajorUnit = DateUnit.Day;
-            //myPane2.XAxis.Scale.MajorStep = 1;
             myPane2.XAxis.Scale.MinorStep = 1;
             myPane2.XAxis.Scale.Min = new XDate(DateTime.Now.AddDays(-7));
             myPane2.XAxis.Scale.Max = new XDate(DateTime.Today);
 
-			myPane2.Chart.Fill = new Fill(new SolidBrush(Color.White));
+			myPane2.Chart.Fill = new Fill(new SolidBrush(ColorPalette.GenericFormBackColor));
 
 			myPane2.Legend.IsVisible = true;
 			myPane2.Legend.FontSpec.Size = 14;
 
-			myPane2.Title.Text = "Available Books By Days";
-			myPane2.XAxis.Title.Text = "Days";
-			myPane2.YAxis.Title.Text = "Count";
+			myPane2.Title.Text = Strings.DashboardStaffChartTitle;
+			myPane2.XAxis.Title.Text = Strings.DashboardStaffChartXTitle;
+			myPane2.YAxis.Title.Text = Strings.DashboardStaffChartYTitle;
 
 			PointPairList list1 = new PointPairList();
 			PointPairList list2 = new PointPairList();
-			//for (int i = 0; i < 36; i++)
-			//{
-			//	double x = (double)i + 5;
-			//	double y1 = 1.5 + Math.Sin((double)i * 0.2);
-			//	double y2 = 3.0 * (1.5 + Math.Sin((double)i * 0.2));
-			//	list1.Add(x, y1);
-			//	list2.Add(x, y2);
-			//}
-
-			//list2.Add(new XDate(DateTime.Today.AddDays(-30)), 10);
-			//list2.Add(new XDate(DateTime.Today.AddDays(-25)), 12);
-			//list2.Add(new XDate(DateTime.Today), 12);
-
-			//list1.Add(new XDate(DateTime.Today.AddDays(-30)), 4);
-			//list1.Add(new XDate(DateTime.Today.AddDays(-25)), 7);
-			//list1.Add(new XDate(DateTime.Today.AddDays(-20)), 0);
-			//list1.Add(new XDate(DateTime.Today.AddDays(-15)), 2);
-			//list1.Add(new XDate(DateTime.Today.AddDays(-10)), 12);
-			//list1.Add(new XDate(DateTime.Today), 5);
-
 
 			var BookStatsTemp = BooksService1.GetBookChartData();
 
@@ -293,50 +209,35 @@ namespace PresentationLayer.SubPages
 				list1.Add(new XDate(DateTime.Today.Date), BorrowedDataTemp.Last<StatModel>().count);
 			}
 
-			// Generate a red curve with diamond
-			// symbols, and "Porsche" in the legend
-			LineItem myCurve = myPane2.AddCurve("Borrowed Book",
-				list1, Color.FromArgb(75, 75, 75), SymbolType.Diamond);
+			LineItem myCurve = myPane2.AddCurve(Strings.DashboardStaffChartCurveTitle1,
+				list1, ColorPalette.DashboardStaffChartColor1, SymbolType.Diamond);
 
-			// Generate a blue curve with circle
-			// symbols, and "Piper" in the legend
-			LineItem myCurve2 = myPane2.AddCurve("Total Book",
-				list2, Color.FromArgb(236, 177, 117), SymbolType.Circle);;
+			LineItem myCurve2 = myPane2.AddCurve(Strings.DashboardStaffChartCurveTitle2,
+				list2, ColorPalette.DashboardStaffChartColor2, SymbolType.Circle);;
 
-			BarItem myCurve3 = myPane2.AddBar("Available Book", null, null, Color.Blue);
-			myCurve3.Bar.Fill = new Fill(new SolidBrush(Color.FromArgb(80, 106, 214, 217)));
-			myCurve3.Bar.Border.Color = Color.FromArgb(90, 106, 214, 217);
+			BarItem myCurve3 = myPane2.AddBar(Strings.DashboardStaffChartCurveTitle3, null, null, Color.Transparent);
+			myCurve3.Bar.Fill = new Fill(new SolidBrush(ColorPalette.DashboardStaffChartColor3));
+			myCurve3.Bar.Border.Color = ColorPalette.DashboardStaffChartColor4;
 
-			// Change the color of the title
-			//myPane2.Title.FontSpec.FontColor = Color.Green;
-
-			// Add gridlines to the plot, and make them gray
 			myPane2.XAxis.MajorGrid.IsVisible = true;
 			myPane2.YAxis.MajorGrid.IsVisible = true;
-			myPane2.XAxis.MajorGrid.Color = Color.LightGray;
-			myPane2.YAxis.MajorGrid.Color = Color.LightGray;
+			myPane2.XAxis.MajorGrid.Color = ColorPalette.DashboardStaffChartColor5;
+			myPane2.YAxis.MajorGrid.Color = ColorPalette.DashboardStaffChartColor5;
 
-			// Move the legend location
 			myPane2.Legend.Position = ZedGraph.LegendPos.Top;
 
-			// Make both curves thicker
 			myCurve.Line.Width = 1.5F;
 			myCurve2.Line.Width = 3.0F;
 
-			// Fill the area under the curves
-			myCurve.Line.Fill = new Fill(new SolidBrush(Color.FromArgb(80, 144, 140, 221))); 
-			myCurve2.Line.Fill = new Fill(new SolidBrush(Color.FromArgb(60, 106, 214, 217)));
+			myCurve.Line.Fill = new Fill(new SolidBrush(ColorPalette.DashboardStaffChartColor6)); 
+			myCurve2.Line.Fill = new Fill(new SolidBrush(ColorPalette.DashboardStaffChartColor7));
 			//myCurve.Line.IsSmooth = true;
 			//myCurve.Line.SmoothTension = 0.2F;
 
-			//myCurve2.Line.IsSmooth = true;
-			//myCurve2.Line.SmoothTension = 0.6F;
-
-			// Increase the symbol sizes, and fill them with solid white
 			myCurve.Symbol.Size = 20.0F;
 			myCurve2.Symbol.Size = 15.0F;
-			myCurve.Symbol.Fill = new Fill(Color.White);
-			myCurve2.Symbol.Fill = new Fill(Color.White);
+			myCurve.Symbol.Fill = new Fill(ColorPalette.GenericFormBackColor);
+			myCurve2.Symbol.Fill = new Fill(ColorPalette.GenericFormBackColor);
 
 			zedGraphControl1.AxisChange();
 		}
@@ -349,22 +250,31 @@ namespace PresentationLayer.SubPages
 
         private void Button_ChartSettings_Click(object sender, EventArgs e)
         {
-			using (var form = new DashboardGraphSettings(myPane.Title.Text))
-			{
-				form.StartPosition = FormStartPosition.Manual;
-				form.Location = Button_ChartSettings.PointToScreen(Point.Empty);
-				var result = form.ShowDialog();
+			Form GraphSettingsDialog;
+			Point StartP = (sender as Button).PointToScreen(Point.Empty);
+			ZedGraphControl SelectedChart;
 
-				if (result == DialogResult.OK)
-				{
-					ChangeChartTitle(form.TitleResult, ZedGraphControl_1);
-				}
+			if ((sender as Button).Name == "Button_ChartSettings")
+            {
+				GraphSettingsDialog = new DashboardGraphSettings(myPane.Title.Text, Strings.ChartTitle);
+				SelectedChart = ZedGraphControl_1;
 			}
-		}
+            else if((sender as Button).Name == "iconButton1")
+            {
+				GraphSettingsDialog = new DashboardGraphSettings(zedGraphControl1.GraphPane.Title.Text, Strings.DashboardStaffChartTitle);
+				SelectedChart = zedGraphControl1;
+            }
+            else
+            {
+				return;
+            }
+	
+			Helpers.SetFormStartPoint(ref GraphSettingsDialog, StartP, 0, 0);
 
-		private void StatusItemClick(object sender, EventArgs e)
-		{ 
-			
+			if (GraphSettingsDialog.ShowDialog() == DialogResult.OK)
+			{
+				ChangeChartTitle((GraphSettingsDialog as DashboardGraphSettings).TitleResult, SelectedChart);
+			}
 		}
 
 		private void DrawPieChart(int value1, int value2)
@@ -382,21 +292,20 @@ namespace PresentationLayer.SubPages
 
 			if (value1 < 1)
 			{
-				chart1.Series[seriesname].Points.AddXY("There are no any books available.", 100);
-				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
+				chart1.Series[seriesname].Points.AddXY(Strings.DashboardPieChartEmptyMessage, 100);
+				chart1.Series[seriesname].Points[0].Color = ColorPalette.DashboardPieChartColor1;
 			}
 			else
 			{
 				chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut;
 				//chart1.Series[seriesname]["PieLabelOffset"] = "5:5";
 				//chart1.Series[seriesname].SetCustomProperty("PieLabelStyle", "outside");
-				
-				
+
 				chart1.Series[seriesname].Points.AddXY(Strings.AvailableBooks, value1);
-				chart1.Series[seriesname].Points[0].Color = Color.FromArgb(44, 201, 252);
+				chart1.Series[seriesname].Points[0].Color = ColorPalette.DashboardPieChartColor1;
 				chart1.Series[seriesname].Points[0].LegendText = Strings.AvailableBooks + " (#VAL{0})";
 				chart1.Series[seriesname].Points.AddXY(Strings.BorrowedBooks, value2);
-				chart1.Series[seriesname].Points[1].Color = Color.FromArgb(253, 169, 41);
+				chart1.Series[seriesname].Points[1].Color = ColorPalette.DashboardPieChartColor2;
 				chart1.Series[seriesname].Points[1].LegendText = Strings.BorrowedBooks + " (#VAL{0})";
 				//chart1.Series[seriesname].Label = "#VAL{0}";//"#PERCENT{0.00 %}";
 			}
@@ -408,7 +317,7 @@ namespace PresentationLayer.SubPages
 			Parent1.PageNavigation(new MyBooks(AppContext));
 		}
 
-        private void Dashboard_Resize(object sender, EventArgs e)
+		private void Dashboard_Resize(object sender, EventArgs e)
         {
 			Panel_ChartLeft.Width = this.Width * 35 / 100;
 			Panel_ChartLeft.Height = this.Height * 45 / 100;
@@ -463,13 +372,13 @@ namespace PresentationLayer.SubPages
         {
 			ToolStripMenuItem item1 = new ToolStripMenuItem();
 			item1.Name = "scale_y_axis";
-			item1.Text = "Scale Y Axis";
+			item1.Text = Strings.DashboardChartScaleYAxis;
 			item1.Click += RightChartScaleY;
 			menuStrip.Items.Add(item1);
 
 			ToolStripMenuItem item2 = new ToolStripMenuItem();
 			item2.Name = "info";
-			item2.Text = "Help Info";
+			item2.Text = Strings.DashboardChartInfoMenuTitle;
 			item2.Click += RightChartHelp;
 			menuStrip.Items.Add(item2);
 		}
@@ -479,18 +388,29 @@ namespace PresentationLayer.SubPages
 			zedGraphControl1.ZoomOutAll(zedGraphControl1.GraphPane);
 		}
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-			using (var form = new DashboardGraphSettings(zedGraphControl1.GraphPane.Title.Text))
+		private void StatusItemClick(object sender, EventArgs e)
+		{
+			DialogResult Result = DialogResult.Abort;
+			if ((sender as Button).Name == "Button_ReturnBook")
 			{
-				form.StartPosition = FormStartPosition.Manual;
-				form.Location = iconButton1.PointToScreen(Point.Empty);
-				var result = form.ShowDialog();
+				Form ReturnDialog = new BookReturn(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow);
+				Point StartP = (sender as Button).PointToScreen(Point.Empty);
+				Helpers.SetFormStartPoint(ref ReturnDialog, StartP, 10);
 
-				if (result == DialogResult.OK)
-				{
-					ChangeChartTitle(form.TitleResult, zedGraphControl1);
-				}
+				Result = ReturnDialog.ShowDialog();
+			}
+			else if ((sender as Button).Name == "Button_BookDetails")
+			{
+				Result = new BookDetails(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow.book).ShowDialog();
+			}
+			if (Result == DialogResult.OK || Result == DialogResult.Yes)
+			{
+				RefreshMyBooks();
+				AppContext.UpdateFine();
+			}
+			else
+			{
+				BookStatusItem.GetItemFromButton(sender).HideHover();
 			}
 		}
     }

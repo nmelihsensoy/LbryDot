@@ -75,7 +75,8 @@
     <Compile Include="Services\StaffService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Validation\BooksValidator.cs" />
-    <Compile Include="Validation\BorrowingValidator.cs" />
+    <Compile Include="Validation\ReturnValidator.cs" />
+    <Compile Include="Validation\BorrowValidator.cs" />
     <Compile Include="Validation\LoginValidator.cs" />
     <Compile Include="Validation\SettingsValidator.cs" />
     <Compile Include="Validation\StaffValidator.cs" />

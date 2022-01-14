@@ -17,11 +17,11 @@ namespace PresentationLayer.SubPages
 {
     public partial class Settings : Form
     {
-        private BusinessLogicLayer.CustomAppContext AppContext;
+        private CustomAppContext AppContext;
         private SettingsService SettingsService1;
         private StaffService StaffService1;
 
-        public Settings(BusinessLogicLayer.CustomAppContext _appContext=null)
+        public Settings(CustomAppContext _appContext=null)
         {
             InitializeComponent();
             AppContext = _appContext;
@@ -37,6 +37,14 @@ namespace PresentationLayer.SubPages
         {
             Text_SettingInput.Text = Strings.Setting1;
             Button_SaveButton.Text = Strings.Save;
+            Text_ActiveBooksTitle.Text = Strings.SystemParameters;
+            label1.Text = Strings.AdminSettings;
+            label2.Text = Strings.NewAdminPass;
+            label3.Text = Strings.StaffSettings;
+            label4.Text = Strings.CurrencySymbol;
+            button1.Text = Strings.ResetDbButton;
+            button2.Text = Strings.LoadMockButton;
+            button3.Text = Strings.AdminSetttingsSave;
         }
 
         private void ApplyColorPalette()
@@ -57,7 +65,7 @@ namespace PresentationLayer.SubPages
         private void Settings_Load(object sender, EventArgs e)
         {
             Input_Setting.Text = AppContext.AppSettings.daily_fine_amount.ToString();
-
+            textBox2.Text = AppContext.AppSettings.currency_symbol;
         }
 
         private void RefreshStaff()
@@ -70,10 +78,14 @@ namespace PresentationLayer.SubPages
         {
             SettingsModel NewSettings = new SettingsModel();
             NewSettings.daily_fine_amount = Int32.Parse(Input_Setting.Text);
+            NewSettings.currency_symbol = textBox2.Text;
             try
             {
                 SettingsService1.ChangeSettings(NewSettings);
                 AppContext.UpdateSettings();
+
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, Strings.SettingsMockSuccessMessage);
+                alertBox1.Visible = true;
             }
             catch (Exception ex)
             {
@@ -88,7 +100,7 @@ namespace PresentationLayer.SubPages
             BooksService BSer = new BooksService(AppContext);
             BorrowingService BorSer = new BorrowingService(AppContext);
             StaffService StaffSer = new StaffService(AppContext);
-            MockData MockData1 = new MockData();
+            MockData MockData1 = new MockData(2, 2);
 
             try
             {
@@ -97,15 +109,14 @@ namespace PresentationLayer.SubPages
                 BSer.BulkAdd(MockData1.BookList);
                 BorSer.BulkAdd(MockData1.BorrowsList);
 
-                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Success");
-                alertBox2.Visible = true;
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, Strings.SettingsMockSuccessMessage);
+                alertBox1.Visible = true;
             }
             catch(Exception ex)
             {
-                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                alertBox2.Visible = true;
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                alertBox1.Visible = true;
             }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -117,8 +128,8 @@ namespace PresentationLayer.SubPages
             }
             catch(Exception ex)
             {
-                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                alertBox2.Visible = true;
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                alertBox1.Visible = true;
             }
             
         }
@@ -130,53 +141,49 @@ namespace PresentationLayer.SubPages
                 string NewPass = textBox1.Text;
                 StaffModel TmpStaff = AppContext.GetLoggedStaff();
                 TmpStaff.staff_password = NewPass;
-                StaffService1.UpdateStaff(TmpStaff);
+                StaffService1.UpdateAdmin(TmpStaff);
+
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, Strings.SettingsMockSuccessMessage);
+                alertBox1.Visible = true;
             }
             catch (Exception ex)
             {
-                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
-                alertBox2.Visible = true;
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, ex.Message);
+                alertBox1.Visible = true;
             }
         }
 
 
         private void StaffOperations_Click(object sender, EventArgs e)
         {
+            DialogResult DialogResult1 = DialogResult.None;
             if ((sender as Button).Name == "Button_AddStaff")
             {
-                using (var form = new UserAddUpdate(AppContext, UserType.Staff))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        RefreshStaff();
-                    }
-                }
+                DialogResult1 = new UserAddUpdate(AppContext, UserType.Staff).ShowDialog();
             }
             else
             {
                 StaffModel SelectedStaff = (listBox1.SelectedItem as StaffModel);
                 if ((sender as Button).Name == "Button_EditStaff")
                 {
-                    using (var form = new UserAddUpdate(AppContext, UserType.Staff, SelectedStaff.staff_id))
-                    {
-                        var result = form.ShowDialog();
-                        if (result == DialogResult.OK)
-                        {
-                            RefreshStaff();
-                        }
-                    }
+                    DialogResult1 = new UserAddUpdate(AppContext, UserType.Staff, SelectedStaff.staff_id).ShowDialog();
                 }
                 else if ((sender as Button).Name == "Button_DeleteStaff")
                 {
-                    DialogResult dialogResult = MessageBox.Show("Delete \"" + SelectedStaff.staff_name + "\"", "Are You Sure", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show(Strings.Delete + " \"" + SelectedStaff.staff_name + "\"", Strings.SureDialog, MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         StaffService1.DeleteStaff(SelectedStaff);
-                        RefreshStaff();
+                        DialogResult1 = dialogResult;
                     }
                 }
             }
+
+            if (DialogResult1 == DialogResult.OK || DialogResult1 == DialogResult.Yes)
+            {
+                RefreshStaff();
+            }
+
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace BusinessLogicLayer
 {
-    //Definitions of function or varibles that can only used in BusinessLogicLayer to help another function or variable.
+    //Definitions of function or variables that can only used in BusinessLogicLayer to help another function or variable.
     //Creating with no relation any of classes is required.
     public static class Helpers
     {
@@ -47,6 +47,7 @@ namespace BusinessLogicLayer
             return sOutput.ToString();
         }
 
+        //https://docs.microsoft.com/en-us/troubleshoot/dotnet/csharp/compute-hash-values
         public static string MD5Hash(string Text, string Salt)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -62,15 +63,18 @@ namespace BusinessLogicLayer
 
         public static string ColorToPaddedString(Color Clr)
         {
-            return (Clr.R.ToString("D3") + Clr.G.ToString("D3") + Clr.B.ToString("D3"));
+            return (Clr.R.ToString("D3") + "," + Clr.G.ToString("D3") + "," + Clr.B.ToString("D3"));
         }
 
         public static Color PaddedStringToColor(String Str, Color DefaultColor)
         {
-            Regex RgxPattern = new Regex(@"([0-9]){2,3}");
+            //Getting numbers that has two or three digits.
+            //"Computers233,196,106", "Computers233196106", "Computers33,96,06", "Computers339606"
+            Regex RgxPattern = new Regex(@"([0-9]){2,3}"); 
             MatchCollection Matches = RgxPattern.Matches(Str);
 
-            if (Matches.Count > 0)
+            //First matched number is R, Second is G, Third is B
+            if (Matches.Count == 3)
             {
                 return Color.FromArgb(int.Parse(Matches[0].Value), int.Parse(Matches[1].Value), int.Parse(Matches[2].Value));
             }
@@ -79,6 +83,7 @@ namespace BusinessLogicLayer
 
         public static string GetOnlyText(string Str)
         {
+            //Getting all letters including turkish characters, spaces and '-'
             return Regex.Replace(Str, @"[^A-z\-ÇçĞğİıÖöŞşÜü\s]+", String.Empty);
         }
     }

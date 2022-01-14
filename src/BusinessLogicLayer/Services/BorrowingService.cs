@@ -11,17 +11,56 @@ namespace BusinessLogicLayer.Services
 {
     public class BorrowingService : Abstract.ServiceBase
     {
+        public enum BorrowState
+        {
+            Error = -1,
+            Borrowed = 0,
+            Late = 1,
+            TwoDaysLeft = 2,
+            Returned = 3
+        }
+
         public BorrowingService(CustomAppContext appContext) : base(appContext)
         {
         }
 
+        public static BorrowState GetBorrowState(BorrowingModel Borrowing, out int DayDiff)
+        {
+            return GetBorrowState(Borrowing.returned_date, Borrowing.due_date, out DayDiff);
+        }
+
+        public static BorrowState GetBorrowState(DateTime ReturnedDate, DateTime DueDate, out int DayDiff)
+        {
+            DayDiff = -1;
+            if (ReturnedDate == DateTime.MinValue)
+            {
+                DayDiff = Helpers.DaysBetween(DueDate, DateTime.Today);
+                if (DayDiff < 1)
+                {
+                    if (DayDiff == -2)
+                    {
+                        return BorrowState.TwoDaysLeft;
+                    }
+                    else
+                    {
+                        return BorrowState.Borrowed;
+                    }
+                }
+                else
+                {
+                    return BorrowState.Late;
+                }
+            }
+            else
+            {
+                DayDiff = Helpers.DaysBetween(ReturnedDate, DateTime.Today);
+                return BorrowState.Returned;
+            }
+        }
+
         public void BorrowBook(BorrowingModel Borrowing)
         {
-            var output = _appContext.getUoW().BorrowingRepository.Borrow(Borrowing);
-            var output2 = _appContext.getUoW().BooksRepository.ChangeBookAvailability(Borrowing.book.book_id, 0);
-            _appContext.getUoW().Commit();
-
-            BorrowingValidator validator = new BorrowingValidator();
+            BorrowValidator validator = new BorrowValidator();
             ValidationResult results = validator.Validate(Borrowing);
             string allMessages = results.ToString("\n");
 
@@ -30,7 +69,11 @@ namespace BusinessLogicLayer.Services
                 throw new Exception(allMessages);
             }
 
-            if (output != 1)
+            var output = _appContext.getUoW().BorrowingRepository.Borrow(Borrowing);
+            var output2 = _appContext.getUoW().BooksRepository.ChangeBookAvailability(Borrowing.book.book_id, 0);
+            _appContext.getUoW().Commit();
+
+            if (output != 1 || output2 !=1)
             {
                 throw new Exception("Error");
             }
@@ -72,11 +115,7 @@ namespace BusinessLogicLayer.Services
 
         public void ReturnBook(BorrowingModel Borrowing)
         {
-            var output = _appContext.getUoW().BorrowingRepository.ReturnBorrow(Borrowing);
-            var output2 = _appContext.getUoW().BooksRepository.ChangeBookAvailability(Borrowing.book.book_id, 1);
-            _appContext.getUoW().Commit();
-
-            BorrowingValidator validator = new BorrowingValidator();
+            ReturnValidator validator = new ReturnValidator();
             ValidationResult results = validator.Validate(Borrowing);
             string allMessages = results.ToString("\n");
 
@@ -85,7 +124,11 @@ namespace BusinessLogicLayer.Services
                 throw new Exception(allMessages);
             }
 
-            if (output != 1)
+            var output = _appContext.getUoW().BorrowingRepository.ReturnBorrow(Borrowing);
+            var output2 = _appContext.getUoW().BooksRepository.ChangeBookAvailability(Borrowing.book.book_id, 1);
+            _appContext.getUoW().Commit();
+
+            if (output != 1 || output2 != 1)
             {
                 throw new Exception("Error");
             }
@@ -101,7 +144,7 @@ namespace BusinessLogicLayer.Services
             Str = new string[DayCount];
 
             DateTime TmpDate = DateTime.Today.Date;
-            for (int i = 29; i>-1; i--)
+            for (int i = DayCount-1; i>-1; i--)
             {
                 Str[i] = TmpDate.ToString("dd/MM/yyyy");
                 if (output.ContainsKey(TmpDate))
@@ -122,7 +165,7 @@ namespace BusinessLogicLayer.Services
 
         public List<Object> GetBorrowingsForBook(int BookId)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name, Borrow_Date = x.issued_date, Returned_Date = x.returned_date }).ToList<Object>();
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name, Borrow_Date = x.issued_date.Date, Returned_Date = x.returned_date.Date, Due_Date = x.due_date.Date }).ToList<Object>();
             _appContext.getUoW().Commit();
 
             return output;
@@ -130,14 +173,14 @@ namespace BusinessLogicLayer.Services
 
         public List<Object> GetBorrowingsForBook(int BookId, bool IsCensored, string CensorException=null)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name.Equals(CensorException) ? x.student.student_name : Helpers.HideWords(x.student.student_name), Borrow_Date = x.issued_date.Date, Returned_Date = x.returned_date }).ToList<Object>();
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForBook(BookId).Select(x => new { Student_Name = x.student.student_name.Equals(CensorException) ? x.student.student_name : Helpers.HideWords(x.student.student_name), Borrow_Date = x.issued_date.Date, Returned_Date = x.returned_date, Due_Date = x.due_date.Date }).ToList<Object>();
             _appContext.getUoW().Commit();
 
             return output;
         }
         public List<Object> GetBorrowingsForStudent(int StudentId)
         {
-            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForStudent(StudentId).Select(x => new { Book_Name = x.book.title, Borrow_Date = x.issued_date, Returned_Date = x.returned_date }).ToList<Object>();
+            var output = _appContext.getUoW().BorrowingRepository.GetAllBorrowingsForStudent(StudentId).Select(x => new { Book_Name = x.book.title, Borrow_Date = x.issued_date, Returned_Date = x.returned_date, Due_Date = x.due_date.Date }).ToList<Object>();
             _appContext.getUoW().Commit();
 
             return output;

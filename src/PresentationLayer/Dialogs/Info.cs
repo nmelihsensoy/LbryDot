@@ -27,5 +27,10 @@ namespace PresentationLayer.Dialogs
         {
             Text_Logo.Text = Strings.LogoText;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/nmelihsensoy/LbryDot");
+        }
     }
 }

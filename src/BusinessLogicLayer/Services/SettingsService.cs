@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLogicLayer.Validation;
+using FluentValidation.Results;
 
 namespace BusinessLogicLayer.Services
 {
@@ -13,15 +15,24 @@ namespace BusinessLogicLayer.Services
         {
         }
 
-        public void ChangeSettings(SettingsModel staff)
+        public void ChangeSettings(SettingsModel Settings)
         {
-            var output = _appContext.getUoW().SettingsRepository.UpdateSettings(staff);
+            SettingsValidator validator = new SettingsValidator();
+            ValidationResult results = validator.Validate(Settings);
+            string allMessages = results.ToString("\n");
+
+            if (!results.IsValid)
+            {
+                throw new Exception(allMessages);
+            }
+
+            var output = _appContext.getUoW().SettingsRepository.UpdateSettings(Settings);
             _appContext.getUoW().Commit();
 
             if (output != 1)
             {
                 throw new Exception("Settings Error");
-            } 
+            }
         }
 
         public SettingsModel GetCurrentSettings()

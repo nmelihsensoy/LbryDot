@@ -79,7 +79,7 @@ namespace DataLayer.Repositories
 
         public int GetCount()
         {
-            return dbConnection.Query<int>("SELECT COUNT(*) FROM Staff;", new DynamicParameters(), transaction: dbTransaction).Single();
+            return dbConnection.Query<int>("SELECT COUNT(*) FROM Staff WHERE staff_id>1;", new DynamicParameters(), transaction: dbTransaction).Single();
         }
     }
 }

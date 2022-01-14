@@ -29,6 +29,7 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserAddUpdate));
             this.Panel_Container = new System.Windows.Forms.Panel();
             this.AlertBox_UserOperation = new PresentationLayer.Controls.AlertBox();
             this.Image_StudentAvatar = new System.Windows.Forms.PictureBox();
@@ -75,6 +76,8 @@ namespace PresentationLayer.Dialogs
             // 
             // Image_StudentAvatar
             // 
+            this.Image_StudentAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Image_StudentAvatar.Image = global::PresentationLayer.Properties.Resources.gravatar;
             this.Image_StudentAvatar.Location = new System.Drawing.Point(114, 162);
             this.Image_StudentAvatar.Name = "Image_StudentAvatar";
             this.Image_StudentAvatar.Size = new System.Drawing.Size(80, 80);
@@ -178,6 +181,9 @@ namespace PresentationLayer.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 309);
             this.Controls.Add(this.Panel_Container);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "UserAddUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "User Add Update";

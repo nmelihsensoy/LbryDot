@@ -29,16 +29,15 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Info));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Text_Logo = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Button_WindowClose = new FontAwesome.Sharp.IconButton();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter4 = new System.Windows.Forms.Splitter();
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.Button_WindowClose = new FontAwesome.Sharp.IconButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Text_Logo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,52 +51,50 @@ namespace PresentationLayer.Dialogs
             this.panel1.Controls.Add(this.Button_WindowClose);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.Text_Logo);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 191);
             this.panel1.TabIndex = 0;
             // 
-            // Text_Logo
+            // splitter4
             // 
-            this.Text_Logo.AutoSize = true;
-            this.Text_Logo.Font = new System.Drawing.Font("Cascadia Code", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Text_Logo.Location = new System.Drawing.Point(97, 14);
-            this.Text_Logo.Name = "Text_Logo";
-            this.Text_Logo.Size = new System.Drawing.Size(139, 63);
-            this.Text_Logo.TabIndex = 8;
-            this.Text_Logo.Text = "Logo";
+            this.splitter4.BackColor = System.Drawing.Color.Black;
+            this.splitter4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter4.Location = new System.Drawing.Point(3, 0);
+            this.splitter4.Name = "splitter4";
+            this.splitter4.Size = new System.Drawing.Size(326, 3);
+            this.splitter4.TabIndex = 14;
+            this.splitter4.TabStop = false;
             // 
-            // label4
+            // splitter3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(114, 134);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Third Party Licences";
+            this.splitter3.BackColor = System.Drawing.Color.Black;
+            this.splitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter3.Location = new System.Drawing.Point(3, 188);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(326, 3);
+            this.splitter3.TabIndex = 13;
+            this.splitter3.TabStop = false;
             // 
-            // label2
+            // splitter2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Avignon Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(253, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "v1.0";
+            this.splitter2.BackColor = System.Drawing.Color.Black;
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter2.Location = new System.Drawing.Point(329, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 191);
+            this.splitter2.TabIndex = 12;
+            this.splitter2.TabStop = false;
             // 
-            // label1
+            // splitter1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(82, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 14);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "github.com/nmelihsensoy/LbryDot";
+            this.splitter1.BackColor = System.Drawing.Color.Black;
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 191);
+            this.splitter1.TabIndex = 11;
+            this.splitter1.TabStop = false;
             // 
             // Button_WindowClose
             // 
@@ -117,44 +114,26 @@ namespace PresentationLayer.Dialogs
             this.Button_WindowClose.UseVisualStyleBackColor = true;
             this.Button_WindowClose.Click += new System.EventHandler(this.Button_WindowClose_Click);
             // 
-            // splitter1
+            // label1
             // 
-            this.splitter1.BackColor = System.Drawing.Color.Black;
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 191);
-            this.splitter1.TabIndex = 11;
-            this.splitter1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(47, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(238, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "github.com/nmelihsensoy/LbryDot";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // splitter2
+            // Text_Logo
             // 
-            this.splitter2.BackColor = System.Drawing.Color.Black;
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter2.Location = new System.Drawing.Point(329, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 191);
-            this.splitter2.TabIndex = 12;
-            this.splitter2.TabStop = false;
-            // 
-            // splitter3
-            // 
-            this.splitter3.BackColor = System.Drawing.Color.Black;
-            this.splitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter3.Location = new System.Drawing.Point(3, 188);
-            this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(326, 3);
-            this.splitter3.TabIndex = 13;
-            this.splitter3.TabStop = false;
-            // 
-            // splitter4
-            // 
-            this.splitter4.BackColor = System.Drawing.Color.Black;
-            this.splitter4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter4.Location = new System.Drawing.Point(3, 0);
-            this.splitter4.Name = "splitter4";
-            this.splitter4.Size = new System.Drawing.Size(326, 3);
-            this.splitter4.TabIndex = 14;
-            this.splitter4.TabStop = false;
+            this.Text_Logo.AutoSize = true;
+            this.Text_Logo.Font = new System.Drawing.Font("Cascadia Code", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Text_Logo.Location = new System.Drawing.Point(97, 14);
+            this.Text_Logo.Name = "Text_Logo";
+            this.Text_Logo.Size = new System.Drawing.Size(139, 63);
+            this.Text_Logo.TabIndex = 8;
+            this.Text_Logo.Text = "Logo";
             // 
             // Info
             // 
@@ -163,6 +142,7 @@ namespace PresentationLayer.Dialogs
             this.ClientSize = new System.Drawing.Size(332, 191);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Info";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Info";
@@ -178,8 +158,6 @@ namespace PresentationLayer.Dialogs
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Text_Logo;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton Button_WindowClose;
         private System.Windows.Forms.Splitter splitter4;
         private System.Windows.Forms.Splitter splitter3;

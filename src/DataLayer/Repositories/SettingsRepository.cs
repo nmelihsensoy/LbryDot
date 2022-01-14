@@ -23,9 +23,10 @@ namespace DataLayer.Repositories
 
         public int UpdateSettings(SettingsModel NewSettings)
         {
-            return dbConnection.Execute("UPDATE System_Parameters SET daily_fine_amount = @daily_fine_amount WHERE id = @id;",
+            return dbConnection.Execute("UPDATE System_Parameters SET daily_fine_amount = @daily_fine_amount, currency_symbol = @currency_symbol WHERE id = @id;",
                 new {
                     daily_fine_amount = NewSettings.daily_fine_amount,
+                    currency_symbol = NewSettings.currency_symbol,
                     id = SettingsId
                 },
                 transaction: dbTransaction);

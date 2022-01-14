@@ -233,11 +233,12 @@ namespace PresentationLayer.Controls
             this.Text_BookTitleFirstLine.Size = new System.Drawing.Size(81, 16);
             this.Text_BookTitleFirstLine.TabIndex = 1;
             this.Text_BookTitleFirstLine.Text = "Title First Line";
+            this.Text_BookTitleFirstLine.TextChanged += new System.EventHandler(this.Text_BookTitleFirstLine_TextChanged);
             this.Text_BookTitleFirstLine.MouseEnter += new System.EventHandler(this.Item_MouseEnter);
             // 
             // Image_BookCover
             // 
-            this.Image_BookCover.Image = global::PresentationLayer.Properties.Resources._41SMo7KEbhL__AC_SY780_;
+            this.Image_BookCover.Image = global::PresentationLayer.Properties.Resources.default_book_cover;
             this.Image_BookCover.Location = new System.Drawing.Point(10, 15);
             this.Image_BookCover.Name = "Image_BookCover";
             this.Image_BookCover.Size = new System.Drawing.Size(88, 115);
@@ -269,7 +270,6 @@ namespace PresentationLayer.Controls
         private System.Windows.Forms.Label Text_BookCategory;
         private System.Windows.Forms.Label Text_BookAuthor;
         private System.Windows.Forms.Label Text_BookTitleFirstLine;
-        private System.Windows.Forms.PictureBox Image_BookCover;
         private System.Windows.Forms.Label Text_PublishYear;
         private System.Windows.Forms.Label Text_PageCount;
         private System.Windows.Forms.Label Text_BookTitleSecLine;
@@ -278,5 +278,6 @@ namespace PresentationLayer.Controls
         private FontAwesome.Sharp.IconButton Button_BookDeleteBorrow;
         private System.Windows.Forms.Label Text_ISBN;
         private FontAwesome.Sharp.IconButton Button_Edit;
+        private System.Windows.Forms.PictureBox Image_BookCover;
     }
 }

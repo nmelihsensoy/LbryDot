@@ -10,5 +10,6 @@ namespace Entities
     {
         public int id { get; }
         public int daily_fine_amount { get; set; }
+        public string currency_symbol { get; set; }
     }
 }

@@ -14,14 +14,14 @@ using BusinessLogicLayer.Services;
 
 namespace PresentationLayer.Dialogs
 {
-    public partial class BookIssue : Form
+    public partial class BookReturn : Form
     {
         private CustomAppContext AppContext;
         private BorrowingService BorrowingService1;
         private BorrowingModel BorrowingModel1;
         private DialogResult ResultType = DialogResult.Cancel;
 
-        public BookIssue(CustomAppContext _appContext, BorrowingModel _borrowingModel1)
+        public BookReturn(CustomAppContext _appContext, BorrowingModel _borrowingModel1)
         {
             InitializeComponent();
             AppContext = _appContext;
@@ -52,7 +52,7 @@ namespace PresentationLayer.Dialogs
 
             if(BorrowingModel1.amount_of_fine > 0)
             {
-                Text_FineAmount.Text = "Fee: " + BorrowingModel1.amount_of_fine.ToString();
+                Text_FineAmount.Text = Strings.Fee + ": " + BorrowingModel1.amount_of_fine.ToString() + AppContext.AppSettings.currency_symbol;
             }
             else
             {
@@ -71,11 +71,12 @@ namespace PresentationLayer.Dialogs
             {
                 BorrowingService1.ReturnBook(BorrowingModel1);
                 alertBox1.Visible = true;
-                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Return Success");
+                alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, Strings.BookReturnSuccessMsg, false);
                 alertBox2.Visible = true;
-                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Transaction Id #" + BorrowingModel1.borrow_id.ToString() );
+                alertBox2.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, Strings.BookReturnTransactionMsg+" #" + BorrowingModel1.borrow_id.ToString() );
                 this.Height = this.Height + alertBox1.Height + alertBox2.Height + 15;
                 ResultType = DialogResult.OK;
+                Button_Return.Enabled = false;
             }
             catch (Exception ex)
             {

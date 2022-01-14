@@ -70,11 +70,47 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pending to pay.
+        /// </summary>
+        internal static string ActiveFine {
+            get {
+                return ResourceManager.GetString("ActiveFine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         internal static string AdminRole {
             get {
                 return ResourceManager.GetString("AdminRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Settings.
+        /// </summary>
+        internal static string AdminSettings {
+            get {
+                return ResourceManager.GetString("AdminSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string AdminSetttingsSave {
+            get {
+                return ResourceManager.GetString("AdminSetttingsSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double Click to Copy.
+        /// </summary>
+        internal static string AlertBoxTooltipCopyMsg {
+            get {
+                return ResourceManager.GetString("AlertBoxTooltipCopyMsg", resourceCulture);
             }
         }
         
@@ -93,6 +129,15 @@ namespace PresentationLayer.Resources {
         internal static string AvailableBooks {
             get {
                 return ResourceManager.GetString("AvailableBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File size has to be lower than.
+        /// </summary>
+        internal static string AvatarErrorMessage {
+            get {
+                return ResourceManager.GetString("AvatarErrorMessage", resourceCulture);
             }
         }
         
@@ -124,6 +169,24 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shelf.
+        /// </summary>
+        internal static string BookBorrowShelf {
+            get {
+                return ResourceManager.GetString("BookBorrowShelf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borrowed Successfully.
+        /// </summary>
+        internal static string BookBorrowSuccessMsg {
+            get {
+                return ResourceManager.GetString("BookBorrowSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category:.
         /// </summary>
         internal static string BookCategory {
@@ -138,6 +201,42 @@ namespace PresentationLayer.Resources {
         internal static string BookCover {
             get {
                 return ResourceManager.GetString("BookCover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added Successfully.
+        /// </summary>
+        internal static string BookDialogAddSuccessMsg {
+            get {
+                return ResourceManager.GetString("BookDialogAddSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Book.
+        /// </summary>
+        internal static string BookDialogAddTitle {
+            get {
+                return ResourceManager.GetString("BookDialogAddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Successfully.
+        /// </summary>
+        internal static string BookDialogUpdateSuccessMsg {
+            get {
+                return ResourceManager.GetString("BookDialogUpdateSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string BookDialogUpdateTitle {
+            get {
+                return ResourceManager.GetString("BookDialogUpdateTitle", resourceCulture);
             }
         }
         
@@ -169,11 +268,47 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pg..
+        /// </summary>
+        internal static string BookListPageTagPostFix {
+            get {
+                return ResourceManager.GetString("BookListPageTagPostFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Publish Year:.
         /// </summary>
         internal static string BookPublishYear {
             get {
                 return ResourceManager.GetString("BookPublishYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fee.
+        /// </summary>
+        internal static string BookReturnFee {
+            get {
+                return ResourceManager.GetString("BookReturnFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returned Successfully.
+        /// </summary>
+        internal static string BookReturnSuccessMsg {
+            get {
+                return ResourceManager.GetString("BookReturnSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Id.
+        /// </summary>
+        internal static string BookReturnTransactionMsg {
+            get {
+                return ResourceManager.GetString("BookReturnTransactionMsg", resourceCulture);
             }
         }
         
@@ -187,6 +322,15 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no books in the library..
+        /// </summary>
+        internal static string BooksEmptyMessage {
+            get {
+                return ResourceManager.GetString("BooksEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shelf Number:.
         /// </summary>
         internal static string BookShelfNumber {
@@ -196,11 +340,47 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borrow Date.
+        /// </summary>
+        internal static string BookTableBorrowDate {
+            get {
+                return ResourceManager.GetString("BookTableBorrowDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Name.
+        /// </summary>
+        internal static string BookTableName {
+            get {
+                return ResourceManager.GetString("BookTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return Date.
+        /// </summary>
+        internal static string BookTableReturnDate {
+            get {
+                return ResourceManager.GetString("BookTableReturnDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title:.
         /// </summary>
         internal static string BookTitle {
             get {
                 return ResourceManager.GetString("BookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second Line:.
+        /// </summary>
+        internal static string BookTitleSec {
+            get {
+                return ResourceManager.GetString("BookTitleSec", resourceCulture);
             }
         }
         
@@ -277,11 +457,110 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency Symbol.
+        /// </summary>
+        internal static string CurrencySymbol {
+            get {
+                return ResourceManager.GetString("CurrencySymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {
             get {
                 return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help Info.
+        /// </summary>
+        internal static string DashboardChartInfoMenuTitle {
+            get {
+                return ResourceManager.GetString("DashboardChartInfoMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Scale Y Axis.
+        /// </summary>
+        internal static string DashboardChartScaleYAxis {
+            get {
+                return ResourceManager.GetString("DashboardChartScaleYAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no books available..
+        /// </summary>
+        internal static string DashboardPieChartEmptyMessage {
+            get {
+                return ResourceManager.GetString("DashboardPieChartEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borrowed Book.
+        /// </summary>
+        internal static string DashboardStaffChartCurveTitle1 {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartCurveTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Book.
+        /// </summary>
+        internal static string DashboardStaffChartCurveTitle2 {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartCurveTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available Book.
+        /// </summary>
+        internal static string DashboardStaffChartCurveTitle3 {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartCurveTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available Books By Days.
+        /// </summary>
+        internal static string DashboardStaffChartTitle {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        internal static string DashboardStaffChartXTitle {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartXTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Count.
+        /// </summary>
+        internal static string DashboardStaffChartYTitle {
+            get {
+                return ResourceManager.GetString("DashboardStaffChartYTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days ago.
+        /// </summary>
+        internal static string DaysAgo {
+            get {
+                return ResourceManager.GetString("DaysAgo", resourceCulture);
             }
         }
         
@@ -304,11 +583,38 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LoadDefault.
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fee.
+        /// </summary>
+        internal static string Fee {
+            get {
+                return ResourceManager.GetString("Fee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Default.
         /// </summary>
         internal static string LoadDefault {
             get {
                 return ResourceManager.GetString("LoadDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Mock Datas.
+        /// </summary>
+        internal static string LoadMockButton {
+            get {
+                return ResourceManager.GetString("LoadMockButton", resourceCulture);
             }
         }
         
@@ -403,11 +709,38 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no borrowed books..
+        /// </summary>
+        internal static string MyBooksEmptyMessage {
+            get {
+                return ResourceManager.GetString("MyBooksEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        internal static string NewAdminPass {
+            get {
+                return ResourceManager.GetString("NewAdminPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have no fine to pay.
         /// </summary>
         internal static string NoFine {
             get {
                 return ResourceManager.GetString("NoFine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Database.
+        /// </summary>
+        internal static string ResetDbButton {
+            get {
+                return ResourceManager.GetString("ResetDbButton", resourceCulture);
             }
         }
         
@@ -435,6 +768,15 @@ namespace PresentationLayer.Resources {
         internal static string SearchBook {
             get {
                 return ResourceManager.GetString("SearchBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to couldn&apos;t find.
+        /// </summary>
+        internal static string SearchNotFoundMessage {
+            get {
+                return ResourceManager.GetString("SearchNotFoundMessage", resourceCulture);
             }
         }
         
@@ -475,6 +817,15 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string SettingsMockSuccessMessage {
+            get {
+                return ResourceManager.GetString("SettingsMockSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff.
         /// </summary>
         internal static string Staff {
@@ -498,6 +849,15 @@ namespace PresentationLayer.Resources {
         internal static string Staffs {
             get {
                 return ResourceManager.GetString("Staffs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Staffs.
+        /// </summary>
+        internal static string StaffSettings {
+            get {
+                return ResourceManager.GetString("StaffSettings", resourceCulture);
             }
         }
         
@@ -565,11 +925,182 @@ namespace PresentationLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string StudentTableDelete {
+            get {
+                return ResourceManager.GetString("StudentTableDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string StudentTableDetails {
+            get {
+                return ResourceManager.GetString("StudentTableDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string StudentTableEdit {
+            get {
+                return ResourceManager.GetString("StudentTableEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Email.
+        /// </summary>
+        internal static string StudentTableEmail {
+            get {
+                return ResourceManager.GetString("StudentTableEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no registered students..
+        /// </summary>
+        internal static string StudentTableEmptyMessage {
+            get {
+                return ResourceManager.GetString("StudentTableEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Name.
+        /// </summary>
+        internal static string StudentTableName {
+            get {
+                return ResourceManager.GetString("StudentTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Number.
+        /// </summary>
+        internal static string StudentTableNumber {
+            get {
+                return ResourceManager.GetString("StudentTableNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operations.
+        /// </summary>
+        internal static string StudentTableOperations {
+            get {
+                return ResourceManager.GetString("StudentTableOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are You Sure.
+        /// </summary>
+        internal static string SureDialog {
+            get {
+                return ResourceManager.GetString("SureDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Parameters.
+        /// </summary>
+        internal static string SystemParameters {
+            get {
+                return ResourceManager.GetString("SystemParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total paid.
+        /// </summary>
+        internal static string TotalFine {
+            get {
+                return ResourceManager.GetString("TotalFine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Staff.
+        /// </summary>
+        internal static string TotalStaff {
+            get {
+                return ResourceManager.GetString("TotalStaff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Student.
+        /// </summary>
+        internal static string TotalStudent {
+            get {
+                return ResourceManager.GetString("TotalStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book History.
+        /// </summary>
+        internal static string UserDetailsFormTitle {
+            get {
+                return ResourceManager.GetString("UserDetailsFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Staff.
+        /// </summary>
+        internal static string UserDialogAddStaffTitle {
+            get {
+                return ResourceManager.GetString("UserDialogAddStaffTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Student.
+        /// </summary>
+        internal static string UserDialogAddStudentTitle {
+            get {
+                return ResourceManager.GetString("UserDialogAddStudentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added Successfully.
+        /// </summary>
+        internal static string UserDialogAddSuccessMsg {
+            get {
+                return ResourceManager.GetString("UserDialogAddSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Successfully.
+        /// </summary>
+        internal static string UserDialogUpdateSuccessMsg {
+            get {
+                return ResourceManager.GetString("UserDialogUpdateSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string UserDialogUpdateTitle {
+            get {
+                return ResourceManager.GetString("UserDialogUpdateTitle", resourceCulture);
             }
         }
     }

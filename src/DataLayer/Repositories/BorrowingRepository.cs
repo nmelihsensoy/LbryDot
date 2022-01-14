@@ -69,7 +69,7 @@ namespace DataLayer.Repositories
             var sql = @"SELECT * FROM Borrowing AS B
                 LEFT JOIN Books AS BS ON BS.book_id = B.book_id
                 WHERE student_number = @id
-                ORDER BY due_date ASC";
+                ORDER BY returned_date DESC NULLS FIRST, due_date ASC";
             
             return dbConnection.Query<BorrowingModel, BookModel, BorrowingModel>(sql, (borrowing, book) => { borrowing.book = book; return borrowing; }, new { id = StudentNumber}, splitOn:"book_id", transaction: dbTransaction);
         }
@@ -95,6 +95,45 @@ namespace DataLayer.Repositories
         public int Update(BorrowingModel model)
         {
             throw new NotImplementedException();
+        }
+
+        public int GetTotalFineForStudent(int StudentId)
+        {
+            return dbConnection.QueryFirstOrDefault<int>("SELECT IFNULL(SUM(amount_of_fine), 0) FROM Borrowing WHERE returned_date IS NOT NULL AND student_number=@student_id; ", new { student_id = StudentId }, transaction: dbTransaction);
+        }
+
+        public int GetActiveFineForStudent(int StudentId)
+        {
+            var sql = @"
+            SELECT (IFNULL(SUM(JULIANDAY(date('now', 'localtime'))-JULIANDAY(date(due_date))), 0)*(SELECT daily_fine_amount FROM System_Parameters WHERE id=1)) as ActiveTotalFee 
+            FROM Borrowing 
+            WHERE returned_date IS NULL AND due_date<date('now', 'localtime') AND student_number=@student_id;
+            ";
+            return dbConnection.QueryFirstOrDefault<int>(sql, new { student_id = StudentId }, transaction: dbTransaction);
+        }
+
+        public int UpdateBook(int Id, int NewId=1)
+        {
+            var sql = @"UPDATE Borrowing SET book_id = @new_id WHERE book_id = @id;";
+            return dbConnection.Execute(sql,
+                new
+                {
+                    id = Id,
+                    new_id = NewId
+                },
+                transaction: dbTransaction);
+        }
+   
+        public int UpdateStudent(int Id, int NewId=1)
+        {
+            var sql = @"UPDATE Borrowing SET student_number = @new_id WHERE student_number = @id;";
+            return dbConnection.Execute(sql,
+                new
+                {
+                    id = Id,
+                    new_id = NewId
+                },
+                transaction: dbTransaction);
         }
 
         public int ReturnBorrow(BorrowingModel Borrowing)
@@ -125,6 +164,7 @@ namespace DataLayer.Repositories
                         LIMIT @day_count;
                         ";
             Dictionary<DateTime, int[]> Dict;
+            //Eg: date_param = '-4 day' 
             using (var multi = dbConnection.QueryMultiple(sql, new { day_count = LastDayCount, date_param = '-' + LastDayCount.ToString() + " day" }, dbTransaction))
             {
                 var Dict1 = multi.Read<StatModel>().ToDictionary(pair => pair.date.Date, pair => pair.count);
@@ -155,10 +195,15 @@ namespace DataLayer.Repositories
         {
             var sql = @"SELECT * FROM Borrowing AS B
                 LEFT JOIN Students AS S ON S.student_number = B.student_number
-                WHERE B.book_id = @id AND returned_date IS NOT NULL
-                ORDER BY B.returned_date ASC";
+                WHERE B.book_id = @id
+                ORDER BY B.returned_date DESC NULLS FIRST";
 
             return dbConnection.Query<BorrowingModel, StudentModel, BorrowingModel>(sql, (borrowing, student) => { borrowing.student = student; return borrowing; }, new { id = BookId }, splitOn: "student_number", transaction: dbTransaction);
+        }
+
+        public int GetActiveBorrowingCountForStudent(int StudentId)
+        {
+            return dbConnection.QueryFirstOrDefault<int>("SELECT COUNT(*) FROM Borrowing WHERE returned_date IS NULL AND student_number=@student_id;", new { student_id = StudentId}, transaction: dbTransaction);
         }
 
         public IEnumerable<BorrowingModel> GetAllBorrowingsForStudent(int StudentId)
@@ -166,7 +211,7 @@ namespace DataLayer.Repositories
             var sql = @"SELECT * FROM Borrowing AS B
                 LEFT JOIN Books AS BK ON BK.book_id = B.book_id
                 WHERE B.student_number = @id
-                ORDER BY B.returned_date ASC, B.issued_date ASC";
+                ORDER BY returned_date DESC NULLS FIRST";
 
             return dbConnection.Query<BorrowingModel, BookModel, BorrowingModel>(sql, (borrowing, book) => { borrowing.book = book; return borrowing; }, new { id = StudentId }, splitOn: "book_id", transaction: dbTransaction);
         }

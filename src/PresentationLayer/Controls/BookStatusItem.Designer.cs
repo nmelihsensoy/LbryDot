@@ -47,7 +47,7 @@ namespace PresentationLayer.Controls
             // 
             // Image_BookCover
             // 
-            this.Image_BookCover.Image = global::PresentationLayer.Properties.Resources._41SMo7KEbhL__AC_SY780_;
+            this.Image_BookCover.Image = global::PresentationLayer.Properties.Resources.default_book_cover;
             this.Image_BookCover.Location = new System.Drawing.Point(23, 0);
             this.Image_BookCover.Name = "Image_BookCover";
             this.Image_BookCover.Size = new System.Drawing.Size(88, 115);

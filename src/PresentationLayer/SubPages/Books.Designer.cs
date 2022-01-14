@@ -66,7 +66,6 @@ namespace PresentationLayer.SubPages
             this.Name = "Books";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Books";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Books_FormClosing);
             this.Load += new System.EventHandler(this.Books_Load);
             this.ResumeLayout(false);
 

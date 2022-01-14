@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
+using BusinessLogicLayer.Services;
 
 namespace BusinessLogicLayer
 {
-    //Used for creating database instance and creating unit of work with this database instance.
+    //Used for creating database instance and creating unit of work instance with using this database instance.
     //Provides unit of work access for services.
-    //Every different type of presentation has to create its own CustomAppContext and share it through every service instance want to use.
+    //Every different type of presentation(WinForms, Webui, API) has to create its own CustomAppContext and share it through every service instance want to use.
     //Also can be used for transfering the app context between the pages in presentation that use services.
     public class CustomAppContext
     {
@@ -98,6 +99,27 @@ namespace BusinessLogicLayer
         public void UpdateSettings()
         {
             _appSettings = getUoW().SettingsRepository.GetSettings();
+        }
+
+        public void UpdateUser()
+        {
+            if (this.GetUserType() == UserType.Student)
+            {
+                LoggedStudent = getUoW().StudentsRepository.GetById(LoggedStudent.student_number);
+            }
+            else if (this.GetUserType() == UserType.Undefined)
+            {
+                throw new Exception("An Error Occured");
+            }
+            else
+            {
+                LoggedStaff = getUoW().StaffRepository.GetById(LoggedStaff.staff_id);
+            }
+        }
+
+        public void UpdateFine()
+        {
+            StudentsService.SetFineAmounts(this, ref LoggedStudent);
         }
 
     }

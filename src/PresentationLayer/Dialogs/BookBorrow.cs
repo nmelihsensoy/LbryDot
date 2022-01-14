@@ -61,10 +61,13 @@ namespace PresentationLayer.Dialogs
                 BorrowBook1.issued_date = DateTime.Now;
                 BorrowBook1.due_date = dateTimePicker_ReturnDate.Value;
 
+                Button_Borrow.Enabled = false;
+                dateTimePicker_ReturnDate.Enabled = false;
+
                 BorrowingService1.BorrowBook(BorrowBook1);
-                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, "Borrow Success");
+                AlertBox_SuccesError.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, Strings.BookBorrowSuccessMsg, false);
                 AlertBox_SuccesError.Visible = true;
-                AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, "Shelf: "+BorrowBook1.book.shelf_number);
+                AlertBox_SuccessInfo.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Info, Strings.BookBorrowShelf+": " +BorrowBook1.book.shelf_number);
                 AlertBox_SuccessInfo.Visible = true;
                 this.Height = this.Height + AlertBox_SuccesError.Height + AlertBox_SuccessInfo.Height + 15;
                 ResultType = DialogResult.OK;

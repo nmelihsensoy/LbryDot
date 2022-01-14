@@ -120,14 +120,29 @@
   <data name="ActiveBooks" xml:space="preserve">
     <value>Active Books</value>
   </data>
+  <data name="ActiveFine" xml:space="preserve">
+    <value>pending to pay</value>
+  </data>
   <data name="AdminRole" xml:space="preserve">
     <value>Admin</value>
+  </data>
+  <data name="AdminSettings" xml:space="preserve">
+    <value>Admin Settings</value>
+  </data>
+  <data name="AdminSetttingsSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AlertBoxTooltipCopyMsg" xml:space="preserve">
+    <value>Double Click to Copy</value>
   </data>
   <data name="AllBooks" xml:space="preserve">
     <value>All Books</value>
   </data>
   <data name="AvailableBooks" xml:space="preserve">
     <value>Available Books</value>
+  </data>
+  <data name="AvatarErrorMessage" xml:space="preserve">
+    <value>File size has to be lower than</value>
   </data>
   <data name="BarName1" xml:space="preserve">
     <value>Returned Book</value>
@@ -138,11 +153,29 @@
   <data name="BookAuthor" xml:space="preserve">
     <value>Author:</value>
   </data>
+  <data name="BookBorrowShelf" xml:space="preserve">
+    <value>Shelf</value>
+  </data>
+  <data name="BookBorrowSuccessMsg" xml:space="preserve">
+    <value>Borrowed Successfully</value>
+  </data>
   <data name="BookCategory" xml:space="preserve">
     <value>Category:</value>
   </data>
   <data name="BookCover" xml:space="preserve">
     <value>Cover:</value>
+  </data>
+  <data name="BookDialogAddSuccessMsg" xml:space="preserve">
+    <value>Added Successfully</value>
+  </data>
+  <data name="BookDialogAddTitle" xml:space="preserve">
+    <value>Add New Book</value>
+  </data>
+  <data name="BookDialogUpdateSuccessMsg" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="BookDialogUpdateTitle" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="BookISBN" xml:space="preserve">
     <value>ISBN:</value>
@@ -153,17 +186,44 @@
   <data name="BookLength" xml:space="preserve">
     <value>Length:</value>
   </data>
+  <data name="BookListPageTagPostFix" xml:space="preserve">
+    <value>Pg.</value>
+  </data>
   <data name="BookPublishYear" xml:space="preserve">
     <value>Publish Year:</value>
+  </data>
+  <data name="BookReturnFee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
+  <data name="BookReturnSuccessMsg" xml:space="preserve">
+    <value>Returned Successfully</value>
+  </data>
+  <data name="BookReturnTransactionMsg" xml:space="preserve">
+    <value>Transaction Id</value>
   </data>
   <data name="Books" xml:space="preserve">
     <value>Books</value>
   </data>
+  <data name="BooksEmptyMessage" xml:space="preserve">
+    <value>There are no books in the library.</value>
+  </data>
   <data name="BookShelfNumber" xml:space="preserve">
     <value>Shelf Number:</value>
   </data>
+  <data name="BookTableBorrowDate" xml:space="preserve">
+    <value>Borrow Date</value>
+  </data>
+  <data name="BookTableName" xml:space="preserve">
+    <value>Book Name</value>
+  </data>
+  <data name="BookTableReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
   <data name="BookTitle" xml:space="preserve">
     <value>Title:</value>
+  </data>
+  <data name="BookTitleSec" xml:space="preserve">
+    <value>Second Line:</value>
   </data>
   <data name="BorrowedBooks" xml:space="preserve">
     <value>Borrowed Books</value>
@@ -189,8 +249,41 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CurrencySymbol" xml:space="preserve">
+    <value>Currency Symbol</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="DashboardChartInfoMenuTitle" xml:space="preserve">
+    <value>Help Info</value>
+  </data>
+  <data name="DashboardChartScaleYAxis" xml:space="preserve">
+    <value>Auto Scale Y Axis</value>
+  </data>
+  <data name="DashboardPieChartEmptyMessage" xml:space="preserve">
+    <value>There are no books available.</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle1" xml:space="preserve">
+    <value>Borrowed Book</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle2" xml:space="preserve">
+    <value>Total Book</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle3" xml:space="preserve">
+    <value>Available Book</value>
+  </data>
+  <data name="DashboardStaffChartTitle" xml:space="preserve">
+    <value>Available Books By Days</value>
+  </data>
+  <data name="DashboardStaffChartXTitle" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="DashboardStaffChartYTitle" xml:space="preserve">
+    <value>Book Count</value>
+  </data>
+  <data name="DaysAgo" xml:space="preserve">
+    <value>days ago</value>
   </data>
   <data name="DaysLate" xml:space="preserve">
     <value>days late</value>
@@ -198,8 +291,17 @@
   <data name="DaysLeft" xml:space="preserve">
     <value>days left</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Fee</value>
+  </data>
   <data name="LoadDefault" xml:space="preserve">
-    <value>LoadDefault</value>
+    <value>Load Default</value>
+  </data>
+  <data name="LoadMockButton" xml:space="preserve">
+    <value>Load Mock Datas</value>
   </data>
   <data name="LoginEmailEmptyMessage" xml:space="preserve">
     <value>Email Empty</value>
@@ -231,8 +333,17 @@
   <data name="MyBooks" xml:space="preserve">
     <value>My Books</value>
   </data>
+  <data name="MyBooksEmptyMessage" xml:space="preserve">
+    <value>There are no borrowed books.</value>
+  </data>
+  <data name="NewAdminPass" xml:space="preserve">
+    <value>New Password</value>
+  </data>
   <data name="NoFine" xml:space="preserve">
     <value>You have no fine to pay</value>
+  </data>
+  <data name="ResetDbButton" xml:space="preserve">
+    <value>Reset Database</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -242,6 +353,9 @@
   </data>
   <data name="SearchBook" xml:space="preserve">
     <value>Search Book</value>
+  </data>
+  <data name="SearchNotFoundMessage" xml:space="preserve">
+    <value>couldn't find</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -255,6 +369,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsMockSuccessMessage" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="Staff" xml:space="preserve">
     <value>Staff</value>
   </data>
@@ -263,6 +380,9 @@
   </data>
   <data name="Staffs" xml:space="preserve">
     <value>Staffs</value>
+  </data>
+  <data name="StaffSettings" xml:space="preserve">
+    <value>Manage Staffs</value>
   </data>
   <data name="Student" xml:space="preserve">
     <value>Student</value>
@@ -285,7 +405,64 @@
   <data name="Students" xml:space="preserve">
     <value>Students</value>
   </data>
+  <data name="StudentTableDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="StudentTableDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="StudentTableEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="StudentTableEmail" xml:space="preserve">
+    <value>Student Email</value>
+  </data>
+  <data name="StudentTableEmptyMessage" xml:space="preserve">
+    <value>There are no registered students.</value>
+  </data>
+  <data name="StudentTableName" xml:space="preserve">
+    <value>Student Name</value>
+  </data>
+  <data name="StudentTableNumber" xml:space="preserve">
+    <value>Student Number</value>
+  </data>
+  <data name="StudentTableOperations" xml:space="preserve">
+    <value>Operations</value>
+  </data>
+  <data name="SureDialog" xml:space="preserve">
+    <value>Are You Sure</value>
+  </data>
+  <data name="SystemParameters" xml:space="preserve">
+    <value>System Parameters</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="TotalFine" xml:space="preserve">
+    <value>total paid</value>
+  </data>
+  <data name="TotalStaff" xml:space="preserve">
+    <value>Total Staff</value>
+  </data>
+  <data name="TotalStudent" xml:space="preserve">
+    <value>Total Student</value>
+  </data>
+  <data name="UserDetailsFormTitle" xml:space="preserve">
+    <value>Book History</value>
+  </data>
+  <data name="UserDialogAddStaffTitle" xml:space="preserve">
+    <value>Add New Staff</value>
+  </data>
+  <data name="UserDialogAddStudentTitle" xml:space="preserve">
+    <value>Add New Student</value>
+  </data>
+  <data name="UserDialogAddSuccessMsg" xml:space="preserve">
+    <value>Added Successfully</value>
+  </data>
+  <data name="UserDialogUpdateSuccessMsg" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="UserDialogUpdateTitle" xml:space="preserve">
+    <value>Edit</value>
   </data>
 </root>

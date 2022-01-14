@@ -12,7 +12,8 @@ namespace BusinessLogicLayer.Validation
     {
         public SettingsValidator()
         {
-
+            RuleFor(x => x.currency_symbol).NotEmpty().Length(1, 4);
+            RuleFor(x => x.daily_fine_amount).NotNull().LessThan(100);
         }
     }
 }

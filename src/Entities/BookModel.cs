@@ -20,5 +20,6 @@ namespace Entities
         public string shelf_number { get; set; }
         public short is_available { get; set; }
         public DateTime added_date { get; set; }
+        public DateTime delist_date { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using BusinessLogicLayer.Services;
 using Entities;
 using BusinessLogicLayer;
 using PresentationLayer.Controls;
+using PresentationLayer.Resources;
 
 namespace PresentationLayer.SubPages
 {
@@ -82,7 +83,7 @@ namespace PresentationLayer.SubPages
             flowLayoutPanel2.Controls.Clear();
             var SearchResult = BooksService1.SearchBook(text);
             PopulateBooks(SearchResult, flowLayoutPanel2);
-            SearchAlert.ShowAlert(AlertBox.AlertType.Warning, text + " : book couldn't find.");
+            SearchAlert.ShowAlert(AlertBox.AlertType.Warning, text + " : " + Strings.SearchNotFoundMessage);
             Helpers.AddControlToEmptyContainer(flowLayoutPanel2, SearchAlert);
         }
 
@@ -97,7 +98,7 @@ namespace PresentationLayer.SubPages
         {
             flowLayoutPanel1.Controls.Clear();
             PopulateBooks(BooksService1.GetAllBooks(), flowLayoutPanel1);
-            BookAlert.ShowAlert(AlertBox.AlertType.Warning, "There is no any book.");
+            BookAlert.ShowAlert(AlertBox.AlertType.Warning, Strings.BooksEmptyMessage);
             Helpers.AddControlToEmptyContainer(flowLayoutPanel1, BookAlert);
         }
 
@@ -112,7 +113,7 @@ namespace PresentationLayer.SubPages
             {
                 if (AppContext.GetUserType() == UserType.Staff || AppContext.GetUserType() == UserType.Admin)
                 {
-                    var DeleteResult = MessageBox.Show("Delete \""+ BookListItem.GetItemFromButton(sender).Book.title + "\"", "Are You Sure", MessageBoxButtons.YesNo);
+                    var DeleteResult = MessageBox.Show(Strings.Delete + " \""+ Helpers.SpaceSqueeze(BookListItem.GetItemFromButton(sender).Book.title) + "\"", Strings.SureDialog, MessageBoxButtons.YesNo);
 
                     if (DeleteResult == DialogResult.Yes)
                     {
@@ -121,22 +122,20 @@ namespace PresentationLayer.SubPages
                             BooksService1.DeleteBook(BookListItem.GetItemFromButton(sender).Book);
                             Result = DialogResult.OK;
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             Result = DialogResult.Abort;
+                            MessageBox.Show(ex.Message);
                         } 
                     }
                 }
                 else
                 {
-                    var form = new BookBorrow(AppContext, BookListItem.GetItemFromButton(sender).Book);
-                    form.StartPosition = FormStartPosition.Manual;
+                    Form BorrowDialog = new BookBorrow(AppContext, BookListItem.GetItemFromButton(sender).Book); 
                     Point StartP = (sender as Button).PointToScreen(Point.Empty);
-                    StartP.X += 20;
-                    StartP.Y += 20;
-                    form.Location = StartP;
-                    
-                    Result = form.ShowDialog();
+                    Helpers.SetFormStartPoint(ref BorrowDialog, StartP);
+
+                    Result = BorrowDialog.ShowDialog();
                 }
             }
             else if ((sender as Button).Name == "Button_Edit")
@@ -147,16 +146,12 @@ namespace PresentationLayer.SubPages
             if (Result == DialogResult.OK || Result == DialogResult.Yes)
             {
                 RefreshBooks();
+                AppContext.UpdateFine();
             }
             else
             {
                 BookListItem.GetItemFromButton(sender).HideHover();
             }
-        }
-
-        private void Books_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
 
         private void Books_Load(object sender, EventArgs e)

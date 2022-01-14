@@ -1,7 +1,7 @@
 ﻿
 namespace PresentationLayer.Dialogs
 {
-    partial class BookIssue
+    partial class BookReturn
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookReturn));
             this.panel1 = new System.Windows.Forms.Panel();
             this.alertBox2 = new PresentationLayer.Controls.AlertBox();
             this.alertBox1 = new PresentationLayer.Controls.AlertBox();
@@ -99,14 +100,16 @@ namespace PresentationLayer.Dialogs
             this.Text_FineAmount.TabIndex = 33;
             this.Text_FineAmount.Text = "Text";
             // 
-            // BookIssue
+            // BookReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(271, 121);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "BookIssue";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "BookReturn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookIssue";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BookIssue_FormClosing);

@@ -12,7 +12,7 @@ using Entities;
 
 namespace PresentationLayer.Controls
 {
-    //This control is created too populate books and their status. 
+    //This control is created to populate books and their statuses. 
     public partial class BookStatusItem : UserControl
     {
 
@@ -51,10 +51,13 @@ namespace PresentationLayer.Controls
             if (_bookStatus == BookStatus.Returned)
             {
                 Panel_Hover_Top.Visible = false;
-                Splitter_BorderBottom.BackColor = ColorPalette.BookStatusItemTopHoverRibbonReturnedBackColor;
+                //Splitter_BorderBottom.BackColor = Panel_Bottom.BackColor;
+                Splitter_BorderBottom.BackColor = ColorPalette.BookStatusItemBottomRibbonBorderBackColor;
+                Panel_Hover_Top.BackColor = ColorPalette.BookStatusItemBottomRibbonBorderBackColor;
                 Panel_Hover_Top.ForeColor = ColorPalette.BookStatusItemTopHoverRibbonReturnedForeColor;
-                Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonReturnedBackColor;
-                Text_DaySecLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonReturnedBackColor;
+                Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemBottomRibbonBorderBackColor;
+                Text_DaySecLine.BackColor = ColorPalette.BookStatusItemBottomRibbonBorderBackColor;
+                Text_DaySecLine.Text = Strings.DaysAgo;
                 Button_ReturnBook.Visible = false;
             }
             else if (_bookStatus == BookStatus.TwoDaysLeft)
@@ -80,11 +83,11 @@ namespace PresentationLayer.Controls
             }
             else if(_bookStatus == BookStatus.Normal)
             {
-                Splitter_BorderBottom.BackColor = Color.Gray;
-                Panel_Hover_Top.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
-                Panel_Hover_Top.ForeColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftForeColor;
-                Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
-                Text_DaySecLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonTwoDaysLeftBackColor;
+                Splitter_BorderBottom.BackColor = ColorPalette.BookStatusItemTopHoverRibbonNormalBackColor;
+                Panel_Hover_Top.BackColor = ColorPalette.BookStatusItemTopHoverRibbonNormalBackColor;
+                Panel_Hover_Top.ForeColor = ColorPalette.BookStatusItemTopHoverRibbonMoreThanTwoDaysLeftBackColor;
+                Text_DayFirstLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonNormalBackColor;
+                Text_DaySecLine.BackColor = ColorPalette.BookStatusItemTopHoverRibbonNormalBackColor;
                 Text_DaySecLine.Text = Strings.DaysLeft;
                 Button_ReturnBook.Visible = true;
             }else//_bookStatus == BookStatus.Stateless
@@ -92,14 +95,17 @@ namespace PresentationLayer.Controls
                 Panel_Hover_Top.Visible = false;
                 Button_ReturnBook.Enabled = true;
             }
-
-            Text_DayFirstLine.Left = Panel_Hover_Top.Width/2 - Text_DayFirstLine.Width/2;
-            Text_DaySecLine.Left = Panel_Hover_Top.Width/2 - Text_DaySecLine.Width/2;
-
         }
+
+        public void TitleAlignCenter()
+        {
+            Text_DayFirstLine.Left = Panel_Hover_Top.Width / 2 - Text_DayFirstLine.Width / 2;
+            Text_DaySecLine.Left = Panel_Hover_Top.Width / 2 - Text_DaySecLine.Width / 2;
+        }
+
         private void Item_MouseEnter(object sender, EventArgs e)
         {   
-            if(_bookStatus != BookStatus.Stateless && _bookStatus != BookStatus.Returned)
+            if(_bookStatus != BookStatus.Stateless) // && _bookStatus != BookStatus.Returned
             {
                 Panel_Hover_Top.Visible = true;
             }           

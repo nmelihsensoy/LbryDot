@@ -120,14 +120,29 @@
   <data name="ActiveBooks" xml:space="preserve">
     <value>Kitaplarım</value>
   </data>
+  <data name="ActiveFine" xml:space="preserve">
+    <value>ödeme bekliyor</value>
+  </data>
   <data name="AdminRole" xml:space="preserve">
     <value>Yönetici</value>
+  </data>
+  <data name="AdminSettings" xml:space="preserve">
+    <value>Yönetici Ayarları</value>
+  </data>
+  <data name="AdminSetttingsSave" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="AlertBoxTooltipCopyMsg" xml:space="preserve">
+    <value>Kopyalamak için Çift Tıklayın.</value>
   </data>
   <data name="AllBooks" xml:space="preserve">
     <value>Kitaplar</value>
   </data>
   <data name="AvailableBooks" xml:space="preserve">
     <value>Verilmeye Hazır Kitaplar</value>
+  </data>
+  <data name="AvatarErrorMessage" xml:space="preserve">
+    <value>Dosya boyutu düşük olmalıdır :</value>
   </data>
   <data name="BarName1" xml:space="preserve">
     <value>İade Edilmiş Kitaplar</value>
@@ -138,11 +153,29 @@
   <data name="BookAuthor" xml:space="preserve">
     <value>Yazar:</value>
   </data>
+  <data name="BookBorrowShelf" xml:space="preserve">
+    <value>Raf</value>
+  </data>
+  <data name="BookBorrowSuccessMsg" xml:space="preserve">
+    <value>Ödünç Alma Başarılı</value>
+  </data>
   <data name="BookCategory" xml:space="preserve">
     <value>Kategori:</value>
   </data>
   <data name="BookCover" xml:space="preserve">
-    <value>Kapak:</value>
+    <value>Kapak Resmi:</value>
+  </data>
+  <data name="BookDialogAddSuccessMsg" xml:space="preserve">
+    <value>Kitap Ekleme Başarılı</value>
+  </data>
+  <data name="BookDialogAddTitle" xml:space="preserve">
+    <value>Yeni Kitap Ekle</value>
+  </data>
+  <data name="BookDialogUpdateSuccessMsg" xml:space="preserve">
+    <value>Kitap Başarılı Olarak Güncellendi.</value>
+  </data>
+  <data name="BookDialogUpdateTitle" xml:space="preserve">
+    <value>Düzenle</value>
   </data>
   <data name="BookISBN" xml:space="preserve">
     <value>ISBN:</value>
@@ -153,17 +186,44 @@
   <data name="BookLength" xml:space="preserve">
     <value>Sayfa Sayısı:</value>
   </data>
+  <data name="BookListPageTagPostFix" xml:space="preserve">
+    <value>Sf.</value>
+  </data>
   <data name="BookPublishYear" xml:space="preserve">
-    <value>Yayım Yılı:</value>
+    <value>Yayım Yılı</value>
+  </data>
+  <data name="BookReturnFee" xml:space="preserve">
+    <value>Ceza</value>
+  </data>
+  <data name="BookReturnSuccessMsg" xml:space="preserve">
+    <value>İade İşlemi Başarılı</value>
+  </data>
+  <data name="BookReturnTransactionMsg" xml:space="preserve">
+    <value>İşlem Numarası</value>
   </data>
   <data name="Books" xml:space="preserve">
     <value>Kitaplar</value>
   </data>
+  <data name="BooksEmptyMessage" xml:space="preserve">
+    <value>Kitap Eklenmemiş.</value>
+  </data>
   <data name="BookShelfNumber" xml:space="preserve">
     <value>Raf Numarası:</value>
   </data>
+  <data name="BookTableBorrowDate" xml:space="preserve">
+    <value>Ödünç Alma Tarihi</value>
+  </data>
+  <data name="BookTableName" xml:space="preserve">
+    <value>Kitap Adı</value>
+  </data>
+  <data name="BookTableReturnDate" xml:space="preserve">
+    <value>Teslim Tarihi</value>
+  </data>
   <data name="BookTitle" xml:space="preserve">
     <value>Başlık:</value>
+  </data>
+  <data name="BookTitleSec" xml:space="preserve">
+    <value>İkinci Satır:</value>
   </data>
   <data name="BorrowedBooks" xml:space="preserve">
     <value>Ödünç Alınmış Kitaplar</value>
@@ -172,7 +232,7 @@
     <value>Ödünç Al</value>
   </data>
   <data name="ButtonReturn" xml:space="preserve">
-    <value>Geri Ver</value>
+    <value>Teslim Et</value>
   </data>
   <data name="Change" xml:space="preserve">
     <value>Değiştir</value>
@@ -189,8 +249,41 @@
   <data name="Close" xml:space="preserve">
     <value>Kapat</value>
   </data>
+  <data name="CurrencySymbol" xml:space="preserve">
+    <value>Para Birimi Sembolu</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Ana Sayfa</value>
+  </data>
+  <data name="DashboardChartInfoMenuTitle" xml:space="preserve">
+    <value>Yardım</value>
+  </data>
+  <data name="DashboardChartScaleYAxis" xml:space="preserve">
+    <value>Y Eksenini Oto. Ölçekle</value>
+  </data>
+  <data name="DashboardPieChartEmptyMessage" xml:space="preserve">
+    <value>Kitap Eklenmemiş.</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle1" xml:space="preserve">
+    <value>Ödünç Alınmış Kitaplar</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle2" xml:space="preserve">
+    <value>Toplam Kitap Sayısı</value>
+  </data>
+  <data name="DashboardStaffChartCurveTitle3" xml:space="preserve">
+    <value>Ödünç Alınabilir Kitap Sayısı</value>
+  </data>
+  <data name="DashboardStaffChartTitle" xml:space="preserve">
+    <value>Müsait Kitap Sayısı</value>
+  </data>
+  <data name="DashboardStaffChartXTitle" xml:space="preserve">
+    <value>Günler</value>
+  </data>
+  <data name="DashboardStaffChartYTitle" xml:space="preserve">
+    <value>Kitap Sayısı</value>
+  </data>
+  <data name="DaysAgo" xml:space="preserve">
+    <value>gün önce</value>
   </data>
   <data name="DaysLate" xml:space="preserve">
     <value>gün gecikti</value>
@@ -198,8 +291,20 @@
   <data name="DaysLeft" xml:space="preserve">
     <value>gün kaldı</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Ceza</value>
+  </data>
   <data name="LoadDefault" xml:space="preserve">
     <value>Varsayılanı Yükle</value>
+  </data>
+  <data name="LoadMockButton" xml:space="preserve">
+    <value>Örnek Verileri Yükle</value>
+  </data>
+  <data name="LoginEmailEmptyMessage" xml:space="preserve">
+    <value>Email Boş</value>
   </data>
   <data name="LoginEmailPlaceholderText" xml:space="preserve">
     <value>Eposta</value>
@@ -207,11 +312,14 @@
   <data name="LoginExecuteButtonText" xml:space="preserve">
     <value>Giriş Yap</value>
   </data>
+  <data name="LoginPassEmptyMessage" xml:space="preserve">
+    <value>Şifre Boş</value>
+  </data>
   <data name="LoginPassPlaceholderText" xml:space="preserve">
     <value>Şifre</value>
   </data>
   <data name="LoginUserTypeStaff" xml:space="preserve">
-    <value>Görevli</value>
+    <value>Personel</value>
   </data>
   <data name="LoginUserTypeStudent" xml:space="preserve">
     <value>Öğrenci</value>
@@ -225,8 +333,17 @@
   <data name="MyBooks" xml:space="preserve">
     <value>Kitaplarım</value>
   </data>
+  <data name="MyBooksEmptyMessage" xml:space="preserve">
+    <value>Ödünç Alınmış Kitap Bulunmamaktadır.</value>
+  </data>
+  <data name="NewAdminPass" xml:space="preserve">
+    <value>Yeni Şifre</value>
+  </data>
   <data name="NoFine" xml:space="preserve">
     <value>Cezanız Bulunmamaktadır.</value>
+  </data>
+  <data name="ResetDbButton" xml:space="preserve">
+    <value>Veritabanını Formatla</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Kaydet</value>
@@ -237,11 +354,14 @@
   <data name="SearchBook" xml:space="preserve">
     <value>Kitap Ara</value>
   </data>
+  <data name="SearchNotFoundMessage" xml:space="preserve">
+    <value>bulunamadı.</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>Seç</value>
   </data>
   <data name="SelectReturnDate" xml:space="preserve">
-    <value>Geri Verme Tarihi Seç:</value>
+    <value>Teslim Tarihi Seçiniz:</value>
   </data>
   <data name="Setting1" xml:space="preserve">
     <value>Günlük Ceza Miktarı</value>
@@ -249,14 +369,20 @@
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
   </data>
+  <data name="SettingsMockSuccessMessage" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
   <data name="Staff" xml:space="preserve">
-    <value>Görevli</value>
+    <value>Personel</value>
   </data>
   <data name="StaffRole" xml:space="preserve">
-    <value>Görevli</value>
+    <value>Personel</value>
   </data>
   <data name="Staffs" xml:space="preserve">
-    <value>Görevliler</value>
+    <value>Personel</value>
+  </data>
+  <data name="StaffSettings" xml:space="preserve">
+    <value>Personel Yönetimi</value>
   </data>
   <data name="Student" xml:space="preserve">
     <value>Öğrenci</value>
@@ -268,18 +394,75 @@
     <value>Eposta:</value>
   </data>
   <data name="StudentName" xml:space="preserve">
-    <value>Adı-Soyadı:</value>
+    <value>İsim:</value>
   </data>
   <data name="StudentPass" xml:space="preserve">
     <value>Şifre:</value>
   </data>
   <data name="StudentRole" xml:space="preserve">
-    <value>Öğrenci:</value>
+    <value>Öğrenci</value>
   </data>
   <data name="Students" xml:space="preserve">
     <value>Öğrenciler</value>
   </data>
+  <data name="StudentTableDelete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="StudentTableDetails" xml:space="preserve">
+    <value>Detay</value>
+  </data>
+  <data name="StudentTableEdit" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="StudentTableEmail" xml:space="preserve">
+    <value>Öğrenci Eposta</value>
+  </data>
+  <data name="StudentTableEmptyMessage" xml:space="preserve">
+    <value>Öğrenci Yok</value>
+  </data>
+  <data name="StudentTableName" xml:space="preserve">
+    <value>Öğrenci Adı</value>
+  </data>
+  <data name="StudentTableNumber" xml:space="preserve">
+    <value>Öğrenci Numarası</value>
+  </data>
+  <data name="StudentTableOperations" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="SureDialog" xml:space="preserve">
+    <value>Emin Misiniz?</value>
+  </data>
+  <data name="SystemParameters" xml:space="preserve">
+    <value>Sistem Parametreleri</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Başlık</value>
+  </data>
+  <data name="TotalFine" xml:space="preserve">
+    <value>ödendi</value>
+  </data>
+  <data name="TotalStaff" xml:space="preserve">
+    <value>Toplam Personel</value>
+  </data>
+  <data name="TotalStudent" xml:space="preserve">
+    <value>Toplam Öğrenci</value>
+  </data>
+  <data name="UserDetailsFormTitle" xml:space="preserve">
+    <value>Geçmiş Kitapları</value>
+  </data>
+  <data name="UserDialogAddStaffTitle" xml:space="preserve">
+    <value>Yeni Personel Ekle</value>
+  </data>
+  <data name="UserDialogAddStudentTitle" xml:space="preserve">
+    <value>Yeni Öğrenci Ekle</value>
+  </data>
+  <data name="UserDialogAddSuccessMsg" xml:space="preserve">
+    <value>Ekleme Başarılı</value>
+  </data>
+  <data name="UserDialogUpdateSuccessMsg" xml:space="preserve">
+    <value>Güncelleme Başarılı</value>
+  </data>
+  <data name="UserDialogUpdateTitle" xml:space="preserve">
+    <value>Düzenle</value>
   </data>
 </root>

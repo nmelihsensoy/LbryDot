@@ -33,14 +33,14 @@ namespace BusinessLogicLayer.Services
 
         public void AddStaff(StaffModel Staff)
         {
-            ////StudentsValidator validator = new StudentsValidator();
-            //ValidationResult results = validator.Validate(Student);
-            //string allMessages = results.ToString("\n");
+            StaffValidator validator = new StaffValidator();
+            ValidationResult results = validator.Validate(Staff);
+            string allMessages = results.ToString("\n");
 
-            //if (!results.IsValid)
-            //{
-            //    throw new Exception(allMessages);
-            //}
+            if (!results.IsValid)
+            {
+                throw new Exception(allMessages);
+            }
 
             ApplyMd5Hashing(ref Staff);
             var output = _appContext.getUoW().StaffRepository.Add(Staff);
@@ -76,10 +76,36 @@ namespace BusinessLogicLayer.Services
         }
 
         public void UpdateStaff(StaffModel Staff)
+        {    
+            StaffValidator validator = new StaffValidator();
+            ValidationResult results = validator.Validate(Staff);
+            string allMessages = results.ToString("\n");
+
+            if (!results.IsValid)
+            {
+                throw new Exception(allMessages);
+            }
+
+            ApplyMd5Hashing(ref Staff);
+            var output = _appContext.getUoW().StaffRepository.Update(Staff);
+            _appContext.getUoW().Commit();
+
+            if (output != 1)
+            {
+                throw new Exception("Error");
+            }
+        }
+
+        public void UpdateAdmin(StaffModel Staff)
         {
             ApplyMd5Hashing(ref Staff);
             var output = _appContext.getUoW().StaffRepository.Update(Staff);
             _appContext.getUoW().Commit();
+
+            if (output != 1)
+            {
+                throw new Exception("Error");
+            }
         }
 
         public StaffModel LoginStaff(LoginModel Credential)

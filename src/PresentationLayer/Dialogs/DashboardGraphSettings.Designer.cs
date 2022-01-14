@@ -29,6 +29,7 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardGraphSettings));
             this.Input_Title = new System.Windows.Forms.TextBox();
             this.Text_Title = new System.Windows.Forms.Label();
             this.Button_Change = new System.Windows.Forms.Button();
@@ -83,6 +84,7 @@ namespace PresentationLayer.Dialogs
             this.Controls.Add(this.Input_Title);
             this.Controls.Add(this.Text_Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashboardGraphSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DashboardGraphSettings";

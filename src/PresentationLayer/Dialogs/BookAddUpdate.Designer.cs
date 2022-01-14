@@ -29,6 +29,7 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookAddUpdate));
             this.Panel_Container = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Input_Category = new System.Windows.Forms.ComboBox();
@@ -125,7 +126,7 @@ namespace PresentationLayer.Dialogs
             // Input_Title_Sec
             // 
             this.Input_Title_Sec.Location = new System.Drawing.Point(132, 60);
-            this.Input_Title_Sec.MaxLength = 15;
+            this.Input_Title_Sec.MaxLength = 50;
             this.Input_Title_Sec.Name = "Input_Title_Sec";
             this.Input_Title_Sec.Size = new System.Drawing.Size(187, 20);
             this.Input_Title_Sec.TabIndex = 37;
@@ -222,8 +223,10 @@ namespace PresentationLayer.Dialogs
             // 
             // Image_BookCover
             // 
+            this.Image_BookCover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Image_BookCover.Image = global::PresentationLayer.Properties.Resources.default_book_cover;
             this.Image_BookCover.InitialImage = null;
-            this.Image_BookCover.Location = new System.Drawing.Point(480, 147);
+            this.Image_BookCover.Location = new System.Drawing.Point(480, 146);
             this.Image_BookCover.Name = "Image_BookCover";
             this.Image_BookCover.Size = new System.Drawing.Size(80, 97);
             this.Image_BookCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -250,6 +253,7 @@ namespace PresentationLayer.Dialogs
             // Input_ISBN
             // 
             this.Input_ISBN.Location = new System.Drawing.Point(132, 103);
+            this.Input_ISBN.MaxLength = 20;
             this.Input_ISBN.Name = "Input_ISBN";
             this.Input_ISBN.Size = new System.Drawing.Size(187, 20);
             this.Input_ISBN.TabIndex = 15;
@@ -328,6 +332,9 @@ namespace PresentationLayer.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 324);
             this.Controls.Add(this.Panel_Container);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BookAddUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookAddUpdate";

@@ -14,11 +14,11 @@ namespace BusinessLogicLayer
         private List<BookModel> _bookList;
         private List<BorrowingModel> _borrowsList;
 
-        public MockData()
+        public MockData(int StdStartId=1, int BkStartId=1)
         {
             GenerateStaffData();
-            GenerateStudentData();
-            GenerateBookData();
+            GenerateStudentData(StdStartId);
+            GenerateBookData(BkStartId);
             GenerateBorrowingData();
             SetMockBooksAvailable();
         }
@@ -47,7 +47,6 @@ namespace BusinessLogicLayer
         {
             _mockStaff = new StaffModel()
             {
-                staff_id = 1,
                 staff_email = "jane_smith@lbry.com",
                 staff_name = "Jane Smith",
                 staff_password = "jane1234",
@@ -55,19 +54,19 @@ namespace BusinessLogicLayer
             };
         }
 
-        private void GenerateStudentData()
+        private void GenerateStudentData(int StartId)
         {
             _stdList = new List<StudentModel>()
             {
               new StudentModel(){
-                student_number = 2,
+                student_number = StartId,
                 student_name = "Deniz Kaya",
                 student_email = "deniz_kaya@lbry.com",
                 student_password = "deniz1234",
                 student_avatar = null
             },
               new StudentModel(){
-                student_number = 3,
+                student_number = StartId+1,
                 student_name = "John Doe",
                 student_email = "john_doe@lbry.com",
                 student_password = "john1234",
@@ -76,12 +75,12 @@ namespace BusinessLogicLayer
             };
         }
 
-        private void GenerateBookData()
+        private void GenerateBookData(int StartId)
         {
             _bookList = new List<BookModel>() {
                 new BookModel()
                 {
-                    book_id = 1,
+                    book_id = StartId,
                     isbn = "9789750718533",
                     title = "1984",
                     author = "George Orwell",
@@ -96,7 +95,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 2,
+                    book_id = StartId+1,
                     isbn = "9789750724435",
                     title = "Küçük Prens",
                     author = "Antoine de Saint-Exupéry",
@@ -111,7 +110,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 3,
+                    book_id = StartId+2,
                     isbn = "9781627790369",
                     title = "Algorithms to Live By: The Computer Science of Human Decision",
                     author = "Brian Christian-Tom Griffiths",
@@ -126,7 +125,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 4,
+                    book_id = StartId+3,
                     isbn = "9789752201361",
                     title = "Yalnızca Eğlenmek İçin",
                     author = "Linus Torvalds",
@@ -141,7 +140,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 5,
+                    book_id = StartId+4,
                     isbn = "9780307719225",
                     title = "Why Nations Fail: The Origins of Power, Prosperity, and Poverty",
                     author = "Daron Acemoglu",
@@ -156,7 +155,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 6,
+                    book_id = StartId+5,
                     isbn = "9781731703613",
                     title = "The Wealth of Nations",
                     author = "Adam Smith",
@@ -171,7 +170,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 7,
+                    book_id = StartId+6,
                     isbn = "9780262043793",
                     title = "Introduction to Machine Learning",
                     author = "Ethem Alpaydin",
@@ -186,7 +185,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 8,
+                    book_id = StartId+7,
                     isbn = "9781735503721",
                     title = "Our Journey Together",
                     author = "Donald J. Trump",
@@ -201,7 +200,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 9,
+                    book_id = StartId+8,
                     isbn = "9781509827749",
                     title = "Crime and Punishment",
                     author = "Fyodor Dostoevsky",
@@ -216,7 +215,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 10,
+                    book_id = StartId+9,
                     isbn = "9789750726439",
                     title = "Simyacı",
                     author = "Paulo Coelho",
@@ -231,7 +230,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 11,
+                    book_id = StartId+10,
                     isbn = "9780141361345",
                     title = "Alice's Adventures in Wonderland",
                     author = "Lewis Carroll",
@@ -246,7 +245,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 12,
+                    book_id = StartId+11,
                     isbn = "9781451648539",
                     title = "Steve Jobs: The Exclusive Biography",
                     author = "Walter Isaacson",
@@ -261,7 +260,7 @@ namespace BusinessLogicLayer
                 },
                 new BookModel()
                 {
-                    book_id = 13,
+                    book_id = StartId+12,
                     isbn = "9786050963557",
                     title = "Sadece Şeyma",
                     author = "Şeyma Subaşı",
@@ -284,7 +283,7 @@ namespace BusinessLogicLayer
                 new BorrowingModel()
                 {
                     student = StdList[1],
-                    book = BookList[2],//[2] : 5 gün gecikti
+                    book = BookList[2],//[2] : 5 days left
                     amount_of_fine = 0,
                     issued_date = DateTime.Today.Date.AddDays(-10),
                     due_date = DateTime.Today.Date.AddDays(-5),
@@ -293,7 +292,7 @@ namespace BusinessLogicLayer
                 new BorrowingModel()
                 {
                     student = StdList[1],
-                    book = BookList[4],//[4] : 2 gün kaldı
+                    book = BookList[4],//[4] : 2 days left
                     amount_of_fine = 0,
                     issued_date = DateTime.Today.Date.AddDays(-7),
                     due_date = DateTime.Today.Date.AddDays(+2),
@@ -302,7 +301,7 @@ namespace BusinessLogicLayer
                 new BorrowingModel()
                 {
                     student = StdList[1],
-                    book = BookList[6],//[6] : 10 gün kaldı
+                    book = BookList[6],//[6] : 10 days left
                     amount_of_fine = 0,
                     issued_date = DateTime.Today.Date.AddDays(-11),
                     due_date = DateTime.Today.Date.AddDays(+10),
@@ -311,7 +310,7 @@ namespace BusinessLogicLayer
                 new BorrowingModel()
                 {
                     student = StdList[1],
-                    book = BookList[10],//[10] : teslim edildi
+                    book = BookList[10],//[10] : returned
                     amount_of_fine = 0,
                     issued_date = DateTime.Today.Date.AddDays(-4),
                     due_date = DateTime.Today.Date.AddDays(+10),

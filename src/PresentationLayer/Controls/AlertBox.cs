@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PresentationLayer.Resources;
 
 namespace PresentationLayer.Controls
 {
@@ -83,31 +84,53 @@ namespace PresentationLayer.Controls
         }
 
         //If wanted to change font style this method should be used.
-        public void ShowAlert(AlertType Type, string Msg, Font Fnt)
+        public void ShowAlert(AlertType Type, string Msg, Font Fnt, Boolean IsTooltipEnabled=true)
         {
             SetStyleByType(Type);
-            MakeTextVerticalCenter();
+            MakeTextVerticallyCenter();
             Text_Message.Font = Fnt;
             Text_Message.Text = Msg;
+            if (IsTooltipEnabled)
+            {
+                SetToolTipText(Msg);
+                Text_Message.Cursor = Cursors.Hand;
+            }
         }
 
         //Sets alert type and message
-        public void ShowAlert(AlertType Type, string Msg)
+        public void ShowAlert(AlertType Type, string Msg, Boolean IsTooltipEnabled=true)
         {
             SetStyleByType(Type);
-            MakeTextVerticalCenter();
+            MakeTextVerticallyCenter();
             Text_Message.Text = Msg;
+            if (IsTooltipEnabled)
+            {
+                SetToolTipText(Msg);
+                Text_Message.Cursor = Cursors.Hand;
+            }
         }
 
         private void AlertBox_Load(object sender, EventArgs e)
         {
-            MakeTextVerticalCenter();
+            MakeTextVerticallyCenter();
         }
 
-        private void MakeTextVerticalCenter()
+        private void MakeTextVerticallyCenter()
         {
             Image_TypeIcon.Top = (Panel_Container.Height / 2) - (Image_TypeIcon.Height / 2);
             Text_Message.Top = (Panel_Container.Height / 2) - (Text_Message.Height / 2);
+        }
+
+        private void SetToolTipText(string Msg)
+        {
+            toolTip1.ToolTipTitle = Strings.AlertBoxTooltipCopyMsg;
+            toolTip1.SetToolTip(Panel_Container, Msg);
+            toolTip1.SetToolTip(Text_Message, Msg);
+        }
+
+        private void Text_Message_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText(Text_Message.Text);
         }
     }
 }

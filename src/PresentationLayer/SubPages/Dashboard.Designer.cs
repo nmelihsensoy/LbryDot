@@ -46,6 +46,7 @@ namespace PresentationLayer.SubPages
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Panel_ChartLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@ namespace PresentationLayer.SubPages
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.Panel_ActiveBooks.SuspendLayout();
             this.Panel_ChartRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -231,6 +231,22 @@ namespace PresentationLayer.SubPages
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
             // 
+            // iconButton1
+            // 
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 16;
+            this.iconButton1.Location = new System.Drawing.Point(0, 0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(23, 20);
+            this.iconButton1.TabIndex = 3;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.Button_ChartSettings_Click);
+            // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -285,7 +301,7 @@ namespace PresentationLayer.SubPages
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.Font = new System.Drawing.Font("Avignon Pro", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(3, 10);
@@ -293,7 +309,7 @@ namespace PresentationLayer.SubPages
             this.label1.Size = new System.Drawing.Size(167, 23);
             this.label1.TabIndex = 8;
             this.label1.Text = "Total Student";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // splitter2
             // 
@@ -331,7 +347,7 @@ namespace PresentationLayer.SubPages
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.Font = new System.Drawing.Font("Avignon Pro", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(3, 10);
@@ -339,7 +355,7 @@ namespace PresentationLayer.SubPages
             this.label4.Size = new System.Drawing.Size(167, 23);
             this.label4.TabIndex = 8;
             this.label4.Text = "Total Staff";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // splitter3
             // 
@@ -350,22 +366,6 @@ namespace PresentationLayer.SubPages
             this.splitter3.Size = new System.Drawing.Size(173, 3);
             this.splitter3.TabIndex = 5;
             this.splitter3.TabStop = false;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Cog;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 16;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(23, 20);
-            this.iconButton1.TabIndex = 3;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // Dashboard
             // 

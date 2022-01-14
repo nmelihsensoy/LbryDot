@@ -34,6 +34,8 @@ namespace PresentationLayer.SubPages
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.Input_Setting = new System.Windows.Forms.NumericUpDown();
             this.Text_ActiveBooksTitle = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -44,10 +46,8 @@ namespace PresentationLayer.SubPages
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.alertBox2 = new PresentationLayer.Controls.AlertBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.alertBox3 = new PresentationLayer.Controls.AlertBox();
             this.Button_DeleteStaff = new FontAwesome.Sharp.IconButton();
             this.Button_EditStaff = new FontAwesome.Sharp.IconButton();
             this.Button_AddStaff = new FontAwesome.Sharp.IconButton();
@@ -73,7 +73,7 @@ namespace PresentationLayer.SubPages
             // Button_SaveButton
             // 
             this.Button_SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_SaveButton.Location = new System.Drawing.Point(229, 93);
+            this.Button_SaveButton.Location = new System.Drawing.Point(229, 143);
             this.Button_SaveButton.Name = "Button_SaveButton";
             this.Button_SaveButton.Size = new System.Drawing.Size(127, 30);
             this.Button_SaveButton.TabIndex = 17;
@@ -84,7 +84,7 @@ namespace PresentationLayer.SubPages
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(19, 52);
+            this.button1.Location = new System.Drawing.Point(19, 51);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 42);
             this.button1.TabIndex = 19;
@@ -95,7 +95,7 @@ namespace PresentationLayer.SubPages
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(132, 52);
+            this.button2.Location = new System.Drawing.Point(132, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 42);
             this.button2.TabIndex = 20;
@@ -106,16 +106,36 @@ namespace PresentationLayer.SubPages
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.Input_Setting);
             this.panel1.Controls.Add(this.Text_ActiveBooksTitle);
             this.panel1.Controls.Add(this.splitter1);
             this.panel1.Controls.Add(this.Text_SettingInput);
             this.panel1.Controls.Add(this.Button_SaveButton);
-            this.panel1.Controls.Add(this.alertBox1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(374, 202);
             this.panel1.TabIndex = 22;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(182, 92);
+            this.textBox2.MaxLength = 4;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(174, 20);
+            this.textBox2.TabIndex = 27;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(19, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 19);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Currency Symbol :";
             // 
             // Input_Setting
             // 
@@ -147,10 +167,10 @@ namespace PresentationLayer.SubPages
             // 
             // alertBox1
             // 
-            this.alertBox1.Location = new System.Drawing.Point(19, 140);
+            this.alertBox1.Location = new System.Drawing.Point(401, 336);
             this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
             this.alertBox1.Name = "alertBox1";
-            this.alertBox1.Size = new System.Drawing.Size(337, 53);
+            this.alertBox1.Size = new System.Drawing.Size(375, 53);
             this.alertBox1.TabIndex = 18;
             this.alertBox1.Visible = false;
             // 
@@ -164,17 +184,16 @@ namespace PresentationLayer.SubPages
             this.panel2.Controls.Add(this.splitter2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.alertBox2);
-            this.panel2.Location = new System.Drawing.Point(12, 233);
+            this.panel2.Location = new System.Drawing.Point(12, 232);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(374, 261);
+            this.panel2.Size = new System.Drawing.Size(374, 234);
             this.panel2.TabIndex = 23;
             this.panel2.Visible = false;
             // 
             // button3
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(229, 153);
+            this.button3.Location = new System.Drawing.Point(229, 148);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(127, 30);
             this.button3.TabIndex = 25;
@@ -187,7 +206,7 @@ namespace PresentationLayer.SubPages
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Avignon Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(15, 121);
+            this.label2.Location = new System.Drawing.Point(15, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 19);
             this.label2.TabIndex = 25;
@@ -206,7 +225,7 @@ namespace PresentationLayer.SubPages
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(169, 120);
+            this.textBox1.Location = new System.Drawing.Point(169, 115);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(187, 20);
             this.textBox1.TabIndex = 26;
@@ -215,26 +234,16 @@ namespace PresentationLayer.SubPages
             // 
             this.splitter2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 258);
+            this.splitter2.Location = new System.Drawing.Point(0, 231);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(374, 3);
             this.splitter2.TabIndex = 22;
             this.splitter2.TabStop = false;
             // 
-            // alertBox2
-            // 
-            this.alertBox2.Location = new System.Drawing.Point(19, 189);
-            this.alertBox2.MinimumSize = new System.Drawing.Size(150, 0);
-            this.alertBox2.Name = "alertBox2";
-            this.alertBox2.Size = new System.Drawing.Size(337, 55);
-            this.alertBox2.TabIndex = 21;
-            this.alertBox2.Visible = false;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.listBox1);
-            this.panel3.Controls.Add(this.alertBox3);
             this.panel3.Controls.Add(this.Button_DeleteStaff);
             this.panel3.Controls.Add(this.Button_EditStaff);
             this.panel3.Controls.Add(this.Button_AddStaff);
@@ -242,7 +251,7 @@ namespace PresentationLayer.SubPages
             this.panel3.Controls.Add(this.splitter3);
             this.panel3.Location = new System.Drawing.Point(401, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(375, 372);
+            this.panel3.Size = new System.Drawing.Size(375, 308);
             this.panel3.TabIndex = 24;
             this.panel3.Visible = false;
             // 
@@ -253,15 +262,6 @@ namespace PresentationLayer.SubPages
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(337, 186);
             this.listBox1.TabIndex = 29;
-            // 
-            // alertBox3
-            // 
-            this.alertBox3.Location = new System.Drawing.Point(19, 296);
-            this.alertBox3.MinimumSize = new System.Drawing.Size(150, 0);
-            this.alertBox3.Name = "alertBox3";
-            this.alertBox3.Size = new System.Drawing.Size(337, 55);
-            this.alertBox3.TabIndex = 27;
-            this.alertBox3.Visible = false;
             // 
             // Button_DeleteStaff
             // 
@@ -320,7 +320,7 @@ namespace PresentationLayer.SubPages
             // 
             this.splitter3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter3.Location = new System.Drawing.Point(0, 369);
+            this.splitter3.Location = new System.Drawing.Point(0, 305);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(375, 3);
             this.splitter3.TabIndex = 0;
@@ -334,6 +334,7 @@ namespace PresentationLayer.SubPages
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.alertBox1);
             this.Name = "Settings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
@@ -354,7 +355,6 @@ namespace PresentationLayer.SubPages
         private Controls.AlertBox alertBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private Controls.AlertBox alertBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel2;
@@ -367,11 +367,12 @@ namespace PresentationLayer.SubPages
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Label label3;
-        private Controls.AlertBox alertBox3;
         private FontAwesome.Sharp.IconButton Button_DeleteStaff;
         private FontAwesome.Sharp.IconButton Button_EditStaff;
         private FontAwesome.Sharp.IconButton Button_AddStaff;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.NumericUpDown Input_Setting;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
     }
 }

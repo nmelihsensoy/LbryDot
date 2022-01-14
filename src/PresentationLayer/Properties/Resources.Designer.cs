@@ -63,9 +63,9 @@ namespace PresentationLayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _41SMo7KEbhL__AC_SY780_ {
+        internal static System.Drawing.Bitmap default_book_cover {
             get {
-                object obj = ResourceManager.GetObject("41SMo7KEbhL._AC_SY780_", resourceCulture);
+                object obj = ResourceManager.GetObject("default_book_cover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

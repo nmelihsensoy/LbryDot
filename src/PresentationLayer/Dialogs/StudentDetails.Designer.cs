@@ -1,7 +1,7 @@
 ﻿
 namespace PresentationLayer.Dialogs
 {
-    partial class UserDetails
+    partial class StudentDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,9 @@ namespace PresentationLayer.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDetails));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,16 +42,30 @@ namespace PresentationLayer.Dialogs
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(464, 237);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
-            // UserDetails
+            // alertBox1
+            // 
+            this.alertBox1.Location = new System.Drawing.Point(12, 18);
+            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
+            this.alertBox1.Name = "alertBox1";
+            this.alertBox1.Size = new System.Drawing.Size(464, 39);
+            this.alertBox1.TabIndex = 3;
+            this.alertBox1.Visible = false;
+            // 
+            // StudentDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 261);
+            this.Controls.Add(this.alertBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "UserDetails";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "StudentDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "UserDetails";
+            this.Text = "Student Details";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -58,5 +74,6 @@ namespace PresentationLayer.Dialogs
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private Controls.AlertBox alertBox1;
     }
 }

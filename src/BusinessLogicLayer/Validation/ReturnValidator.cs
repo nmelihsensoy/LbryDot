@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Validation
 {
-    public class BorrowingValidator : AbstractValidator<BorrowingModel>
+    public class ReturnValidator : AbstractValidator<BorrowingModel>
     {
-        public BorrowingValidator()
+        public ReturnValidator()
         {
-
+            RuleFor(x => x.returned_date.Date).Equal(DateTime.Today.Date);
         }
     }
 }

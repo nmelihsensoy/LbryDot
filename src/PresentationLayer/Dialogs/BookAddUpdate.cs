@@ -43,10 +43,11 @@ namespace PresentationLayer.Dialogs
         {
             if (this.IsNewBook == false)
             {
-                Input_ISBN.Text = _editBook.isbn.ToString();
+                this.Text = Strings.BookDialogUpdateTitle + ": " + _editBook.title;
+                
                 if (_editBook.title.Length > 15)
                 {
-                    Input_Title.Text = _editBook.title.Substring(0, 15);
+                    Input_Title.Text = _editBook.title.Substring(0, 15).Trim();
                     Input_Title_Sec.Text = _editBook.title.Substring(15, _editBook.title.Length - 15);
                 }
                 else
@@ -58,6 +59,7 @@ namespace PresentationLayer.Dialogs
                 var Found = Categories.Find(x => x.CategoryRaw.Contains(_editBook.category));
                 Input_Category.SelectedItem = Found;
                 panel1.BackColor = Found.CategoryColor;
+                Input_ISBN.Text = _editBook.isbn.ToString();
                 Input_BookLang.Text = _editBook.language;
                 Input_Length.Text = _editBook.number_of_pages.ToString();
                 Input_ShelfNumber.Text = _editBook.shelf_number;
@@ -65,12 +67,16 @@ namespace PresentationLayer.Dialogs
                 SelectedCoverInBytes = _editBook.book_cover;
                 Image_BookCover.Image = Helpers.ConvertByteToImage(_editBook.book_cover, Image_BookCover.Image);
             }
+            else
+            {
+                this.Text = Strings.BookDialogAddTitle;
+            }
         }
 
         private void ApplyStrings()
         {
             Text_Title.Text = Strings.BookTitle;
-            Text_Title_Sec.Text = Strings.BookTitle;
+            Text_Title_Sec.Text = Strings.BookTitleSec;
             Text_ISBN.Text = Strings.BookISBN;
             Text_Author.Text = Strings.BookAuthor;
             Text_Category.Text = Strings.BookCategory;
@@ -110,22 +116,31 @@ namespace PresentationLayer.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("File size has to be lower than 1MB");
+                    MessageBox.Show(Strings.AvatarErrorMessage + " 1MB");
                 }
             }
         }
 
         private void SetModelFromInputs(BookModel Book)
         {
-            Book.isbn = Input_ISBN.Text;
-            Book.title = Input_Title.Text + Input_Title_Sec.Text;
+            if (!String.IsNullOrEmpty(Input_Title_Sec.Text))
+            {
+                Book.title = Input_Title.Text.PadRight(15) + Input_Title_Sec.Text;
+            }
+            else
+            {
+                Book.title = Input_Title.Text;
+            }
+            
             Book.date_of_publication = dateTimePicker_PublishYear.Value.Year;
             Book.author = Input_Author.Text;
             Book.number_of_pages = Int32.Parse(Input_Length.Text);
             Book.category = Input_Category.Text + BusinessLogicLayer.Helpers.ColorToPaddedString(panel1.BackColor);
             Book.language = Input_BookLang.Text;
+            Book.isbn = Input_ISBN.Text;
             Book.shelf_number = Input_ShelfNumber.Text;
             Book.book_cover = SelectedCoverInBytes;
+            Book.is_available = 1;
         }
 
         private void Button_Save_Click(object sender, EventArgs e)
@@ -139,13 +154,13 @@ namespace PresentationLayer.Dialogs
                     SetModelFromInputs(NewBook);
 
                     BooksService1.AddBook(NewBook);
-                    SuccessMsg = "Book Added Succesfully";
+                    SuccessMsg = Strings.BookDialogAddSuccessMsg;
                 }
                 else
                 {
                     SetModelFromInputs(_editBook);
                     BooksService1.UpdateBook(_editBook);
-                    SuccessMsg = "Book Edited Succesfully";
+                    SuccessMsg = Strings.BookDialogUpdateSuccessMsg;
                 }
                 alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
                 alertBox1.Visible = true;
@@ -176,7 +191,7 @@ namespace PresentationLayer.Dialogs
             e.DrawBackground();
             var Selected = (((ComboBox)sender).Items[e.Index] as CategoryModel);
             e.Graphics.FillRectangle(new SolidBrush(Selected.CategoryColor), e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, e.Bounds.Height);
-            e.Graphics.DrawString(Selected.CategoryName, e.Font, new SolidBrush(Color.White), e.Bounds.Left, e.Bounds.Top);
+            e.Graphics.DrawString(Selected.CategoryName, e.Font, new SolidBrush(Helpers.GetReadableColorByBackground(Selected.CategoryColor)), e.Bounds.Left, e.Bounds.Top);
             e.DrawFocusRectangle();
         }
 

@@ -12,7 +12,8 @@ namespace BusinessLogicLayer.Validation
     {
         public StudentsValidator()
         {
-
+            RuleFor(x => x.student_email).NotEmpty().EmailAddress();
+            RuleFor(x => x.student_name).NotEmpty().MinimumLength(4).Matches(@"^(([A-Za-zÇçĞğİıÖöŞşÜü])+[\.]?[\ -\.]?){1,}\.?([^\s-])+");
         }
     }
 }

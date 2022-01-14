@@ -10,10 +10,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace PresentationLayer
 {
-    //Definitions of function or varibles that can only used in PresentationLayer to help another function or variable.
+    //Definitions of function or variables that can only used in PresentationLayer to help another function or variable.
     //Creating with no relation any of classes is required.
     public static class Helpers
     {
@@ -164,5 +165,51 @@ namespace PresentationLayer
                 }
             }
         }
+
+        public static Color GetReadableColorByBackground(Color BgColor)
+        {
+            if (BgColor.GetBrightness() > 0.50)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+
+        public static void SetFormStartPoint(ref Form Frm, Point Pt, int Px=20, int Py=20)
+        {
+            Frm.StartPosition = FormStartPosition.Manual;
+            Pt.X += Px;
+            Pt.Y += Py;
+            Frm.Location = Pt;
+        }
+
+        public static void InitGenericTableStyle(ref DataGridView Table)
+        {
+            Table.RowHeadersVisible = false;
+            Table.BorderStyle = BorderStyle.None;
+            Table.DefaultCellStyle.SelectionBackColor = Table.DefaultCellStyle.BackColor;
+            Table.DefaultCellStyle.SelectionForeColor = Table.DefaultCellStyle.ForeColor;
+            Table.EnableHeadersVisualStyles = false;
+            Table.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            Table.ColumnHeadersDefaultCellStyle.BackColor = ColorPalette.GenericTableBackColor;
+            Table.ColumnHeadersDefaultCellStyle.ForeColor = ColorPalette.GenericFormBackColor;
+            Table.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
+            Table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Table.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            Table.RowTemplate.Height = 30;
+            Table.AllowUserToResizeRows = false;
+            Table.AllowUserToResizeColumns = false;
+            Table.ReadOnly = true;
+            Table.ClearSelection();
+        }
+
+        public static string SpaceSqueeze(string Str)
+        {
+            return Regex.Replace(Str, @"\s\s+", " ");
+        }
+
     }
 }

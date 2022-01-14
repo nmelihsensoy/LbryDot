@@ -12,6 +12,7 @@ using BusinessLogicLayer.Services;
 using BusinessLogicLayer;
 using PresentationLayer.Controls;
 using Entities;
+using PresentationLayer.Resources;
 
 namespace PresentationLayer.SubPages
 {
@@ -40,36 +41,34 @@ namespace PresentationLayer.SubPages
         {
             foreach (BorrowingModel Borrow in Lst)
             {
-                int DayDiff = -1;
                 BookStatusItem Item = new BookStatusItem();
-                if (Borrow.returned_date == DateTime.MinValue)
-                {
-                    DayDiff = BusinessLogicLayer.Helpers.DaysBetween(Borrow.due_date, DateTime.Today);
-                    //MessageBox.Show(Borrow.due_date.ToString());
-                    if (DayDiff < 1)
-                    {
-                        if (DayDiff == -2)
-                        {
-                            Item.SetBookStatus(BookStatusItem.BookStatus.TwoDaysLeft);
-                        }
-                        else
-                        {
-                            Item.SetBookStatus(BookStatusItem.BookStatus.Normal);
+                BorrowingService.BorrowState ItemState = BorrowingService.GetBorrowState(Borrow, out int DayDiff);
 
-                        }
-                    }
-                    else
-                    {
-                        Item.SetBookStatus(BookStatusItem.BookStatus.Late);
-                    }
-                }
-                else
+                switch (ItemState)
                 {
-                    Item.SetBookStatus(BookStatusItem.BookStatus.Returned);
+                    case BorrowingService.BorrowState.Error:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Stateless);
+                        break;
+                    case BorrowingService.BorrowState.Borrowed:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Normal);
+                        break;
+                    case BorrowingService.BorrowState.Late:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Late);
+                        break;
+                    case BorrowingService.BorrowState.TwoDaysLeft:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.TwoDaysLeft);
+                        break;
+                    case BorrowingService.BorrowState.Returned:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Returned);
+                        break;
+                    default:
+                        Item.SetBookStatus(BookStatusItem.BookStatus.Stateless);
+                        break;
                 }
 
                 Item.Borrow = Borrow;
                 Item.Text_DayFirstLine.Text = Math.Abs(DayDiff).ToString();
+                Item.TitleAlignCenter();
 
                 Pnl.Controls.Add(Item);
                 Item.ButtonHandler += action;
@@ -80,7 +79,7 @@ namespace PresentationLayer.SubPages
         {
             flowLayoutPanel1.Controls.Clear();
             PopulateMyBooks(BorrowingService1.GetAllBorrowings(), flowLayoutPanel1, StatusItemClick);
-            MyBooksAlert.ShowAlert(AlertBox.AlertType.Warning, "There is no any borrowed books");
+            MyBooksAlert.ShowAlert(AlertBox.AlertType.Warning, Strings.MyBooksEmptyMessage);
             Helpers.AddControlToEmptyContainer(flowLayoutPanel1, MyBooksAlert);
         }
 
@@ -89,22 +88,26 @@ namespace PresentationLayer.SubPages
             DialogResult Result = DialogResult.Abort;
             if ((sender as Button).Name == "Button_ReturnBook")
             {
-                Result = new BookIssue(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow).ShowDialog();
+
+                Form ReturnDialog = new BookReturn(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow);
+                Point StartP = (sender as Button).PointToScreen(Point.Empty);
+                Helpers.SetFormStartPoint(ref ReturnDialog, StartP, 10);
+
+                Result = ReturnDialog.ShowDialog();
             }
             else if ((sender as Button).Name == "Button_BookDetails")
             {
                 Result = new BookDetails(AppContext, BookStatusItem.GetItemFromButton(sender).Borrow.book).ShowDialog();
             }
-
             if (Result == DialogResult.OK || Result == DialogResult.Yes)
             {
                 RefreshMyBooks();
+                AppContext.UpdateFine();
             }
             else
             {
                 BookStatusItem.GetItemFromButton(sender).HideHover();
             }
-
         }
     }
 }

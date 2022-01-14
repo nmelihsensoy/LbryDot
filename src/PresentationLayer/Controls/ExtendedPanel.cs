@@ -37,7 +37,7 @@ namespace PresentationLayer.Controls
             }
         }
 
-        //Overriding CreateParams to set extented style to form.
+        //Overriding CreateParams to set extended style to form.
         //https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.control.createparams?view=windowsdesktop-5.0
         protected override CreateParams CreateParams
         {
@@ -59,19 +59,9 @@ namespace PresentationLayer.Controls
 
         private void InitializeComponent()
         {
-            this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
             this.SuspendLayout();
-            // 
-            // printPreviewControl1
-            // 
-            this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
-            this.printPreviewControl1.Name = "printPreviewControl1";
-            this.printPreviewControl1.Size = new System.Drawing.Size(100, 100);
-            this.printPreviewControl1.TabIndex = 0;
             this.ResumeLayout(false);
 
         }
-
-        private PrintPreviewControl printPreviewControl1;
     }
 }

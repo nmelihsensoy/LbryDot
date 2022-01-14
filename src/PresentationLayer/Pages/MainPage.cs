@@ -104,6 +104,8 @@ namespace PresentationLayer.Pages
             userDropdown_TopBar.DropdownClick += userDropdown1_Click;
             userDropdown_TopBar.SetMenu(userDropdownMenu1);
 
+            userDropdownMenu1.CurrencySymbol = AppContext.AppSettings.currency_symbol;
+
             if (AppContext.GetUserType() == UserType.Student)
             {
                 userDropdown_TopBar.SetUser(AppContext.GetLoggedStudent());
@@ -182,6 +184,7 @@ namespace PresentationLayer.Pages
         //To change page title by current active page
         private void TopBarActiveTitle()
         {
+            AppySearchDefaultStyle();
             if (_activeForm.Text == "Books")
             {
                 Panel_SearchBox.Visible = true;
@@ -286,6 +289,13 @@ namespace PresentationLayer.Pages
                 Helpers.ChangePage(this, LoginForm);
                 this.Dispose();
             }
+            else
+            {
+                if (AppContext.GetUserType() == UserType.Student)
+                {
+                    userDropdownMenu1.SetUser(AppContext.GetLoggedStudent());
+                }
+            }
         }
 
         private void ıconButton5_Click(object sender, EventArgs e)
@@ -315,10 +325,10 @@ namespace PresentationLayer.Pages
         {
             Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Bold);
             Label_Button_Search_X.Visible = true;
-            Splitter_SearchBoxLeft.BackColor = Color.FromArgb(0, 120, 215);
-            Splitter_SearchBoxRight.BackColor = Color.FromArgb(0, 120, 215);
-            Splitter_SearchBoxTop.BackColor = Color.FromArgb(0, 120, 215);
-            Splitter_SearchBoxBottom.BackColor = Color.FromArgb(0, 120, 215);
+            Splitter_SearchBoxLeft.BackColor = ColorPalette.MainPageSearchBarActiveColor;
+            Splitter_SearchBoxRight.BackColor = ColorPalette.MainPageSearchBarActiveColor;
+            Splitter_SearchBoxTop.BackColor = ColorPalette.MainPageSearchBarActiveColor;
+            Splitter_SearchBoxBottom.BackColor = ColorPalette.MainPageSearchBarActiveColor;
         }
 
         private void AppySearchDefaultStyle()
@@ -372,7 +382,7 @@ namespace PresentationLayer.Pages
             {
                 Input_SearchBox.Clear();
                 Input_SearchBox.Font = new Font(Input_SearchBox.Font, FontStyle.Regular);
-                Input_SearchBox.ForeColor = Color.FromArgb(100, 100, 100);
+                Input_SearchBox.ForeColor = ColorPalette.MainPageSearchBarForeColor;
                 Label_Button_Search_X.Visible = true;
             }
         }
@@ -396,6 +406,5 @@ namespace PresentationLayer.Pages
                 (_activeForm as Books).SearchReset();
             }
         }
-
     }
 }

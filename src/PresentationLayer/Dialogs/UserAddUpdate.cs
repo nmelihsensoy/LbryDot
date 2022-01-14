@@ -59,24 +59,26 @@ namespace PresentationLayer.Dialogs
         {
             if (UserTypeEditAdd == UserType.Student)
             {
+                this.Text = Strings.UserDialogAddStudentTitle;
                 StudentsService1 = new StudentsService(AppContext);
                 Button_AddSave.Click += ıconButton2_Click;
             }
 
             if (UserTypeEditAdd == UserType.Staff)
             {
+                this.Text = Strings.UserDialogAddStaffTitle;
                 StaffService1 = new StaffService(AppContext);
                 Button_AddSave.Click += StaffSave_Click;
             }
 
             if(UserTypeEditAdd == UserType.Student && this.IsNewUser == false)
             {
-                
                 EditStudent = StudentsService1.GetStudentById(UserId);
                 Input_Email.Text = EditStudent.student_email;
                 Input_Name.Text = EditStudent.student_name;
                 SelectedAvatarInBytes = EditStudent.student_avatar;
-                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStudent.student_avatar);
+                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStudent.student_avatar, Image_StudentAvatar.Image);
+                this.Text = Strings.UserDialogUpdateTitle + ": " + EditStudent.student_name;
             }
 
             if (UserTypeEditAdd == UserType.Staff && this.IsNewUser == false)
@@ -85,7 +87,8 @@ namespace PresentationLayer.Dialogs
                 Input_Email.Text = EditStaff.staff_email;
                 Input_Name.Text = EditStaff.staff_name;
                 SelectedAvatarInBytes = EditStaff.staff_avatar;
-                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStaff.staff_avatar);
+                Image_StudentAvatar.Image = Helpers.ConvertByteToImage(EditStaff.staff_avatar, Image_StudentAvatar.Image);
+                this.Text = Strings.UserDialogUpdateTitle + ": " + EditStaff.staff_name;
             }
         }
 
@@ -116,13 +119,13 @@ namespace PresentationLayer.Dialogs
                     SetModelFromInputs(NewStudent);
 
                     StudentsService1.AddStudent(NewStudent);
-                    SuccessMsg = "Student Added Successfully";
+                    SuccessMsg = Strings.UserDialogAddSuccessMsg;
                 }
                 else
                 {
                     SetModelFromInputs(EditStudent);
                     StudentsService1.UpdateStudent(EditStudent);
-                    SuccessMsg = "Student Updated Successfully";
+                    SuccessMsg = Strings.UserDialogUpdateSuccessMsg;
                 }
 
                 AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
@@ -150,13 +153,13 @@ namespace PresentationLayer.Dialogs
                     SetModelFromInputs(NewStaff);
 
                     StaffService1.AddStaff(NewStaff);
-                    SuccessMsg = "Staff Added Successfully";
+                    SuccessMsg = Strings.UserDialogAddSuccessMsg;
                 }
                 else
                 {
                     SetModelFromInputs(EditStaff);
                     StaffService1.UpdateStaff(EditStaff);
-                    SuccessMsg = "Staff Updated Successfully";
+                    SuccessMsg = Strings.UserDialogUpdateSuccessMsg;
                 }
 
                 AlertBox_UserOperation.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Success, SuccessMsg);
@@ -186,7 +189,7 @@ namespace PresentationLayer.Dialogs
                 }
                 else
                 {
-                    MessageBox.Show("File size has to be lower than 500KB");
+                    MessageBox.Show(Strings.AvatarErrorMessage + " 500KB");
                 }
             }
         }

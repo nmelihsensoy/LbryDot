@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entities;
 using BusinessLogicLayer.Validation;
 using FluentValidation.Results;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogicLayer.Services
 {
@@ -25,9 +26,6 @@ namespace BusinessLogicLayer.Services
 
         public void AddBook(BookModel Book)
         {
-            var output = _appContext.getUoW().BooksRepository.Add(Book);
-            _appContext.getUoW().Commit();
-
             BooksValidator validator = new BooksValidator();
             ValidationResult results = validator.Validate(Book);
             string allMessages = results.ToString("\n");
@@ -36,6 +34,9 @@ namespace BusinessLogicLayer.Services
             {
                 throw new Exception(allMessages);
             }
+
+            var output = _appContext.getUoW().BooksRepository.Add(Book);
+            _appContext.getUoW().Commit();
 
             if (output != 1)
             {
@@ -65,12 +66,28 @@ namespace BusinessLogicLayer.Services
 
         public void UpdateBook(BookModel Book)
         {
+            BooksValidator validator = new BooksValidator();
+            ValidationResult results = validator.Validate(Book);
+            string allMessages = results.ToString("\n");
+
+            if (!results.IsValid)
+            {
+                throw new Exception(allMessages);
+            }
+
             var output = _appContext.getUoW().BooksRepository.Update(Book);
             _appContext.getUoW().Commit();
+
+            if (output != 1)
+            {
+                throw new Exception("Error");
+            }
         }
 
         public List<BookModel> SearchBook(String SearchText)
         {
+            SearchText = Regex.Replace(SearchText, @"[-/]+", "");
+
             var output = _appContext.getUoW().BooksRepository.Search(SearchText).ToList();
             _appContext.getUoW().Commit();
 
@@ -79,8 +96,17 @@ namespace BusinessLogicLayer.Services
 
         public void DeleteBook(BookModel Book)
         {
-            var output = _appContext.getUoW().BooksRepository.Delete(Book);
-            _appContext.getUoW().Commit();
+            //var output = _appContext.getUoW().BooksRepository.Delete(Book);
+            if (_appContext.getUoW().BooksRepository.GetBookAvailability(Book.book_id) == 0)
+            {
+                throw new Exception("You can't delete a borrowed book.");
+            }
+            else
+            {
+                var output = _appContext.getUoW().BooksRepository.DelistBook(Book, DateTime.Today.Date);
+                //var output2 = _appContext.getUoW().BorrowingRepository.UpdateBook(Book.book_id);
+                _appContext.getUoW().Commit();
+            } 
         }
 
         public List<CategoryModel> GetCategoriesList()

@@ -112,14 +112,18 @@ namespace PresentationLayer.Pages
 
         private void Lang_EN_Click(object sender, EventArgs e)
         {
+            int StoreState = ComboBox_LoginType.SelectedIndex;
             Helpers.ChangeLanguage();
             ApplyStrings();
+            ComboBox_LoginType.SelectedIndex = StoreState;
         }
 
         private void Lang_TR_Click(object sender, EventArgs e)
         {
+            int StoreState = ComboBox_LoginType.SelectedIndex;
             Helpers.ChangeLanguage("tr");
             ApplyStrings();
+            ComboBox_LoginType.SelectedIndex = StoreState;
         }    
 
         private void Email_Input_Enter(object sender, EventArgs e)

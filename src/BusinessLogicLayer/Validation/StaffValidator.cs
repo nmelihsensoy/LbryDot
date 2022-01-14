@@ -12,7 +12,8 @@ namespace BusinessLogicLayer.Validation
     {
         public StaffValidator()
         {
-
+            RuleFor(x => x.staff_email).NotEmpty().EmailAddress();
+            RuleFor(x => x.staff_name).NotEmpty().MinimumLength(4).Matches(@"^(([A-Za-zÇçĞğİıÖöŞşÜü])+[\.]?[\ -\.]?){1,}\.?([^\s-])+");
         }
     }
 }

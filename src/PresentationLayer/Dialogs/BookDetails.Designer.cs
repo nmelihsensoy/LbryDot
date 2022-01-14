@@ -30,10 +30,12 @@ namespace PresentationLayer.Dialogs
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookDetails));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyISBNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.bookListItem1 = new PresentationLayer.Controls.BookListItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -46,6 +48,7 @@ namespace PresentationLayer.Dialogs
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(464, 184);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // contextMenuStrip1
             // 
@@ -53,21 +56,30 @@ namespace PresentationLayer.Dialogs
             this.copyTitleToolStripMenuItem,
             this.copyISBNToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 48);
             // 
             // copyTitleToolStripMenuItem
             // 
             this.copyTitleToolStripMenuItem.Name = "copyTitleToolStripMenuItem";
-            this.copyTitleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyTitleToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.copyTitleToolStripMenuItem.Text = "Copy Title";
             this.copyTitleToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // copyISBNToolStripMenuItem
             // 
             this.copyISBNToolStripMenuItem.Name = "copyISBNToolStripMenuItem";
-            this.copyISBNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyISBNToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.copyISBNToolStripMenuItem.Text = "Copy ISBN";
             this.copyISBNToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+            // 
+            // alertBox1
+            // 
+            this.alertBox1.Location = new System.Drawing.Point(11, 169);
+            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
+            this.alertBox1.Name = "alertBox1";
+            this.alertBox1.Size = new System.Drawing.Size(466, 39);
+            this.alertBox1.TabIndex = 3;
+            this.alertBox1.Visible = false;
             // 
             // bookListItem1
             // 
@@ -84,8 +96,12 @@ namespace PresentationLayer.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 366);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.alertBox1);
             this.Controls.Add(this.bookListItem1);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BookDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "BookDetail";
@@ -101,5 +117,6 @@ namespace PresentationLayer.Dialogs
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyTitleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyISBNToolStripMenuItem;
+        private Controls.AlertBox alertBox1;
     }
 }

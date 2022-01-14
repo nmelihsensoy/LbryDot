@@ -60,7 +60,7 @@ namespace DataLayer
             }
             catch
             {
-                _dbTransaction.Rollback(); //Rollback if any exception of the occured problem throwed. 
+                _dbTransaction.Rollback();
                 throw;
             }
             finally

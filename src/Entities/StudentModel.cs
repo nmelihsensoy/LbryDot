@@ -13,5 +13,7 @@ namespace Entities
         public string student_password { get; set; }
         public string student_name { get; set; }
         public byte[] student_avatar { get; set; }
+        public int total_fine { get; set; }
+        public int active_fine { get; set; }
     }
 }
