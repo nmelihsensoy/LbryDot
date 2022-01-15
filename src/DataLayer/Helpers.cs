@@ -23,5 +23,10 @@ namespace DataLayer
             return builder[id].ToString();
         }
 
+        public static string GetAppSetting(string id)
+        {
+            return ConfigurationManager.AppSettings.Get(id);
+        }
+
     }
 }

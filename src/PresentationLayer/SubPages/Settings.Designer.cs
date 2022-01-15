@@ -39,7 +39,6 @@ namespace PresentationLayer.SubPages
             this.Input_Setting = new System.Windows.Forms.NumericUpDown();
             this.Text_ActiveBooksTitle = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@ namespace PresentationLayer.SubPages
             this.Button_AddStaff = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
+            this.alertBox1 = new PresentationLayer.Controls.AlertBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Input_Setting)).BeginInit();
             this.panel2.SuspendLayout();
@@ -164,15 +164,6 @@ namespace PresentationLayer.SubPages
             this.splitter1.Size = new System.Drawing.Size(374, 3);
             this.splitter1.TabIndex = 19;
             this.splitter1.TabStop = false;
-            // 
-            // alertBox1
-            // 
-            this.alertBox1.Location = new System.Drawing.Point(401, 336);
-            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
-            this.alertBox1.Name = "alertBox1";
-            this.alertBox1.Size = new System.Drawing.Size(375, 53);
-            this.alertBox1.TabIndex = 18;
-            this.alertBox1.Visible = false;
             // 
             // panel2
             // 
@@ -325,6 +316,15 @@ namespace PresentationLayer.SubPages
             this.splitter3.Size = new System.Drawing.Size(375, 3);
             this.splitter3.TabIndex = 0;
             this.splitter3.TabStop = false;
+            // 
+            // alertBox1
+            // 
+            this.alertBox1.Location = new System.Drawing.Point(401, 336);
+            this.alertBox1.MinimumSize = new System.Drawing.Size(150, 0);
+            this.alertBox1.Name = "alertBox1";
+            this.alertBox1.Size = new System.Drawing.Size(375, 53);
+            this.alertBox1.TabIndex = 18;
+            this.alertBox1.Visible = false;
             // 
             // Settings
             // 

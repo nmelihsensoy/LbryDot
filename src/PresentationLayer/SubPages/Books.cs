@@ -146,7 +146,6 @@ namespace PresentationLayer.SubPages
             if (Result == DialogResult.OK || Result == DialogResult.Yes)
             {
                 RefreshBooks();
-                AppContext.UpdateFine();
             }
             else
             {
