@@ -164,6 +164,14 @@ namespace PresentationLayer.SubPages
             else
             {
                 StaffModel SelectedStaff = (listBox1.SelectedItem as StaffModel);
+
+                if (SelectedStaff == null )
+                {
+                    alertBox1.ShowAlert(PresentationLayer.Controls.AlertBox.AlertType.Danger, "No staff selected");
+                    alertBox1.Visible = true;
+                    return;
+                }
+
                 if ((sender as Button).Name == "Button_EditStaff")
                 {
                     DialogResult1 = new UserAddUpdate(AppContext, UserType.Staff, SelectedStaff.staff_id).ShowDialog();
