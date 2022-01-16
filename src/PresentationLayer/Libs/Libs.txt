@@ -1,0 +1,1 @@
+﻿.dll files for external libraries that not downloaded from nuget are stored in this folder.

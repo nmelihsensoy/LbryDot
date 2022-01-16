@@ -50,7 +50,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Portable Release|AnyCPU'">
     <OutputPath>bin\Portable Release\</OutputPath>
@@ -254,11 +255,11 @@
     <Compile Include="SubPages\Students.Designer.cs">
       <DependentUpon>Students.cs</DependentUpon>
     </Compile>
+    <Content Include="Libs\Libs.txt" />
     <Content Include="Libs\ZedGraph.dll" />
     <None Include="App.config" />
     <None Include="App.Installer.config" />
     <None Include="Resources\default_book_cover1.png" />
-    <Content Include="logo.ico" />
     <Content Include="Resources\logo.ico" />
     <Content Include="lbrydot_db.bak">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

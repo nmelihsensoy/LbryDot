@@ -8,7 +8,7 @@
 lbry. Provides staff, student user roles and handles their authentications. Makes able to manage easily these user roles. Provides user role specific data views and user role specific operations.
 
 **Data Store and Visualization**
-lbry. stores book, student, staff metadatas and their dynamic historical datas(Eg. borrowing, book availability). And visualizes these datas as a charts, book catalogue or student-staff list to make tracking easier.
+lbry. stores book, student, staff metadata and their dynamic historical datas(Eg. borrowing, book availability). And visualizes these datas as a charts, book catalogue or student-staff list to make tracking easier.
 
 **Multi Lingual**
 lbry. provides English and Turkish languages for the user interface. Supports multi-language books, searching books by languages, multi-language book categories.
@@ -95,9 +95,9 @@ Email  | Password
 
 ## Technical Documentation
 
-Application is designed with using architecture that known as n-tier, multitier, multilayer or layered. Chosen architecture divedes application into individual and interoperable layers where they can be developed simultaneously with its own dependencies. Microsoft suggested layered architecture in [here](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ee658109(v=pandp.10)). More information can be found in [here](https://en.wikipedia.org/wiki/Multitier_architecture).
+Application is designed with using architecture that known as n-tier, multitier, multilayer or layered. Chosen architecture divides application into individual and interoperable layers where they can be developed simultaneously with its own dependencies. Microsoft suggested layered architecture in [here](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ee658109(v=pandp.10)). More information can be found in [here](https://en.wikipedia.org/wiki/Multitier_architecture).
 
-In the implementation of the described architecture for this application, totally 4 layers has been defined. 3 of these layers are commonly used: 
+In the implementation of the described architecture for this application, totally 4 layers has been defined. 3 of these layers are commonly used:
 
 * Presentationlayer aka Presentation Layer
 * Datalayer aka Data access layer
@@ -111,7 +111,7 @@ C# programming language, .NET Framework and Microsoft Visual Studio Development 
 
 Previously defined layers are implemented as a .NET Projects in a Solution named **"LbryDot"**. And the reference diagram for these layers as following :
 
-![Reference Diagram](pictures/diagrams/Layer_Reference_diagram.png)
+![Reference Diagram](pictures/diagrams/layer_reference.svg)
 
 ### PresentationLayer
 
@@ -155,55 +155,31 @@ Unit of Work pattern is used. Merges database operations came from Services into
 
 Layers, tools, patterns and their relations presented as the following diagram:
 
-![Detailed Architecture Diagram](pictures/diagrams/Detailed_Architecture_Diagram.png)
+![Architecture Diagram](pictures/diagrams/architecture_diagram.svg)
 
 ER diagram for the database is as the following:
 
-![Database Diagram](pictures/diagrams/Database_Diagram.png)
-
-### App.Config
-
-SQLite stores datas as a file. This file path is defined in App.Config file as following:
-
-```xml
-<connectionStrings>
-    <add name="Default" connectionString="Data Source=.\lbrydot_db.db;Version=3;" providerName="System.Data.SqlClient" />
-  </connectionStrings>
-```
-
-User passwords are stored as md5 hash with salt in the database. Salt is defined in App.Config file as following:
-
-```xml
-  <appSettings>
-    <add key="Salt" value="lbry*~0Yn" />
-  </appSettings>
-```
+![Database Diagram](db/db_diagram.svg)
 
 ### Borrowing Logic
-
-Book borrowings are saved in a Borrowing table as following:
-
-Table will added here.
 
 #### Borrow Book
 
 When user borrows a book, a record is added to the Borrowing table. That record's `returned_date` column is kept as NULL.
 
-Table will added here
-
 #### Return Book
 
 When user returns a book, That record's `returned_date` column is set to current timestamp.
-
-Table will added here
 
 ### Historical Total Book Count Calculation Method
 
 Book records are saved in a Books table as following:
 
-Table will added here
+| book_id |     isbn      |              title               | date_of_publication |    author     | number_of_pages |     category     | language | book_cover | shelf_number | is_available |         added_date          | delist_date |
+|---------|---------------|----------------------------------|---------------------|---------------|-----------------|------------------|----------|------------|--------------|--------------|-----------------------------|-------------|
+| 12      | 9780141361345 | Alice's Adventures in Wonderland | 2015                | Lewis Carroll | 192             | Classics29,53,87 | English  |            | 7A           | 1            | 2021-12-21 09:45:11.9885397 |             |
 
-Historical total book count is calculated by using `added_date` `delist_date` columns. Cumulative Frequency table for merged `added_date` and `delist_date` columns is getting. Then count of rows that has `delist_date` value is subtracted from table. This method implemented as the following sql query:
+When the book is added, `added_date` value is set to current timestamp. When the book is removed `delist_date` value is set from `NULL` to current timestamp. Row is not deleted. Historical total book count is calculated by using `added_date`, `delist_date` columns. Cumulative Frequency table for merged `added_date` and `delist_date` columns is calculate. Then count of rows that has not null `delist_date` value is subtract from tables relevant element. This method implemented as the following sql query:
 
 ```sql
 SELECT Date1 as date, SUM(MAX(NUM)-MAX(NUM2)) OVER (ORDER BY Date1) AS count FROM
@@ -231,6 +207,11 @@ date  | count
 
 Book borrowings are saved in a Borrowing table as following:
 
+| borrow_id | book_id | student_number |     issued_date     |      due_date       |    returned_date    | amount_of_fine |
+|-----------|---------|----------------|---------------------|---------------------|---------------------|----------------|
+| 3         | 8       | 3              | 2022-01-05 00:00:00 | 2022-01-26 00:00:00 |                     | 0              |
+| 4         | 12      | 3              | 2022-01-12 00:00:00 | 2022-01-26 00:00:00 | 2022-01-15 00:00:00 | 0              |
+
 Available book count only changes when someone returns a book. And `returned_date` column value is changed `NULL` to `current timestamp` when someone returns a book. Therefore historical borrowed book count can be calculated using `returned_data` column with following method. For every unique `returned_date` value, count cumulative borrowed book and cumulative returned book then substract cumulative returned book count from cumulative borrowed book count.
 
 This query gives the chart x axis points:
@@ -252,7 +233,7 @@ date  |
 
 Available count calculation for `2021-12-15`:
 
-Count of the rows that has issued_date value earlier than `2021-12-15:
+Count of the rows that has issued_date value earlier or equal than `2021-12-15:
 
 ```sql
 SELECT COUNT(*) AS C1 FROM Borrowing WHERE date(issued_date) <=  '2021-12-15';
@@ -262,7 +243,7 @@ C1  |
 ------------- |
 2 |
 
-Count of the rows that returned_date equals `2021-12-15`:
+Count of the rows that has returned_date earlier or equal than `2021-12-15`:
 
 ```sql
 SELECT COUNT(*)  AS C2 FROM Borrowing WHERE date(returned_date) <= '2021-12-15'
@@ -272,9 +253,9 @@ C2  |
 ------------- |
 1 |
 
-`(C1)2 - (C2)1 = 1` : This amount of book has been borrowed in date of `2021-12-15`. Intraday activities does not affect the output, only the day close is considered.
+`(C1's value) = 2 - (C2's value) = 1 = 1` : This amount of book has been borrowed in date of `2021-12-15`. Intraday activities does not affect the output, only the day close is considered.
 
-So, `(Total book count on the day of '2021-12-15') - C2` formula gives the currently available book count.
+So, `(Total book count on the day of '2021-12-15') - (C1's value - C2's value)` formula gives the currently available book count.
 
 Following sql query is combination of the previous queries. It applies the explained method to every x axis point.
 
@@ -300,28 +281,8 @@ date  | count
 2022-01-08 00:00:00 | 9
 2022-01-09 00:00:00 | 5
 
-### Translation
-
-Section will be added.
-
-### Color Template
-
-Section will be added.
-
 ### Development
 
 After cloning or downloading the repository, open `src/LbryDot.sln` file with your IDE. Visual Studio 2019 or more is recomended. IDE will handle .NET version problems and automatically install the nuget packages.
 
 ### Build & Distribution
-
-#### Building for Development
-
-Select 'Debug' configuration and press Build.
-
-#### Building for Distribution
-
-Select 'Relase' configuration and press Build.
-
-#### Distribution
-
-After the building process. Run `release` script in your Powershell. It will automatically create portable and installable versions in Release folder.
