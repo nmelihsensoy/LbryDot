@@ -357,6 +357,19 @@ App.Installer.config file:
 
 ### Development
 
-After cloning or downloading the repository, open `src/LbryDot.sln` file with your IDE. Visual Studio 2019 or more is recomended. IDE will handle .NET version problems and automatically install the nuget packages.
+After cloning or downloading the repository, open `src/LbryDot.sln` file with your IDE. Visual Studio 2019 or more is recomended. IDE will handle .NET version problems and automatically install the nuget packages.Portable edition is used for debugging.
 
 ### Build & Distribution
+
+3 build configuration for several scenarios has already been defined for solution. These are named as `Debug`, `Installer Release`, `Portable Release` and available to selection when building the solution. Building solution with using these configurations gives output in the main project's bin directory as a folder named with build configuration. Output directory contains different output files for every build configuration.
+For example `Debug`'s output does contain *.pdb files for debugging and others not. Output can contains different App.config file for different build configurations. This achieved with using Post-build event(Thanks [here](http://www.blackwasp.co.uk/SwitchConfig.aspx) for publishing this simple hack. Otherwise i would have to use the [SlowCheetah](https://github.com/microsoft/slow-cheetah) package).
+
+Build Configuration Name  | Output Directory | Output Also Contains | App.Config file
+------------- | ------------- | ------------- | -------------
+`Debug` | `PresentationLayer\bin\Debug` | `*.pdb`, `*.xml`, `lbrydot_db.db` | `App.config`
+`Installer Release` | `PresentationLayer\bin\Installer Release` | | `App.Installer.config`
+`Portable Release` | `PresentationLayer\bin\Portable Release` | `lbrydot_db.db` | `App.config`
+
+#### Building Installer
+
+#### Distribution
