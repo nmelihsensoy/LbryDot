@@ -82,7 +82,7 @@ Database reset is required before loading the mock data. For the first login, re
 
 After successfully load the mock data, following credentials will be available to use.
 
-Staffs
+Staff
 Email  | Password
 ------------- | -------------
 `jane_smith@lbry.com`  | `jane1234`
@@ -115,11 +115,11 @@ Previously defined layers are implemented as a .NET Projects in a Solution named
 
 ### PresentationLayer
 
-This layer handles the user interface. [WinForms]() and [FontAwesome]() tools are used.
+This layer handles the user interface. [WinForms](https://github.com/dotnet/winforms), [FontAwesome](https://www.nuget.org/packages/FontAwesome.Sharp/) and [ZedGraph](https://sourceforge.net/projects/zedgraph/) tools are used.
 
 ### Entities
 
-This layer contains POCO classes.
+This layer contains POCO classes and common Enum definitions.
 
 ### BusinessLogicLayer
 
@@ -127,15 +127,15 @@ This layer processes user inputs to make logical decisions, sends data to DataLa
 
 #### CustomAppContext
 
-Initiates database connection and unit of work, stores app context. Provides database connection and unit of work access to the services.
+Initiates database connection, stores UnitOfWork, stores logged users and system parameters. Provides UnitOfWork access to the services. One instance of CustomAppContext is initialized at the start and carried over to services.  
 
 #### Services
 
 Services are created here. Service is a operation logic provider for entities. Validators are used here.
 
-#### Validation
+#### Validators
 
-Validators are created here. Validator is a summary of a validation rules for a Entity. [FluentValidation]() is used.
+Validators are created here. Validator is a sum of validation rules for an Entity. [FluentValidation](https://www.nuget.org/packages/FluentValidation/) is used.
 
 ### DataLayer
 
@@ -143,15 +143,15 @@ This layer contains data access logic. Handles operations on the database.
 
 #### DatabaseProvider
 
-Defines database connection logic. Provides an interface for different type of databasess. [SQLite]() is used for database.
+Defines database connection logic. Provides an interface for different type of databasess. [SQLite](https://www.nuget.org/packages/System.Data.SQLite/) is used for database.
 
 #### Repositories
 
-Repository pattern and ORM technique is used. This sublayer contains repository definitions of a Entity. [Dapper]() tool is chosen for ORM technique.
+Repository pattern and ORM technique is used. This sublayer contains repository definitions of Entities. [Dapper](https://www.nuget.org/packages/Dapper/) tool is chosen for ORM technique.
 
 #### UnitOfWork
 
-Unit of Work pattern is used. Merges database operations came from Services into one single transaction. Manages repositories. Provides one interface to Services for accessing all the repositories.
+Unit of Work pattern is used. Merges database operations came from Services into one single transaction. Relays the DatabaseProvider between Repositories. Provides one interface to Services for accessing all the repositories.
 
 Layers, tools, patterns and their relations presented as the following diagram:
 
@@ -171,7 +171,7 @@ When user borrows a book, a record is added to the Borrowing table. That record'
 
 When user returns a book, That record's `returned_date` column is set to current timestamp.
 
-### Historical Total Book Count Calculation Method
+### Historical Total Book Count Calculation
 
 Book records are saved in a Books table as following:
 
@@ -203,9 +203,9 @@ date  | count
 2021-12-19 | 13
 2022-01-14 | 12
 
-### Historical Available Book Count Calculation Method
+### Historical Available Book Count Calculation
 
-Book borrowings are saved in a Borrowing table as following:
+Book borrowings are saved in Borrowing table as following:
 
 | borrow_id | book_id | student_number |     issued_date     |      due_date       |    returned_date    | amount_of_fine |
 |-----------|---------|----------------|---------------------|---------------------|---------------------|----------------|
@@ -253,9 +253,13 @@ C2  |
 ------------- |
 1 |
 
-`(C1's value) = 2 - (C2's value) = 1 = 1` : This amount of book has been borrowed in date of `2021-12-15`. Intraday activities does not affect the output, only the day close is considered.
+| C1 | C2 | C1-C2 |
+|----|----|-------|
+| 2  | 1  | 1     |
 
-So, `(Total book count on the day of '2021-12-15') - (C1's value - C2's value)` formula gives the currently available book count.
+`C1-C2 = 1` : This amount of book has been borrowed in date of `2021-12-15`. Intraday activities does not affect the output, only the day close is considered.
+
+So, `(Total book count on the day of '2021-12-15') - (C1-C2)` formula gives the available book count for wanted day.
 
 Following sql query is combination of the previous queries. It applies the explained method to every x axis point.
 
@@ -280,6 +284,76 @@ date  | count
 2022-01-07 00:00:00 | 8
 2022-01-08 00:00:00 | 9
 2022-01-09 00:00:00 | 5
+
+### Ui Localization
+
+Achiving to support multi lingual user interface, every text that shown to user is stored in Resources with `Strings.<lang-code>.resx` file. `Strings.resx` file without any abbreviation stores texts for English language. `Strings.tr.resx` file stores texts for Turkish language. New languages can be added with creating a `Strings.<lang-code>.resx` file using ISO language codes (Eg: fr-FR, de-DE) or custom codes(Eg: tr, lorem, example). Application language can be changed during the runtime with using `PresentationLayer.Helpers.ChangeLanguage` function.
+
+`Strings.resx`:
+
+Name  | Value
+------------- | -------------
+AdminRole | Admin
+
+`Strings.tr.resx`:
+Name  | Value
+------------- | -------------
+AdminRole | Yönetici
+
+### Ui Color Template
+
+Colors that used in form controls are stored in `ColorPalette` class with the relevantly named variables.Color template can't be changed during the runtime.
+
+`ColorPalette.cs`
+
+```C#
+public static Color MainSidebarForeColor = Color.FromArgb(92, 100, 128);
+```
+
+### App.Config File
+
+#### Password Hash Salt
+
+User passwords are stored as md5 hash with salt in the database. Salt is defined in App.Config file as following:
+
+```xml
+  <appSettings>
+    <add key="Salt" value="lbry*~0Yn" />
+  </appSettings>
+```
+
+#### Connection Strings
+
+SQLite database file path is contained here. Empty database and currently used database is defined in this section. Empty database is stored with `Empty` name, currently used database is stored with `Default` name. `Empty` version is stored to able to reset database.
+
+#### Editions
+
+Different config files are used for the `Portable` and `Installer` edition of the application. For `Portable` edition, database files are contained in the same directory as the executable file. Corresponding config file for this version is as the following:
+
+App.config file:
+
+```xml
+<connectionStrings>
+    <add name="Default" connectionString="Data Source=.\lbrydot_db.db;Version=3;" providerName="System.Data.SqlClient" />
+    <add name="Empty" connectionString="Data Source=.\lbrydot_db.bak" /> 
+</connectionStrings>
+```
+
+For `Installer` edition, currently used database is stored as `%AppData%\LbryDot\lbrydot_db.db` path. Corresponding config file for this version is as the following:
+
+App.Installer.config file:
+
+```xml
+<connectionStrings>
+    <add name="Default" connectionString="Data Source=$LbryAppDataPath$\lbrydot_db.db;Version=3;" providerName="System.Data.SqlClient" />
+    <add name="Empty" connectionString="Data Source=.\lbrydot_db.bak" />
+</connectionStrings>
+<appSettings>
+    <add key="AppDataFolderName" value="LbryDot" />
+</appSettings>
+```
+
+`$LbryAppDataPath$` is replaced with value of the `appSettings`->`AppDataFolderName` key at the runtime.
 
 ### Development
 
